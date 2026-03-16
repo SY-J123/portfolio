@@ -146,6 +146,30 @@ a {
   margin-bottom: 10px;
 }
 
+.strength-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.strength-card {
+  padding: 20px;
+  background: #fbf6ee;
+  border: 1px solid #e7dccd;
+}
+
+.strength-card__title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.strength-card__description {
+  font-size: 0.92rem;
+  color: #4f473d;
+  line-height: 1.7;
+}
+
 .resume-list,
 .resume-side-list {
   display: flex;
@@ -660,6 +684,10 @@ a {
   }
 
   .project-list {
+    grid-template-columns: 1fr;
+  }
+
+  .strength-grid {
     grid-template-columns: 1fr;
   }
 

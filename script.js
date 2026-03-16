@@ -7,8 +7,8 @@ const resumeContent = {
     },
     {
       label: "GitHub",
-      href: "https://github.com/example",
-      text: "github.com/example",
+      href: "https://github.com/SY-J123/portfolio",
+      text: "github.com/SY-J123/portfolio",
       external: true,
     },
     {
@@ -22,30 +22,52 @@ const resumeContent = {
     },
   ],
   summary: [
-    "복잡한 문제의 핵심을 정의하고, 팀이 같은 방향으로 실행할 수 있는 구조로 바꾸는 서비스 기획자입니다.",
-    "B2C 모바일 웹과 게임 도메인에서 문제 정의, UX 흐름 설계, 문서 구조화, 협업 프로세스 개선을 중심으로 일해왔습니다.",
-    "최근에는 AI-assisted workflow와 데이터 기반 판단 역량을 함께 확장하며 더 정교한 제품 설계를 만들어가고 있습니다.",
+    "문제의 핵심을 먼저 정의하고, 팀이 바로 실행할 수 있는 구조로 바꾸는 PM/서비스기획자입니다.",
+    "B2C 모바일 웹과 게임 도메인에서 기능 기획, UX 흐름 설계, 협업 문서 구조화, 운영 개선을 함께 경험했습니다.",
+    "문서가 길다는 표면적 현상도 결국 협업 구조의 문제로 다시 정의해 리드타임과 수정 비용을 줄인 경험이 있습니다.",
+  ],
+  strengths: [
+    {
+      title: "Problem Framing",
+      description:
+        "표면적인 요청을 그대로 받기보다 왜 같은 문제가 반복되는지 구조적으로 해석하고, 팀이 공감할 수 있는 문제 정의로 바꿉니다.",
+    },
+    {
+      title: "Execution Structure Design",
+      description:
+        "문서, 핸드오프, 프로토타입의 역할을 분리하고 실행 흐름을 정리해 팀이 기다리지 않고 움직일 수 있는 구조를 설계합니다.",
+    },
+    {
+      title: "UX & Product Thinking",
+      description:
+        "기능 자체보다 사용자가 어떤 흐름을 경험해야 하는지, 제품 가치와 사용자 관점이 맞물리는지 먼저 점검합니다.",
+    },
+    {
+      title: "Self-driven Improvement",
+      description:
+        "필요한 도구와 방식을 스스로 탐색해 적용합니다. 최근에는 AI-assisted workflow와 데이터 학습을 업무 방식 개선에 연결하고 있습니다.",
+    },
   ],
   experience: [
     {
       company: "Natris",
       role: "Service Planner",
       period: "2024.04 - Present",
-      summary: "B2C 모바일 웹 포커 게임의 기능 기획, UX 흐름 설계, 협업 문서 구조 설계를 담당.",
+      summary: "B2C 모바일 웹 포커 게임에서 기능 기획, UX 흐름 설계, 협업 문서 구조 개선을 담당.",
       highlights: [
-        "AI 기반 프로토타이핑과 문서 구조 재설계를 통해 이해관계자 수를 3명에서 1명으로 줄임.",
-        "업무 리드타임을 1~2주에서 3~4일 수준으로 단축.",
-        "문서 중심 협업의 병목을 구조적 문제로 재정의하고 PRD와 프로토타입 병행 방식을 정착시킴.",
+        "문서 중심 협업의 병목을 구조적 문제로 재정의하고, PRD와 프로토타입을 병행하는 협업 방식을 설계했습니다.",
+        "AI 기반 프로토타이핑과 문서 구조 재설계를 통해 이해관계자 수를 3명에서 1명으로 줄였습니다.",
+        "핸드오프 준비 리드타임을 1~2주에서 3~4일 수준으로 단축해 논의와 실행 속도를 높였습니다.",
       ],
     },
     {
       company: "Anthurus Lab Korea",
       role: "Operations",
       period: "2023.08 - 2024.04",
-      summary: "GGPoker 토너먼트 운영팀에서 스케줄 관리, 지표 모니터링, 해외 지사 커뮤니케이션을 담당.",
+      summary: "GGPoker 토너먼트 운영팀에서 스케줄 관리, 지표 모니터링, 해외 지사 및 파트너 커뮤니케이션을 담당.",
       highlights: [
-        "시즌과 타겟에 맞춰 스케줄과 개런티를 조정하며 운영 구조를 최적화.",
-        "오버레이가 크게 발생했던 운영 건에서 팔로업과 모니터링을 통해 손실 폭을 절반 이상 감소.",
+        "시즌과 타깃에 맞춰 스케줄과 개런티를 조정하며 운영 구조를 더 효율적으로 정리했습니다.",
+        "오버레이가 크게 발생했던 운영 건을 집중 모니터링하고 팔로업해 손실 폭을 절반 이상 줄였습니다.",
       ],
     },
     {
@@ -54,8 +76,8 @@ const resumeContent = {
       period: "2023.08 - 2024.08",
       summary: "Fullhouse Casino 소셜 카지노 게임 운영과 해외 지사 커뮤니케이션 실무를 담당.",
       highlights: [
-        "글로벌 운영 협업의 기본 구조와 커뮤니케이션 방식을 실무에서 경험.",
-        "운영 중심 경력의 출발점으로 이후 제품과 기획 관점 확장의 기반을 마련.",
+        "글로벌 운영 협업의 기본 구조와 커뮤니케이션 방식을 실무에서 익혔습니다.",
+        "운영 현장에서 사용자 흐름과 서비스 구조를 보는 관점을 쌓으며 이후 기획 역할로 확장하는 기반을 만들었습니다.",
       ],
     },
   ],
@@ -154,6 +176,17 @@ document.addEventListener("DOMContentLoaded", () => {
     "summary-body",
     resumeContent.summary,
     (item) => `<p>${item}</p>`
+  );
+
+  renderList(
+    "strength-grid",
+    resumeContent.strengths,
+    (item) => `
+      <article class="strength-card">
+        <h3 class="strength-card__title">${item.title}</h3>
+        <p class="strength-card__description">${item.description}</p>
+      </article>
+    `
   );
 
   renderList(
