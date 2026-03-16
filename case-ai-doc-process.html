@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 기반 문서 협업 프로세스 개선 — 조랭이떡</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ========== Case Hero ========== -->
+  <header class="case-hero">
+    <div class="container">
+      <a href="index.html" class="back-link">← Home</a>
+      <span class="case-hero__tag">Project 1</span>
+      <h1 class="case-hero__title">AI 기반 문서 협업 프로세스 개선</h1>
+      <p class="case-hero__headline">
+        핸드오프 준비 시간을 2~3일에서 반나절로 줄였다.<br>
+        문서 중심 협업 구조를 재설계해 수정 왕복과 대기 시간도 함께 줄였다.
+      </p>
+      <div class="case-hero__role">
+        <span class="case-hero__role-label">Role</span>
+        <p>
+          문서 중심 협업의 병목을 문제로 정의하고,
+          AI 도구를 활용해 문서 시스템과 협업 프로세스를 재설계하고 실행했다.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <article class="case-article">
+      <div class="container">
+
+        <!-- TL;DR -->
+        <section class="case-section">
+          <h2 class="case-section__title">TL;DR</h2>
+          <div class="tldr">
+            <dl class="tldr__list">
+              <div class="tldr__item">
+                <dt>문제</dt>
+                <dd>문서 중심 협업으로 POC 준비 속도가 느리고 수정 왕복이 많았다.</dd>
+              </div>
+              <div class="tldr__item">
+                <dt>해결</dt>
+                <dd>GitHub 기반 문서 구조, 시각화 핸드오프, 프로토타입 협업 방식을 도입했다.</dd>
+              </div>
+              <div class="tldr__item">
+                <dt>결과</dt>
+                <dd>핸드오프 준비 시간 2~3일 → 반나절, 문서 초안 작성 반나절 → 약 2시간</dd>
+              </div>
+            </dl>
+          </div>
+        </section>
+
+        <!-- Background -->
+        <section class="case-section">
+          <h2 class="case-section__title">Background</h2>
+          <p>빠른 검증이 중요한 POC 조직에서는 문서와 핸드오프 속도가 곧 실행 속도였다.</p>
+          <ul>
+            <li>B2C 모바일 웹 텍사스 홀덤 서비스</li>
+            <li>팀 규모 약 10명</li>
+            <li>기획자 2명</li>
+            <li>조직은 POC 기반으로 빠른 검증을 자주 수행하는 환경</li>
+          </ul>
+        </section>
+
+        <!-- Problem -->
+        <section class="case-section">
+          <h2 class="case-section__title">Problem</h2>
+          <p>문서 작성과 수정 왕복 때문에 POC 준비 속도가 느려졌고, 팀은 같은 화면을 보지 못한 채 논의하고 있었다.</p>
+          <ul>
+            <li>기능 기획 문서 작성에 많은 시간이 소요됐다.</li>
+            <li>작업이 순차적으로 진행되어 다음 작업자를 기다리는 시간이 발생했다.</li>
+            <li>작은 수정에도 문서 수정 → 전달 → 후속 작업 수정이 반복됐다.</li>
+            <li>텍스트 중심 문서로는 UX 흐름과 인터랙션을 충분히 전달하기 어려웠다.</li>
+            <li>회의에서 서로 다른 화면을 상상하며 논의하는 경우가 있었다.</li>
+            <li>문서 작업과 싱크 맞추기에 시간을 많이 써서 제품 가치와 UX에 대한 고민 시간이 부족했다.</li>
+          </ul>
+        </section>
+
+        <!-- Attempt 1 -->
+        <section class="case-section">
+          <h2 class="case-section__title">Attempt 1 — Notion AI</h2>
+          <p>
+            Notion AI는 문서 초안 속도와 포맷 일관성은 개선했지만, 협업 병목 자체는 해결하지 못했다.
+          </p>
+          <p>
+            문서 정리 자동화로 일정한 포맷의 초안을 빠르게 만드는 데는 도움이 됐지만, 텍스트 중심 문서의 한계와 전체 맥락을 반영하지 못하는 문제는 그대로 남아 있었다.
+          </p>
+        </section>
+
+        <!-- Why It Was Not Enough -->
+        <section class="case-section">
+          <h2 class="case-section__title">Why It Was Not Enough</h2>
+          <p>문서를 빨리 쓰는 것만으로는 UX 전달 문제와 맥락 단절 문제를 해결할 수 없었다.</p>
+          <ul>
+            <li>시각 자료가 부족해 문서 피로가 컸다.</li>
+            <li>UX 흐름과 인터랙션 전달 문제는 해결되지 않았다.</li>
+            <li>
+              Claude Code + MCP로 Notion 문서를 참조했을 때
+              단일 문서 위주로 참고하는 경향이 있었고,
+              전체 문서 맥락에서 벗어나는 결과가 발생했다.
+            </li>
+          </ul>
+        </section>
+
+        <!-- Solution -->
+        <section class="case-section">
+          <h2 class="case-section__title">Solution</h2>
+          <p>
+            해결의 핵심은 문서 작성 속도가 아니라 협업 구조 자체를 다시 설계하는 것이었다.
+          </p>
+          <p>
+            문서 작성 자체를 개선하는 데서 그치지 않고, 문서 구조와 협업 방식을 함께 재설계했다.
+          </p>
+
+          <div class="solution-blocks">
+            <div class="solution-block">
+              <h3>GitHub 기반 문서 관리</h3>
+              <ul>
+                <li>모든 텍스트 문서를 Markdown 파일로 GitHub 저장소에 통합</li>
+                <li>AI 코드 도구와의 연동에 유리</li>
+                <li>버전 관리와 변경 이력 추적 가능</li>
+                <li>문서를 하나의 공간에서 탐색하고 맥락적으로 참고 가능</li>
+              </ul>
+            </div>
+            <div class="solution-block">
+              <h3>문서 역할 분리</h3>
+              <ul>
+                <li>방향성 / 요구사항 문서: Markdown</li>
+                <li>핸드오프 문서: HTML</li>
+                <li>요구사항 문서는 기능, 방향성, 정책 정의에 집중</li>
+                <li>핸드오프 문서는 시각 자료, 와이어프레임, 읽기 쉬운 구조에 집중</li>
+              </ul>
+            </div>
+            <div class="solution-block">
+              <h3>프로토타입 제작</h3>
+              <ul>
+                <li>바이브 코딩 방식으로 프로토타입 제작</li>
+                <li>설계 문서 + 핸드오프 문서 + 프로토타입 조합으로 협업 구조 재설계</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- My Role -->
+        <section class="case-section">
+          <h2 class="case-section__title">My Role</h2>
+          <p>나는 문제 정의부터 문서 구조 설계, 프로토타입 제작, 품질 관리까지 이 변화의 설계를 주도했다.</p>
+          <ul>
+            <li>문제 인식 및 개선 제안</li>
+            <li>GitHub 기반 문서 구조 설계</li>
+            <li>문서 역할 분리 방식 정의</li>
+            <li>문서 템플릿 및 가이드라인 구축</li>
+            <li>프로토타입 제작 주도</li>
+            <li>AI가 생성한 문서 초안 검토 및 품질 관리</li>
+          </ul>
+        </section>
+
+        <!-- Impact -->
+        <section class="case-section">
+          <h2 class="case-section__title">Impact</h2>
+          <p>문서 초안 작성은 반나절에서 약 2시간으로, 핸드오프 준비는 2~3일에서 반나절로 줄었다.</p>
+
+          <div class="impact-cards">
+            <div class="impact-card">
+              <p class="impact-card__label">문서 초안 작성 시간</p>
+              <p class="impact-card__change">반나절 → 약 2시간</p>
+              <p class="impact-card__result">약 60% 단축</p>
+            </div>
+            <div class="impact-card">
+              <p class="impact-card__label">핸드오프 준비 시간</p>
+              <p class="impact-card__change">2~3일 → 반나절</p>
+              <p class="impact-card__result">약 75% 단축</p>
+            </div>
+          </div>
+
+          <ul class="impact-details">
+            <li>팀이 같은 화면과 흐름을 보며 논의할 수 있게 되어 논의 속도가 빨라졌다.</li>
+            <li>텍스트로 전달하기 어려운 내용이 더 잘 전달되어 수정 횟수가 줄었다.</li>
+            <li>문서를 하나의 공간에서 유기적으로 참고할 수 있게 되어 탐색성과 유지보수성이 좋아졌다.</li>
+            <li>문서 간 충돌과 무결성 검사가 쉬워졌다.</li>
+            <li>기획자는 문서 작성보다 기능, UX, 제품 가치에 더 집중할 수 있게 되었다.</li>
+          </ul>
+        </section>
+
+        <!-- Insight -->
+        <section class="case-section">
+          <h2 class="case-section__title">Insight</h2>
+          <p>AI 시대의 기획자는 문서를 쓰는 사람보다 제품 구조를 설계하고 문서 품질을 검토하는 사람에 가까워진다.</p>
+          <blockquote class="insight">
+            <p>
+              AI가 문서를 작성할 수 있는 환경에서는 기획자의 역할이 문서를 직접 작성하는 것에서 제품 구조를 설계하고 문서의 품질을 검토하는 방향으로 이동한다.
+            </p>
+            <p>
+              문서 작성이 자동화될수록 기획자는 제품 가치, UX, 기능 구조와 같은 본질적인 문제에 더 집중할 수 있다.
+            </p>
+          </blockquote>
+        </section>
+
+        <!-- Back Link -->
+        <div class="case-back">
+          <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 조랭이떡</p>
+    </div>
+  </footer>
+
+</body>
+</html>

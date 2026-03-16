@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>조랭이떡 — Product Manager Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="resume-page">
+    <div class="container">
+      <header class="resume-header">
+        <div class="resume-header__photo" aria-label="Profile photo placeholder">
+          <span>PHOTO</span>
+        </div>
+        <div class="resume-header__content">
+          <p class="resume-header__label">Product Manager / Service Planner</p>
+          <h1 class="resume-header__name">장시영</h1>
+          <p class="resume-header__headline">
+            문제의 핵심을 정의하고 팀이 실행할 수 있는 구조로 바꾸는 PM
+          </p>
+          <ul class="resume-header__meta" id="header-meta"></ul>
+        </div>
+      </header>
+
+      <section class="resume-section" id="summary">
+        <h2 class="resume-section__title">Summary</h2>
+        <div class="resume-section__body" id="summary-body"></div>
+      </section>
+
+      <section class="resume-section" id="experience">
+        <h2 class="resume-section__title">Experience</h2>
+        <div class="resume-list" id="experience-list"></div>
+      </section>
+
+      <section class="resume-section" id="projects">
+        <h2 class="resume-section__title">Selected Projects</h2>
+        <div class="project-list" id="project-list"></div>
+      </section>
+
+      <section class="resume-section resume-section--split" id="details">
+        <div>
+          <h2 class="resume-section__title">Skills</h2>
+          <ul class="skill-grid" id="skill-grid"></ul>
+        </div>
+        <div class="resume-side-stack">
+          <div>
+            <h2 class="resume-section__title">Education</h2>
+            <div class="resume-side-list" id="education-list"></div>
+          </div>
+          <div>
+            <h2 class="resume-section__title">Certifications</h2>
+            <ul class="certification-list" id="certification-list"></ul>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
