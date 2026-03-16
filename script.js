@@ -61,18 +61,44 @@ const resumeContent = {
   ],
   projects: [
     {
-      title: "AI 기반 문서 협업 프로세스 개선",
-      meta: "Role: PM / Planner | Impact: 핸드오프 준비 2~3일 → 반나절",
+      tag: "Project 01",
+      title: "Project Title Placeholder",
+      meta: "Role Placeholder | Period Placeholder",
+      thumbnailLabel: "Thumbnail Placeholder",
       description:
-        "문서 중심 협업 구조를 재설계해 수정 왕복과 대기 시간을 줄이고, 팀이 같은 화면과 흐름을 보며 논의할 수 있게 만든 사례.",
+        "프로젝트의 핵심 문제, 접근 방식, 결과를 2~3줄 정도로 요약하는 placeholder 문장입니다.",
       href: "case-ai-doc-process.html",
+      cta: "View Project",
     },
     {
-      title: "텍사스 홀덤 로비 리뉴얼",
-      meta: "Role: PM / Planner | Status: In Progress",
+      tag: "Project 02",
+      title: "Project Title Placeholder",
+      meta: "Role Placeholder | Status Placeholder",
+      thumbnailLabel: "Thumbnail Placeholder",
       description:
-        "사용자가 더 빠르게 원하는 게임에 진입하도록 로비의 정보 구조와 진입 흐름을 재설계하고 있는 프로젝트.",
+        "현재 진행 중인 프로젝트나 별도 케이스 스터디로 연결할 프로젝트 설명을 넣는 placeholder 문장입니다.",
       href: "case-lobby-redesign.html",
+      cta: "View Project",
+    },
+    {
+      tag: "Project 03",
+      title: "Project Title Placeholder",
+      meta: "Role Placeholder | Impact Placeholder",
+      thumbnailLabel: "Thumbnail Placeholder",
+      description:
+        "추가 프로젝트가 들어갈 경우를 위한 placeholder 카드입니다. 필요한 만큼 카드 수를 늘려 사용할 수 있습니다.",
+      href: "#",
+      cta: "View Project",
+    },
+    {
+      tag: "Project 04",
+      title: "Project Title Placeholder",
+      meta: "Role Placeholder | Link Placeholder",
+      thumbnailLabel: "Thumbnail Placeholder",
+      description:
+        "프로젝트 상세 페이지 또는 외부 링크로 이동할 수 있는 카드 구조를 가정한 placeholder 문장입니다.",
+      href: "#",
+      cta: "View Project",
     },
   ],
   skills: [
@@ -154,16 +180,17 @@ document.addEventListener("DOMContentLoaded", () => {
     "project-list",
     resumeContent.projects,
     (item) => `
-      <article class="project-item">
-        <div class="project-item__header">
-          <div>
-            <h3 class="project-item__title">${item.title}</h3>
-            <p class="project-item__meta">${item.meta}</p>
-          </div>
-          <a class="project-item__link" href="${item.href}">View Case Study</a>
+      <a class="project-card" href="${item.href}">
+        <div class="project-card__thumbnail" aria-hidden="true">
+          <span class="project-card__thumbnail-label">${item.thumbnailLabel}</span>
+          <span class="project-card__thumbnail-cta">Click to open</span>
         </div>
-        <p class="project-item__description">${item.description}</p>
-      </article>
+        <span class="project-card__tag">${item.tag}</span>
+        <h3 class="project-card__title">${item.title}</h3>
+        <p class="project-card__meta">${item.meta}</p>
+        <p class="project-card__description">${item.description}</p>
+        <span class="project-card__link">${item.cta}</span>
+      </a>
     `
   );
 
