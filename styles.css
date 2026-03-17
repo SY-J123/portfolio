@@ -48,6 +48,21 @@ a {
   padding: 48px 0 72px;
 }
 
+.resume-page__top-note {
+  width: min(920px, calc(100% - 48px));
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+}
+
+.resume-page__top-note-text {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(138, 127, 111, 0.9);
+}
+
 .resume-page .container {
   max-width: 920px;
   background: #fffdf8;
@@ -657,6 +672,11 @@ a {
 @media (max-width: 640px) {
   .resume-page {
     padding: 20px 0 40px;
+  }
+
+  .resume-page__top-note {
+    width: calc(100% - 40px);
+    margin-bottom: 8px;
   }
 
   .resume-page .container {
