@@ -22,14 +22,13 @@ const resumeContent = {
     },
   ],
   summary: [
-    "문제의 핵심을 먼저 정의하고, 이를 디자이너와 개발자가 바로 움직일 수 있는 구조와 로직으로 바꾸는 PM/서비스기획자입니다.",
-    "화면 설계에만 머무르지 않고 사용자 흐름, 예외 케이스, 협업 전달 구조까지 함께 정리해 실행 가능한 기획으로 연결합니다.",
-    "정성적 판단에만 기대지 않고 더 나은 의사결정을 위한 정량 지표와 통계적 사고에 관심이 많으며, 방송대 통계 수강과 대학 교재 독학으로 이를 강화하고 있습니다.",
-    "또한 새로운 기술을 빠르게 학습해 실제 업무 개선에 연결하는 편이며, 회사에서 AI를 활용한 프로세스 개선을 먼저 제안하고 적용한 경험이 있습니다.",
+    "저는 화면보다 먼저 문제의 본질을 정의하는 PM/서비스기획자입니다.",
+    "화면을 그리는 데서 끝나지 않고 사용자 흐름, 예외 케이스, 전달 구조를 정리해 디자이너와 개발자가 바로 실행할 수 있는 구조와 로직으로 연결합니다.",
+    "정성적 판단에 머무르지 않고, 더 나은 의사결정을 위한 정량 기반 사고와 새로운 기술의 실무 적용을 지향합니다.",
   ],
   strengths: [
     {
-      title: "Problem Framing",
+      title: "Problem Solving",
       description:
         "표면적인 요청이나 불편에서 멈추지 않고 왜 같은 문제가 반복되는지 구조적으로 해석해, 팀이 공감할 수 있는 문제 정의로 바꿉니다.",
     },
@@ -51,7 +50,7 @@ const resumeContent = {
   ],
   experience: [
     {
-      company: "Natris",
+      company: "Natris /  LULU.AI",
       role: "Service Planner",
       period: "2024.04 - Present",
       summary: "B2C 모바일 웹 포커 게임에서 기능 기획, UX 흐름 설계, 협업 문서 구조 개선을 담당.",
@@ -62,7 +61,7 @@ const resumeContent = {
       ],
     },
     {
-      company: "Anthurus Lab Korea",
+      company: "NSUSLAB Korea",
       role: "Operations",
       period: "2023.08 - 2024.04",
       summary: "GGPoker 토너먼트 운영팀에서 스케줄 관리, 지표 모니터링, 해외 지사 및 파트너 커뮤니케이션을 담당.",
@@ -87,7 +86,6 @@ const resumeContent = {
       tag: "Project 01",
       title: "Project Title Placeholder",
       meta: "Role Placeholder | Period Placeholder",
-      thumbnailLabel: "Thumbnail Placeholder",
       description:
         "프로젝트의 핵심 문제, 접근 방식, 결과를 2~3줄 정도로 요약하는 placeholder 문장입니다.",
       href: "case-ai-doc-process.html",
@@ -97,7 +95,6 @@ const resumeContent = {
       tag: "Project 02",
       title: "Project Title Placeholder",
       meta: "Role Placeholder | Status Placeholder",
-      thumbnailLabel: "Thumbnail Placeholder",
       description:
         "현재 진행 중인 프로젝트나 별도 케이스 스터디로 연결할 프로젝트 설명을 넣는 placeholder 문장입니다.",
       href: "case-lobby-redesign.html",
@@ -107,7 +104,6 @@ const resumeContent = {
       tag: "Project 03",
       title: "Project Title Placeholder",
       meta: "Role Placeholder | Impact Placeholder",
-      thumbnailLabel: "Thumbnail Placeholder",
       description:
         "추가 프로젝트가 들어갈 경우를 위한 placeholder 카드입니다. 필요한 만큼 카드 수를 늘려 사용할 수 있습니다.",
       href: "#",
@@ -117,7 +113,6 @@ const resumeContent = {
       tag: "Project 04",
       title: "Project Title Placeholder",
       meta: "Role Placeholder | Link Placeholder",
-      thumbnailLabel: "Thumbnail Placeholder",
       description:
         "프로젝트 상세 페이지 또는 외부 링크로 이동할 수 있는 카드 구조를 가정한 placeholder 문장입니다.",
       href: "#",
@@ -125,13 +120,11 @@ const resumeContent = {
     },
   ],
   skills: [
-    "English",
+    "English (Business Level)",
     "Python",
     "SQL",
-    "Markdown",
-    "HTML",
-    "Notion",
-    "Claude Code",
+    "Vibe Coding (Codex, Claude)",
+    "Figma"
   ],
   education: [
     {
@@ -215,10 +208,6 @@ document.addEventListener("DOMContentLoaded", () => {
     resumeContent.projects,
     (item) => `
       <a class="project-card" href="${item.href}">
-        <div class="project-card__thumbnail" aria-hidden="true">
-          <span class="project-card__thumbnail-label">${item.thumbnailLabel}</span>
-          <span class="project-card__thumbnail-cta">Click to open</span>
-        </div>
         <span class="project-card__tag">${item.tag}</span>
         <h3 class="project-card__title">${item.title}</h3>
         <p class="project-card__meta">${item.meta}</p>

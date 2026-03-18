@@ -249,10 +249,10 @@ a {
 .project-card {
   display: flex;
   flex-direction: column;
-  min-height: 320px;
+  min-height: 220px;
   background: #fcf8f1;
   border: 1px solid #e4d8c8;
-  padding: 24px;
+  padding: 20px;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
@@ -262,59 +262,10 @@ a {
   box-shadow: 0 10px 24px rgba(73, 53, 29, 0.08);
 }
 
-.project-card__thumbnail {
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  min-height: 140px;
-  margin-bottom: 18px;
-  padding: 16px;
-  border: 1px solid #ded2c2;
-  background:
-    linear-gradient(135deg, rgba(122, 75, 34, 0.08), rgba(255, 253, 248, 0.1)),
-    linear-gradient(180deg, #f1e8db 0%, #e3d6c5 100%);
-  overflow: hidden;
-}
-
-.project-card__thumbnail::before {
-  content: "";
-  position: absolute;
-  inset: 12px;
-  border: 1px dashed rgba(122, 75, 34, 0.22);
-}
-
-.project-card__thumbnail-label,
-.project-card__thumbnail-cta {
-  position: relative;
-  z-index: 1;
-}
-
-.project-card__thumbnail-label {
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #7b6b59;
-}
-
-.project-card__thumbnail-cta {
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: #7a4b22;
-  opacity: 0.72;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.project-card:hover .project-card__thumbnail-cta {
-  opacity: 1;
-  transform: translateX(2px);
-}
-
 .project-card__tag {
   display: inline-flex;
   align-self: flex-start;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
   padding: 4px 10px;
   border-radius: 999px;
   background: #efe4d5;
@@ -326,24 +277,24 @@ a {
 }
 
 .project-card__title {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   line-height: 1.4;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .project-card__meta {
-  font-size: 0.88rem;
+  font-size: 0.84rem;
   color: #6c6256;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .project-card__description {
   flex-grow: 1;
-  font-size: 0.94rem;
+  font-size: 0.9rem;
   color: #453d34;
-  line-height: 1.7;
-  margin-bottom: 18px;
+  line-height: 1.6;
+  margin-bottom: 14px;
 }
 
 .project-card__link {
