@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>장시영 - PM Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
@@ -12,24 +15,30 @@
   <!-- Left Sidebar -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar__brand">
-      <span class="sidebar__logo">SY</span>
+      <span class="sidebar__logo">Siyoung</span>
     </div>
     <nav class="sidebar__nav" aria-label="주요 섹션">
       <a href="#home" class="sidebar__link active">Home</a>
       <a href="#about" class="sidebar__link">About Me</a>
       <a href="#experience" class="sidebar__link">Experience</a>
+      <a href="#education" class="sidebar__link">Education</a>
       <a href="#capabilities" class="sidebar__link">Skills</a>
       <a href="#projects" class="sidebar__link">Projects</a>
       <a href="#contact" class="sidebar__link">Contact</a>
     </nav>
     <div class="sidebar__footer">
+      <button class="lang-toggle" id="lang-toggle" aria-label="언어 전환">
+        <span class="lang-toggle__option active" data-lang="ko">KO</span>
+        <span class="lang-toggle__divider">|</span>
+        <span class="lang-toggle__option" data-lang="en">EN</span>
+      </button>
       <p>&copy; Siyoung Jang</p>
     </div>
   </aside>
 
   <!-- Mobile Header -->
   <header class="mobile-header" id="mobile-header">
-    <span class="sidebar__logo">SY</span>
+    <span class="sidebar__logo">Siyoung</span>
     <button class="hamburger" id="hamburger" aria-label="메뉴 열기">
       <span></span><span></span><span></span>
     </button>
@@ -48,25 +57,28 @@
         </div>
         <div class="profile-hero__body reveal">
           <span class="profile-hero__badge">Open to Work</span>
-          <h1 class="profile-hero__name">장시영</h1>
+          <h1 class="profile-hero__name" data-i18n="hero.name">장시영</h1>
           <p class="profile-hero__role">Product Manager / Service Planner</p>
           <p class="profile-hero__focus">Service Planning / UX Flow / AI Workflow</p>
-          <p class="profile-hero__headline">
+          <p class="profile-hero__headline" data-i18n="hero.headline">
             문제를 구조로 바꾸고, 팀이 실행할 수 있게 만드는 기획자
           </p>
-          <p class="profile-hero__desc">
+          <p class="profile-hero__desc" data-i18n="hero.desc">
             문서, 화면, 프로토타입을 분리해서 보지 않습니다.
             목적을 정의하고 사용자 흐름을 설계한 뒤, AI 기반 제작 워크플로우까지 연결해
             더 빠르게 검토하고 더 명확하게 전달하는 방식을 만듭니다.
           </p>
           <div class="profile-hero__actions">
-            <a class="btn btn--primary" href="#projects">프로젝트 보기</a>
+            <a class="btn btn--primary" href="#projects" data-i18n="hero.cta_projects">프로젝트 보기</a>
             <a class="btn btn--outline" href="#contact">Contact</a>
           </div>
           <div class="profile-hero__icons">
             <a href="mailto:jsyoung456@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
             <a href="https://github.com/SY-J123/portfolio" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
           </div>
+          <p class="profile-hero__note" data-i18n="hero.note">
+            기획자가 설계하고 AI-assisted workflow로 직접 구현·검수·배포한 포트폴리오입니다.
+          </p>
         </div>
       </div>
     </section>
@@ -75,7 +87,7 @@
     <section class="section" id="about">
       <div class="section-header reveal">
         <h2 class="section-header__title">About Me</h2>
-        <p class="section-header__sub">기획 의도를 실행 가능한 구조로 정리합니다</p>
+        <p class="section-header__sub" data-i18n="about.sub">기획 의도를 실행 가능한 구조로 정리합니다</p>
         <span class="section-header__line"></span>
       </div>
       <div class="about-grid">
@@ -83,10 +95,10 @@
           <div class="about-text" id="summary-body"></div>
           <div class="about-lens">
             <h3 class="about-lens__title">Core Lens</h3>
-            <ul class="about-lens__list">
-              <li>표면적인 요청보다 왜 같은 문제가 반복되는지 먼저 봅니다.</li>
-              <li>문서 작성보다 협업 구조와 전달 기준을 명확히 정리하는 데 강점이 있습니다.</li>
-              <li>새로운 도구는 목적이 아니라 문제 해결 수단으로 선택합니다.</li>
+            <ul class="about-lens__list" id="core-lens-list">
+              <li data-i18n="about.lens1">표면적인 요청보다 왜 같은 문제가 반복되는지 먼저 봅니다.</li>
+              <li data-i18n="about.lens2">문서 작성보다 협업 구조와 전달 기준을 명확히 정리하는 데 강점이 있습니다.</li>
+              <li data-i18n="about.lens3">새로운 도구는 목적이 아니라 문제 해결 수단으로 선택합니다.</li>
             </ul>
           </div>
         </div>
@@ -94,7 +106,7 @@
           <div class="about-stat-grid reveal-stagger" id="hero-stat-grid"></div>
           <div class="focus-card">
             <p class="focus-card__label">Current Focus</p>
-            <p class="focus-card__value">AI를 활용한 기획 전달 구조 개선</p>
+            <p class="focus-card__value" data-i18n="about.focus">AI를 활용한 기획 전달 구조 개선</p>
           </div>
         </div>
       </div>
@@ -104,30 +116,35 @@
     <section class="section section--alt" id="experience">
       <div class="section-header reveal">
         <h2 class="section-header__title">Experience</h2>
-        <p class="section-header__sub">서비스 운영과 기획을 오가며 쌓은 문제 정의 감각</p>
+        <p class="section-header__sub" data-i18n="experience.sub">서비스 운영과 기획을 오가며 쌓은 문제 정의 감각</p>
         <span class="section-header__line"></span>
       </div>
       <div class="timeline reveal-stagger" id="experience-list"></div>
     </section>
 
-    <!-- Skills / Capabilities -->
-    <section class="section" id="capabilities">
+    <!-- Education -->
+    <section class="section" id="education">
       <div class="section-header reveal">
-        <h2 class="section-header__title">Skills &amp; Strengths</h2>
-        <p class="section-header__sub">실무에서 자주 꺼내 쓰는 역량</p>
+        <h2 class="section-header__title">Education</h2>
+        <p class="section-header__sub">Change is the end result of all true learning.</p>
         <span class="section-header__line"></span>
       </div>
+      <div class="edu-timeline reveal" id="education-list"></div>
+    </section>
 
+    <!-- Skills / Capabilities -->
+    <section class="section section--alt" id="capabilities">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">Skills &amp; Strengths</h2>
+        <p class="section-header__sub" data-i18n="skills.sub">실무에서 자주 꺼내 쓰는 역량</p>
+        <span class="section-header__line"></span>
+      </div>
       <div class="skills-layout">
         <div class="strengths reveal-stagger" id="strength-grid"></div>
         <div class="skills-side">
           <div class="skills-panel reveal--right">
             <h3 class="skills-panel__title">Tools &amp; Skills</h3>
             <ul class="skill-chips reveal-stagger" id="skill-grid"></ul>
-          </div>
-          <div class="skills-panel reveal--right">
-            <h3 class="skills-panel__title">Education</h3>
-            <div class="edu-list" id="education-list"></div>
           </div>
           <div class="skills-panel reveal--right">
             <h3 class="skills-panel__title">Certifications</h3>
@@ -138,10 +155,10 @@
     </section>
 
     <!-- Projects / Portfolio -->
-    <section class="section section--alt" id="projects">
+    <section class="section" id="projects">
       <div class="section-header reveal">
         <h2 class="section-header__title">Projects</h2>
-        <p class="section-header__sub">AI를 활용해 실무 구조를 바꾼 경험</p>
+        <p class="section-header__sub" data-i18n="projects.sub">AI를 활용해 실무 구조를 바꾼 경험</p>
         <span class="section-header__line"></span>
       </div>
       <div class="project-grid reveal-stagger" id="project-list"></div>
@@ -151,17 +168,14 @@
     <section class="section section--contact" id="contact">
       <div class="section-header reveal">
         <h2 class="section-header__title">Contact</h2>
-        <p class="section-header__sub">기획과 협업 구조를 함께 이야기할 준비가 되어 있습니다</p>
+        <p class="section-header__sub" data-i18n="contact.sub">기획과 협업 구조를 함께 이야기할 준비가 되어 있습니다</p>
         <span class="section-header__line"></span>
       </div>
-      <p class="contact-desc reveal">
+      <p class="contact-desc reveal" data-i18n="contact.desc">
         제품의 목적을 더 명확하게 정의하고, 팀이 같은 방향으로 움직일 수 있는 구조를 만드는 일에 관심이 있습니다.
       </p>
       <div class="contact-profile reveal" id="header-meta"></div>
       <div class="contact-cards reveal-stagger" id="contact-links"></div>
-      <p class="contact-note reveal">
-        기획자가 설계하고 AI-assisted workflow로 직접 구현·검수·배포한 포트폴리오입니다.
-      </p>
     </section>
 
   </main>
