@@ -3,70 +3,167 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>조랭이떡 — Product Manager Portfolio</title>
+  <title>장시영 - PM Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
 <body>
-  <main class="resume-page">
-    <div class="resume-page__top-note">
-      <p class="resume-page__top-note-text">
-        본 이력서는 Claude Code, Codex를 사용한 바이브 코딩으로 제작 및 배포되었습니다.
-      </p>
+  <!-- Left Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__brand">
+      <span class="sidebar__logo">SY</span>
     </div>
-    <div class="container">
-      <header class="resume-header">
-        <div class="resume-header__photo" aria-label="Profile photo placeholder">
-          <span>PHOTO</span>
-        </div>
-        <div class="resume-header__content">
-          <p class="resume-header__label">Product Manager / Service Planner</p>
-          <h1 class="resume-header__name">장시영</h1>
-          <p class="resume-header__headline">
-            문제의 핵심을 정의하고 팀이 실행할 수 있는 구조로 바꾸는 PM
-          </p>
-          <ul class="resume-header__meta" id="header-meta"></ul>
-        </div>
-      </header>
+    <nav class="sidebar__nav" aria-label="주요 섹션">
+      <a href="#home" class="sidebar__link active">Home</a>
+      <a href="#about" class="sidebar__link">About Me</a>
+      <a href="#experience" class="sidebar__link">Experience</a>
+      <a href="#capabilities" class="sidebar__link">Skills</a>
+      <a href="#projects" class="sidebar__link">Projects</a>
+      <a href="#contact" class="sidebar__link">Contact</a>
+    </nav>
+    <div class="sidebar__footer">
+      <p>&copy; Siyoung Jang</p>
+    </div>
+  </aside>
 
-      <section class="resume-section" id="summary">
-        <h2 class="resume-section__title">Summary</h2>
-        <div class="resume-section__body" id="summary-body"></div>
-      </section>
+  <!-- Mobile Header -->
+  <header class="mobile-header" id="mobile-header">
+    <span class="sidebar__logo">SY</span>
+    <button class="hamburger" id="hamburger" aria-label="메뉴 열기">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
 
-      <section class="resume-section" id="experience">
-        <h2 class="resume-section__title">Experience</h2>
-        <div class="resume-list" id="experience-list"></div>
-      </section>
+  <!-- Main Content -->
+  <main class="main-content">
 
-      <section class="resume-section" id="education">
-        <h2 class="resume-section__title">Education</h2>
-        <div class="resume-side-list" id="education-list"></div>
-      </section>
-
-      <section class="resume-section" id="projects">
-        <h2 class="resume-section__title">Projects</h2>
-        <div class="project-list" id="project-list"></div>
-      </section>
-
-      <section class="resume-section resume-section--split" id="details">
-        <div>
-          <h2 class="resume-section__title">Skills</h2>
-          <ul class="skill-grid" id="skill-grid"></ul>
-        </div>
-        <div class="resume-side-stack">
-          <div>
-            <h2 class="resume-section__title">Certifications</h2>
-            <ul class="certification-list" id="certification-list"></ul>
+    <!-- Home -->
+    <section class="section section--home" id="home">
+      <div class="profile-hero">
+        <div class="profile-hero__photo reveal--left">
+          <div class="profile-hero__img-wrap">
+            <img src="https://placehold.co/360x440/f0f0f0/aaa?text=Photo" alt="장시영 프로필 사진" class="profile-hero__img">
           </div>
         </div>
-      </section>
+        <div class="profile-hero__body reveal">
+          <span class="profile-hero__badge">Open to Work</span>
+          <h1 class="profile-hero__name">장시영</h1>
+          <p class="profile-hero__role">Product Manager / Service Planner</p>
+          <p class="profile-hero__focus">Service Planning / UX Flow / AI Workflow</p>
+          <p class="profile-hero__headline">
+            문제를 구조로 바꾸고, 팀이 실행할 수 있게 만드는 기획자
+          </p>
+          <p class="profile-hero__desc">
+            문서, 화면, 프로토타입을 분리해서 보지 않습니다.
+            목적을 정의하고 사용자 흐름을 설계한 뒤, AI 기반 제작 워크플로우까지 연결해
+            더 빠르게 검토하고 더 명확하게 전달하는 방식을 만듭니다.
+          </p>
+          <div class="profile-hero__actions">
+            <a class="btn btn--primary" href="#projects">프로젝트 보기</a>
+            <a class="btn btn--outline" href="#contact">Contact</a>
+          </div>
+          <div class="profile-hero__icons">
+            <a href="mailto:jsyoung456@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://github.com/SY-J123/portfolio" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <section class="resume-section" id="strengths">
-        <h2 class="resume-section__title">Soft Skills</h2>
-        <div class="strength-grid" id="strength-grid"></div>
-      </section>
-    </div>
+    <!-- About Me -->
+    <section class="section" id="about">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">About Me</h2>
+        <p class="section-header__sub">기획 의도를 실행 가능한 구조로 정리합니다</p>
+        <span class="section-header__line"></span>
+      </div>
+      <div class="about-grid">
+        <div class="about-main reveal--left">
+          <div class="about-text" id="summary-body"></div>
+          <div class="about-lens">
+            <h3 class="about-lens__title">Core Lens</h3>
+            <ul class="about-lens__list">
+              <li>표면적인 요청보다 왜 같은 문제가 반복되는지 먼저 봅니다.</li>
+              <li>문서 작성보다 협업 구조와 전달 기준을 명확히 정리하는 데 강점이 있습니다.</li>
+              <li>새로운 도구는 목적이 아니라 문제 해결 수단으로 선택합니다.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="about-side reveal--right">
+          <div class="about-stat-grid reveal-stagger" id="hero-stat-grid"></div>
+          <div class="focus-card">
+            <p class="focus-card__label">Current Focus</p>
+            <p class="focus-card__value">AI를 활용한 기획 전달 구조 개선</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section class="section section--alt" id="experience">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">Experience</h2>
+        <p class="section-header__sub">서비스 운영과 기획을 오가며 쌓은 문제 정의 감각</p>
+        <span class="section-header__line"></span>
+      </div>
+      <div class="timeline reveal-stagger" id="experience-list"></div>
+    </section>
+
+    <!-- Skills / Capabilities -->
+    <section class="section" id="capabilities">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">Skills &amp; Strengths</h2>
+        <p class="section-header__sub">실무에서 자주 꺼내 쓰는 역량</p>
+        <span class="section-header__line"></span>
+      </div>
+
+      <div class="skills-layout">
+        <div class="strengths reveal-stagger" id="strength-grid"></div>
+        <div class="skills-side">
+          <div class="skills-panel reveal--right">
+            <h3 class="skills-panel__title">Tools &amp; Skills</h3>
+            <ul class="skill-chips reveal-stagger" id="skill-grid"></ul>
+          </div>
+          <div class="skills-panel reveal--right">
+            <h3 class="skills-panel__title">Education</h3>
+            <div class="edu-list" id="education-list"></div>
+          </div>
+          <div class="skills-panel reveal--right">
+            <h3 class="skills-panel__title">Certifications</h3>
+            <ul class="cert-list" id="certification-list"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects / Portfolio -->
+    <section class="section section--alt" id="projects">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">Projects</h2>
+        <p class="section-header__sub">AI를 활용해 실무 구조를 바꾼 경험</p>
+        <span class="section-header__line"></span>
+      </div>
+      <div class="project-grid reveal-stagger" id="project-list"></div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section section--contact" id="contact">
+      <div class="section-header reveal">
+        <h2 class="section-header__title">Contact</h2>
+        <p class="section-header__sub">기획과 협업 구조를 함께 이야기할 준비가 되어 있습니다</p>
+        <span class="section-header__line"></span>
+      </div>
+      <p class="contact-desc reveal">
+        제품의 목적을 더 명확하게 정의하고, 팀이 같은 방향으로 움직일 수 있는 구조를 만드는 일에 관심이 있습니다.
+      </p>
+      <div class="contact-profile reveal" id="header-meta"></div>
+      <div class="contact-cards reveal-stagger" id="contact-links"></div>
+      <p class="contact-note reveal">
+        기획자가 설계하고 AI-assisted workflow로 직접 구현·검수·배포한 포트폴리오입니다.
+      </p>
+    </section>
+
   </main>
 </body>
 </html>
