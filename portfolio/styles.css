@@ -12,12 +12,12 @@
 :root {
   --sidebar-w: 200px;
   --bg: #ffffff;
-  --bg-alt: #f7f9fc;
+  --bg-alt: #f4f7f8;
   --text: #1a1a2e;
   --text-soft: #555770;
-  --accent: #e84393;
-  --accent-light: #ffeef8;
-  --accent-dark: #c0247e;
+  --accent: #4f6f7a;
+  --accent-light: #eef4f6;
+  --accent-dark: #38535c;
   --line: #e8ecf1;
   --card-bg: #ffffff;
   --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
@@ -247,7 +247,7 @@ button, input, textarea, select { font: inherit; }
   text-align: center;
 }
 
-/* Section Header (Morley style - centered with pink underline) */
+/* Section Header (Morley style - centered with muted accent underline) */
 .section-header {
   text-align: center;
   margin-bottom: 48px;
@@ -1058,7 +1058,7 @@ button, input, textarea, select { font: inherit; }
 
 .tldr {
   background: var(--accent-light);
-  border: 1px solid #f5d0e6;
+  border: 1px solid #d7e4e8;
   border-radius: var(--radius-lg);
   padding: 24px;
 }
@@ -1261,3 +1261,4 @@ button, input, textarea, select { font: inherit; }
     grid-template-columns: 1fr;
   }
 }
+

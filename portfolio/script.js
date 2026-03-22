@@ -1,13 +1,13 @@
 /* ===========================
-   Content — KO / EN
+   Content - KO / EN
    =========================== */
 const content = {
   ko: {
     heroStats: [
-      { value: "3명 → 1명", label: "협업 투입 인원 축소" },
-      { value: "1~2주 → 3~4일", label: "핸드오프 리드타임 단축" },
-      { value: "PM / Planner", label: "문제 정의와 UX 흐름 설계 중심" },
-      { value: "AI-assisted", label: "기획 검토와 프로토타입 제작 워크플로우" },
+      { value: "3명 -> 1명", label: "초기 검토 이해관계자 축소" },
+      { value: "1주 -> 3일", label: "보고 및 컨펌 리드타임 단축" },
+      { value: "Problem to Structure", label: "문제를 실행 구조로 재정의" },
+      { value: "Stats in Progress", label: "정량 판단 역량 강화 중" },
     ],
     headerMeta: [
       { label: "Email", href: "mailto:jsyoung456@gmail.com", text: "jsyoung456@gmail.com" },
@@ -15,51 +15,92 @@ const content = {
       { label: "Location", text: "Seoul, Korea" },
     ],
     summary: [
-      "저는 화면보다 먼저 문제의 본질을 정의하는 서비스 기획자입니다. 주어진 요구를 그대로 정리하기보다 그 일이 왜 필요한지, 어떤 사용자 가치로 연결되는지를 먼저 확인합니다.",
-      "기획 문서를 쓰는 데서 멈추지 않고 사용자 흐름, 예외 케이스, 전달 구조를 함께 설계해 디자이너와 개발자가 바로 움직일 수 있는 상태를 만드는 데 강점이 있습니다.",
-      "최근에는 AI를 단순 보조 도구가 아니라 실무 전달 구조를 더 빠르고 명확하게 만드는 수단으로 활용하며, 기획자가 직접 검토 가능한 프로토타입까지 연결하는 방식을 실험하고 있습니다.",
+      "저는 표면적인 요청보다 먼저 문제의 본질과 구조를 정의하는 서비스 기획자입니다. 주어진 요구를 그대로 정리하기보다, 왜 이 일이 필요한지와 어떤 사용자 가치로 연결되는지를 먼저 확인합니다.",
+      "기획 문서를 작성하는 데서 멈추지 않고 사용자 흐름, 전달 기준, 협업 방식을 함께 설계해 여러 직군이 같은 방향으로 실행할 수 있는 상태를 만드는 데 강점이 있습니다.",
+      "최근에는 AX 환경에서 도구 자체보다 어떤 비효율을 줄이고 어떤 구조를 개선할 수 있는지에 집중하며, 문서와 프로토타입, 웹 배포를 연결한 검토 가능한 워크플로를 만들어 왔습니다.",
     ],
     strengths: [
-      { title: "Problem Definition", description: "표면적인 불편을 바로 해결하기보다 왜 같은 문제가 반복되는지 구조적으로 해석하고, 팀이 공감할 수 있는 문제로 다시 정의합니다." },
-      { title: "UX Flow Design", description: "사용자의 불편과 서비스가 유도하는 방향이 어긋나지 않는지 점검하며, 목적에 맞는 흐름과 화면 구조를 설계합니다." },
-      { title: "Collaboration Structure", description: "문서, 화면, 리뷰 기준을 분리해서 관리하기보다 한 번에 연결해 협업 왕복을 줄이고 실행 속도를 높이는 방식을 만듭니다." },
-      { title: "Self-directed Improvement", description: "필요하다고 판단한 문제는 먼저 시도해보고, 시행착오를 거쳐 실무에 맞는 기준으로 계속 보완합니다." },
+      {
+        title: "Problem Definition",
+        description: "표면적인 요청을 그대로 수행하기보다, 왜 같은 문제가 반복되는지 구조적으로 해석하고 팀이 공감할 수 있는 문제로 다시 정의합니다.",
+      },
+      {
+        title: "UX Flow Design",
+        description: "사용자 흐름과 서비스 목적이 어긋나지 않도록 확인하고, 기획 의도가 실제 화면과 행동으로 이어질 수 있게 구조를 설계합니다.",
+      },
+      {
+        title: "Collaboration Structure",
+        description: "문서, 프로토타입, 배포 방식을 분리해 각 산출물의 역할을 명확히 하고, 이해관계자가 같은 기준으로 논의할 수 있는 협업 구조를 만듭니다.",
+      },
+      {
+        title: "Self-driven Growth",
+        description: "필요한 역량은 스스로 메웁니다. 통계학 학습, 주요 대학 교재 독학, 새로운 도구 검토를 통해 정성 판단에 머무르지 않는 기획 역량을 쌓고 있습니다.",
+      },
     ],
     experience: [
       {
-        company: "Natris / LULU.AI", role: "Service Planner", period: "2024.04 - Present",
+        company: "Natris / LULU.AI",
+        role: "Service Planner",
+        period: "2024.04 - Present",
         summary: "B2C 모바일 웹 포커 게임에서 기능 기획, UX 흐름 설계, 협업 문서 구조 개선을 담당했습니다.",
         highlights: [
-          "문서 중심 협업의 병목을 구조적 문제로 재정의하고, PRD와 프로토타입을 병행하는 협업 방식을 설계했습니다.",
-          "AI 기반 프로세스 개선을 먼저 제안하고 적용해 이해관계자 수를 3명에서 1명으로 줄이고, 핸드오프 준비 리드타임을 1~2주에서 3~4일 수준으로 단축했습니다.",
-          "문서 역할과 전달 기준을 정리해 디자이너와 개발자가 바로 실행 가능한 형태로 기획 의도를 연결했습니다.",
+          "문서 중심 전달 방식을 협업 구조 문제로 재정의하고, PRD와 프로토타입의 역할을 분리한 검토 구조를 설계했습니다.",
+          "바이브 코딩 기반 초기 보고용 프로토타입 제작 방식을 제안하고 안착시켜 이해관계자 투입을 3명에서 1명으로 줄이고, 보고 및 컨펌 기간을 1주에서 3일로 단축했습니다.",
+          "문서 버전 관리와 웹 배포 기준을 정리해 비개발 직군도 최신 문서를 쉽게 확인할 수 있는 협업 환경을 만들었습니다.",
         ],
       },
       {
-        company: "NSUSLAB Korea", role: "Operations", period: "2023.08 - 2024.04",
+        company: "NSUSLAB Korea",
+        role: "Operations",
+        period: "2023.08 - 2024.04",
         summary: "GGPoker 토너먼트 운영팀에서 스케줄 관리, 지표 모니터링, 해외 지사 및 파트너 커뮤니케이션을 담당했습니다.",
         highlights: [
-          "시즌과 타깃에 맞춰 스케줄과 개런티를 조정하며 운영 구조를 더 효율적으로 정리했습니다.",
-          "오버레이가 크게 발생했던 운영 건을 집중 모니터링하고 팔로업해 손실 폭을 절반 이상 줄였습니다.",
+          "시즌과 타깃에 맞춰 운영 구조를 조정하고, 필요한 지표를 기준으로 반복 모니터링 체계를 운영했습니다.",
+          "오버레이가 크게 발생하던 운영 건을 집중 모니터링하고 후속 대응해 손실을 절반 이상 줄였습니다.",
         ],
       },
       {
-        company: "Me2on", role: "Operations", period: "2023.08 - 2024.08",
+        company: "Me2on",
+        role: "Operations",
+        period: "2023.08 - 2024.08",
         summary: "Fullhouse Casino 소셜 카지노 게임 운영과 해외 지사 커뮤니케이션 실무를 담당했습니다.",
         highlights: [
-          "글로벌 운영 협업의 기본 구조와 커뮤니케이션 방식을 실무에서 익혔습니다.",
-          "운영 현장에서 사용자 흐름과 서비스 구조를 보는 관점을 쌓으며 이후 기획 역할로 확장하는 기반을 만들었습니다.",
+          "글로벌 운영 실무를 통해 다양한 이해관계자와 맞추는 기본 커뮤니케이션 방식을 익혔습니다.",
+          "운영 현장에서 사용자 흐름과 서비스 구조를 보는 관점을 키우며 이후 기획 역할로 확장하는 기반을 만들었습니다.",
         ],
       },
     ],
     projects: [
-      { tag: "Project 01", title: "AI 기반 문서 협업 프로세스 개선", meta: "Service Planner | 2024", description: "문서 작성 문제를 협업 구조 문제로 재정의하고, Markdown PRD와 AI-assisted 프로토타입 workflow를 결합해 검토 속도와 전달 명확도를 높인 사례입니다.", href: "case-ai-doc-process.html", cta: "Case Study 보기" },
-      { tag: "Project 02", title: "텍사스 홀덤 로비 구조 개선", meta: "UX Planning | In Progress", description: "정보 구조와 사용자 흐름 관점에서 로비 경험을 다시 설계하고, 우선순위와 시각적 위계를 재정리하는 프로젝트입니다.", href: "case-lobby-redesign.html", cta: "진행 내용 보기" },
+      {
+        tag: "Project 01",
+        title: "AX 기반 문서 협업 프로세스 개선",
+        meta: "Service Planner | 2024",
+        description: "문서 작성 문제가 아니라 협업 구조 문제로 재정의하고, PRD, 프로토타입, 웹 배포를 연결해 검토 속도와 전달 정확도를 높인 사례입니다.",
+        href: "case-ai-doc-process.html",
+        cta: "Case Study 보기",
+      },
+      {
+        tag: "Project 02",
+        title: "텍사스 홀덤 로비 구조 개선",
+        meta: "UX Planning | In Progress",
+        description: "정보 구조와 사용자 흐름 관점에서 로비 경험을 재설계하고, 사용자가 더 빠르게 진입할 수 있는 기준을 정리하는 프로젝트입니다.",
+        href: "case-lobby-redesign.html",
+        cta: "진행 내용 보기",
+      },
     ],
-    skills: ["English Communication", "SQL", "Python", "Figma", "Vibe Coding Workflow", "Claude Code / Codex"],
+    skills: [
+      "Service Planning",
+      "UX Flow Design",
+      "Problem Definition",
+      "Documentation Design",
+      "SQL",
+      "Python",
+      "Figma",
+      "Claude Code / Codex",
+    ],
     education: [
       { school: "University of South Dakota", major: "Nursing", period: "2015.09 - 2016.08", note: "중퇴" },
-      { school: "방송통신대학교", major: "통계, 데이터학과", period: "2023.03 - Present" },
+      { school: "Korea National Open University", major: "Statistics & Data Science", period: "2023.03 - Present" },
     ],
     certifications: ["SQLD", "ADsP"],
     contactLinks: [
@@ -68,30 +109,29 @@ const content = {
       { label: "Location", value: "Seoul, Korea" },
     ],
     i18n: {
-      "hero.name": "장시영",
-      "hero.headline": "문제를 구조로 바꾸고, 팀이 실행할 수 있게 만드는 기획자",
-      "hero.desc": "문서, 화면, 프로토타입을 분리해서 보지 않습니다. 목적을 정의하고 사용자 흐름을 설계한 뒤, AI 기반 제작 워크플로우까지 연결해 더 빠르게 검토하고 더 명확하게 전달하는 방식을 만듭니다.",
+      "hero.name": "Siyoung Jang",
+      "hero.headline": "문제를 구조로 바꿔 팀이 실행할 수 있게 만드는 기획자",
+      "hero.desc": "문서만 정리하는 데서 멈추지 않습니다. 목적을 정의하고 사용자 흐름과 전달 기준을 설계한 뒤, 검토 가능한 프로토타입과 배포 방식까지 연결해 더 빠르고 명확한 협업 구조를 만듭니다.",
       "hero.cta_projects": "프로젝트 보기",
-      "about.sub": "기획 의도를 실행 가능한 구조로 정리합니다",
+      "about.sub": "문제를 구조화하고 실행 기준으로 바꾸는 방식으로 일합니다.",
       "about.lens1": "표면적인 요청보다 왜 같은 문제가 반복되는지 먼저 봅니다.",
-      "about.lens2": "문서 작성보다 협업 구조와 전달 기준을 명확히 정리하는 데 강점이 있습니다.",
-      "about.lens3": "새로운 도구는 목적이 아니라 문제 해결 수단으로 선택합니다.",
-      "about.focus": "AI를 활용한 기획 전달 구조 개선",
-      "experience.sub": "서비스 운영과 기획을 오가며 쌓은 문제 정의 감각",
-      "skills.sub": "실무에서 자주 꺼내 쓰는 역량",
-      "projects.sub": "AI를 활용해 실무 구조를 바꾼 경험",
-      "contact.sub": "기획과 협업 구조를 함께 이야기할 준비가 되어 있습니다",
-      "contact.desc": "제품의 목적을 더 명확하게 정의하고, 팀이 같은 방향으로 움직일 수 있는 구조를 만드는 일에 관심이 있습니다.",
-      "hero.note": "이 포트폴리오는 Claude Code, Codex를 이용한 바이브 코딩으로 제작되었습니다.",
+      "about.lens2": "문서의 양보다 실행 기준과 전달 구조를 명확히 하는 데 강점이 있습니다.",
+      "about.lens3": "새로운 도구는 목적이 아니라 문제 해결을 위한 수단으로 선택합니다.",
+      "about.focus": "프로세스의 비효율을 구조 개선으로 연결하는 기획",
+      "experience.sub": "운영과 기획을 모두 경험하며 문제 정의 감각을 키워왔습니다.",
+      "skills.sub": "실무에서 반복적으로 활용하는 역량과 도구입니다.",
+      "projects.sub": "AX 환경에서 협업 구조를 바꿔본 경험을 담았습니다.",
+      "contact.sub": "기획, 구조, 협업 방식에 대해 이야기할 준비가 되어 있습니다.",
+      "contact.desc": "제품의 목적을 더 명확히 정의하고, 여러 직군이 같은 기준으로 움직일 수 있는 구조를 만드는 일에 관심이 있습니다.",
+      "hero.note": "이 포트폴리오는 기획자가 직접 구조를 설계하고, 바이브 코딩 기반 워크플로로 제작한 결과물입니다.",
     },
   },
-
   en: {
     heroStats: [
-      { value: "3 → 1", label: "Stakeholders reduced" },
-      { value: "1-2wk → 3-4d", label: "Handoff lead time cut" },
-      { value: "PM / Planner", label: "Problem definition & UX flow design" },
-      { value: "AI-assisted", label: "Review & prototype workflow" },
+      { value: "3 -> 1", label: "Stakeholders reduced" },
+      { value: "1 week -> 3 days", label: "Review and approval lead time" },
+      { value: "Problem to Structure", label: "Reframing work into execution" },
+      { value: "Stats in Progress", label: "Quantitative thinking in progress" },
     ],
     headerMeta: [
       { label: "Email", href: "mailto:jsyoung456@gmail.com", text: "jsyoung456@gmail.com" },
@@ -99,48 +139,89 @@ const content = {
       { label: "Location", text: "Seoul, Korea" },
     ],
     summary: [
-      "I'm a service planner who defines the essence of a problem before jumping into screens. Rather than organizing requirements as given, I first ask why the work is needed and what user value it connects to.",
-      "I don't stop at writing planning documents — I design user flows, edge cases, and delivery structures so designers and developers can act immediately.",
-      "Recently, I've been using AI not just as an assistant but as a means to make delivery structures faster and clearer, connecting planning directly to reviewable prototypes.",
+      "I am a service planner who defines the essence and structure of a problem before jumping into execution. Rather than organizing requirements as they are, I first ask why the work matters and what user value it should create.",
+      "I do not stop at writing planning documents. I design user flows, delivery criteria, and collaboration structures so multiple functions can move in the same direction.",
+      "Recently, I have focused less on tools themselves and more on which inefficiencies can be reduced in AX environments, building reviewable workflows that connect documents, prototypes, and web distribution.",
     ],
     strengths: [
-      { title: "Problem Definition", description: "Rather than fixing surface-level issues, I interpret why the same problems recur structurally and redefine them into problems the team can align on." },
-      { title: "UX Flow Design", description: "I verify that user pain points and the service's intended direction are aligned, then design flows and screen structures to match." },
-      { title: "Collaboration Structure", description: "Instead of managing documents, screens, and review criteria separately, I connect them to reduce back-and-forth and speed up execution." },
-      { title: "Self-directed Improvement", description: "When I identify a problem worth solving, I try it first and iterate until it meets real-world standards." },
+      {
+        title: "Problem Definition",
+        description: "I do not respond only to surface requests. I analyze why the same issue keeps recurring and redefine it into a problem the team can align on.",
+      },
+      {
+        title: "UX Flow Design",
+        description: "I connect user flow with product intent and turn planning logic into structures that can actually be executed on screen.",
+      },
+      {
+        title: "Collaboration Structure",
+        description: "I separate the roles of documents, prototypes, and distribution so stakeholders can discuss the same source of truth with less confusion.",
+      },
+      {
+        title: "Self-driven Growth",
+        description: "I close skill gaps on my own through statistics study, textbook self-learning, and hands-on tool exploration to build stronger planning judgment.",
+      },
     ],
     experience: [
       {
-        company: "Natris / LULU.AI", role: "Service Planner", period: "2024.04 - Present",
-        summary: "Led feature planning, UX flow design, and documentation structure improvement for a B2C mobile web poker game.",
+        company: "Natris / LULU.AI",
+        role: "Service Planner",
+        period: "2024.04 - Present",
+        summary: "Led feature planning, UX flow design, and collaboration document improvement for a B2C mobile web poker game.",
         highlights: [
-          "Reframed document-centric collaboration bottlenecks as structural issues and designed a workflow combining PRDs with prototypes.",
-          "Proposed and implemented AI-based process improvements, reducing stakeholders from 3 to 1 and cutting handoff lead time from 1-2 weeks to 3-4 days.",
-          "Organized document roles and delivery standards so designers and developers could execute directly from planning output.",
+          "Reframed document-heavy delivery as a collaboration structure issue and redesigned the workflow around PRDs and prototypes.",
+          "Introduced a vibe-coding-based prototype workflow that reduced stakeholders from 3 to 1 and shortened review and approval time from 1 week to 3 days.",
+          "Set up version management and web distribution standards so non-technical stakeholders could access the latest document more easily.",
         ],
       },
       {
-        company: "NSUSLAB Korea", role: "Operations", period: "2023.08 - 2024.04",
+        company: "NSUSLAB Korea",
+        role: "Operations",
+        period: "2023.08 - 2024.04",
         summary: "Managed tournament scheduling, KPI monitoring, and cross-border partner communication for GGPoker.",
         highlights: [
-          "Adjusted schedules and guarantees by season and target, streamlining the operational structure.",
-          "Monitored and followed up on high-overlay events, reducing losses by over 50%.",
+          "Adjusted operational structures by season and target while maintaining a repeatable monitoring process.",
+          "Closely tracked high-overlay events and follow-up actions, reducing losses by more than 50%.",
         ],
       },
       {
-        company: "Me2on", role: "Operations", period: "2023.08 - 2024.08",
-        summary: "Handled live operations and international coordination for Fullhouse Casino, a social casino game.",
+        company: "Me2on",
+        role: "Operations",
+        period: "2023.08 - 2024.08",
+        summary: "Handled live operations and international communication for Fullhouse Casino, a social casino game.",
         highlights: [
-          "Learned foundational structures for global operations and cross-team communication.",
-          "Built a perspective on user flows and service structure from the operations side, forming the basis for transitioning into a planning role.",
+          "Built a foundation in global operations and cross-functional communication.",
+          "Developed a habit of looking at user flow and service structure from the operations side, which later supported my transition into planning.",
         ],
       },
     ],
     projects: [
-      { tag: "Project 01", title: "AI-based Document Collaboration Process", meta: "Service Planner | 2024", description: "Reframed a documentation problem as a collaboration structure issue, combining Markdown PRDs with AI-assisted prototyping to improve review speed and delivery clarity.", href: "case-ai-doc-process.html", cta: "View Case Study" },
-      { tag: "Project 02", title: "Texas Hold'em Lobby Redesign", meta: "UX Planning | In Progress", description: "Redesigning the lobby experience from an information architecture and user flow perspective, re-prioritizing visual hierarchy.", href: "case-lobby-redesign.html", cta: "View Progress" },
+      {
+        tag: "Project 01",
+        title: "AX-based Document Collaboration Improvement",
+        meta: "Service Planner | 2024",
+        description: "A case where I reframed documentation as a collaboration issue and connected PRDs, prototypes, and web distribution to improve review speed and delivery clarity.",
+        href: "case-ai-doc-process.html",
+        cta: "View Case Study",
+      },
+      {
+        tag: "Project 02",
+        title: "Texas Hold'em Lobby Structure Redesign",
+        meta: "UX Planning | In Progress",
+        description: "An ongoing project redesigning the lobby experience from an information architecture and user flow perspective.",
+        href: "case-lobby-redesign.html",
+        cta: "View Progress",
+      },
     ],
-    skills: ["English Communication", "SQL", "Python", "Figma", "Vibe Coding Workflow", "Claude Code / Codex"],
+    skills: [
+      "Service Planning",
+      "UX Flow Design",
+      "Problem Definition",
+      "Documentation Design",
+      "SQL",
+      "Python",
+      "Figma",
+      "Claude Code / Codex",
+    ],
     education: [
       { school: "University of South Dakota", major: "Nursing", period: "2015.09 - 2016.08", note: "Withdrew" },
       { school: "Korea National Open University", major: "Statistics & Data Science", period: "2023.03 - Present" },
@@ -154,28 +235,25 @@ const content = {
     i18n: {
       "hero.name": "Siyoung Jang",
       "hero.headline": "A planner who turns problems into structures teams can execute",
-      "hero.desc": "I don't treat documents, screens, and prototypes as separate artifacts. I define the purpose, design user flows, then connect them to an AI-assisted production workflow for faster review and clearer delivery.",
+      "hero.desc": "I do more than organize documents. I define the purpose, design user flow and delivery criteria, then connect them to reviewable prototypes and distribution so teams can move faster with more clarity.",
       "hero.cta_projects": "View Projects",
-      "about.sub": "Turning planning intent into actionable structure",
-      "about.lens1": "I look at why the same problems keep recurring, not just the surface-level requests.",
-      "about.lens2": "My strength is in clarifying collaboration structures and delivery standards, not just writing documents.",
-      "about.lens3": "New tools are chosen as a means to solve problems, not as goals in themselves.",
-      "about.focus": "Improving planning delivery structure with AI",
-      "experience.sub": "Problem-definition instincts built across operations and planning",
-      "skills.sub": "Capabilities I rely on in practice",
-      "projects.sub": "Experiences reshaping workflows with AI",
-      "contact.sub": "Ready to discuss planning and collaboration structures",
-      "contact.desc": "I'm interested in defining product purpose more clearly and building structures that keep teams moving in the same direction.",
-      "hero.note": "This portfolio was designed, built, reviewed, and deployed by a planner using an AI-assisted workflow.",
+      "about.sub": "I work by structuring problems and turning them into execution criteria.",
+      "about.lens1": "I look first at why the same issue keeps recurring, not just at surface requests.",
+      "about.lens2": "My strength is not in producing more documents, but in clarifying execution criteria and delivery structure.",
+      "about.lens3": "New tools are selected as means to solve problems, not goals in themselves.",
+      "about.focus": "Planning work that turns process inefficiency into structural improvement",
+      "experience.sub": "My problem-definition instinct was shaped across both operations and planning.",
+      "skills.sub": "Capabilities and tools I rely on repeatedly in practice.",
+      "projects.sub": "Projects where I changed collaboration structure in AX environments.",
+      "contact.sub": "Ready to talk about planning, structure, and collaboration systems.",
+      "contact.desc": "I am interested in defining product purpose more clearly and building structures that help teams move with the same standards.",
+      "hero.note": "This portfolio was structured by a planner and built through a vibe-coding-based workflow.",
     },
   },
 };
 
 let currentLang = "ko";
 
-/* ===========================
-   Render helpers
-   =========================== */
 function renderList(containerId, items, renderItem) {
   const container = document.getElementById(containerId);
   if (!container) return;
@@ -211,7 +289,7 @@ function renderAll(data) {
       <h3 class="project-card__title">${item.title}</h3>
       <p class="project-card__meta">${item.meta}</p>
       <p class="project-card__description">${item.description}</p>
-      <span class="project-card__link">${item.cta} →</span>
+      <span class="project-card__link">${item.cta} -></span>
     </a>
   `);
 
@@ -222,7 +300,7 @@ function renderAll(data) {
       <h3 class="timeline-item__company">${item.company}</h3>
       <p class="timeline-item__summary">${item.summary}</p>
       <ul class="timeline-item__highlights">
-        ${item.highlights.map((h) => `<li>${h}</li>`).join("")}
+        ${item.highlights.map((highlight) => `<li>${highlight}</li>`).join("")}
       </ul>
     </article>
   `);
@@ -262,13 +340,13 @@ function renderAll(data) {
     }
   `);
 
-  // Update static i18n text
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
-    if (data.i18n[key]) el.textContent = data.i18n[key];
+    if (data.i18n[key]) {
+      el.textContent = data.i18n[key];
+    }
   });
 
-  // Update html lang
   document.documentElement.lang = currentLang;
 }
 
@@ -281,13 +359,9 @@ function switchLang(lang) {
   });
 }
 
-/* ===========================
-   Init
-   =========================== */
 document.addEventListener("DOMContentLoaded", () => {
   renderAll(content.ko);
 
-  // Language toggle
   document.getElementById("lang-toggle").addEventListener("click", (e) => {
     const opt = e.target.closest("[data-lang]");
     if (opt && opt.dataset.lang !== currentLang) {
@@ -295,7 +369,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Sidebar active link on scroll
   const sections = document.querySelectorAll(".section[id]");
   const navLinks = document.querySelectorAll(".sidebar__link");
 
@@ -306,9 +379,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (scrollY + windowH >= docH - 2) {
       navLinks.forEach((link) => link.classList.remove("active"));
-      const lastLink = document.querySelector(
-        `.sidebar__link[href="#${sections[sections.length - 1].id}"]`
-      );
+      const lastLink = document.querySelector(`.sidebar__link[href="#${sections[sections.length - 1].id}"]`);
       if (lastLink) lastLink.classList.add("active");
       return;
     }
@@ -321,20 +392,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     navLinks.forEach((link) => link.classList.remove("active"));
-    const activeLink = document.querySelector(
-      `.sidebar__link[href="#${current.id}"]`
-    );
+    const activeLink = document.querySelector(`.sidebar__link[href="#${current.id}"]`);
     if (activeLink) activeLink.classList.add("active");
   }
 
   window.addEventListener("scroll", updateActiveNav, { passive: true });
   updateActiveNav();
 
-  // Scroll Reveal
-  const revealElements = document.querySelectorAll(
-    ".reveal, .reveal--left, .reveal--right, .reveal--scale, .reveal-stagger"
-  );
-
+  const revealElements = document.querySelectorAll(".reveal, .reveal--left, .reveal--right, .reveal--scale, .reveal-stagger");
   const revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -349,14 +414,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   revealElements.forEach((el) => revealObserver.observe(el));
 
-  // Mobile hamburger toggle
   const hamburger = document.getElementById("hamburger");
   const sidebar = document.getElementById("sidebar");
 
   if (hamburger && sidebar) {
     hamburger.addEventListener("click", () => {
       const isOpen = sidebar.classList.toggle("open");
-      hamburger.setAttribute("aria-expanded", isOpen);
+      hamburger.setAttribute("aria-expanded", String(isOpen));
     });
 
     sidebar.querySelectorAll(".sidebar__link").forEach((link) => {
