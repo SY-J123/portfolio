@@ -1,8 +1,8 @@
 # WORKLOG
 
 ## 2026-03-11
-- 사용자 제공 컨텍스트를 `PROJECT_CONTEXT.md`로 고정 저장.
-- 현재 코드 베이스 확인: `index.html`, `case-ai-doc-process.html`, `case-lobby-redesign.html`, `styles.css`.
+- 사용자 제공 컨텍스트를 `resume/PROJECT_CONTEXT.md`로 고정 저장.
+- 현재 코드 베이스 확인: `portfolio/index.html`, `portfolio/case-ai-doc-process.html`, `portfolio/case-lobby-redesign.html`, `portfolio/styles.css`.
 
 ## 2026-03-18
 - 경력직 자기소개서 초안용 구조를 별도 문서 `SELF_INTRO_DRAFT.md`로 정리.
