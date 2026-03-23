@@ -16,20 +16,20 @@ const content = {
     ],
     strengths: [
       {
-        title: "Problem Definition",
-        description: "표면적인 요청을 그대로 받기보다, 왜 같은 문제가 반복되는지 먼저 해석하고 팀이 공감할 수 있는 문제로 다시 정의합니다.",
+        title: "Proactive Worker",
+        description: "문제가 충분히 드러난 뒤 반응하기보다, 먼저 징후를 파악하고 개선안을 적극적으로 제안하는 편입니다. 반복되는 마찰이 보이면 작은 수준이라도 직접 바꿔보며 더 나은 흐름을 만듭니다.",
       },
       {
-        title: "Execution Structure",
-        description: "사용자 흐름, 전달 기준, 협업 방식을 함께 설계해 여러 직군이 같은 방향으로 실행할 수 있는 상태를 만듭니다.",
+        title: "Structured Thinker",
+        description: "모호한 것을 명확하게 정의해 팀이 더 기민하게 움직일 수 있는 상태를 만드는 편입니다. 범위, 우선순위, 기준을 정리해 같은 방향으로 실행할 수 있게 돕습니다.",
       },
       {
-        title: "Reviewable Workflow",
-        description: "문서만 정리하는 데서 멈추지 않고, 프로토타입과 웹 배포까지 연결해 검토 가능하고 전달력 있는 워크플로를 만듭니다.",
+        title: "Context-Aware Communicator",
+        description: "A와 B가 모두 맞는 방법일 수 있다고 생각합니다. 중요한 것은 정답 하나를 고집하기보다, 조직 상황과 이해관계자들의 니즈에 맞춰 협의하고 가장 적절한 기준을 함께 정하는 일입니다.",
       },
       {
-        title: "Learning Agility",
-        description: "필요한 역량은 스스로 빠르게 메웁니다. 새로운 도구와 지식을 실무에 연결하며 정성 판단에 머무르지 않는 기획 역량을 쌓고 있습니다.",
+        title: "Logic-Driven Planner",
+        description: "좋은 기획은 설명 가능해야 한다고 믿습니다. 목적, 사용자 가치, 판단 근거가 분명한 결정을 만들려고 합니다.",
       },
     ],
     experience: [
@@ -37,32 +37,38 @@ const content = {
         company: "Natris / LULU.AI",
         role: "Service Planner",
         period: "2024.04 - Present",
-        summary: "B2C 모바일 웹 포커 게임에서 기능 기획, UX 흐름 설계, 협업 문서 구조 개선을 담당했습니다.",
+        duration: "1년 11개월",
+        summary: "B2C 모바일 웹 포커 게임 기획",
         highlights: [
-          "문서 중심 전달 방식을 협업 구조 문제로 재정의하고, PRD와 프로토타입의 역할을 분리한 검토 구조를 설계했습니다.",
-          "바이브 코딩 기반 초기 보고용 프로토타입 제작 방식을 제안하고 안착시켜 이해관계자 투입을 3명에서 1명으로 줄이고, 보고 및 컨펌 기간을 1주에서 3일로 단축했습니다.",
-          "문서 버전 관리와 웹 배포 기준을 정리해 비개발 직군도 최신 문서를 쉽게 확인할 수 있는 협업 환경을 만들었습니다.",
+          "기능 요구사항 정의",
+          "사용자 흐름 설계",
+          "정보 구조도 작성",
+          "바이브 코딩 기반 프로토타입 제작",
+          "협업 문서 구조 개선",
+          "문서 버전 관리 및 웹 배포",
         ],
       },
       {
         company: "NSUSLAB Korea",
         role: "Operations",
         period: "2023.08 - 2024.04",
-        summary: "GGPoker 토너먼트 운영팀에서 스케줄 관리, 지표 모니터링, 그리고 해외 지사 및 파트너와의 영어 커뮤니케이션을 담당했습니다.",
+        duration: "9개월",
+        summary: "GGPoker 토너먼트 운영",
         highlights: [
-          "시즌과 타깃에 맞춰 운영 구조를 조정하고, 필요한 지표를 기준으로 반복 모니터링 체계를 운영했습니다.",
-          "이전해 손실이 발생한 이벤트의 스케줄을 최적화해 전년 대비 손실을 50% 줄였습니다.",
-          "해외 지사 및 파트너와 영어로 일정, 운영 이슈, 후속 대응 사항을 조율하며 실무 커뮤니케이션 역량을 쌓았습니다.",
+          "토너먼트 스케줄 관리",
+          "운영 지표 모니터링",
+          "해외 지사 및 파트너 커뮤니케이션",
         ],
       },
       {
         company: "Me2on",
         role: "Operations",
         period: "2023.08 - 2024.08",
-        summary: "Fullhouse Casino 소셜 카지노 게임 운영과 해외 지사 커뮤니케이션 실무를 담당했습니다.",
+        duration: "1년 1개월",
+        summary: "Fullhouse Casino 운영",
         highlights: [
-          "글로벌 운영 실무를 통해 다양한 이해관계자와 맞추는 기본 커뮤니케이션 방식을 익혔습니다.",
-          "운영 현장에서 사용자 흐름과 서비스 구조를 보는 관점을 키우며 이후 기획 역할로 확장하는 기반을 만들었습니다.",
+          "라이브 운영 지원",
+          "해외 지사 커뮤니케이션",
         ],
       },
     ],
@@ -86,61 +92,55 @@ const content = {
     ],
     skills: [
       {
-        category: "Hard Skills",
         items: [
           {
-            name: "Service Planning",
-            detail: "기능 요구사항을 정리하고 PRD 구조를 설계해 팀이 같은 기준으로 움직일 수 있게 만들었습니다.",
+            name: "Vibe Coding",
+            detail: "기획 검토에 필요한 화면과 흐름을 빠르게 구현해, 문서만으로는 맞추기 어려운 맥락을 더 선명하게 공유할 수 있게 했습니다.",
           },
           {
-            name: "UX Flow Design",
-            detail: "사용자 흐름을 재설계해 검토 포인트를 명확히 하고, 초기 기획안을 더 빠르게 합의 가능한 형태로 바꿨습니다.",
+            name: "Data Analysis Foundations",
+            detail: "SQL, Python, 그리고 통계학 학습을 바탕으로 데이터 분석의 기초 역량을 확장하고 있으며, 더 근거 있는 의사결정을 위한 기반을 쌓고 있습니다.",
           },
           {
-            name: "SQL / Data Reading",
-            detail: "운영 지표와 이벤트 성과를 확인하며 손실 원인을 파악하고 일정 조정에 반영했습니다.",
+            name: "Figma",
+            detail: "화면 설계서를 작성하고, 필요한 fidelity에 맞춰 와이어프레임을 정의합니다.",
           },
           {
-            name: "Prototype & AI Workflow",
-            detail: "Figma와 Claude Code / Codex를 활용해 검토용 프로토타입과 웹 배포 흐름을 연결했습니다.",
-          },
-        ],
-      },
-      {
-        category: "Soft Skills",
-        items: [
-          {
-            name: "Problem Definition",
-            detail: "표면적인 요청을 그대로 실행하지 않고, 반복되는 문제를 다시 정의해 협업 구조 자체를 개선했습니다.",
+            name: "Business English",
+            detail: "Business Level의 영어 커뮤니케이션이 가능하며, 해외 지사 및 파트너와 일정, 운영 이슈, 후속 대응 사항을 영어로 조율한 경험이 있습니다.",
           },
           {
-            name: "Cross-functional Communication",
-            detail: "기획, 개발, 운영, 이해관계자 사이에서 전달 기준을 맞추며 검토 리드타임을 줄였습니다.",
-          },
-          {
-            name: "Execution Ownership",
-            detail: "문서 작성에서 끝나지 않고 프로토타입, 배포, 버전 관리까지 직접 이어서 마무리했습니다.",
-          },
-          {
-            name: "Learning Agility",
-            detail: "업무에 필요한 도구와 지식을 빠르게 익혀 실무 문제 해결 방식으로 연결했습니다.",
+            name: "GitHub",
+            detail: "문서와 프로토타입을 버전 관리하고, 최신 기준을 팀이 쉽게 확인할 수 있도록 운영했습니다.",
           },
         ],
       },
     ],
+    learning: [
+      {
+        name: "Data-Informed Thinking",
+        detail: "통계학, SQL, Python을 바탕으로 더 근거 있는 의사결정을 할 수 있는 기획 역량을 쌓고 있습니다. Evidence: related study notes are documented on my Velog.",
+      },
+      {
+        name: "AI-Native Workflow",
+        detail: "AI를 활용해 더 빠르게 프로토타입을 만들고, 더 명확하게 검토하고, 더 실행 가능한 기획 워크플로를 설계하는 방법을 계속 실험하고 있습니다. Evidence: ongoing experiments and learnings are documented on my Velog.",
+      },
+    ],
     education: [
-      { school: "University of South Dakota", major: "Nursing", period: "2015.09 - 2016.08", note: "중퇴" },
       { school: "방송통신대학교", major: "Data & Statistics", period: "2023.03 - Present" },
+      { school: "University of South Dakota", major: "Nursing", period: "2015.09 - 2016.08", note: "중퇴" },
     ],
     certifications: ["SQLD", "ADsP"],
     contactLinks: [
       { label: "Email", value: "jsyoung456@gmail.com", href: "mailto:jsyoung456@gmail.com" },
+      { label: "Phone", value: "+82-10-3224-9483", href: "tel:+821032249483" },
       { label: "GitHub", value: "SY-J123/portfolio", href: "https://github.com/SY-J123/portfolio", external: true },
       { label: "Location", value: "Seoul, Korea" },
     ],
     i18n: {
       "hero.name": "Siyoung Jang",
       "hero.headline": "문제를 구조로 바꿔 팀이 실행할 수 있게 만드는 기획자",
+      "hero.cta_contact": "Contact Me",
       "hero.desc": "문서만 정리하는 데서 멈추지 않습니다. 목적을 정의하고 사용자 흐름과 전달 기준을 설계한 뒤, 검토 가능한 프로토타입과 배포 방식까지 연결해 더 빠르고 명확한 협업 구조를 만듭니다.",
       "hero.cta_projects": "프로젝트 보기",
       "about.sub": "커리어와 대표 성과를 간단히 소개합니다.",
@@ -153,6 +153,7 @@ const content = {
       "skills.panelDesc": "하드 스킬과 소프트 스킬을 나누어, 실제 업무에서 어떻게 기여했는지 보여줍니다.",
       "skills.certEyebrow": "Verified",
       "skills.certTitle": "Certificates",
+      "learning.title": "What I Am Learning",
       "skills.sub": "저를 설명하는 일하는 방식과 핵심 키워드입니다.",
       "projects.sub": "AX 환경에서 협업 구조를 바꿔본 경험을 담았습니다.",
       "contact.sub": "함께 만들 제품과 문제에 대해 편하게 연락 주세요.",
@@ -174,20 +175,20 @@ const content = {
     ],
     strengths: [
       {
-        title: "Problem Definition",
-        description: "I do not stop at surface requests. I first interpret why the same issue keeps recurring and redefine it into a problem the team can align on.",
+        title: "Proactive Worker",
+        description: "Rather than waiting for problems to fully surface, I try to spot them early and actively suggest improvements. When I see repeated friction, I move quickly to test a better way forward.",
       },
       {
-        title: "Execution Structure",
-        description: "I design user flow, delivery criteria, and collaboration ways of working so cross-functional teams can move in the same direction.",
+        title: "Structured Thinker",
+        description: "I turn ambiguity into clarity so teams can move with more speed and confidence. By defining scope, priorities, and criteria, I help people execute in the same direction.",
       },
       {
-        title: "Reviewable Workflow",
-        description: "I go beyond documentation by connecting prototypes and web delivery, creating workflows that are easier to review and act on.",
+        title: "Context-Aware Communicator",
+        description: "I believe more than one solution can be valid. What matters is not forcing a single answer, but aligning with the organization, the stakeholders, and the context to decide what works best together.",
       },
       {
-        title: "Learning Agility",
-        description: "I close skill gaps quickly on my own, linking new tools and knowledge back to the work instead of treating them as ends in themselves.",
+        title: "Logic-Driven Planner",
+        description: "I believe good planning should be explainable. I try to make decisions that are grounded in purpose, user value, and clear reasoning.",
       },
     ],
     experience: [
@@ -195,32 +196,38 @@ const content = {
         company: "Natris / LULU.AI",
         role: "Service Planner",
         period: "2024.04 - Present",
-        summary: "Led feature planning, UX flow design, and collaboration document improvement for a B2C mobile web poker game.",
+        duration: "1 yr 11 mos",
+        summary: "Planning for a B2C mobile web poker game",
         highlights: [
-          "Reframed document-heavy delivery as a collaboration structure issue and redesigned the workflow around PRDs and prototypes.",
-          "Introduced a vibe-coding-based prototype workflow that reduced stakeholders from 3 to 1 and shortened review and approval time from 1 week to 3 days.",
-          "Set up version management and web distribution standards so non-technical stakeholders could access the latest document more easily.",
+          "Feature requirement definition",
+          "User flow design",
+          "Information architecture planning",
+          "Vibe-coding-based prototyping",
+          "Collaboration documentation improvement",
+          "Version control and web publishing",
         ],
       },
       {
         company: "NSUSLAB Korea",
         role: "Operations",
         period: "2023.08 - 2024.04",
-        summary: "Managed tournament scheduling, KPI monitoring, and communication with overseas branches and partners for GGPoker.",
+        duration: "9 mos",
+        summary: "Tournament operations for GGPoker",
         highlights: [
-          "Adjusted event schedules by season and target while maintaining a repeatable monitoring process.",
-          "Revisited an event that had previously generated losses and cut the deficit by 50% through schedule optimization.",
-          "Handled day-to-day coordination in English with overseas teams and partners to align schedules, operational issues, and follow-up actions.",
+          "Tournament scheduling",
+          "Operational KPI monitoring",
+          "Communication with overseas branches and partners",
         ],
       },
       {
         company: "Me2on",
         role: "Operations",
         period: "2023.08 - 2024.08",
-        summary: "Handled live operations and international communication for Fullhouse Casino, a social casino game.",
+        duration: "1 yr 1 mo",
+        summary: "Operations for Fullhouse Casino",
         highlights: [
-          "Built a foundation in global operations and cross-functional communication.",
-          "Developed a habit of looking at user flow and service structure from the operations side, which later supported my transition into planning.",
+          "Live operations support",
+          "International communication",
         ],
       },
     ],
@@ -244,61 +251,55 @@ const content = {
     ],
     skills: [
       {
-        category: "Hard Skills",
         items: [
           {
-            name: "Service Planning",
-            detail: "Structured feature requirements and PRD documents so the team could align on one execution standard.",
+            name: "Vibe Coding",
+            detail: "I quickly build screens and flows for review so teams can align on context that would otherwise be difficult to share through documents alone.",
           },
           {
-            name: "UX Flow Design",
-            detail: "Redesigned user flows to make review points clearer and turn early ideas into decisions faster.",
+            name: "Data Analysis Foundations",
+            detail: "I am building a stronger foundation in data analysis through SQL, Python, and statistics to support more informed decision-making.",
           },
           {
-            name: "SQL / Data Reading",
-            detail: "Reviewed operational metrics and event performance to identify loss factors and adjust schedules.",
+            name: "Figma",
+            detail: "I create screen specifications and define wireframes at the level of fidelity each stage requires.",
           },
           {
-            name: "Prototype & AI Workflow",
-            detail: "Used Figma and Claude Code / Codex to connect review prototypes with lightweight web delivery.",
-          },
-        ],
-      },
-      {
-        category: "Soft Skills",
-        items: [
-          {
-            name: "Problem Definition",
-            detail: "Did not take requests at face value and instead redefined recurring issues into solvable team problems.",
+            name: "Business English",
+            detail: "I am comfortable communicating in English at a business level, with experience coordinating schedules, operational issues, and follow-up actions with overseas branches and partners.",
           },
           {
-            name: "Cross-functional Communication",
-            detail: "Aligned planning, development, operations, and stakeholders around clearer delivery criteria and faster reviews.",
-          },
-          {
-            name: "Execution Ownership",
-            detail: "Followed work through from documentation to prototype, deployment, and version handling.",
-          },
-          {
-            name: "Learning Agility",
-            detail: "Picked up the tools and knowledge needed for the work quickly and applied them directly to real tasks.",
+            name: "GitHub",
+            detail: "I used GitHub to manage versions of documents and prototypes, making it easier for the team to stay aligned on the latest source of truth.",
           },
         ],
       },
     ],
+    learning: [
+      {
+        name: "Data-Informed Thinking",
+        detail: "I am building a stronger foundation in statistics, SQL, and Python so I can make planning decisions with clearer evidence, not only intuition. Ongoing study notes are documented on Velog.",
+      },
+      {
+        name: "AI-Native Workflow",
+        detail: "I keep exploring how AI can support faster prototyping, clearer reviews, and more executable planning workflows. Ongoing experiments and learnings are documented on Velog.",
+      },
+    ],
     education: [
-      { school: "University of South Dakota", major: "Nursing", period: "2015.09 - 2016.08", note: "Withdrew" },
       { school: "Korea National Open University", major: "Data & Statistics", period: "2023.03 - Present" },
+      { school: "University of South Dakota", major: "Nursing", period: "2015.09 - 2016.08", note: "Withdrew" },
     ],
     certifications: ["SQLD", "ADsP"],
     contactLinks: [
       { label: "Email", value: "jsyoung456@gmail.com", href: "mailto:jsyoung456@gmail.com" },
+      { label: "Phone", value: "+82-10-3224-9483", href: "tel:+821032249483" },
       { label: "GitHub", value: "SY-J123/portfolio", href: "https://github.com/SY-J123/portfolio", external: true },
       { label: "Location", value: "Seoul, Korea" },
     ],
     i18n: {
       "hero.name": "Siyoung Jang",
       "hero.headline": "A planner who turns problems into structures teams can execute",
+      "hero.cta_contact": "Contact Me",
       "hero.desc": "I do more than organize documents. I define the purpose, design user flow and delivery criteria, then connect them to reviewable prototypes and distribution so teams can move faster with more clarity.",
       "hero.cta_projects": "View Projects",
       "about.sub": "A brief introduction to my career path and key outcomes.",
@@ -311,6 +312,7 @@ const content = {
       "skills.panelDesc": "Split into hard and soft skills to show how I actually applied them in work.",
       "skills.certEyebrow": "Verified",
       "skills.certTitle": "Certificates",
+      "learning.title": "What I Am Learning",
       "skills.sub": "The working style and keywords that best describe how I contribute.",
       "projects.sub": "Projects where I changed collaboration structure in AX environments.",
       "contact.sub": "Feel free to reach out about products, problems, and how we build them together.",
@@ -350,7 +352,10 @@ function renderAll(data) {
 
   renderList("experience-list", data.experience, (item) => `
     <article class="timeline-item">
-      <span class="timeline-item__period">${item.period}</span>
+      <div class="timeline-item__meta">
+        <span class="timeline-item__period">${item.period}</span>
+        <span class="timeline-item__duration">${item.duration}</span>
+      </div>
       <p class="timeline-item__role">${item.role}</p>
       <h3 class="timeline-item__company">${item.company}</h3>
       <p class="timeline-item__summary">${item.summary}</p>
@@ -369,7 +374,6 @@ function renderAll(data) {
 
   renderList("skill-grid", data.skills, (group) => `
     <section class="skill-group">
-      <h4 class="skill-group__title">${group.category}</h4>
       <div class="skill-group__list">
         ${group.items.map((item) => `
           <article class="skill-story">
@@ -380,14 +384,22 @@ function renderAll(data) {
       </div>
     </section>
   `);
+  renderList("learning-grid", data.learning, (item) => `
+    <article class="learning-card">
+      <h3 class="learning-card__title">${item.name}</h3>
+      <p class="learning-card__detail">${item.detail}</p>
+    </article>
+  `);
   renderList("education-list", data.education, (item) => `
     <div class="edu-timeline__item">
       <div class="edu-timeline__card">
-        <span class="edu-timeline__degree">${item.major}${item.note ? ` (${item.note})` : ""}</span>
-        <h3 class="edu-timeline__school">${item.school}</h3>
+        <div class="edu-timeline__meta">
+          <span class="edu-timeline__period">${item.period}${item.note ? ` · ${item.note}` : ""}</span>
+        </div>
+        <h3 class="edu-timeline__degree">${item.major}</h3>
+        <p class="edu-timeline__school">${item.school}</p>
       </div>
       <div class="edu-timeline__dot"></div>
-      <span class="edu-timeline__period">${item.period}</span>
     </div>
   `);
 

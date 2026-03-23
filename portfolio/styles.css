@@ -221,10 +221,12 @@ button, input, textarea, select { font: inherit; }
    =========================== */
 .section {
   padding: 80px 60px;
+  position: relative;
 }
 
 .section--alt {
-  background: var(--bg-alt);
+  background: linear-gradient(180deg, #f7fafb 0%, var(--bg-alt) 100%);
+  box-shadow: inset 0 1px 0 rgba(79, 111, 122, 0.04), inset 0 -1px 0 rgba(79, 111, 122, 0.04);
 }
 
 .section--home {
@@ -377,6 +379,10 @@ button, input, textarea, select { font: inherit; }
   line-height: 1.65;
   font-weight: 600;
   margin-bottom: 20px;
+}
+
+.profile-hero__actions {
+  margin-bottom: 22px;
 }
 
 .profile-hero__desc {
@@ -547,6 +553,33 @@ button, input, textarea, select { font: inherit; }
   color: var(--accent);
 }
 
+.contact-fab {
+  position: fixed;
+  right: 32px;
+  bottom: calc(32px + env(safe-area-inset-bottom, 0px));
+  z-index: 140;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 132px;
+  min-height: 52px;
+  padding: 14px 20px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.86rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  box-shadow: 0 14px 30px rgba(56, 83, 92, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.contact-fab:hover {
+  background: var(--accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(56, 83, 92, 0.24);
+}
+
 /* ===========================
    About
    =========================== */
@@ -565,17 +598,20 @@ button, input, textarea, select { font: inherit; }
   position: relative;
   max-width: 800px;
   margin: 0 auto;
-  padding-left: 40px;
+  padding-left: 48px;
+  --timeline-axis: 24px;
+  --timeline-dot: 12px;
 }
 
 .timeline::before {
   content: "";
   position: absolute;
-  left: 15px;
+  left: var(--timeline-axis);
   top: 0;
   bottom: 0;
   width: 2px;
   background: var(--line);
+  transform: translateX(-50%);
 }
 
 .timeline-item {
@@ -591,14 +627,23 @@ button, input, textarea, select { font: inherit; }
 .timeline-item::before {
   content: "";
   position: absolute;
-  left: -33px;
-  top: 30px;
-  width: 12px;
-  height: 12px;
+  left: calc(var(--timeline-axis) - 48px);
+  top: 28px;
+  width: var(--timeline-dot);
+  height: var(--timeline-dot);
   border-radius: 50%;
   background: var(--accent);
   border: 3px solid #fff;
   box-shadow: 0 0 0 2px var(--accent);
+  transform: translateX(-50%);
+}
+
+.timeline-item__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
 }
 
 .timeline-item__period {
@@ -609,7 +654,16 @@ button, input, textarea, select { font: inherit; }
   color: #fff;
   font-size: 0.75rem;
   font-weight: 700;
-  margin-bottom: 12px;
+}
+
+.timeline-item__duration {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  font-size: 0.74rem;
+  font-weight: 700;
 }
 
 .timeline-item__role {
@@ -646,13 +700,13 @@ button, input, textarea, select { font: inherit; }
    Skills / Strengths
    =========================== */
 .skills-layout {
-  max-width: 1000px;
+  max-width: 820px;
   margin: 0 auto;
 }
 
 .skills-main {
   display: grid;
-  gap: 24px;
+  gap: 20px;
 }
 
 .strengths {
@@ -694,75 +748,39 @@ button, input, textarea, select { font: inherit; }
 
 .skill-groups {
   display: grid;
-  gap: 22px;
+  gap: 0;
 }
 
 .skill-group {
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--line);
-}
-
-.skill-group:last-child {
-  padding-bottom: 0;
-  border-bottom: none;
-}
-
-.skill-group__title {
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 14px;
+  padding: 0;
 }
 
 .skill-group__list {
   display: grid;
-  gap: 10px;
+  gap: 0;
 }
 
 .skill-story {
-  padding: 0 0 10px;
-  border-bottom: 1px solid #edf1f3;
-}
-
-.skill-story:last-child {
-  padding-bottom: 0;
-  border-bottom: none;
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
 }
 
 .skill-story__name {
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   font-weight: 800;
-  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+  margin: 0;
 }
 
 .skill-story__detail {
   color: var(--text-soft);
-  font-size: 0.88rem;
-  line-height: 1.7;
-}
-
-.skills-cert {
-  display: grid;
-  gap: 10px;
-  padding: 18px 20px;
-  border-top: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.55);
-}
-
-.skills-cert__eyebrow {
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-soft);
-}
-
-.skills-cert__title {
-  font-size: 0.9rem;
-  font-weight: 800;
-  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.75;
+  margin: 0;
 }
 
 .skill-chips {
@@ -787,103 +805,116 @@ button, input, textarea, select { font: inherit; }
 .edu-timeline {
   position: relative;
   display: flex;
-  justify-content: center;
-  gap: 0;
-  max-width: 800px;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 820px;
   margin: 0 auto;
-  padding: 0 40px;
+  padding-left: 48px;
+  --edu-axis: 24px;
+  --edu-dot: 14px;
 }
 
-/* Horizontal line */
 .edu-timeline::before {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 40px;
-  right: 40px;
-  height: 2px;
+  top: 0;
+  bottom: 0;
+  left: var(--edu-axis);
+  width: 2px;
   background: var(--line);
-  transform: translateY(calc(-50% + 14px));
+  transform: translateX(-50%);
 }
 
 .edu-timeline__item {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  gap: 12px;
   position: relative;
-  text-align: center;
-  padding: 0 12px;
 }
 
 .edu-timeline__card {
-  padding: 20px 24px;
+  padding: 24px 28px;
   border-radius: var(--radius-lg);
   border: 1px solid var(--line);
   background: var(--card-bg);
   box-shadow: var(--card-shadow);
-  margin-bottom: 16px;
-  min-width: 180px;
+  min-width: 0;
+  width: 100%;
+}
+
+.edu-timeline__meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 
 .edu-timeline__degree {
   display: block;
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-soft);
-  margin-bottom: 6px;
+  font-size: 1.08rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  color: var(--text);
+  margin-bottom: 8px;
 }
 
 .edu-timeline__school {
-  font-size: 1rem;
-  font-weight: 800;
-  line-height: 1.3;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  line-height: 1.55;
+  margin: 0;
 }
 
 .edu-timeline__dot {
-  width: 14px;
-  height: 14px;
+  position: absolute;
+  left: calc(var(--edu-axis) - 48px);
+  top: 28px;
+  width: var(--edu-dot);
+  height: var(--edu-dot);
   border-radius: 50%;
   background: var(--accent);
   border: 3px solid #fff;
   box-shadow: 0 0 0 2px var(--accent);
-  margin-bottom: 14px;
-  position: relative;
   z-index: 1;
+  transform: translateX(-50%);
 }
 
 .edu-timeline__period {
   display: inline-block;
-  padding: 4px 14px;
-  border-radius: 4px;
-  background: var(--accent);
-  color: #fff;
+  color: var(--text-soft);
   font-size: 0.75rem;
   font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
 }
 
 @media (max-width: 640px) {
   .edu-timeline {
-    flex-direction: column;
-    align-items: center;
     gap: 24px;
-    padding: 0;
+    padding-left: 36px;
+    --edu-axis: 18px;
   }
 
   .edu-timeline::before {
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    right: auto;
-    width: 2px;
-    height: 100%;
-    transform: translateX(-50%);
+    left: var(--edu-axis);
   }
 
   .edu-timeline__item {
-    padding: 0;
+    gap: 10px;
+  }
+
+  .edu-timeline__meta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .edu-timeline__dot {
+    left: calc(var(--edu-axis) - 36px);
+    top: 24px;
   }
 }
 
@@ -895,13 +926,63 @@ button, input, textarea, select { font: inherit; }
 }
 
 .cert-list li {
-  padding: 6px 12px;
-  border-radius: var(--radius);
-  background: #fff;
-  border: 1px solid var(--line);
-  font-size: 0.85rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(79, 111, 122, 0.08);
+  border: 1px solid rgba(79, 111, 122, 0.12);
+  font-size: 0.8rem;
   color: var(--text-soft);
   font-weight: 600;
+}
+
+.skills-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.skills-meta__label {
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.learning-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  gap: 16px;
+}
+
+.learning-card {
+  display: grid;
+  grid-template-columns: minmax(180px, 220px) 1fr;
+  gap: 24px;
+  align-items: start;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.learning-card__title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0;
+}
+
+.learning-card__detail {
+  max-width: none;
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.95rem;
+  line-height: 1.8;
 }
 
 /* ===========================
@@ -1180,6 +1261,29 @@ button, input, textarea, select { font: inherit; }
 
 .solution-block h3 { font-size: 1rem; margin-bottom: 12px; }
 
+.case-media {
+  margin-top: 18px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #0f1318;
+  box-shadow: var(--card-shadow);
+}
+
+.case-media__video {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 620px;
+  background: #0f1318;
+}
+
+.case-media__caption {
+  margin-bottom: 0;
+  font-size: 0.82rem;
+  color: #8d93a5;
+}
+
 .impact-cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1298,6 +1402,7 @@ button, input, textarea, select { font: inherit; }
   .strengths {
     grid-template-columns: 1fr;
   }
+
 }
 
 @media (max-width: 768px) {
@@ -1336,6 +1441,36 @@ button, input, textarea, select { font: inherit; }
 
   .impact-cards {
     grid-template-columns: 1fr;
+  }
+
+  .contact-fab {
+    right: 20px;
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    min-width: 120px;
+    min-height: 48px;
+    padding: 13px 18px;
+    font-size: 0.82rem;
+  }
+
+  .skill-group {
+    padding: 0;
+  }
+
+  .skill-story {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 16px 0;
+  }
+
+  .skills-meta {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .learning-card {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 20px 0;
   }
 }
 

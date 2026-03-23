@@ -61,7 +61,7 @@
             <div class="profile-hero__icons">
               <a href="mailto:jsyoung456@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
               <a href="https://github.com/SY-J123/portfolio" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-              <a href="https://velog.io/@your-id" target="_blank" rel="noopener" aria-label="Velog" class="profile-hero__icon profile-hero__icon--velog">
+              <a href="https://velog.io/@bryant_/posts" target="_blank" rel="noopener" aria-label="Velog" class="profile-hero__icon profile-hero__icon--velog">
                 <img src="velog_logo.png" alt="" class="velog-icon" aria-hidden="true">
               </a>
             </div>
@@ -85,25 +85,23 @@
       <div class="strengths reveal-stagger" id="strength-grid"></div>
     </section>
 
-    <section class="section section--alt" id="experience">
+    <section class="section" id="experience">
       <div class="section-header reveal">
         <h2 class="section-header__title">Experience</h2>
-        <p class="section-header__sub" data-i18n="experience.sub">운영과 기획을 모두 경험하며 문제 정의 감각을 키워왔습니다.</p>
         <span class="section-header__line"></span>
       </div>
       <div class="timeline reveal-stagger" id="experience-list"></div>
     </section>
 
-    <section class="section" id="education">
+    <section class="section section--alt" id="education">
       <div class="section-header reveal">
         <h2 class="section-header__title">Education</h2>
-        <p class="section-header__sub">Change is the end result of all true learning.</p>
         <span class="section-header__line"></span>
       </div>
       <div class="edu-timeline reveal" id="education-list"></div>
     </section>
 
-    <section class="section section--alt" id="skills">
+    <section class="section" id="skills">
       <div class="section-header reveal">
         <h2 class="section-header__title">Skills</h2>
         <span class="section-header__line"></span>
@@ -111,34 +109,41 @@
       <div class="skills-layout reveal">
         <div class="skills-main">
           <div class="skill-groups reveal-stagger" id="skill-grid"></div>
-          <div class="skills-cert">
-            <span class="skills-cert__eyebrow" data-i18n="skills.certEyebrow">Verified</span>
-            <h3 class="skills-cert__title" data-i18n="skills.certTitle">Certificates</h3>
+          <div class="skills-meta">
+            <span class="skills-meta__label" data-i18n="skills.certTitle">Certificates</span>
             <ul class="cert-list" id="certification-list"></ul>
           </div>
         </div>
       </div>
     </section>
 
+    <section class="section section--alt" id="learning">
+      <div class="section-header reveal">
+        <h2 class="section-header__title" data-i18n="learning.title">What I Am Learning</h2>
+        <span class="section-header__line"></span>
+      </div>
+      <div class="learning-wrap reveal" id="learning-grid"></div>
+    </section>
+
     <section class="section" id="projects">
       <div class="section-header reveal">
         <h2 class="section-header__title">Projects</h2>
-        <p class="section-header__sub" data-i18n="projects.sub">AX 환경에서 협업 구조를 바꿔본 경험을 담았습니다.</p>
         <span class="section-header__line"></span>
       </div>
       <div class="project-grid reveal-stagger" id="project-list"></div>
     </section>
 
-    <section class="section section--contact" id="contact">
+    <section class="section section--alt section--contact" id="contact">
       <div class="section-header reveal">
         <h2 class="section-header__title">Contact</h2>
-        <p class="section-header__sub" data-i18n="contact.sub">함께 만들 제품과 문제에 대해 편하게 연락 주세요.</p>
         <span class="section-header__line"></span>
       </div>
       <p class="contact-desc reveal" data-i18n="contact.desc">가장 빠른 연락은 이메일이며, GitHub와 기본 정보도 아래에서 바로 확인하실 수 있습니다.</p>
       <div class="contact-cards reveal-stagger" id="contact-links"></div>
     </section>
   </main>
+
+  <a class="contact-fab" href="#contact" data-i18n="hero.cta_contact">Contact Me</a>
 </body>
 </html>
 
