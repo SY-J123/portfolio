@@ -15,26 +15,26 @@ const content = {
       { label: "Location", text: "Seoul, Korea" },
     ],
     summary: [
-      "저는 표면적인 요청보다 먼저 문제의 본질과 구조를 정의하는 서비스 기획자입니다. 주어진 요구를 그대로 정리하기보다, 왜 이 일이 필요한지와 어떤 사용자 가치로 연결되는지를 먼저 확인합니다.",
-      "기획 문서를 작성하는 데서 멈추지 않고 사용자 흐름, 전달 기준, 협업 방식을 함께 설계해 여러 직군이 같은 방향으로 실행할 수 있는 상태를 만드는 데 강점이 있습니다.",
-      "최근에는 AX 환경에서 도구 자체보다 어떤 비효율을 줄이고 어떤 구조를 개선할 수 있는지에 집중하며, 문서와 프로토타입, 웹 배포를 연결한 검토 가능한 워크플로를 만들어 왔습니다.",
+      "운영과 서비스 기획을 모두 경험하며, 데이터와 사용자 흐름을 함께 보면서 문제를 구조적으로 정의해온 기획자입니다.",
+      "운영 단계에서는 지표와 스케줄을 조정해 전년도에 손실이 발생했던 이벤트의 손실을 50% 줄였고, 이를 통해 숫자로 문제를 파악하고 개선 방향을 세우는 감각을 키웠습니다.",
+      "최근에는 AI를 활용해 문서, 프로토타입, 웹 배포를 연결한 검토 워크플로를 만들며 보고 및 컨펌 리드타임을 1주에서 3일로 단축했습니다.",
     ],
     strengths: [
       {
         title: "Problem Definition",
-        description: "표면적인 요청을 그대로 수행하기보다, 왜 같은 문제가 반복되는지 구조적으로 해석하고 팀이 공감할 수 있는 문제로 다시 정의합니다.",
+        description: "표면적인 요청을 그대로 받기보다, 왜 같은 문제가 반복되는지 먼저 해석하고 팀이 공감할 수 있는 문제로 다시 정의합니다.",
       },
       {
-        title: "UX Flow Design",
-        description: "사용자 흐름과 서비스 목적이 어긋나지 않도록 확인하고, 기획 의도가 실제 화면과 행동으로 이어질 수 있게 구조를 설계합니다.",
+        title: "Execution Structure",
+        description: "사용자 흐름, 전달 기준, 협업 방식을 함께 설계해 여러 직군이 같은 방향으로 실행할 수 있는 상태를 만듭니다.",
       },
       {
-        title: "Collaboration Structure",
-        description: "문서, 프로토타입, 배포 방식을 분리해 각 산출물의 역할을 명확히 하고, 이해관계자가 같은 기준으로 논의할 수 있는 협업 구조를 만듭니다.",
+        title: "Reviewable Workflow",
+        description: "문서만 정리하는 데서 멈추지 않고, 프로토타입과 웹 배포까지 연결해 검토 가능하고 전달력 있는 워크플로를 만듭니다.",
       },
       {
-        title: "Self-driven Growth",
-        description: "필요한 역량은 스스로 메웁니다. 통계학 학습, 주요 대학 교재 독학, 새로운 도구 검토를 통해 정성 판단에 머무르지 않는 기획 역량을 쌓고 있습니다.",
+        title: "Learning Agility",
+        description: "필요한 역량은 스스로 빠르게 메웁니다. 새로운 도구와 지식을 실무에 연결하며 정성 판단에 머무르지 않는 기획 역량을 쌓고 있습니다.",
       },
     ],
     experience: [
@@ -53,10 +53,11 @@ const content = {
         company: "NSUSLAB Korea",
         role: "Operations",
         period: "2023.08 - 2024.04",
-        summary: "GGPoker 토너먼트 운영팀에서 스케줄 관리, 지표 모니터링, 해외 지사 및 파트너 커뮤니케이션을 담당했습니다.",
+        summary: "GGPoker 토너먼트 운영팀에서 스케줄 관리, 지표 모니터링, 그리고 해외 지사 및 파트너와의 영어 커뮤니케이션을 담당했습니다.",
         highlights: [
           "시즌과 타깃에 맞춰 운영 구조를 조정하고, 필요한 지표를 기준으로 반복 모니터링 체계를 운영했습니다.",
-          "오버레이가 크게 발생하던 운영 건을 집중 모니터링하고 후속 대응해 손실을 절반 이상 줄였습니다.",
+          "이전해 손실이 발생한 이벤트의 스케줄을 최적화해 전년 대비 손실을 50% 줄였습니다.",
+          "해외 지사 및 파트너와 영어로 일정, 운영 이슈, 후속 대응 사항을 조율하며 실무 커뮤니케이션 역량을 쌓았습니다.",
         ],
       },
       {
@@ -100,7 +101,7 @@ const content = {
     ],
     education: [
       { school: "University of South Dakota", major: "Nursing", period: "2015.09 - 2016.08", note: "중퇴" },
-      { school: "Korea National Open University", major: "Statistics & Data Science", period: "2023.03 - Present" },
+      { school: "방송통신대학교", major: "Data & Statistics", period: "2023.03 - Present" },
     ],
     certifications: ["SQLD", "ADsP"],
     contactLinks: [
@@ -113,17 +114,17 @@ const content = {
       "hero.headline": "문제를 구조로 바꿔 팀이 실행할 수 있게 만드는 기획자",
       "hero.desc": "문서만 정리하는 데서 멈추지 않습니다. 목적을 정의하고 사용자 흐름과 전달 기준을 설계한 뒤, 검토 가능한 프로토타입과 배포 방식까지 연결해 더 빠르고 명확한 협업 구조를 만듭니다.",
       "hero.cta_projects": "프로젝트 보기",
-      "about.sub": "문제를 구조화하고 실행 기준으로 바꾸는 방식으로 일합니다.",
+      "about.sub": "커리어와 대표 성과를 간단히 소개합니다.",
       "about.lens1": "표면적인 요청보다 왜 같은 문제가 반복되는지 먼저 봅니다.",
       "about.lens2": "문서의 양보다 실행 기준과 전달 구조를 명확히 하는 데 강점이 있습니다.",
       "about.lens3": "새로운 도구는 목적이 아니라 문제 해결을 위한 수단으로 선택합니다.",
       "about.focus": "프로세스의 비효율을 구조 개선으로 연결하는 기획",
       "experience.sub": "운영과 기획을 모두 경험하며 문제 정의 감각을 키워왔습니다.",
-      "skills.sub": "실무에서 반복적으로 활용하는 역량과 도구입니다.",
+      "skills.sub": "저를 설명하는 일하는 방식과 핵심 키워드입니다.",
       "projects.sub": "AX 환경에서 협업 구조를 바꿔본 경험을 담았습니다.",
       "contact.sub": "기획, 구조, 협업 방식에 대해 이야기할 준비가 되어 있습니다.",
       "contact.desc": "제품의 목적을 더 명확히 정의하고, 여러 직군이 같은 기준으로 움직일 수 있는 구조를 만드는 일에 관심이 있습니다.",
-      "hero.note": "이 포트폴리오는 기획자가 직접 구조를 설계하고, 바이브 코딩 기반 워크플로로 제작한 결과물입니다.",
+      "hero.note": "본 포트폴리오는 바이브 코딩으로 제작되었습니다.",
     },
   },
   en: {
@@ -139,26 +140,26 @@ const content = {
       { label: "Location", text: "Seoul, Korea" },
     ],
     summary: [
-      "I am a service planner who defines the essence and structure of a problem before jumping into execution. Rather than organizing requirements as they are, I first ask why the work matters and what user value it should create.",
-      "I do not stop at writing planning documents. I design user flows, delivery criteria, and collaboration structures so multiple functions can move in the same direction.",
-      "Recently, I have focused less on tools themselves and more on which inefficiencies can be reduced in AX environments, building reviewable workflows that connect documents, prototypes, and web distribution.",
+      "I am a planner with experience across both operations and service planning, working from both data and user flow to define problems in a structured way.",
+      "On the operations side, I used metrics and schedule adjustments to cut losses by 50% for an event that had been loss-making the previous year, which strengthened my ability to identify issues through numbers and turn them into action.",
+      "More recently, I used AI to connect documents, prototypes, and web distribution into a reviewable workflow, shortening reporting and approval lead time from one week to three days.",
     ],
     strengths: [
       {
         title: "Problem Definition",
-        description: "I do not respond only to surface requests. I analyze why the same issue keeps recurring and redefine it into a problem the team can align on.",
+        description: "I do not stop at surface requests. I first interpret why the same issue keeps recurring and redefine it into a problem the team can align on.",
       },
       {
-        title: "UX Flow Design",
-        description: "I connect user flow with product intent and turn planning logic into structures that can actually be executed on screen.",
+        title: "Execution Structure",
+        description: "I design user flow, delivery criteria, and collaboration ways of working so cross-functional teams can move in the same direction.",
       },
       {
-        title: "Collaboration Structure",
-        description: "I separate the roles of documents, prototypes, and distribution so stakeholders can discuss the same source of truth with less confusion.",
+        title: "Reviewable Workflow",
+        description: "I go beyond documentation by connecting prototypes and web delivery, creating workflows that are easier to review and act on.",
       },
       {
-        title: "Self-driven Growth",
-        description: "I close skill gaps on my own through statistics study, textbook self-learning, and hands-on tool exploration to build stronger planning judgment.",
+        title: "Learning Agility",
+        description: "I close skill gaps quickly on my own, linking new tools and knowledge back to the work instead of treating them as ends in themselves.",
       },
     ],
     experience: [
@@ -177,10 +178,11 @@ const content = {
         company: "NSUSLAB Korea",
         role: "Operations",
         period: "2023.08 - 2024.04",
-        summary: "Managed tournament scheduling, KPI monitoring, and cross-border partner communication for GGPoker.",
+        summary: "Managed tournament scheduling, KPI monitoring, and communication with overseas branches and partners for GGPoker.",
         highlights: [
-          "Adjusted operational structures by season and target while maintaining a repeatable monitoring process.",
-          "Closely tracked high-overlay events and follow-up actions, reducing losses by more than 50%.",
+          "Adjusted event schedules by season and target while maintaining a repeatable monitoring process.",
+          "Revisited an event that had previously generated losses and cut the deficit by 50% through schedule optimization.",
+          "Handled day-to-day coordination in English with overseas teams and partners to align schedules, operational issues, and follow-up actions.",
         ],
       },
       {
@@ -224,7 +226,7 @@ const content = {
     ],
     education: [
       { school: "University of South Dakota", major: "Nursing", period: "2015.09 - 2016.08", note: "Withdrew" },
-      { school: "Korea National Open University", major: "Statistics & Data Science", period: "2023.03 - Present" },
+      { school: "Korea National Open University", major: "Data & Statistics", period: "2023.03 - Present" },
     ],
     certifications: ["SQLD", "ADsP"],
     contactLinks: [
@@ -237,13 +239,13 @@ const content = {
       "hero.headline": "A planner who turns problems into structures teams can execute",
       "hero.desc": "I do more than organize documents. I define the purpose, design user flow and delivery criteria, then connect them to reviewable prototypes and distribution so teams can move faster with more clarity.",
       "hero.cta_projects": "View Projects",
-      "about.sub": "I work by structuring problems and turning them into execution criteria.",
+      "about.sub": "A brief introduction to my career path and key outcomes.",
       "about.lens1": "I look first at why the same issue keeps recurring, not just at surface requests.",
       "about.lens2": "My strength is not in producing more documents, but in clarifying execution criteria and delivery structure.",
       "about.lens3": "New tools are selected as means to solve problems, not goals in themselves.",
       "about.focus": "Planning work that turns process inefficiency into structural improvement",
       "experience.sub": "My problem-definition instinct was shaped across both operations and planning.",
-      "skills.sub": "Capabilities and tools I rely on repeatedly in practice.",
+      "skills.sub": "The working style and keywords that best describe how I contribute.",
       "projects.sub": "Projects where I changed collaboration structure in AX environments.",
       "contact.sub": "Ready to talk about planning, structure, and collaboration systems.",
       "contact.desc": "I am interested in defining product purpose more clearly and building structures that help teams move with the same standards.",
@@ -268,6 +270,8 @@ function renderAll(data) {
     </div>
   `);
 
+  renderList("home-summary", data.summary, (item) => `<p>${item}</p>`);
+
   renderList("header-meta", data.headerMeta, (item) => `
     ${item.href
       ? `<a class="contact-meta-item" href="${item.href}"${item.external ? ' target="_blank" rel="noopener"' : ""}>
@@ -280,8 +284,6 @@ function renderAll(data) {
         </div>`
     }
   `);
-
-  renderList("summary-body", data.summary, (item) => `<p>${item}</p>`);
 
   renderList("project-list", data.projects, (item) => `
     <a class="project-card" href="${item.href}">

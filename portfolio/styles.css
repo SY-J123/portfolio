@@ -296,6 +296,7 @@ button, input, textarea, select { font: inherit; }
 .profile-hero__img-wrap {
   width: 100%;
   max-width: 220px;
+  aspect-ratio: 4 / 5;
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--card-shadow);
@@ -305,8 +306,26 @@ button, input, textarea, select { font: inherit; }
 .profile-hero__img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
+  object-position: center 22%;
+}
+
+.profile-hero__img--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(135deg, #eef4f6 0%, #dfe8ec 100%);
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.profile-hero__img--placeholder::before {
+  content: "Photo";
 }
 
 .profile-hero__badge {
@@ -326,7 +345,15 @@ button, input, textarea, select { font: inherit; }
   font-size: 2.6rem;
   font-weight: 800;
   line-height: 1.1;
-  margin-bottom: 6px;
+  margin-bottom: 0;
+}
+
+.profile-hero__name-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
 }
 
 .profile-hero__role {
@@ -356,13 +383,39 @@ button, input, textarea, select { font: inherit; }
   color: var(--text-soft);
   font-size: 0.95rem;
   line-height: 1.75;
-  margin-bottom: 28px;
+  margin-bottom: 18px;
 }
 
-.profile-hero__actions {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 16px;
+.profile-hero__about {
+  margin-bottom: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.profile-hero__about-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.profile-hero__summary {
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+.profile-hero__summary p {
+  color: var(--text-soft);
+  font-size: 0.94rem;
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+
+.profile-hero__summary p:last-child {
+  margin-bottom: 0;
 }
 
 .profile-hero__note {
@@ -371,8 +424,15 @@ button, input, textarea, select { font: inherit; }
   margin-top: 8px;
 }
 
+.profile-hero__note--photo {
+  margin-top: 0;
+  text-align: left;
+  line-height: 1.5;
+}
+
 .profile-hero__icons {
   display: flex;
+  align-items: center;
   gap: 12px;
 }
 
@@ -392,6 +452,14 @@ button, input, textarea, select { font: inherit; }
 .profile-hero__icons a:hover {
   color: var(--accent);
   border-color: var(--accent);
+}
+
+.velog-icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+  object-fit: contain;
+  border-radius: 50%;
 }
 
 /* Stat Grid */
@@ -490,48 +558,6 @@ button, input, textarea, select { font: inherit; }
   margin: 0 auto;
 }
 
-.about-main {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.about-side {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.about-text p {
-  color: var(--text-soft);
-  margin-bottom: 14px;
-  font-size: 0.95rem;
-}
-
-.about-lens {
-  padding: 28px;
-  border-radius: var(--radius-lg);
-  background: var(--accent-light);
-  border-left: 4px solid var(--accent);
-}
-
-.about-lens__title {
-  font-size: 1rem;
-  font-weight: 800;
-  margin-bottom: 14px;
-  color: var(--accent-dark);
-}
-
-.about-lens__list {
-  padding-left: 18px;
-  color: var(--text-soft);
-  font-size: 0.92rem;
-}
-
-.about-lens__list li {
-  margin-bottom: 10px;
-}
-
 /* ===========================
    Timeline (Morley-style)
    =========================== */
@@ -624,13 +650,15 @@ button, input, textarea, select { font: inherit; }
   grid-template-columns: 1fr 340px;
   gap: 28px;
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 32px auto 0;
 }
 
 .strengths {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .strength-card {
@@ -1204,16 +1232,7 @@ button, input, textarea, select { font: inherit; }
     margin: 0 auto;
   }
 
-  .about-grid,
-  .skills-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .about-stat-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .project-grid,
+  .skills-layout,
   .strengths {
     grid-template-columns: 1fr;
   }
@@ -1251,10 +1270,6 @@ button, input, textarea, select { font: inherit; }
     margin-left: 0;
     padding-left: 20px;
     padding-right: 20px;
-  }
-
-  .profile-hero__actions {
-    flex-direction: column;
   }
 
   .impact-cards {
