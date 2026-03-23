@@ -9,11 +9,6 @@ const content = {
       { value: "Problem to Structure", label: "문제를 실행 구조로 재정의" },
       { value: "Stats in Progress", label: "정량 판단 역량 강화 중" },
     ],
-    headerMeta: [
-      { label: "Email", href: "mailto:jsyoung456@gmail.com", text: "jsyoung456@gmail.com" },
-      { label: "GitHub", href: "https://github.com/SY-J123/portfolio", text: "github.com/SY-J123/portfolio", external: true },
-      { label: "Location", text: "Seoul, Korea" },
-    ],
     summary: [
       "운영과 서비스 기획을 모두 경험하며, 데이터와 사용자 흐름을 함께 보면서 문제를 구조적으로 정의해온 기획자입니다.",
       "운영 단계에서는 지표와 스케줄을 조정해 전년도에 손실이 발생했던 이벤트의 손실을 50% 줄였고, 이를 통해 숫자로 문제를 파악하고 개선 방향을 세우는 감각을 키웠습니다.",
@@ -90,14 +85,48 @@ const content = {
       },
     ],
     skills: [
-      "Service Planning",
-      "UX Flow Design",
-      "Problem Definition",
-      "Documentation Design",
-      "SQL",
-      "Python",
-      "Figma",
-      "Claude Code / Codex",
+      {
+        category: "Hard Skills",
+        items: [
+          {
+            name: "Service Planning",
+            detail: "기능 요구사항을 정리하고 PRD 구조를 설계해 팀이 같은 기준으로 움직일 수 있게 만들었습니다.",
+          },
+          {
+            name: "UX Flow Design",
+            detail: "사용자 흐름을 재설계해 검토 포인트를 명확히 하고, 초기 기획안을 더 빠르게 합의 가능한 형태로 바꿨습니다.",
+          },
+          {
+            name: "SQL / Data Reading",
+            detail: "운영 지표와 이벤트 성과를 확인하며 손실 원인을 파악하고 일정 조정에 반영했습니다.",
+          },
+          {
+            name: "Prototype & AI Workflow",
+            detail: "Figma와 Claude Code / Codex를 활용해 검토용 프로토타입과 웹 배포 흐름을 연결했습니다.",
+          },
+        ],
+      },
+      {
+        category: "Soft Skills",
+        items: [
+          {
+            name: "Problem Definition",
+            detail: "표면적인 요청을 그대로 실행하지 않고, 반복되는 문제를 다시 정의해 협업 구조 자체를 개선했습니다.",
+          },
+          {
+            name: "Cross-functional Communication",
+            detail: "기획, 개발, 운영, 이해관계자 사이에서 전달 기준을 맞추며 검토 리드타임을 줄였습니다.",
+          },
+          {
+            name: "Execution Ownership",
+            detail: "문서 작성에서 끝나지 않고 프로토타입, 배포, 버전 관리까지 직접 이어서 마무리했습니다.",
+          },
+          {
+            name: "Learning Agility",
+            detail: "업무에 필요한 도구와 지식을 빠르게 익혀 실무 문제 해결 방식으로 연결했습니다.",
+          },
+        ],
+      },
     ],
     education: [
       { school: "University of South Dakota", major: "Nursing", period: "2015.09 - 2016.08", note: "중퇴" },
@@ -120,10 +149,14 @@ const content = {
       "about.lens3": "새로운 도구는 목적이 아니라 문제 해결을 위한 수단으로 선택합니다.",
       "about.focus": "프로세스의 비효율을 구조 개선으로 연결하는 기획",
       "experience.sub": "운영과 기획을 모두 경험하며 문제 정의 감각을 키워왔습니다.",
+      "skills.panelTitle": "Skills",
+      "skills.panelDesc": "하드 스킬과 소프트 스킬을 나누어, 실제 업무에서 어떻게 기여했는지 보여줍니다.",
+      "skills.certEyebrow": "Verified",
+      "skills.certTitle": "Certificates",
       "skills.sub": "저를 설명하는 일하는 방식과 핵심 키워드입니다.",
       "projects.sub": "AX 환경에서 협업 구조를 바꿔본 경험을 담았습니다.",
-      "contact.sub": "기획, 구조, 협업 방식에 대해 이야기할 준비가 되어 있습니다.",
-      "contact.desc": "제품의 목적을 더 명확히 정의하고, 여러 직군이 같은 기준으로 움직일 수 있는 구조를 만드는 일에 관심이 있습니다.",
+      "contact.sub": "함께 만들 제품과 문제에 대해 편하게 연락 주세요.",
+      "contact.desc": "가장 빠른 연락은 이메일이며, GitHub와 기본 정보도 아래에서 바로 확인하실 수 있습니다.",
       "hero.note": "본 포트폴리오는 바이브 코딩으로 제작되었습니다.",
     },
   },
@@ -133,11 +166,6 @@ const content = {
       { value: "1 week -> 3 days", label: "Review and approval lead time" },
       { value: "Problem to Structure", label: "Reframing work into execution" },
       { value: "Stats in Progress", label: "Quantitative thinking in progress" },
-    ],
-    headerMeta: [
-      { label: "Email", href: "mailto:jsyoung456@gmail.com", text: "jsyoung456@gmail.com" },
-      { label: "GitHub", href: "https://github.com/SY-J123/portfolio", text: "github.com/SY-J123/portfolio", external: true },
-      { label: "Location", text: "Seoul, Korea" },
     ],
     summary: [
       "I am a planner with experience across both operations and service planning, working from both data and user flow to define problems in a structured way.",
@@ -215,14 +243,48 @@ const content = {
       },
     ],
     skills: [
-      "Service Planning",
-      "UX Flow Design",
-      "Problem Definition",
-      "Documentation Design",
-      "SQL",
-      "Python",
-      "Figma",
-      "Claude Code / Codex",
+      {
+        category: "Hard Skills",
+        items: [
+          {
+            name: "Service Planning",
+            detail: "Structured feature requirements and PRD documents so the team could align on one execution standard.",
+          },
+          {
+            name: "UX Flow Design",
+            detail: "Redesigned user flows to make review points clearer and turn early ideas into decisions faster.",
+          },
+          {
+            name: "SQL / Data Reading",
+            detail: "Reviewed operational metrics and event performance to identify loss factors and adjust schedules.",
+          },
+          {
+            name: "Prototype & AI Workflow",
+            detail: "Used Figma and Claude Code / Codex to connect review prototypes with lightweight web delivery.",
+          },
+        ],
+      },
+      {
+        category: "Soft Skills",
+        items: [
+          {
+            name: "Problem Definition",
+            detail: "Did not take requests at face value and instead redefined recurring issues into solvable team problems.",
+          },
+          {
+            name: "Cross-functional Communication",
+            detail: "Aligned planning, development, operations, and stakeholders around clearer delivery criteria and faster reviews.",
+          },
+          {
+            name: "Execution Ownership",
+            detail: "Followed work through from documentation to prototype, deployment, and version handling.",
+          },
+          {
+            name: "Learning Agility",
+            detail: "Picked up the tools and knowledge needed for the work quickly and applied them directly to real tasks.",
+          },
+        ],
+      },
     ],
     education: [
       { school: "University of South Dakota", major: "Nursing", period: "2015.09 - 2016.08", note: "Withdrew" },
@@ -245,10 +307,14 @@ const content = {
       "about.lens3": "New tools are selected as means to solve problems, not goals in themselves.",
       "about.focus": "Planning work that turns process inefficiency into structural improvement",
       "experience.sub": "My problem-definition instinct was shaped across both operations and planning.",
+      "skills.panelTitle": "Skills",
+      "skills.panelDesc": "Split into hard and soft skills to show how I actually applied them in work.",
+      "skills.certEyebrow": "Verified",
+      "skills.certTitle": "Certificates",
       "skills.sub": "The working style and keywords that best describe how I contribute.",
       "projects.sub": "Projects where I changed collaboration structure in AX environments.",
-      "contact.sub": "Ready to talk about planning, structure, and collaboration systems.",
-      "contact.desc": "I am interested in defining product purpose more clearly and building structures that help teams move with the same standards.",
+      "contact.sub": "Feel free to reach out about products, problems, and how we build them together.",
+      "contact.desc": "Email is the fastest way to reach me, and you can also find my GitHub and basic details below.",
       "hero.note": "This portfolio was structured by a planner and built through a vibe-coding-based workflow.",
     },
   },
@@ -271,19 +337,6 @@ function renderAll(data) {
   `);
 
   renderList("home-summary", data.summary, (item) => `<p>${item}</p>`);
-
-  renderList("header-meta", data.headerMeta, (item) => `
-    ${item.href
-      ? `<a class="contact-meta-item" href="${item.href}"${item.external ? ' target="_blank" rel="noopener"' : ""}>
-          <span class="contact-meta-item__label">${item.label}</span>
-          <span class="contact-meta-item__value">${item.text}</span>
-        </a>`
-      : `<div class="contact-meta-item">
-          <span class="contact-meta-item__label">${item.label}</span>
-          <span class="contact-meta-item__value">${item.text}</span>
-        </div>`
-    }
-  `);
 
   renderList("project-list", data.projects, (item) => `
     <a class="project-card" href="${item.href}">
@@ -314,8 +367,19 @@ function renderAll(data) {
     </article>
   `);
 
-  renderList("skill-grid", data.skills, (item) => `<li class="skill-chip">${item}</li>`);
-
+  renderList("skill-grid", data.skills, (group) => `
+    <section class="skill-group">
+      <h4 class="skill-group__title">${group.category}</h4>
+      <div class="skill-group__list">
+        ${group.items.map((item) => `
+          <article class="skill-story">
+            <h5 class="skill-story__name">${item.name}</h5>
+            <p class="skill-story__detail">${item.detail}</p>
+          </article>
+        `).join("")}
+      </div>
+    </section>
+  `);
   renderList("education-list", data.education, (item) => `
     <div class="edu-timeline__item">
       <div class="edu-timeline__card">
