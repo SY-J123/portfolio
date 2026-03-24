@@ -134,7 +134,6 @@ const content = {
     contactLinks: [
       { label: "Email", value: "jsyoung456@gmail.com", href: "mailto:jsyoung456@gmail.com" },
       { label: "Phone", value: "+82-10-3224-9483", href: "tel:+821032249483" },
-      { label: "GitHub", value: "SY-J123/portfolio", href: "https://github.com/SY-J123/portfolio", external: true },
       { label: "Location", value: "Seoul, Korea" },
     ],
     i18n: {
@@ -293,7 +292,6 @@ const content = {
     contactLinks: [
       { label: "Email", value: "jsyoung456@gmail.com", href: "mailto:jsyoung456@gmail.com" },
       { label: "Phone", value: "+82-10-3224-9483", href: "tel:+821032249483" },
-      { label: "GitHub", value: "SY-J123/portfolio", href: "https://github.com/SY-J123/portfolio", external: true },
       { label: "Location", value: "Seoul, Korea" },
     ],
     i18n: {
