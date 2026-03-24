@@ -1170,7 +1170,8 @@ button, input, textarea, select { font: inherit; }
 }
 
 .case-hero__tag {
-  display: inline-flex;
+  display: flex;
+  width: fit-content;
   padding: 5px 12px;
   border-radius: 4px;
   background: var(--accent);
@@ -1233,11 +1234,11 @@ button, input, textarea, select { font: inherit; }
 
 .case-section {
   margin-bottom: 32px;
-  padding: 34px 36px;
-  background: #fff;
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(79, 111, 122, 0.1);
-  box-shadow: 0 14px 38px rgba(20, 31, 37, 0.05);
+  padding: 0 0 18px;
+  background: transparent;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
   scroll-margin-top: 28px;
 }
 
@@ -1254,25 +1255,21 @@ button, input, textarea, select { font: inherit; }
 .case-section li { margin-bottom: 8px; }
 
 .case-meta {
-  margin-top: 0;
+  margin-top: 14px;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-  max-width: none;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  max-width: 760px;
 }
 
 .case-summary {
   margin-top: 28px;
-  max-width: 920px;
-  padding: 22px 22px 18px;
-  border-radius: 20px;
-  background: linear-gradient(180deg, rgba(79, 111, 122, 0.08) 0%, rgba(255, 255, 255, 0.88) 100%);
-  border: 1px solid rgba(79, 111, 122, 0.14);
-  box-shadow: 0 20px 48px rgba(41, 58, 66, 0.08);
+  max-width: 760px;
+  padding: 0;
 }
 
 .case-summary__eyebrow {
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   font-size: 0.76rem;
   font-weight: 800;
   letter-spacing: 0.12em;
@@ -1280,16 +1277,25 @@ button, input, textarea, select { font: inherit; }
   color: var(--accent);
 }
 
+.case-summary__intro {
+  margin: 0 0 18px;
+  max-width: 680px;
+  color: var(--text);
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1.65;
+}
+
 .case-meta__item {
-  padding: 20px 20px 18px;
-  border-radius: 16px;
-  border: 1px solid rgba(79, 111, 122, 0.12);
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 12px 32px rgba(41, 58, 66, 0.05);
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 16px;
+  padding: 12px 0;
+  border-top: 1px solid rgba(79, 111, 122, 0.12);
 }
 
 .case-meta__item dt {
-  margin-bottom: 8px;
+  margin-bottom: 0;
   font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.12em;
@@ -1298,10 +1304,11 @@ button, input, textarea, select { font: inherit; }
 }
 
 .case-meta__item dd {
-  color: var(--text);
-  font-size: 1.02rem;
-  font-weight: 700;
-  line-height: 1.55;
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.6;
 }
 
 .case-toc {
@@ -1603,11 +1610,17 @@ button, input, textarea, select { font: inherit; }
   }
 
   .case-summary {
-    padding: 18px 18px 14px;
+    padding: 0;
+  }
+
+  .case-meta__item {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 10px 0;
   }
 
   .case-section {
-    padding: 26px 22px;
+    padding: 0 0 18px;
   }
 
   .case-toc {
