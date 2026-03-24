@@ -138,6 +138,7 @@ const content = {
     ],
     i18n: {
       "hero.name": "Siyoung Jang",
+      "hero.role": "서비스 기획자",
       "hero.headline": "문제를 구조로 바꿔 팀이 실행할 수 있게 만드는 기획자",
       "hero.cta_contact": "Contact Me",
       "hero.desc": "문서만 정리하는 데서 멈추지 않습니다. 목적을 정의하고 사용자 흐름과 전달 기준을 설계한 뒤, 검토 가능한 프로토타입과 배포 방식까지 연결해 더 빠르고 명확한 협업 구조를 만듭니다.",
@@ -162,28 +163,28 @@ const content = {
   },
   en: {
     heroStats: [
-      { value: "3 -> 1", label: "Stakeholders reduced" },
+      { value: "3 -> 1", label: "Initial stakeholders reduced" },
       { value: "1 week -> 3 days", label: "Review and approval lead time" },
-      { value: "Problem to Structure", label: "Reframing work into execution" },
-      { value: "Stats in Progress", label: "Quantitative thinking in progress" },
+      { value: "Problem to Structure", label: "Reframing problems into execution structures" },
+      { value: "Stats in Progress", label: "Strengthening quantitative thinking" },
     ],
     summary: [
-      "I am a planner with experience across both operations and service planning, working from both data and user flow to define problems in a structured way.",
-      "On the operations side, I used metrics and schedule adjustments to cut losses by 50% for an event that had been loss-making the previous year, which strengthened my ability to identify issues through numbers and turn them into action.",
-      "More recently, I used AI to connect documents, prototypes, and web distribution into a reviewable workflow, shortening reporting and approval lead time from one week to three days.",
+      "I am a planner with experience across both operations and service planning, defining problems through both data and user flow.",
+      "In operations, I used metrics and schedule adjustments to reduce losses by 50% for an event that had recorded losses the year before, which strengthened my ability to identify problems through numbers and turn them into action.",
+      "More recently, I built an AI-assisted review workflow connecting documents, prototypes, and web publishing, reducing reporting and approval lead time from one week to three days.",
     ],
     strengths: [
       {
         title: "Proactive Worker",
-        description: "Rather than waiting for problems to fully surface, I try to spot them early and actively suggest improvements. When I see repeated friction, I move quickly to test a better way forward.",
+        description: "Rather than waiting for problems to fully surface, I try to spot early signals and propose improvements proactively. When I see repeated friction, I move quickly to test a better way forward.",
       },
       {
         title: "Structured Thinker",
-        description: "I turn ambiguity into clarity so teams can move with more speed and confidence. By defining scope, priorities, and criteria, I help people execute in the same direction.",
+        description: "I turn ambiguity into clarity so teams can move with more speed and confidence. By defining scope, priorities, and criteria, I help teams execute in the same direction.",
       },
       {
         title: "Context-Aware Communicator",
-        description: "I believe more than one solution can be valid. What matters is not forcing a single answer, but aligning with the organization, the stakeholders, and the context to decide what works best together.",
+        description: "I believe more than one solution can be valid. What matters is not forcing a single answer, but aligning with the organization, the stakeholders, and the context to decide what works best.",
       },
       {
         title: "Logic-Driven Planner",
@@ -196,13 +197,13 @@ const content = {
         role: "Service Planner",
         period: "2024.04 - Present",
         duration: "1 yr 11 mos",
-        summary: "Planning for a B2C mobile web poker game",
+        summary: "Service planning for a B2C mobile web poker game",
         highlights: [
-          "Feature requirement definition",
+          "Feature requirements definition",
           "User flow design",
-          "Information architecture planning",
-          "Vibe-coding-based prototyping",
-          "Collaboration documentation improvement",
+          "Information architecture design",
+          "Vibe-coded prototyping",
+          "Collaboration documentation structure improvement",
           "Version control and web publishing",
         ],
       },
@@ -233,19 +234,19 @@ const content = {
     projects: [
       {
         tag: "Project 01",
-        title: "AX-based Document Collaboration Improvement",
+        title: "AI-Driven Document Collaboration Process Improvement",
         meta: "Service Planner | 2024",
-        description: "A case where I reframed documentation as a collaboration issue and connected PRDs, prototypes, and web distribution to improve review speed and delivery clarity.",
+        description: "A case where I reframed documentation as a collaboration issue and connected PRDs, prototypes, and web publishing to improve review speed and delivery clarity.",
         href: "case-ai-doc-process.html",
-        cta: "View Case Study",
+        cta: "Learn More",
       },
       {
         tag: "Project 02",
-        title: "Texas Hold'em Lobby Structure Redesign",
+        title: "Texas Hold'em Lobby Structure Improvement",
         meta: "UX Planning | In Progress",
-        description: "An ongoing project redesigning the lobby experience from an information architecture and user flow perspective.",
+        description: "An ongoing project redesigning the lobby experience through information architecture and user flow improvements.",
         href: "case-lobby-redesign.html",
-        cta: "View Progress",
+        cta: "Learn More",
       },
     ],
     skills: [
@@ -257,7 +258,7 @@ const content = {
           },
           {
             name: "Data Analysis Foundations",
-            detail: "I am building a stronger foundation in data analysis through SQL, Python, and statistics to support more informed decision-making.",
+            detail: "I am strengthening my foundation in data analysis through SQL, Python, and statistics to support more informed decision-making.",
           },
           {
             name: "Figma",
@@ -269,7 +270,7 @@ const content = {
           },
           {
             name: "GitHub",
-            detail: "I used GitHub to manage versions of documents and prototypes, making it easier for the team to stay aligned on the latest source of truth.",
+            detail: "I use GitHub to manage versions of documents and prototypes, making it easier for teams to stay aligned on the latest source of truth.",
           },
         ],
       },
@@ -277,7 +278,7 @@ const content = {
     learning: [
       {
         name: "Data-Informed Thinking",
-        detail: "I am building a stronger foundation in statistics, SQL, and Python so I can make planning decisions with clearer evidence, not only intuition. Ongoing study notes are documented on Velog.",
+        detail: "I am building a stronger foundation in statistics, SQL, and Python so I can make planning decisions with clearer evidence, not intuition alone. Ongoing study notes are documented on Velog.",
       },
       {
         name: "AI-Native Workflow",
@@ -296,26 +297,27 @@ const content = {
     ],
     i18n: {
       "hero.name": "Siyoung Jang",
+      "hero.role": "Product Manager",
       "hero.headline": "A planner who turns problems into structures teams can execute",
       "hero.cta_contact": "Contact Me",
-      "hero.desc": "I do more than organize documents. I define the purpose, design user flow and delivery criteria, then connect them to reviewable prototypes and distribution so teams can move faster with more clarity.",
+      "hero.desc": "I do more than organize documents. I define the purpose, design user flows and delivery criteria, then connect them to reviewable prototypes and publishing workflows so teams can move faster with more clarity.",
       "hero.cta_projects": "View Projects",
       "about.sub": "A brief introduction to my career path and key outcomes.",
-      "about.lens1": "I look first at why the same issue keeps recurring, not just at surface requests.",
+      "about.lens1": "I start by asking why the same issue keeps recurring, rather than focusing only on surface-level requests.",
       "about.lens2": "My strength is not in producing more documents, but in clarifying execution criteria and delivery structure.",
       "about.lens3": "New tools are selected as means to solve problems, not goals in themselves.",
       "about.focus": "Planning work that turns process inefficiency into structural improvement",
-      "experience.sub": "My problem-definition instinct was shaped across both operations and planning.",
+      "experience.sub": "My instinct for problem definition was shaped through both operations and planning.",
       "skills.panelTitle": "Skills",
-      "skills.panelDesc": "Split into hard and soft skills to show how I actually applied them in work.",
+      "skills.panelDesc": "Organized by hard and soft skills to show how I apply them in real work.",
       "skills.certEyebrow": "Verified",
       "skills.certTitle": "Certificates",
       "learning.title": "What I Am Learning",
       "skills.sub": "The working style and keywords that best describe how I contribute.",
-      "projects.sub": "Projects where I changed collaboration structure in AX environments.",
+      "projects.sub": "Projects where I improved collaboration structures in AI-assisted environments.",
       "contact.sub": "Feel free to reach out about products, problems, and how we build them together.",
       "contact.desc": "",
-      "hero.note": "This portfolio was structured by a planner and built through a vibe-coding-based workflow.",
+      "hero.note": "This portfolio was structured by a planner and built through a vibe-coded workflow.",
     },
   },
 };
