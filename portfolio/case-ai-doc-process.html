@@ -24,51 +24,63 @@
           서비스 기획자로서 문제 정의, 협업 구조 설계, 프로토타입 제작, 문서 운영 기준 정리를 주도했습니다.
         </p>
       </div>
+      <div class="case-summary">
+        <p class="case-summary__eyebrow">Summary</p>
+      <dl class="case-meta">
+        <div class="case-meta__item">
+          <dt>Problem</dt>
+          <dd>문서는 있었지만 검토와 컨펌이 한 번에 끝나지 않았다.</dd>
+        </div>
+        <div class="case-meta__item">
+          <dt>Goal</dt>
+          <dd>더 빠르게 이해되고 같은 기준으로 검토되는 흐름을 만든다.</dd>
+        </div>
+        <div class="case-meta__item">
+          <dt>Outcome</dt>
+          <dd>PRD, 프로토타입, 웹 배포를 연결해 보고와 컨펌 속도를 줄였다.</dd>
+        </div>
+      </dl>
+      </div>
     </div>
   </header>
 
   <main>
     <article class="case-article">
       <div class="container">
-
-        <!-- TL;DR -->
-        <section class="case-section">
-          <h2 class="case-section__title">Outline</h2>
-          <ol>
-            <li>Background</li>
-            <li>Problem</li>
-            <li>Why This Was a Structure Problem</li>
-            <li>Approach</li>
-            <li>Prototype Preview</li>
-            <li>My Role</li>
-            <li>Impact</li>
-            <li>What I Learned</li>
-          </ol>
-        </section>
-
-        <!-- Background -->
-        <section class="case-section">
-          <h2 class="case-section__title">Background</h2>
-          <p>[Write here]</p>
-        </section>
-
+        <div class="case-layout">
+          <div class="case-content">
         <!-- Problem -->
-        <section class="case-section">
+        <section class="case-section" id="problem">
           <h2 class="case-section__title">Problem</h2>
-          <p>[Write here]</p>
+          <ul>
+            <li>문서가 있어도 검토가 한 번에 끝나지 않았다.</li>
+            <li>이해관계자마다 해석 기준이 달라 같은 내용을 반복 설명해야 했다.</li>
+            <li>텍스트만으로는 화면과 사용자 흐름을 충분히 전달하기 어려웠다.</li>
+            <li>피드백이 늦고 분산되면서 보고와 컨펌이 반복 수정 구조가 되었다.</li>
+          </ul>
         </section>
 
-        <section class="case-section">
+        <section class="case-section" id="structure-problem">
           <h2 class="case-section__title">Why This Was a Structure Problem</h2>
           <p>[Write here]</p>
         </section>
 
-        <section class="case-section">
+        <section class="case-section" id="goals">
+          <h2 class="case-section__title">Goals</h2>
+          <ul>
+            <li>문서 검토와 보고, 컨펌에 걸리는 리드타임을 줄인다.</li>
+            <li>이해관계자마다 다르게 해석되던 내용을 더 동일한 맥락으로 전달한다.</li>
+            <li>텍스트 설명에 의존하던 검토 과정을 더 직관적인 방식으로 전환한다.</li>
+            <li>반복 설명과 재확인으로 발생하던 커뮤니케이션 비용을 줄인다.</li>
+          </ul>
+        </section>
+
+        <section class="case-section" id="approach">
           <h2 class="case-section__title">Approach</h2>
           <p>[Write here]</p>
         </section>
 
-        <section class="case-section">
+        <section class="case-section" id="prototype-preview">
           <h2 class="case-section__title">Prototype Preview</h2>
           <p>실제 검토 흐름을 보여주기 위해 프로토타입 일부를 첨부했습니다. 내부 정보 보호를 위해 영상은 blur 처리된 편집본을 사용했습니다.</p>
           <div class="case-media">
@@ -80,19 +92,19 @@
         </section>
 
         <!-- My Role -->
-        <section class="case-section">
+        <section class="case-section" id="my-role">
           <h2 class="case-section__title">My Role</h2>
           <p>[Write here]</p>
         </section>
 
         <!-- Impact -->
-        <section class="case-section">
+        <section class="case-section" id="impact">
           <h2 class="case-section__title">Impact</h2>
           <p>[Write here]</p>
         </section>
 
         <!-- Insight -->
-        <section class="case-section">
+        <section class="case-section" id="what-i-learned">
           <h2 class="case-section__title">What I Learned</h2>
           <p>[Write here]</p>
         </section>
@@ -101,14 +113,29 @@
         <div class="case-back">
           <a href="index.html" class="back-link">← Back to Home</a>
         </div>
+          </div>
 
+          <aside class="case-toc" aria-label="Case study table of contents">
+            <p class="case-toc__eyebrow">Outline</p>
+            <nav class="case-toc__nav">
+              <a class="case-toc__link" href="#problem"><span>01</span>Problem</a>
+              <a class="case-toc__link" href="#structure-problem"><span>02</span>Structure Problem</a>
+              <a class="case-toc__link" href="#goals"><span>03</span>Goals</a>
+              <a class="case-toc__link" href="#approach"><span>04</span>Approach</a>
+              <a class="case-toc__link" href="#prototype-preview"><span>05</span>Prototype</a>
+              <a class="case-toc__link" href="#my-role"><span>06</span>My Role</a>
+              <a class="case-toc__link" href="#impact"><span>07</span>Impact</a>
+              <a class="case-toc__link" href="#what-i-learned"><span>08</span>Learned</a>
+            </nav>
+          </aside>
+        </div>
       </div>
     </article>
   </main>
 
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2026 조랭이떡</p>
+      <p>&copy; 2026 장시영</p>
     </div>
   </footer>
 
