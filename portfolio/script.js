@@ -79,7 +79,7 @@ const content = {
         meta: "Service Planner | 2024",
         description: "문서 작성 문제가 아니라 협업 구조 문제로 재정의하고, PRD, 프로토타입, 웹 배포를 연결해 검토 속도와 전달 정확도를 높인 사례입니다.",
         href: "case-ai-doc-process.html",
-        cta: "Case Study 보기",
+        cta: "자세히 보기",
       },
       {
         tag: "Project 02",
@@ -87,7 +87,7 @@ const content = {
         meta: "UX Planning | In Progress",
         description: "정보 구조와 사용자 흐름 관점에서 로비 경험을 재설계하고, 사용자가 더 빠르게 진입할 수 있는 기준을 정리하는 프로젝트입니다.",
         href: "case-lobby-redesign.html",
-        cta: "진행 내용 보기",
+        cta: "자세히 보기",
       },
     ],
     skills: [
@@ -157,7 +157,7 @@ const content = {
       "skills.sub": "저를 설명하는 일하는 방식과 핵심 키워드입니다.",
       "projects.sub": "AX 환경에서 협업 구조를 바꿔본 경험을 담았습니다.",
       "contact.sub": "함께 만들 제품과 문제에 대해 편하게 연락 주세요.",
-      "contact.desc": "가장 빠른 연락은 이메일이며, GitHub와 기본 정보도 아래에서 바로 확인하실 수 있습니다.",
+      "contact.desc": "",
       "hero.note": "본 포트폴리오는 바이브 코딩으로 제작되었습니다.",
     },
   },
@@ -316,7 +316,7 @@ const content = {
       "skills.sub": "The working style and keywords that best describe how I contribute.",
       "projects.sub": "Projects where I changed collaboration structure in AX environments.",
       "contact.sub": "Feel free to reach out about products, problems, and how we build them together.",
-      "contact.desc": "Email is the fastest way to reach me, and you can also find my GitHub and basic details below.",
+      "contact.desc": "",
       "hero.note": "This portfolio was structured by a planner and built through a vibe-coding-based workflow.",
     },
   },
@@ -328,6 +328,18 @@ function renderList(containerId, items, renderItem) {
   const container = document.getElementById(containerId);
   if (!container) return;
   container.innerHTML = items.map(renderItem).join("");
+}
+
+function getLangFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const lang = params.get("lang");
+  return lang === "en" ? "en" : "ko";
+}
+
+function syncLangUrl(lang) {
+  const url = new URL(window.location.href);
+  url.searchParams.set("lang", lang);
+  window.history.replaceState({}, "", url);
 }
 
 function renderAll(data) {
@@ -346,15 +358,14 @@ function renderAll(data) {
       <h3 class="project-card__title">${item.title}</h3>
       <p class="project-card__meta">${item.meta}</p>
       <p class="project-card__description">${item.description}</p>
-      <span class="project-card__link">${item.cta} -></span>
+      <span class="project-card__link">${item.cta} →</span>
     </a>
   `);
 
   renderList("experience-list", data.experience, (item) => `
     <article class="timeline-item">
       <div class="timeline-item__meta">
-        <span class="timeline-item__period">${item.period}</span>
-        <span class="timeline-item__duration">${item.duration}</span>
+        <span class="timeline-item__period">${item.period} · ${item.duration}</span>
       </div>
       <p class="timeline-item__role">${item.role}</p>
       <h3 class="timeline-item__company">${item.company}</h3>
@@ -431,6 +442,7 @@ function renderAll(data) {
 function switchLang(lang) {
   currentLang = lang;
   renderAll(content[lang]);
+  syncLangUrl(lang);
 
   document.querySelectorAll(".lang-toggle__option").forEach((opt) => {
     opt.classList.toggle("active", opt.dataset.lang === lang);
@@ -438,7 +450,12 @@ function switchLang(lang) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  renderAll(content.ko);
+  currentLang = getLangFromUrl();
+  renderAll(content[currentLang]);
+
+  document.querySelectorAll(".lang-toggle__option").forEach((opt) => {
+    opt.classList.toggle("active", opt.dataset.lang === currentLang);
+  });
 
   document.getElementById("lang-toggle").addEventListener("click", (e) => {
     const opt = e.target.closest("[data-lang]");
