@@ -81,66 +81,54 @@
           <div class="case-content">
             <section class="case-section" id="background">
               <h2 class="case-section__title">Background</h2>
-              <p>Teams often use UX terms such as “easy,” “intuitive,” or “visually clean,” but those phrases are interpreted differently during production and review. This project started from the need to document a shared set of criteria that both planning and design could rely on.</p>
+              <p>During UI design and collaboration, there was a clear need to define what each interface was for, which functions it included, and which variants needed to be handled. There was also no separate decision structure that teams could quickly reference in practice, so the documentation needed to support that as well.</p>
             </section>
 
             <section class="case-section" id="problem">
               <h2 class="case-section__title">Problem</h2>
-              <p>Ambiguous language may sound aligned in meetings, but it often breaks down when screens are actually designed and reviewed, leading to repeated revisions.</p>
+              <p>When function and variant criteria were not clearly defined, even the same UI could be interpreted differently or designed in inconsistent ways. As a result, screen definitions accumulated without consistency, teams had to repeatedly revisit similar discussions, and UI choices still required unnecessary communication because there was no quick decision structure to rely on.</p>
               <ul>
-                <li>Expressions like “easy to use” were not directly usable as design criteria.</li>
-                <li>Review outcomes changed depending on who was evaluating the work.</li>
-                <li>Aesthetic quality was especially difficult for planners to define on their own.</li>
+                <li>The same UI could be understood or designed differently depending on the person.</li>
+                <li>Screen-level feature definitions and compositions could become inconsistent.</li>
+                <li>Without a quick reference for decisions, repeated checks and communication were still required.</li>
               </ul>
             </section>
 
             <section class="case-section" id="goals">
               <h2 class="case-section__title">Goals</h2>
               <ul>
-                <li>Turn abstract UX language into criteria that can guide production and review.</li>
-                <li>Create a framework for evaluating screens and flows more consistently.</li>
-                <li>Build practical UX guidelines that both planners and designers can use.</li>
-                <li>Align usability and aesthetics within a shared collaboration standard.</li>
+                <li>Create a document structure that can systematically organize UI features and variants through shared criteria.</li>
+                <li>Develop the document into a visually structured format that can be understood more quickly.</li>
+                <li>Provide faster decision support through decision trees and checklists.</li>
               </ul>
             </section>
 
             <section class="case-section" id="approach">
               <h2 class="case-section__title">Approach</h2>
-              <h3>1. I translated vague language into judgeable criteria</h3>
-              <p>I broke broad phrases such as “comfortable” or “not complex” into more specific conditions, and where possible connected them to clearer checkpoints or measurable dimensions.</p>
-              <h3>2. I created an evaluation framework</h3>
-              <p>To avoid discussing UX only as a matter of feeling, I organized a framework that could be used to review screens and flows through a more stable lens.</p>
-              <h3>3. I connected it to production-stage guidelines</h3>
-              <p>The document was not only for evaluation after the fact, but also organized with AI so it could guide decision-making during planning and production.</p>
-            </section>
-
-            <section class="case-section" id="what-i-learned">
-              <h2 class="case-section__title">What I Learned</h2>
-              <p>This project reinforced that UX guidelines are not just a collection of good principles. They are a way to give teams a shared language for making and reviewing work. It also showed that usability and aesthetics become far more actionable when people with different expertise shape the criteria together.</p>
+              <h3>1. I wrote a UI feature specification</h3>
+              <p>I structured each feature by clarifying its purpose, included elements, and required data and types so the UI could be understood at the feature level.</p>
+              <h3>2. I visualized the document with AI</h3>
+              <p>I used AI to turn the text-heavy document into a more visual format so the information could be understood and shared more quickly.</p>
+              <h3>3. I created decision trees and checklists</h3>
+              <p>To support faster judgment during actual work, I organized decision trees and checklists that could reduce repeated discussion.</p>
             </section>
 
             <section class="case-section" id="outcome">
               <h2 class="case-section__title">Outcome</h2>
               <ul>
-                <li>Drafted a clearer language system for UX judgment.</li>
-                <li>Established the base structure for an evaluation framework and production guideline.</li>
-                <li>Expanded the scope to include aesthetic standards through design collaboration.</li>
-                <li>Detailed metrics and applied examples will be added later.</li>
+                <li>Organized 14 UI features. (modals, GNB, and more)</li>
+                <li>Created one HTML document with AI so visualized materials and explanations could be reviewed together.</li>
+                <li>Compiled a set of decision trees and checklists.</li>
               </ul>
+            </section>
+
+            <section class="case-section" id="what-i-learned">
+              <h2 class="case-section__title">What I Learned</h2>
+              <p>I learned that the quality of a document depends less on how much information it contains and more on how quickly it can be understood and used for decision-making. When feature definitions, visualization, and judgment criteria were designed together, the document became a practical collaboration tool.</p>
             </section>
 
             <section class="case-section" id="evaluation-framework">
               <h2 class="case-section__title">Appendix: Evaluation Framework</h2>
-              <div class="framework-prose">
-                <article class="framework-prose__item">
-                  <h3>Usefulness</h3>
-                  <p>We check whether it connects to a core task, solves a real problem, and gives users a clear reason to choose it over similar products.</p>
-                </article>
-                <article class="framework-prose__item">
-                  <h3>Usability</h3>
-                  <p>We check how much feedback users need, and whether the chosen UI supports the right level of confirmation and decision-making without breaking the flow unnecessarily.</p>
-                </article>
-              </div>
               <div class="framework-flow">
                 <p class="framework-flow__title">Example Flow: Feedback UI Decision</p>
                 <div class="mermaid">
@@ -166,29 +154,6 @@ flowchart LR
     class E,F,I neutral;
                 </div>
               </div>
-              <div class="framework-prose">
-                <article class="framework-prose__item">
-                  <h3>Accessibility & Consistency</h3>
-                  <p>We check whether contrast and touch targets are sufficient, whether the same UI leads to the same behavior, and whether unnecessary new patterns are being introduced.</p>
-                  <ul class="framework-list">
-                    <li>Is this the most important action on the current screen?</li>
-                    <li>If it is a secondary action, is a secondary style enough?</li>
-                    <li>Does it need to stay visible during scroll because of urgency?</li>
-                    <li>Would a fixed placement interrupt reading or other interactions?</li>
-                    <li>Does it remain consistent with the existing button pattern?</li>
-                  </ul>
-                </article>
-              </div>
-              <div class="framework-prose">
-                <article class="framework-prose__item">
-                  <h3>Credibility & Performance</h3>
-                  <p>We check whether errors and state changes are communicated clearly and whether key information, such as currency updates, appears quickly and reliably.</p>
-                </article>
-                <article class="framework-prose__item">
-                  <h3>Desirability</h3>
-                  <p>We check whether the visual impression and interaction feel aligned with the intended brand tone and make the experience feel worth using.</p>
-                </article>
-              </div>
             </section>
 
             <div class="case-back">
@@ -203,8 +168,8 @@ flowchart LR
               <a class="case-toc__link" href="#problem"><span>02</span>Problem</a>
               <a class="case-toc__link" href="#goals"><span>03</span>Goals</a>
               <a class="case-toc__link" href="#approach"><span>04</span>Approach</a>
-              <a class="case-toc__link" href="#what-i-learned"><span>05</span>Learned</a>
-              <a class="case-toc__link" href="#outcome"><span>06</span>Outcome</a>
+              <a class="case-toc__link" href="#outcome"><span>05</span>Outcome</a>
+              <a class="case-toc__link" href="#what-i-learned"><span>06</span>Learned</a>
               <a class="case-toc__link" href="#evaluation-framework"><span>07</span>Appendix</a>
             </nav>
           </aside>
