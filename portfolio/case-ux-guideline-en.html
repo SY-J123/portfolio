@@ -15,6 +15,26 @@
   <meta name="twitter:title" content="UX Guideline Development">
   <meta name="twitter:description" content="A UX guideline project that translated vague UX language into practical criteria, an evaluation framework, and production guidelines">
   <meta name="twitter:image" content="og-portfolio.png">
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'base',
+      themeVariables: {
+        primaryColor: '#f5f9fa',
+        primaryTextColor: '#1f2a37',
+        primaryBorderColor: '#9eb5bf',
+        lineColor: '#aabac2',
+        secondaryColor: '#edf8f1',
+        tertiaryColor: '#fbf4ee',
+        fontFamily: 'Pretendard, Inter, sans-serif'
+      },
+      flowchart: {
+        htmlLabels: true,
+        curve: 'basis'
+      }
+    });
+  </script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -43,7 +63,7 @@
           </div>
           <div class="case-meta__item">
             <dt>Point 3</dt>
-            <dd>I organized UX guidelines that could be referenced during actual production.</dd>
+            <dd>I used AI to organize UX guidelines that could be referenced during actual production.</dd>
           </div>
           <div class="case-meta__item">
             <dt>Point 4</dt>
@@ -91,116 +111,7 @@
               <h3>2. I created an evaluation framework</h3>
               <p>To avoid discussing UX only as a matter of feeling, I organized a framework that could be used to review screens and flows through a more stable lens.</p>
               <h3>3. I connected it to production-stage guidelines</h3>
-              <p>The document was not only for evaluation after the fact, but also designed to guide decision-making during planning and production.</p>
-              <h3>4. I extended the standard through designer collaboration</h3>
-              <p>For visual quality, which is harder for planners to define independently, I worked with a designer so the guideline could reflect more practical aesthetic standards.</p>
-            </section>
-
-            <section class="case-section" id="evaluation-framework">
-              <h2 class="case-section__title">Evaluation Framework</h2>
-              <p>Rather than leaving UX as a vague impression, I defined the top-level criteria first. This structure works as a practical framework for both review and production decisions.</p>
-              <div class="framework-board" aria-label="UX evaluation framework board">
-                <div class="framework-board__header">
-                  <p class="framework-board__eyebrow">Top-Level</p>
-                  <h3 class="framework-board__title">Seven Equal Evaluation Themes</h3>
-                  <p class="framework-board__desc">Each theme sits at the same level, and the bullets below are the review criteria for that theme.</p>
-                </div>
-
-                <div class="framework-table">
-                  <article class="framework-row">
-                    <div class="framework-topic">
-                      <p class="framework-topic__index">01</p>
-                      <h3>Usefulness</h3>
-                    </div>
-                    <div class="framework-items">
-                      <ul>
-                        <li>Does it connect to a core user task?</li>
-                        <li>Does it solve a real user problem?</li>
-                        <li>Is it more than just a nice-to-have?</li>
-                      </ul>
-                    </div>
-                  </article>
-                  <article class="framework-row">
-                    <div class="framework-topic">
-                      <p class="framework-topic__index">02</p>
-                      <h3>Usability</h3>
-                    </div>
-                    <div class="framework-items">
-                      <ul>
-                        <li>Learnability: is it understandable for first-time users?</li>
-                        <li>Efficiency: can users reach the goal in fewer steps?</li>
-                        <li>Error prevention: can mistakes be reduced?</li>
-                        <li>Recovery: can users recover after mistakes?</li>
-                      </ul>
-                    </div>
-                  </article>
-                  <article class="framework-row">
-                    <div class="framework-topic">
-                      <p class="framework-topic__index">03</p>
-                      <h3>Accessibility</h3>
-                    </div>
-                    <div class="framework-items">
-                      <ul>
-                        <li>Are contrast and font size sufficient?</li>
-                        <li>Is screen reader use considered?</li>
-                        <li>Are touch targets large enough?</li>
-                      </ul>
-                    </div>
-                  </article>
-                  <article class="framework-row">
-                    <div class="framework-topic">
-                      <p class="framework-topic__index">04</p>
-                      <h3>Consistency</h3>
-                    </div>
-                    <div class="framework-items">
-                      <ul>
-                        <li>Is the same function shown with the same UI?</li>
-                        <li>Are button positions and interactions predictable?</li>
-                        <li>Does it follow platform conventions?</li>
-                      </ul>
-                    </div>
-                  </article>
-                  <article class="framework-row">
-                    <div class="framework-topic">
-                      <p class="framework-topic__index">05</p>
-                      <h3>Credibility</h3>
-                    </div>
-                    <div class="framework-items">
-                      <ul>
-                        <li>Are error messages clear?</li>
-                        <li>Is data handling transparent?</li>
-                        <li>Does it feel trustworthy in security and privacy?</li>
-                      </ul>
-                    </div>
-                  </article>
-                  <article class="framework-row">
-                    <div class="framework-topic">
-                      <p class="framework-topic__index">06</p>
-                      <h3>Desirability</h3>
-                    </div>
-                    <div class="framework-items">
-                      <ul>
-                        <li>Is the visual quality high enough?</li>
-                        <li>Do micro-interactions improve the experience?</li>
-                        <li>Is the brand tone applied consistently?</li>
-                      </ul>
-                    </div>
-                  </article>
-                  <article class="framework-row">
-                    <div class="framework-topic">
-                      <p class="framework-topic__index">07</p>
-                      <h3>Performance</h3>
-                    </div>
-                    <div class="framework-items">
-                      <ul>
-                        <li>Is loading fast enough?</li>
-                        <li>Does the interface respond quickly?</li>
-                        <li>Is the product stable without crashes?</li>
-                      </ul>
-                    </div>
-                  </article>
-                </div>
-              </div>
+              <p>The document was not only for evaluation after the fact, but also organized with AI so it could guide decision-making during planning and production.</p>
             </section>
 
             <section class="case-section" id="what-i-learned">
@@ -218,6 +129,68 @@
               </ul>
             </section>
 
+            <section class="case-section" id="evaluation-framework">
+              <h2 class="case-section__title">Appendix: Evaluation Framework</h2>
+              <div class="framework-prose">
+                <article class="framework-prose__item">
+                  <h3>Usefulness</h3>
+                  <p>We check whether it connects to a core task, solves a real problem, and gives users a clear reason to choose it over similar products.</p>
+                </article>
+                <article class="framework-prose__item">
+                  <h3>Usability</h3>
+                  <p>We check how much feedback users need, and whether the chosen UI supports the right level of confirmation and decision-making without breaking the flow unnecessarily.</p>
+                </article>
+              </div>
+              <div class="framework-flow">
+                <p class="framework-flow__title">Example Flow: Feedback UI Decision</p>
+                <div class="mermaid">
+flowchart LR
+    A[Feedback UI Decision] --> B{Is this information<br/>something the user must see?}
+    B -- No --> C[Snackbar]
+    B -- Yes --> D{Can it be resolved through<br/>a quick check or choice in-flow?}
+    D -- No --> E[Page]
+    D -- Yes --> F[Modal]
+    F --> G{Must the user make<br/>an explicit choice?}
+    G -- Yes --> H[Disable overlay close]
+    G -- No --> I[Allow overlay close]
+
+    classDef start fill:#e7f2f6,stroke:#9eb5bf,color:#1f2a37,stroke-width:1.5px;
+    classDef question fill:#f7fafb,stroke:#aabac2,color:#1f2a37,stroke-width:1.5px;
+    classDef yes fill:#edf8f1,stroke:#96b89d,color:#1f2a37,stroke-width:1.5px;
+    classDef no fill:#fbf4ee,stroke:#c7a891,color:#1f2a37,stroke-width:1.5px;
+    classDef neutral fill:#fff,stroke:#b8c7cf,color:#1f2a37,stroke-width:1.5px;
+
+    class A start;
+    class B,D,G question;
+    class C,H yes;
+    class E,F,I neutral;
+                </div>
+              </div>
+              <div class="framework-prose">
+                <article class="framework-prose__item">
+                  <h3>Accessibility & Consistency</h3>
+                  <p>We check whether contrast and touch targets are sufficient, whether the same UI leads to the same behavior, and whether unnecessary new patterns are being introduced.</p>
+                  <ul class="framework-list">
+                    <li>Is this the most important action on the current screen?</li>
+                    <li>If it is a secondary action, is a secondary style enough?</li>
+                    <li>Does it need to stay visible during scroll because of urgency?</li>
+                    <li>Would a fixed placement interrupt reading or other interactions?</li>
+                    <li>Does it remain consistent with the existing button pattern?</li>
+                  </ul>
+                </article>
+              </div>
+              <div class="framework-prose">
+                <article class="framework-prose__item">
+                  <h3>Credibility & Performance</h3>
+                  <p>We check whether errors and state changes are communicated clearly and whether key information, such as currency updates, appears quickly and reliably.</p>
+                </article>
+                <article class="framework-prose__item">
+                  <h3>Desirability</h3>
+                  <p>We check whether the visual impression and interaction feel aligned with the intended brand tone and make the experience feel worth using.</p>
+                </article>
+              </div>
+            </section>
+
             <div class="case-back">
               <a href="en/" class="back-link">← Back to Home</a>
             </div>
@@ -230,9 +203,9 @@
               <a class="case-toc__link" href="#problem"><span>02</span>Problem</a>
               <a class="case-toc__link" href="#goals"><span>03</span>Goals</a>
               <a class="case-toc__link" href="#approach"><span>04</span>Approach</a>
-              <a class="case-toc__link" href="#evaluation-framework"><span>05</span>Framework</a>
-              <a class="case-toc__link" href="#what-i-learned"><span>06</span>Learned</a>
-              <a class="case-toc__link" href="#outcome"><span>07</span>Outcome</a>
+              <a class="case-toc__link" href="#what-i-learned"><span>05</span>Learned</a>
+              <a class="case-toc__link" href="#outcome"><span>06</span>Outcome</a>
+              <a class="case-toc__link" href="#evaluation-framework"><span>07</span>Appendix</a>
             </nav>
           </aside>
         </div>
@@ -245,6 +218,5 @@
       <p>&copy; 2026 Siyoung Jang</p>
     </div>
   </footer>
-
 </body>
 </html>
