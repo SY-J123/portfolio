@@ -35,17 +35,46 @@ const content = {
     experience: [
       {
         company: "Natris / LULU.AI",
-        role: "Service Planner",
+        role: "Product Manager",
         period: "2024.04 - Present",
         duration: "1년 11개월",
-        summary: "B2C 모바일 웹 포커 게임 기획",
-        highlights: [
-          "기능 요구사항 정의",
-          "사용자 흐름 설계",
-          "정보 구조도 작성",
-          "바이브 코딩 기반 프로토타입 제작",
-          "협업 문서 구조 개선",
-          "문서 버전 관리 및 웹 배포",
+        summary: "B2C 모바일 웹 포커 게임의 기능 기획과 UX 설계, AX 기반 협업 구조 개선을 담당",
+        responsibilities: [
+          {
+            title: "서비스 목적에 맞는 기능 기획",
+            details: [
+              "기능 요구사항 정의",
+              "기능 목적과 완료 기준 정리",
+              "정상 흐름과 예외 흐름을 포함한 기획 기준 구체화",
+            ],
+          },
+          {
+            title: "사용 맥락을 고려한 UX 설계",
+            details: [
+              "사용 시간대와 서비스 이용 환경을 반영한 기본 UX 정책 설계",
+              "야간 이용 비중을 고려한 다크모드 기본 설정 적용",
+              "진입 경험과 몰입도를 고려한 화면 흐름 기준 정리",
+            ],
+          },
+          {
+            title: "AX 기반 협업 및 업무 효율 개선",
+            details: [
+              "산출물별 주 독자와 작성 범위 정리",
+              "API 명세 등 경계가 모호한 항목의 문서 포함 범위 조율",
+              "기획자가 직접 프로토타입을 제작하는 방식 도입",
+              "바이브 코딩을 활용한 Lo-fi 프로토타입 제작",
+              "Claude Code를 활용한 문서 무결성 관리 자동화",
+              "성과: 이해관계자 투입 3명 -> 1명, 보고 및 검토 리드타임 1주 -> 3일 단축",
+            ],
+          },
+          {
+            title: "포커 게임 유형별 특성 및 시장 현황 분석",
+            details: [
+              "Web, App, iGaming별 구조와 UX 특성 분석",
+              "경쟁 서비스 기능 및 흐름 비교",
+              "서비스 개선 방향 검토를 위한 레퍼런스 조사",
+            ],
+          },
         ],
       },
       {
@@ -53,11 +82,42 @@ const content = {
         role: "Operations",
         period: "2023.08 - 2024.04",
         duration: "9개월",
-        summary: "GGPoker 토너먼트 운영",
-        highlights: [
-          "토너먼트 스케줄 관리",
-          "운영 지표 모니터링",
-          "해외 지사 및 파트너 커뮤니케이션",
+        summary: "GGPoker 토너먼트 운영에서 모니터링, 해외 커뮤니케이션, 운영 손실 대응을 담당",
+        responsibilities: [
+          {
+            title: "토너먼트 모니터링",
+            details: [
+              "진행 중인 토너먼트의 운영 현황과 주요 지표를 주기적으로 점검",
+              "시간대별 참여 흐름을 분석해 특정 시간대에 더 적합한 포맷을 제안",
+              "참여 추이와 운영 성과를 바탕으로 상금 규모를 관리하고 조정",
+            ],
+          },
+          {
+            title: "해외 지사 및 파트너 커뮤니케이션",
+            details: [
+              "해외 지사 및 파트너와 이벤트 스케줄 및 토너먼트 포맷을 영어로 협의",
+              "해외 지사에서 전달되는 운영 요청 사항과 요구사항을 검토하고 조율",
+              "내부 운영 가이드라인을 기준으로 구성안을 검토하고 조정 사항 전달",
+              "시즌성과 지역 특성을 반영해 더 적합한 운영 구성을 제안",
+            ],
+          },
+          {
+            title: "운영 손실 대응",
+            details: [
+              "전년도 성과가 좋지 않았던 로컬 이벤트 운영 건을 다시 점검하고 팔로업 및 모니터링 진행",
+              "전년도 상금 규모, 주요 지표, 스케줄을 함께 분석해 손실 요인과 개선 필요 지점 정리",
+              "시즌성과 지역 특성을 반영해 더 적합한 운영안과 상금 규모를 제안",
+              "성과: 전년도 손실이 컸던 운영 건의 손실 폭 절반 수준 감소",
+            ],
+          },
+          {
+            title: "타사 이벤트 모니터링 및 보고",
+            details: [
+              "경쟁 서비스의 이벤트 운영 현황과 구성 방식 모니터링",
+              "타사 이벤트 내용과 운영 흐름을 정리해 보고서 작성",
+              "내부 검토와 운영 참고를 위한 모니터링 결과 공유",
+            ],
+          },
         ],
       },
       {
@@ -65,10 +125,22 @@ const content = {
         role: "Operations",
         period: "2023.08 - 2024.08",
         duration: "1년 1개월",
-        summary: "Fullhouse Casino 운영",
-        highlights: [
-          "라이브 운영 지원",
-          "해외 지사 커뮤니케이션",
+        summary: "Fullhouse Casino 운영 지원 및 해외 지사 커뮤니케이션 수행",
+        responsibilities: [
+          {
+            title: "서비스 운영 지원",
+            details: [
+              "소셜 카지노 서비스의 라이브 운영 지원과 이슈 대응 업무 수행",
+              "운영 요청 사항과 진행 상황을 점검하며 기본 운영 흐름 경험 축적",
+            ],
+          },
+          {
+            title: "해외 지사 커뮤니케이션",
+            details: [
+              "해외 지사와의 커뮤니케이션을 통해 운영 요청 사항과 진행 상황 공유",
+              "글로벌 서비스 운영 환경에서 협업 방식에 대한 실무 감각 축적",
+            ],
+          },
         ],
       },
     ],
@@ -78,15 +150,15 @@ const content = {
         title: "AX 기반 문서 협업 프로세스 개선",
         meta: "Service Planner | 2024",
         description: "문서 작성 문제가 아니라 협업 구조 문제로 재정의하고, PRD, 프로토타입, 웹 배포를 연결해 검토 속도와 전달 정확도를 높인 사례입니다.",
-        href: "case-ai-doc-process.html",
+        href: "../case-ai-doc-process.html",
         cta: "자세히 보기",
       },
       {
         tag: "Project 02",
-        title: "텍사스 홀덤 로비 구조 개선",
+        title: "UX 가이드라인 제작",
         meta: "UX Planning | In Progress",
-        description: "정보 구조와 사용자 흐름 관점에서 로비 경험을 재설계하고, 사용자가 더 빠르게 진입할 수 있는 기준을 정리하는 프로젝트입니다.",
-        href: "case-lobby-redesign.html",
+        description: "모호한 UX 표현을 구체적인 판단 기준으로 바꾸고, 평가 프레임워크와 제작 가이드라인으로 정리한 프로젝트입니다.",
+        href: "../case-ux-guideline.html",
         cta: "자세히 보기",
       },
     ],
@@ -137,17 +209,36 @@ const content = {
       { label: "Location", value: "Seoul, Korea" },
     ],
     i18n: {
+      "ui.skipNav": "본문으로 건너뛰기",
+      "ui.navLabel": "주요 섹션",
+      "ui.langToggle": "언어 전환",
+      "ui.menuOpen": "메뉴 열기",
+      "nav.home": "홈",
+      "nav.howIWork": "일하는 방식",
+      "nav.experience": "경력",
+      "nav.education": "학력",
+      "nav.skills": "스킬",
+      "nav.projects": "프로젝트",
+      "nav.contact": "연락처",
+      "hero.badge": "Open to Work",
       "hero.name": "Siyoung Jang",
       "hero.role": "서비스 기획자",
       "hero.headline": "문제를 구조로 바꿔 팀이 실행할 수 있게 만드는 기획자",
       "hero.cta_contact": "Contact Me",
       "hero.desc": "문서만 정리하는 데서 멈추지 않습니다. 목적을 정의하고 사용자 흐름과 전달 기준을 설계한 뒤, 검토 가능한 프로토타입과 배포 방식까지 연결해 더 빠르고 명확한 협업 구조를 만듭니다.",
       "hero.cta_projects": "프로젝트 보기",
+      "about.title": "About Me",
       "about.sub": "커리어와 대표 성과를 간단히 소개합니다.",
       "about.lens1": "표면적인 요청보다 왜 같은 문제가 반복되는지 먼저 봅니다.",
       "about.lens2": "문서의 양보다 실행 기준과 전달 구조를 명확히 하는 데 강점이 있습니다.",
       "about.lens3": "새로운 도구는 목적이 아니라 문제 해결을 위한 수단으로 선택합니다.",
       "about.focus": "프로세스의 비효율을 구조 개선으로 연결하는 기획",
+      "section.howIWork": "How I Work",
+      "section.experience": "Experience",
+      "section.education": "Education",
+      "section.skills": "Skills",
+      "section.projects": "Projects",
+      "section.contact": "Contact",
       "experience.sub": "운영과 기획을 모두 경험하며 문제 정의 감각을 키워왔습니다.",
       "skills.panelTitle": "Skills",
       "skills.panelDesc": "하드 스킬과 소프트 스킬을 나누어, 실제 업무에서 어떻게 기여했는지 보여줍니다.",
@@ -163,48 +254,77 @@ const content = {
   },
   en: {
     heroStats: [
-      { value: "3 -> 1", label: "Initial stakeholders reduced" },
-      { value: "1 week -> 3 days", label: "Review and approval lead time" },
-      { value: "Problem to Structure", label: "Reframing problems into execution structures" },
-      { value: "Stats in Progress", label: "Strengthening quantitative thinking" },
+      { value: "3 -> 1", label: "Reduced initial reviewers" },
+      { value: "1 week -> 3 days", label: "Shortened reporting and approval lead time" },
+      { value: "Problem to Structure", label: "Reframed problems into execution structures" },
+      { value: "Stats in Progress", label: "Building stronger quantitative judgment" },
     ],
     summary: [
-      "I am a planner with experience across both operations and service planning, defining problems through both data and user flow.",
-      "In operations, I used metrics and schedule adjustments to reduce losses by 50% for an event that had recorded losses the year before, which strengthened my ability to identify problems through numbers and turn them into action.",
-      "More recently, I built an AI-assisted review workflow connecting documents, prototypes, and web publishing, reducing reporting and approval lead time from one week to three days.",
+      "My experience in both operations and product management helps me define problems through data and user flows.",
+      "In operations, I cut losses by 50% in an event that had been unprofitable the year before by adjusting metrics and schedules. That experience sharpened my ability to spot problems in the numbers and turn them into action.",
+      "More recently, I built an AI-assisted review workflow connecting documents, prototypes, and web publishing, cutting reporting and approval lead time from one week to three days.",
     ],
     strengths: [
       {
-        title: "Proactive Worker",
-        description: "Rather than waiting for problems to fully surface, I try to spot early signals and propose improvements proactively. When I see repeated friction, I move quickly to test a better way forward.",
+        title: "Proactive Builder",
+        description: "I try to spot early signals before problems fully surface and proactively suggest improvements. When I notice repeated friction, I test small changes myself to find a better way forward.",
       },
       {
         title: "Structured Thinker",
-        description: "I turn ambiguity into clarity so teams can move with more speed and confidence. By defining scope, priorities, and criteria, I help teams execute in the same direction.",
+        description: "I turn ambiguity into clarity so teams can move faster and stay aligned. By defining scope, priorities, and decision criteria, I help teams move in the same direction.",
       },
       {
         title: "Context-Aware Communicator",
-        description: "I believe more than one solution can be valid. What matters is not forcing a single answer, but aligning with the organization, the stakeholders, and the context to decide what works best.",
+        description: "I believe more than one answer can be right. What matters is not forcing a single solution, but aligning with the organization, the stakeholders, and the context to make sound decisions.",
       },
       {
-        title: "Logic-Driven Planner",
-        description: "I believe good planning should be explainable. I try to make decisions that are grounded in purpose, user value, and clear reasoning.",
+        title: "Logic-Driven PM",
+        description: "I believe good product decisions should be explainable. I aim to make decisions grounded in purpose, user value, and clear reasoning.",
       },
     ],
     experience: [
       {
         company: "Natris / LULU.AI",
-        role: "Service Planner",
+        role: "Product Manager",
         period: "2024.04 - Present",
         duration: "1 yr 11 mos",
-        summary: "Service planning for a B2C mobile web poker game",
-        highlights: [
-          "Feature requirements definition",
-          "User flow design",
-          "Information architecture design",
-          "Vibe-coded prototyping",
-          "Collaboration documentation structure improvement",
-          "Version control and web publishing",
+        summary: "Led feature planning, UX design, and AX-based collaboration improvements for a B2C mobile web poker game",
+        responsibilities: [
+          {
+            title: "Feature planning aligned with product goals",
+            details: [
+              "Defined feature requirements",
+              "Clarified feature goals and completion criteria",
+              "Specified planning criteria across main flows and edge cases",
+            ],
+          },
+          {
+            title: "UX design grounded in usage context",
+            details: [
+              "Designed baseline UX policies based on usage timing and service context",
+              "Applied dark mode as the default experience for a product with strong night-time usage",
+              "Organized flow criteria around entry experience and immersion",
+            ],
+          },
+          {
+            title: "AX-based collaboration and workflow improvement",
+            details: [
+              "Defined primary audiences and writing scope for each deliverable",
+              "Aligned document boundaries for ambiguous areas such as API specifications",
+              "Introduced planner-led prototyping",
+              "Built Lo-fi prototypes through vibe coding",
+              "Used Claude Code to automate document integrity checks",
+              "Impact: reduced initial stakeholders from 3 to 1 and review lead time from 1 week to 3 days",
+            ],
+          },
+          {
+            title: "Research on poker product types and market structure",
+            details: [
+              "Analyzed structural and UX differences across web, app, and iGaming poker products",
+              "Compared competitor features and flow patterns",
+              "Reviewed reference products to guide improvement direction",
+            ],
+          },
         ],
       },
       {
@@ -212,11 +332,42 @@ const content = {
         role: "Operations",
         period: "2023.08 - 2024.04",
         duration: "9 mos",
-        summary: "Tournament operations for GGPoker",
-        highlights: [
-          "Tournament scheduling",
-          "Operational KPI monitoring",
-          "Communication with overseas branches and partners",
+        summary: "Handled tournament monitoring, overseas communication, and loss-response operations for GGPoker",
+        responsibilities: [
+          {
+            title: "Tournament monitoring",
+            details: [
+              "Checked live tournament status and key metrics on a regular basis",
+              "Analyzed participation patterns by time slot and suggested formats better suited to specific hours",
+              "Managed and adjusted prize levels based on participation and operating performance",
+            ],
+          },
+          {
+            title: "Communication with overseas branches and partners",
+            details: [
+              "Coordinated event schedules and tournament formats in English",
+              "Reviewed and adjusted incoming requests from overseas branches and partners",
+              "Checked proposals against internal operating guidelines and communicated required adjustments",
+              "Suggested stronger operating configurations based on seasonality and locality",
+            ],
+          },
+          {
+            title: "Loss-response operations",
+            details: [
+              "Revisited a recurring local event that had underperformed the previous year",
+              "Reviewed prior prize structures, key metrics, and schedules to identify loss factors",
+              "Proposed improved operating plans and prize sizes based on regional and seasonal context",
+              "Impact: reduced losses to roughly half compared with the previous year",
+            ],
+          },
+          {
+            title: "Competitor event monitoring and reporting",
+            details: [
+              "Monitored how competitor events were structured and run",
+              "Documented event details and operating flow in internal reports",
+              "Shared findings internally as reference for ongoing operations",
+            ],
+          },
         ],
       },
       {
@@ -224,10 +375,22 @@ const content = {
         role: "Operations",
         period: "2023.08 - 2024.08",
         duration: "1 yr 1 mo",
-        summary: "Operations for Fullhouse Casino",
-        highlights: [
-          "Live operations support",
-          "International communication",
+        summary: "Supported operations for Fullhouse Casino and worked with overseas branches",
+        responsibilities: [
+          {
+            title: "Live operations support",
+            details: [
+              "Supported live service operations and issue handling for a social casino product",
+              "Built practical familiarity with day-to-day operating flow",
+            ],
+          },
+          {
+            title: "Overseas branch communication",
+            details: [
+              "Worked with overseas branches to share requests, updates, and follow-up actions",
+              "Built early hands-on experience in global service operations and cross-team coordination",
+            ],
+          },
         ],
       },
     ],
@@ -235,17 +398,17 @@ const content = {
       {
         tag: "Project 01",
         title: "AI-Driven Document Collaboration Process Improvement",
-        meta: "Service Planner | 2024",
-        description: "A case where I reframed documentation as a collaboration issue and connected PRDs, prototypes, and web publishing to improve review speed and delivery clarity.",
-        href: "case-ai-doc-process.html",
+        meta: "Product Manager | 2024",
+        description: "A case study in which I reframed the issue as a collaboration problem and connected PRDs, prototypes, and web publishing to make reviews faster and communication clearer.",
+        href: "../case-ai-doc-process-en.html",
         cta: "Learn More",
       },
       {
         tag: "Project 02",
-        title: "Texas Hold'em Lobby Structure Improvement",
-        meta: "UX Planning | In Progress",
-        description: "An ongoing project redesigning the lobby experience through information architecture and user flow improvements.",
-        href: "case-lobby-redesign.html",
+        title: "UX Guideline Development",
+        meta: "UX Strategy | In Progress",
+        description: "A project that translated vague UX language into clearer criteria, then organized it into an evaluation framework and production guidelines.",
+        href: "../case-ux-guideline-en.html",
         cta: "Learn More",
       },
     ],
@@ -254,11 +417,11 @@ const content = {
         items: [
           {
             name: "Vibe Coding",
-            detail: "I quickly build screens and flows for review so teams can align on context that would otherwise be difficult to share through documents alone.",
+            detail: "I quickly build screens and flows for review, making it easier to align on context that would be difficult to convey through documents alone.",
           },
           {
             name: "Data Analysis Foundations",
-            detail: "I am strengthening my foundation in data analysis through SQL, Python, and statistics to support more informed decision-making.",
+            detail: "I am strengthening my foundation in data analysis through SQL, Python, and statistics to support more evidence-based decisions.",
           },
           {
             name: "Figma",
@@ -266,11 +429,11 @@ const content = {
           },
           {
             name: "Business English",
-            detail: "I am comfortable communicating in English at a business level, with experience coordinating schedules, operational issues, and follow-up actions with overseas branches and partners.",
+            detail: "I work comfortably in English and have coordinated schedules, operational issues, and follow-up actions with overseas branches and partners.",
           },
           {
             name: "GitHub",
-            detail: "I use GitHub to manage versions of documents and prototypes, making it easier for teams to stay aligned on the latest source of truth.",
+            detail: "I use GitHub to manage document and prototype versions so the team can stay aligned on the latest source of truth.",
           },
         ],
       },
@@ -278,11 +441,11 @@ const content = {
     learning: [
       {
         name: "Data-Informed Thinking",
-        detail: "I am building a stronger foundation in statistics, SQL, and Python so I can make planning decisions with clearer evidence, not intuition alone. Ongoing study notes are documented on Velog.",
+        detail: "I am building stronger product judgment through statistics, SQL, and Python so I can make decisions with better evidence. Related study notes are documented on Velog.",
       },
       {
         name: "AI-Native Workflow",
-        detail: "I keep exploring how AI can support faster prototyping, clearer reviews, and more executable planning workflows. Ongoing experiments and learnings are documented on Velog.",
+        detail: "I keep experimenting with how AI can support faster prototyping, clearer reviews, and more executable product workflows. Ongoing experiments and notes are documented on Velog.",
       },
     ],
     education: [
@@ -296,28 +459,47 @@ const content = {
       { label: "Location", value: "Seoul, Korea" },
     ],
     i18n: {
+      "ui.skipNav": "Skip to content",
+      "ui.navLabel": "Primary sections",
+      "ui.langToggle": "Switch language",
+      "ui.menuOpen": "Open menu",
+      "nav.home": "Home",
+      "nav.howIWork": "How I Work",
+      "nav.experience": "Experience",
+      "nav.education": "Education",
+      "nav.skills": "Skills",
+      "nav.projects": "Projects",
+      "nav.contact": "Contact",
+      "hero.badge": "Open to Work",
       "hero.name": "Siyoung Jang",
       "hero.role": "Product Manager",
-      "hero.headline": "A planner who turns problems into structures teams can execute",
+      "hero.headline": "A product manager who turns problems into plans teams can execute",
       "hero.cta_contact": "Contact Me",
-      "hero.desc": "I do more than organize documents. I define the purpose, design user flows and delivery criteria, then connect them to reviewable prototypes and publishing workflows so teams can move faster with more clarity.",
+      "hero.desc": "I do more than write documents. I define the goal, design user flows and decision criteria, and connect them to reviewable prototypes and publishing workflows so teams can move faster with more clarity.",
       "hero.cta_projects": "View Projects",
+      "about.title": "About Me",
       "about.sub": "A brief introduction to my career path and key outcomes.",
-      "about.lens1": "I start by asking why the same issue keeps recurring, rather than focusing only on surface-level requests.",
+      "about.lens1": "I look first at why the same issue keeps repeating, rather than stopping at surface-level requests.",
       "about.lens2": "My strength is not in producing more documents, but in clarifying execution criteria and delivery structure.",
-      "about.lens3": "New tools are selected as means to solve problems, not goals in themselves.",
-      "about.focus": "Planning work that turns process inefficiency into structural improvement",
-      "experience.sub": "My instinct for problem definition was shaped through both operations and planning.",
+      "about.lens3": "I choose new tools as a means to solve problems, not as goals in themselves.",
+      "about.focus": "Product work that turns process inefficiency into better systems",
+      "section.howIWork": "How I Work",
+      "section.experience": "Experience",
+      "section.education": "Education",
+      "section.skills": "Skills",
+      "section.projects": "Projects",
+      "section.contact": "Contact",
+      "experience.sub": "My instinct for problem definition was shaped through both operations and product work.",
       "skills.panelTitle": "Skills",
       "skills.panelDesc": "Organized by hard and soft skills to show how I apply them in real work.",
       "skills.certEyebrow": "Verified",
       "skills.certTitle": "Certificates",
       "learning.title": "What I Am Learning",
       "skills.sub": "The working style and keywords that best describe how I contribute.",
-      "projects.sub": "Projects where I improved collaboration structures in AI-assisted environments.",
+      "projects.sub": "Projects where I improved collaboration systems in AI-assisted environments.",
       "contact.sub": "Feel free to reach out about products, problems, and how we build them together.",
       "contact.desc": "",
-      "hero.note": "This portfolio was structured by a planner and built through a vibe-coded workflow.",
+      "hero.note": "This portfolio was built through a vibe-coded workflow.",
     },
   },
 };
@@ -331,15 +513,26 @@ function renderList(containerId, items, renderItem) {
 }
 
 function getLangFromUrl() {
+  const path = window.location.pathname.toLowerCase();
+
+  if (path === "/en" || path.startsWith("/en/")) {
+    return "en";
+  }
+
+  if (path === "/kr" || path.startsWith("/kr/")) {
+    return "ko";
+  }
+
   const params = new URLSearchParams(window.location.search);
-  const lang = params.get("lang");
-  return lang === "en" ? "en" : "ko";
+  return params.get("lang") === "en" ? "en" : "ko";
 }
 
 function syncLangUrl(lang) {
-  const url = new URL(window.location.href);
-  url.searchParams.set("lang", lang);
-  window.history.replaceState({}, "", url);
+  const currentPath = window.location.pathname.toLowerCase();
+  const inLangDir = currentPath.endsWith("/kr/") || currentPath.endsWith("/en/") || currentPath.endsWith("/kr") || currentPath.endsWith("/en");
+  const targetPath = lang === "en" ? "../en/" : "../kr/";
+
+  window.location.href = inLangDir ? targetPath : (lang === "en" ? "en/" : "kr/");
 }
 
 function renderAll(data) {
@@ -370,9 +563,16 @@ function renderAll(data) {
       <p class="timeline-item__role">${item.role}</p>
       <h3 class="timeline-item__company">${item.company}</h3>
       <p class="timeline-item__summary">${item.summary}</p>
-      <ul class="timeline-item__highlights">
-        ${item.highlights.map((highlight) => `<li>${highlight}</li>`).join("")}
-      </ul>
+      <div class="timeline-item__responsibilities">
+        ${item.responsibilities.map((responsibility) => `
+          <section class="timeline-item__responsibility">
+            <h4 class="timeline-item__responsibility-title">${responsibility.title}</h4>
+            <ul class="timeline-item__highlights">
+              ${responsibility.details.map((detail) => `<li>${detail}</li>`).join("")}
+            </ul>
+          </section>
+        `).join("")}
+      </div>
     </article>
   `);
 
@@ -436,17 +636,23 @@ function renderAll(data) {
     }
   });
 
+  document.querySelectorAll("[data-i18n-attr]").forEach((el) => {
+    const mappings = el.getAttribute("data-i18n-attr");
+    if (!mappings) return;
+
+    mappings.split(",").forEach((mapping) => {
+      const [attr, key] = mapping.split(":").map((part) => part.trim());
+      if (attr && key && data.i18n[key]) {
+        el.setAttribute(attr, data.i18n[key]);
+      }
+    });
+  });
+
   document.documentElement.lang = currentLang;
 }
 
 function switchLang(lang) {
-  currentLang = lang;
-  renderAll(content[lang]);
   syncLangUrl(lang);
-
-  document.querySelectorAll(".lang-toggle__option").forEach((opt) => {
-    opt.classList.toggle("active", opt.dataset.lang === lang);
-  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
