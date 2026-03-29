@@ -1,4 +1,4 @@
-/* ===========================
+﻿/* ===========================
    Reset & Variables
    =========================== */
 *,
@@ -284,50 +284,8 @@ button, input, textarea, select { font: inherit; }
    Home / Profile Hero
    =========================== */
 .profile-hero {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 36px;
-  align-items: start;
-}
-
-.profile-hero__photo {
-  display: flex;
-  justify-content: center;
-}
-
-.profile-hero__img-wrap {
-  width: 100%;
-  max-width: 220px;
-  aspect-ratio: 4 / 5;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--card-shadow);
-  border: 1px solid var(--line);
-}
-
-.profile-hero__img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 22%;
-}
-
-.profile-hero__img--placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background:
-    linear-gradient(135deg, #eef4f6 0%, #dfe8ec 100%);
-  color: var(--accent);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.profile-hero__img--placeholder::before {
-  content: "Photo";
+  max-width: 720px;
+  margin: 0 auto;
 }
 
 .profile-hero__badge {
@@ -342,7 +300,6 @@ button, input, textarea, select { font: inherit; }
   letter-spacing: 0.06em;
   margin-bottom: 20px;
 }
-
 .profile-hero__name {
   font-size: 2.6rem;
   font-weight: 800;
@@ -1585,7 +1542,7 @@ button, input, textarea, select { font: inherit; }
 .framework-flow .mermaid .label,
 .framework-flow .mermaid foreignObject div {
   font-family: "Pretendard", Inter, sans-serif !important;
-  font-size: 14px !important;
+  font-size: 16px !important;
   line-height: 1.3 !important;
 }
 
@@ -1673,13 +1630,7 @@ button, input, textarea, select { font: inherit; }
   }
 
   .profile-hero {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
-  .profile-hero__img-wrap {
-    max-width: 220px;
-    margin: 0 auto;
+    max-width: 720px;
   }
 
   .strengths {
@@ -1751,6 +1702,11 @@ button, input, textarea, select { font: inherit; }
     padding: 20px;
   }
 
+  .framework-flow .mermaid .label,
+  .framework-flow .mermaid foreignObject div {
+    font-size: 15px !important;
+  }
+
   .impact-cards {
     grid-template-columns: 1fr;
   }
@@ -1785,5 +1741,8 @@ button, input, textarea, select { font: inherit; }
     padding: 20px 0;
   }
 }
+
+
+
 
 

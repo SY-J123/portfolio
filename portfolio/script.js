@@ -1,4 +1,4 @@
-/* ===========================
+﻿/* ===========================
    Content - KO / EN
    =========================== */
 const content = {
@@ -17,15 +17,15 @@ const content = {
     strengths: [
       {
         title: "Proactive Worker",
-        description: "문제가 충분히 드러난 뒤 반응하기보다, 먼저 징후를 파악하고 개선안을 적극적으로 제안하는 편입니다. 반복되는 마찰이 보이면 작은 수준이라도 직접 바꿔보며 더 나은 흐름을 만듭니다.",
+        description: "반복되는 비효율을 먼저 발견하고 새로운 방식을 적극적으로 제안하는 편입니다. 실제로 문서 중심 검토 과정의 마찰을 줄이기 위해 AX 기반 프로토타입 제작과 웹 배포 방식을 제안했고, 그 제안이 실제 협업 방식으로 채택되었습니다.",
       },
       {
         title: "Structured Thinker",
-        description: "모호한 것을 명확하게 정의해 팀이 더 기민하게 움직일 수 있는 상태를 만드는 편입니다. 범위, 우선순위, 기준을 정리해 같은 방향으로 실행할 수 있게 돕습니다.",
+        description: "모호한 것을 명확하게 정의해 팀의 의사소통 비용을 줄입니다.  UX 가이드라인 프로젝트에서는 추상적으로 쓰이던 표현들을 기능 정의, 평가 기준, 의사결정 트리로 구조화해 기획과 디자인이 같은 기준으로 판단할 수 있도록 정리했습니다.",
       },
       {
         title: "Context-Aware Communicator",
-        description: "A와 B가 모두 맞는 방법일 수 있다고 생각합니다. 중요한 것은 정답 하나를 고집하기보다, 조직 상황과 이해관계자들의 니즈에 맞춰 협의하고 가장 적절한 기준을 함께 정하는 일입니다.",
+        description: "정답 하나를 고집하기보다, 조직 상황과 이해관계자에 맞춰 역할과 기준을 조율하는 편입니다. 실제로 AX 기반 프로세스를 도입하는 과정에서는 새로운 협업 방식에 맞게 업무 범위와 책임 구분을 다시 조정해 팀이 무리 없이 적응할 수 있도록 정리했습니다.",
       },
       {
         title: "Logic-Driven Planner",
@@ -148,16 +148,16 @@ const content = {
       {
         tag: "Project 01",
         title: "AX 기반 문서 협업 프로세스 개선",
-        meta: "Service Planner | 2024",
-        description: "문서 작성 문제가 아니라 협업 구조 문제로 재정의하고, PRD, 프로토타입, 웹 배포를 연결해 검토 속도와 전달 정확도를 높인 사례입니다.",
+        meta: "LULU.AI | 25년 12월 ~ 26년 3월",
+        description: "AX 프로토타입 제작을 통해 업무 효율과 커뮤니케이션 정확도를 높인 프로젝트입니다.",
         href: "../case-ai-doc-process.html",
         cta: "자세히 보기",
       },
       {
         tag: "Project 02",
         title: "UX 가이드라인 제작",
-        meta: "UX Planning | In Progress",
-        description: "모호한 UX 표현을 구체적인 판단 기준으로 바꾸고, 평가 프레임워크와 제작 가이드라인으로 정리한 프로젝트입니다.",
+        meta: "LULU.AI | 26년 1월 ~ 2월",
+        description: "모호한 UX 기준을 실무에서 바로 쓸 수 있는 판단 기준과 가이드라인으로 정리한 프로젝트입니다.",
         href: "../case-ux-guideline.html",
         cta: "자세히 보기",
       },
@@ -213,13 +213,13 @@ const content = {
       "ui.navLabel": "주요 섹션",
       "ui.langToggle": "언어 전환",
       "ui.menuOpen": "메뉴 열기",
-      "nav.home": "홈",
-      "nav.howIWork": "일하는 방식",
-      "nav.experience": "경력",
-      "nav.education": "학력",
-      "nav.skills": "스킬",
-      "nav.projects": "프로젝트",
-      "nav.contact": "연락처",
+      "nav.home": "Home",
+      "nav.howIWork": "How I Work",
+      "nav.experience": "Experience",
+      "nav.education": "Education",
+      "nav.skills": "Skills",
+      "nav.projects": "Projects",
+      "nav.contact": "Contact",
       "hero.badge": "Open to Work",
       "hero.name": "Siyoung Jang",
       "hero.role": "서비스 기획자",
@@ -267,15 +267,15 @@ const content = {
     strengths: [
       {
         title: "Proactive Builder",
-        description: "I try to spot early signals before problems fully surface and proactively suggest improvements. When I notice repeated friction, I test small changes myself to find a better way forward.",
+        description: "I try to spot friction before it becomes a bigger problem and actively suggest better ways of working. For example, I proposed an AX-powered prototyping and web publishing workflow to reduce review friction in a document-heavy process, and that proposal was adopted into the team's actual collaboration flow.",
       },
       {
         title: "Structured Thinker",
-        description: "I turn ambiguity into clarity so teams can move faster and stay aligned. By defining scope, priorities, and decision criteria, I help teams move in the same direction.",
+        description: "I turn ambiguity into clarity so teams can move faster and stay aligned. In my UX guideline project, I translated vague expressions into structured feature definitions, decision criteria, and decision trees so planning and design could work from the same standards.",
       },
       {
         title: "Context-Aware Communicator",
-        description: "I believe more than one answer can be right. What matters is not forcing a single solution, but aligning with the organization, the stakeholders, and the context to make sound decisions.",
+        description: "Rather than forcing one fixed answer, I adjust roles and decision boundaries to fit the organization and the people involved. During the adoption of an AX-powered workflow, I helped redefine scopes and responsibilities so the team could adapt to the new process without unnecessary friction.",
       },
       {
         title: "Logic-Driven PM",
@@ -398,15 +398,15 @@ const content = {
       {
         tag: "Project 01",
         title: "AI-Driven Document Collaboration Process Improvement",
-        meta: "Product Manager | 2024",
-        description: "A case study in which I reframed the issue as a collaboration problem and connected PRDs, prototypes, and web publishing to make reviews faster and communication clearer.",
+        meta: "LULU.AI | Dec 2025 - Mar 2026",
+        description: "A project that improved review efficiency and communication clarity through AX-powered prototyping and web publishing.",
         href: "../case-ai-doc-process-en.html",
         cta: "Learn More",
       },
       {
         tag: "Project 02",
         title: "UX Guideline Development",
-        meta: "UX Strategy | In Progress",
+        meta: "LULU.AI | Jan 2026 - Feb 2026",
         description: "A project that translated vague UX language into clearer criteria, then organized it into an evaluation framework and production guidelines.",
         href: "../case-ux-guideline-en.html",
         cta: "Learn More",
@@ -732,3 +732,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
