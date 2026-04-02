@@ -147,6 +147,14 @@ const content = {
     projects: [
       {
         tag: "Project 01",
+        title: "토너먼트 손실 구조 개선",
+        meta: "NSUSLAB Korea | 23년 12월 ~ 24년 1월",
+        description: "오프라인 본선 진출 인원 200명 목표를 유지하면서 전년 대비 손실 폭을 절반 수준으로 줄인 운영 개선 프로젝트입니다.",
+        href: "../case-tournament-loss-reduction.html",
+        cta: "자세히 보기",
+      },
+      {
+        tag: "Project 02",
         title: "AX 기반 문서 협업 프로세스 개선",
         meta: "LULU.AI | 25년 12월 ~ 26년 3월",
         description: "AX 프로토타입 제작을 통해 업무 효율과 커뮤니케이션 정확도를 높인 프로젝트입니다.",
@@ -154,15 +162,14 @@ const content = {
         cta: "자세히 보기",
       },
       {
-        tag: "Project 02",
+        tag: "Project 03",
         title: "UX 가이드라인 제작",
         meta: "LULU.AI | 26년 1월 ~ 2월",
         description: "모호한 UX 기준을 실무에서 바로 쓸 수 있는 판단 기준과 가이드라인으로 정리한 프로젝트입니다.",
         href: "../case-ux-guideline.html",
         cta: "자세히 보기",
       },
-    ],
-    skills: [
+    ],    skills: [
       {
         items: [
           {
@@ -246,7 +253,7 @@ const content = {
       "skills.certTitle": "Certificates",
       "learning.title": "What I Am Learning",
       "skills.sub": "저를 설명하는 일하는 방식과 핵심 키워드입니다.",
-      "projects.sub": "AX 환경에서 협업 구조를 바꿔본 경험을 담았습니다.",
+      "projects.sub": "운영 지표 개선과 AX 기반 협업 구조 개선 경험을 함께 담았습니다.",
       "contact.sub": "함께 만들 제품과 문제에 대해 편하게 연락 주세요.",
       "contact.desc": "",
       "hero.note": "본 포트폴리오는 바이브 코딩으로 제작되었습니다.",
@@ -397,6 +404,14 @@ const content = {
     projects: [
       {
         tag: "Project 01",
+        title: "Tournament Loss Structure Improvement",
+        meta: "NSUSLAB Korea | Dec 2023 - Jan 2024",
+        description: "An operations project that kept the goal of securing 200 offline finalists while cutting losses by roughly 50% versus the previous year.",
+        href: "../case-tournament-loss-reduction-en.html",
+        cta: "Learn More",
+      },
+      {
+        tag: "Project 02",
         title: "AI-Driven Document Collaboration Process Improvement",
         meta: "LULU.AI | Dec 2025 - Mar 2026",
         description: "A project that improved review efficiency and communication clarity through AX-powered prototyping and web publishing.",
@@ -404,15 +419,14 @@ const content = {
         cta: "Learn More",
       },
       {
-        tag: "Project 02",
+        tag: "Project 03",
         title: "UX Guideline Development",
         meta: "LULU.AI | Jan 2026 - Feb 2026",
         description: "A project that translated vague UX language into clearer criteria, then organized it into an evaluation framework and production guidelines.",
         href: "../case-ux-guideline-en.html",
         cta: "Learn More",
       },
-    ],
-    skills: [
+    ],    skills: [
       {
         items: [
           {
@@ -496,7 +510,7 @@ const content = {
       "skills.certTitle": "Certificates",
       "learning.title": "What I Am Learning",
       "skills.sub": "The working style and keywords that best describe how I contribute.",
-      "projects.sub": "Projects where I improved collaboration systems in AI-assisted environments.",
+      "projects.sub": "Projects where I improved both operational metrics and collaboration systems.",
       "contact.sub": "Feel free to reach out about products, problems, and how we build them together.",
       "contact.desc": "",
       "hero.note": "This portfolio was built through a vibe-coded workflow.",
@@ -732,4 +746,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+
+
 

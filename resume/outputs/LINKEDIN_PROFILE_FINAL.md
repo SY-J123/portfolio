@@ -8,11 +8,8 @@ Product Manager | UX Strategy, Workflow Design, and AI-Enabled Collaboration
 
 ## About
 
-I am a Product Manager with experience across product planning, UX design, and live operations in the gaming industry. I focus on turning ambiguous problems into clear requirements, user flows, and collaboration structures that teams can execute.
+Product Manager with experience across product managment and and live operations in the industry. Strong in defining ambiguous problems, translating them into clear requirements and UX flows, and improving collaboration through structured workflows. Introduced an AI-enabled documentation and prototyping process that reduced stakeholder involvement from 3 people to 1 and shortened reporting and approval lead time from 1 week to 3 days, creating more time for UX refinement and product decision-making.
 
-My work spans feature planning, UX strategy, stakeholder communication, and workflow improvement. Most recently, I introduced an AI-enabled documentation and prototyping process that reduced stakeholder involvement from 3 people to 1 and shortened reporting and approval lead time from 1 week to 3 days.
-
-I am especially interested in building products that connect UX thinking, operational insight, and structured decision-making.
 
 ## Experience
 
@@ -25,9 +22,6 @@ Seoul, South Korea · On-site
 - Designed UX flows and review criteria based on user context and service goals.
 - Researched product and UX patterns across web, app, and iGaming poker services to support feature direction and planning decisions.
 
-Key Outcomes
-> Planned and structured features across both core and edge-case scenarios for a fast-moving B2C poker product.
-
 ### NSUSLAB Korea LLC
 Tournament Operator
 Jul 2023 - Apr 2024
@@ -37,9 +31,6 @@ Seoul, South Korea
 - Adjusted schedules and guarantee sizes based on seasonality, participation trends, and operating results.
 - Coordinated with overseas branches and external partners in English to align event schedules, tournament formats, and promotional plans with internal guidelines.
 - Improved daily tournament profitability through closer monitoring, operational adjustments, and data-informed schedule management.
-
-Key Outcome
-> Reduced losses in underperforming local events by roughly 50% compared with the previous year through metric analysis, schedule review, and operational adjustments.
 
 ### ME2ON
 Operations
@@ -51,6 +42,17 @@ Seoul, South Korea · On-site
 - Built hands-on experience in live service operations, issue resolution, and cross-functional collaboration in a global gaming environment.
 
 ## Projects
+
+### Tournament Loss Reduction Initiative
+NSUSLAB Korea LLC
+Dec 2023 - Jan 2024
+
+- Reviewed prior-year event metrics to identify tournament formats and buy-in ranges that were driving outsized losses while still needing to secure 200 finalists for the offline main event.
+- Reorganized the operating schedule around lower-loss formats based on historical performance, while keeping the core participation target unchanged.
+- Increased promotional visibility for the target event within internal guideline limits to improve click-through and participation efficiency.
+
+Key Outcomes
+> Reduced losses by roughly 50% versus the previous year's comparable event while maintaining the core goal of securing 200 offline finalists.
 
 ### AI-Driven Document Collaboration Process Improvement
 LULU.AI

@@ -1746,3 +1746,54 @@ button, input, textarea, select { font: inherit; }
 
 
 
+
+
+/* Case full-view overrides */
+body.case-page {
+  min-height: 100vh;
+  scroll-snap-type: y mandatory;
+}
+
+body.case-page .case-content {
+  display: grid;
+  gap: 0;
+}
+
+body.case-page .case-section {
+  min-height: calc(100vh - 160px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  scroll-margin-top: 32px;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  padding: 48px 0;
+  margin-bottom: 0;
+  border-bottom: 1px solid rgba(79, 111, 122, 0.08);
+}
+
+body.case-page .case-content .case-section:last-of-type {
+  border-bottom: 0;
+}
+
+body.case-page .case-toc__link.is-active {
+  color: var(--accent-dark);
+  font-weight: 800;
+}
+
+body.case-page .case-toc__link.is-active span {
+  color: var(--accent);
+}
+
+@media (max-width: 1024px) {
+  body.case-page {
+    scroll-snap-type: none;
+  }
+
+  body.case-page .case-section {
+    min-height: auto;
+    padding: 24px 0;
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+  }
+}
