@@ -148,4 +148,4 @@ AI가 문서를 작성할 수 있는 환경에서는,
 ## 세션 재개용 지침
 새 세션에서 아래 문장을 그대로 붙여 시작:
 
-"`resume/PROJECT_CONTEXT.md`를 기준으로 PM 포트폴리오 작업을 이어가자. 먼저 현재 `portfolio/index.html`과 관련 HTML/CSS 구조를 점검하고, 이어서 Project 2 초안을 작성해줘."
+"`resume/notes/PROJECT_CONTEXT.md`를 기준으로 PM 포트폴리오 작업을 이어가자. 먼저 현재 `portfolio/index.html`과 관련 HTML/CSS 구조를 점검하고, 이어서 Project 2 초안을 작성해줘."

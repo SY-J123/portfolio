@@ -37,5 +37,5 @@
 - 3번은 대표 프로젝트를 깊게 설명하는 구조가 더 적절함
 
 ## 연결 파일
-- 아웃라인: [SELF_INTRO_OUTLINE.md](/c:/Users/siyoung/portfolio/resume/SELF_INTRO_OUTLINE.md)
-- 드래프트: [SELF_INTRO_DRAFT.md](/c:/Users/siyoung/portfolio/resume/SELF_INTRO_DRAFT.md)
+- 아웃라인: [SELF_INTRO_OUTLINE.md](/c:/Users/siyoung/portfolio/resume/drafts/ko/SELF_INTRO_OUTLINE.md)
+- 드래프트: [SELF_INTRO_DRAFT.md](/c:/Users/siyoung/portfolio/resume/drafts/ko/SELF_INTRO_DRAFT.md)
