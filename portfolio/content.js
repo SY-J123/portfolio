@@ -1,0 +1,256 @@
+const portfolioContent = {
+  ko: {
+    heroStats: [
+      { value: "3명 -> 1명", label: "초기 검토 이해관계자 축소" },
+      { value: "1주 -> 3일", label: "보고 및 컨펌 리드타임 단축" },
+      { value: "Problem to Structure", label: "문제를 실행 구조로 재정의" },
+      { value: "Stats in Progress", label: "정량 판단 역량 강화 중" },
+    ],
+    summary: [
+      "운영과 서비스 기획을 모두 경험하며, 데이터와 사용자 흐름을 함께 보면서 문제를 구조적으로 정의해온 기획자입니다.",
+      "운영 단계에서는 지표와 스케줄을 조정해 전년도에 손실이 발생했던 이벤트의 손실을 50% 줄였고, 이를 통해 숫자로 문제를 파악하고 개선 방향을 세우는 감각을 키웠습니다.",
+      "최근에는 AI를 활용해 문서, 프로토타입, 웹 배포를 연결한 검토 워크플로를 만들며 보고 및 컨펌 리드타임을 1주에서 3일로 단축했습니다.",
+    ],
+    strengths: [
+      {
+        title: "Proactive Worker",
+        description: "반복되는 비효율을 먼저 발견하고 새로운 방식을 적극적으로 제안하는 편입니다. 실제로 문서 중심 검토 과정의 마찰을 줄이기 위해 AX 기반 프로토타입 제작과 웹 배포 방식을 제안했고, 그 제안이 실제 협업 방식으로 채택되었습니다.",
+      },
+      {
+        title: "Structured Thinker",
+        description: "모호한 것을 명확하게 정의해 팀의 의사소통 비용을 줄입니다. UX 가이드라인 프로젝트에서는 추상적으로 쓰이던 표현들을 기능 정의, 평가 기준, 의사결정 트리로 구조화해 기획과 디자인이 같은 기준으로 판단할 수 있도록 정리했습니다.",
+      },
+      {
+        title: "Context-Aware Communicator",
+        description: "정답 하나를 고집하기보다, 조직 상황과 이해관계자에 맞춰 역할과 기준을 조율하는 편입니다. 실제로 AX 기반 프로세스를 도입하는 과정에서는 새로운 협업 방식에 맞게 업무 범위와 책임 구분을 다시 조정해 팀이 무리 없이 적응할 수 있도록 정리했습니다.",
+      },
+      {
+        title: "Logic-Driven Planner",
+        description: "좋은 기획은 설명 가능해야 한다고 믿습니다. 목적, 사용자 가치, 판단 근거가 분명한 결정을 만들려고 합니다.",
+      },
+    ],
+    skills: [
+      {
+        name: "Business English",
+        detail: "해외 지사 및 파트너와 일정, 운영 이슈, 후속 대응 사항을 영어로 조율합니다.",
+      },
+      {
+        name: "Vibe Coding",
+        detail: "문서만으로 전달하기 어려운 흐름을 빠르게 프로토타입으로 구현해 검토 속도를 높입니다.",
+      },
+      {
+        name: "Figma",
+        detail: "화면 구조와 와이어프레임을 설계하고, 필요한 수준의 시안을 정리합니다.",
+      },
+      {
+        name: "Notion / Docs",
+        detail: "PRD, 정책, 가이드라인, 검토 기준을 문서로 구조화합니다.",
+      },
+      {
+        name: "GitHub",
+        detail: "문서와 프로토타입의 버전 관리, 변경 이력 관리, 기준 정리에 활용합니다.",
+      },
+      {
+        name: "SQL / Python / Statistics",
+        detail: "지표를 더 근거 있게 해석하고 판단하기 위해 함께 학습하고 활용하고 있습니다.",
+      },
+    ],
+    projects: [
+      {
+        title: "AX 기반 문서 협업 프로세스 개선",
+        meta: "LULU.AI | 25년 12월 ~ 26년 3월",
+        problem: "문서 중심 검토 과정에서 맥락 전달이 자주 끊기고, 보고와 컨펌 리드타임이 길어졌습니다.",
+        approach: "프로토타입과 웹 배포를 연결한 AX 기반 검토 흐름을 설계해 문서 설명과 화면 확인을 한 번에 이어지게 만들었습니다.",
+        impact: "초기 검토 이해관계자를 3명에서 1명으로 줄였고, 보고 및 컨펌 리드타임을 1주에서 3일로 단축했습니다.",
+        href: "../case-ai-doc-process.html",
+        cta: "자세히 보기",
+      },
+      {
+        title: "UX 가이드라인 제작",
+        meta: "LULU.AI | 26년 1월 ~ 2월",
+        problem: "팀 내에서 UX 표현과 판단 기준이 모호해 기획과 디자인이 서로 다른 해석으로 움직이는 경우가 있었습니다.",
+        approach: "추상적인 표현을 기능 정의, 예외 케이스, 의사결정 트리 중심으로 재구성해 실무용 가이드라인으로 정리했습니다.",
+        impact: "기획과 디자인이 같은 기준으로 검토할 수 있는 문서를 만들며 논의 비용을 줄이고 의사결정 기준을 정렬했습니다.",
+        href: "../case-ux-guideline.html",
+        cta: "자세히 보기",
+      },
+      {
+        title: "토너먼트 손실 구조 개선",
+        meta: "NSUSLAB Korea | 23년 12월 ~ 24년 1월",
+        problem: "오프라인 본선 진출 인원 200명 목표를 유지해야 했지만, 전년도에는 운영 구조상 손실이 크게 발생했습니다.",
+        approach: "참가 구조와 운영 스케줄을 다시 설계하고, 비용과 전환 지표를 함께 보며 손실이 커지는 구간을 조정했습니다.",
+        impact: "본선 목표 인원을 유지한 상태에서 전년 대비 손실 폭을 약 50% 수준으로 줄였습니다.",
+        href: "../case-tournament-loss-reduction.html",
+        cta: "자세히 보기",
+      },
+    ],
+    learning: [
+      {
+        name: "Data-Informed Thinking",
+        detail: "통계학, SQL, Python을 바탕으로 더 근거 있는 의사결정을 할 수 있는 기획 역량을 쌓고 있습니다. Evidence: related study notes are documented on my Velog.",
+      },
+      {
+        name: "AI-Native Workflow",
+        detail: "AI를 활용해 더 빠르게 프로토타입을 만들고, 더 명확하게 검토하고, 더 실행 가능한 기획 워크플로를 설계하는 방법을 계속 실험하고 있습니다. Evidence: ongoing experiments and learnings are documented on my Velog.",
+      },
+    ],
+    contactLinks: [
+      { label: "Email", value: "jsyoung456@gmail.com", href: "mailto:jsyoung456@gmail.com" },
+      { label: "Phone", value: "+82-10-3224-9483", href: "tel:+821032249483" },
+      { label: "Location", value: "Seoul, Korea" },
+    ],
+    i18n: {
+      "ui.skipNav": "본문으로 건너뛰기",
+      "ui.navLabel": "주요 섹션",
+      "ui.langToggle": "언어 전환",
+      "ui.menuOpen": "메뉴 열기",
+      "nav.home": "Home",
+      "nav.skills": "Skills",
+      "nav.projects": "Projects",
+      "nav.learning": "Learning",
+      "nav.contact": "Contact",
+      "hero.name": "Siyoung Jang",
+      "hero.role": "서비스 기획자",
+      "hero.headline": "문제를 구조로 바꿔 팀이 실행할 수 있게 만드는 기획자",
+      "hero.cta_contact": "Contact Me",
+      "about.title": "About Me",
+      "section.skills": "Skills",
+      "section.projects": "Projects",
+      "section.contact": "Contact",
+      "skills.sub": "도구와 방식을 중심으로, 실제 업무에서 어떻게 활용하는지 간단히 정리했습니다.",
+      "skills.note": "도구보다 무엇을 왜 어떻게 정리했는지가 더 중요하다고 생각합니다.",
+      "projects.problem": "문제",
+      "projects.approach": "접근",
+      "projects.impact": "성과",
+      "learning.title": "What I Am Learning",
+      "hero.note": "본 포트폴리오는 바이브 코딩으로 제작되었습니다.",
+    },
+  },
+  en: {
+    heroStats: [
+      { value: "3 -> 1", label: "Reduced initial reviewers" },
+      { value: "1 week -> 3 days", label: "Shortened reporting and approval lead time" },
+      { value: "Problem to Structure", label: "Reframed problems into execution structures" },
+      { value: "Stats in Progress", label: "Building stronger quantitative judgment" },
+    ],
+    summary: [
+      "My experience in both operations and product management helps me define problems through data and user flows.",
+      "In operations, I cut losses by 50% in an event that had been unprofitable the year before by adjusting metrics and schedules. That experience sharpened my ability to spot problems in the numbers and turn them into action.",
+      "More recently, I built an AI-assisted review workflow connecting documents, prototypes, and web publishing, cutting reporting and approval lead time from one week to three days.",
+    ],
+    strengths: [
+      {
+        title: "Proactive Builder",
+        description: "I try to spot friction before it becomes a bigger problem and actively suggest better ways of working. For example, I proposed an AX-powered prototyping and web publishing workflow to reduce review friction in a document-heavy process, and that proposal was adopted into the team's actual collaboration flow.",
+      },
+      {
+        title: "Structured Thinker",
+        description: "I turn ambiguity into clarity so teams can move faster and stay aligned. In my UX guideline project, I translated vague expressions into structured feature definitions, decision criteria, and decision trees so planning and design could work from the same standards.",
+      },
+      {
+        title: "Context-Aware Communicator",
+        description: "Rather than forcing one fixed answer, I adjust roles and decision boundaries to fit the organization and the people involved. During the adoption of an AX-powered workflow, I helped redefine scopes and responsibilities so the team could adapt to the new process without unnecessary friction.",
+      },
+      {
+        title: "Logic-Driven PM",
+        description: "I believe good product decisions should be explainable. I aim to make decisions grounded in purpose, user value, and clear reasoning.",
+      },
+    ],
+    skills: [
+      {
+        name: "Business English",
+        detail: "I coordinate schedules, operational issues, and follow-up actions with overseas branches and partners in English.",
+      },
+      {
+        name: "Vibe Coding",
+        detail: "I build quick prototypes when text alone is not enough to communicate the flow clearly during review.",
+      },
+      {
+        name: "Figma",
+        detail: "I use Figma to organize screen structure, wireframes, and the level of fidelity needed for each stage.",
+      },
+      {
+        name: "Notion / Docs",
+        detail: "I structure PRDs, policies, guidelines, and review criteria into documents the team can work from.",
+      },
+      {
+        name: "GitHub",
+        detail: "I use GitHub for version history, change tracking, and keeping documents and prototypes aligned.",
+      },
+      {
+        name: "SQL / Python / Statistics",
+        detail: "I use and study them together to build stronger evidence-based judgment around metrics and decisions.",
+      },
+    ],
+    projects: [
+      {
+        title: "AI-Driven Document Collaboration Process Improvement",
+        meta: "LULU.AI | Dec 2025 - Mar 2026",
+        problem: "A document-heavy review process kept losing context and created long reporting and approval lead times.",
+        approach: "I designed an AX-powered review flow that connected prototypes and web publishing so documents and screens could be reviewed in the same context.",
+        impact: "Reduced the initial reviewers from 3 to 1 and shortened reporting and approval lead time from one week to three days.",
+        href: "../case-ai-doc-process-en.html",
+        cta: "Learn More",
+      },
+      {
+        title: "UX Guideline Development",
+        meta: "LULU.AI | Jan 2026 - Feb 2026",
+        problem: "Vague UX language made it harder for planning and design to work from the same interpretation and decision criteria.",
+        approach: "I translated abstract expressions into practical definitions, edge-case handling, and decision trees the team could use in day-to-day work.",
+        impact: "Created a shared working standard that reduced interpretation gaps and made review discussions more consistent.",
+        href: "../case-ux-guideline-en.html",
+        cta: "Learn More",
+      },
+      {
+        title: "Tournament Loss Structure Improvement",
+        meta: "NSUSLAB Korea | Dec 2023 - Jan 2024",
+        problem: "We had to keep the goal of 200 offline finalists while addressing a loss structure that had already hurt the event the previous year.",
+        approach: "I reworked the participation structure and operating schedule while tracking both conversion and cost impact across the event flow.",
+        impact: "Maintained the finalist target and cut losses by roughly 50% compared with the previous year.",
+        href: "../case-tournament-loss-reduction-en.html",
+        cta: "Learn More",
+      },
+    ],
+    learning: [
+      {
+        name: "Data-Informed Thinking",
+        detail: "I am building stronger product judgment through statistics, SQL, and Python so I can make decisions with better evidence. Related study notes are documented on Velog.",
+      },
+      {
+        name: "AI-Native Workflow",
+        detail: "I keep experimenting with how AI can support faster prototyping, clearer reviews, and more executable product workflows. Ongoing experiments and notes are documented on Velog.",
+      },
+    ],
+    contactLinks: [
+      { label: "Email", value: "jsyoung456@gmail.com", href: "mailto:jsyoung456@gmail.com" },
+      { label: "Phone", value: "+82-10-3224-9483", href: "tel:+821032249483" },
+      { label: "Location", value: "Seoul, Korea" },
+    ],
+    i18n: {
+      "ui.skipNav": "Skip to content",
+      "ui.navLabel": "Primary sections",
+      "ui.langToggle": "Switch language",
+      "ui.menuOpen": "Open menu",
+      "nav.home": "Home",
+      "nav.skills": "Skills",
+      "nav.projects": "Projects",
+      "nav.learning": "Learning",
+      "nav.contact": "Contact",
+      "hero.name": "Siyoung Jang",
+      "hero.role": "Product Manager",
+      "hero.headline": "A product manager who turns problems into plans teams can execute",
+      "hero.cta_contact": "Contact Me",
+      "about.title": "About Me",
+      "section.skills": "Skills",
+      "section.projects": "Projects",
+      "section.contact": "Contact",
+      "skills.sub": "A concise view of the tools and methods I rely on in day-to-day product work.",
+      "skills.note": "For me, the tool matters less than how clearly it helps structure the work.",
+      "projects.problem": "Problem",
+      "projects.approach": "Approach",
+      "projects.impact": "Impact",
+      "learning.title": "What I Am Learning",
+      "hero.note": "This portfolio was built through a vibe-coded workflow.",
+    },
+  },
+};
