@@ -544,6 +544,18 @@ function syncLangUrl(lang) {
 }
 
 function renderAll(data) {
+  const experienceSection = document.getElementById("experience");
+  const experienceNavLink = document.querySelector('.sidebar__link[href="#experience"]');
+  const shouldShowExperience = false;
+
+  if (experienceSection) {
+    experienceSection.hidden = !shouldShowExperience;
+  }
+
+  if (experienceNavLink) {
+    experienceNavLink.hidden = !shouldShowExperience;
+  }
+
   renderList("hero-stat-grid", data.heroStats, (item) => `
     <div class="stat-card">
       <p class="stat-card__value">${item.value}</p>
@@ -562,7 +574,8 @@ function renderAll(data) {
     </a>
   `);
 
-  renderList("experience-list", data.experience, (item) => `
+
+  renderList("experience-list", shouldShowExperience ? data.experience : [], (item) => `
     <article class="timeline-item">
       <div class="timeline-item__meta">
         <span class="timeline-item__period">${item.period} · ${item.duration}</span>
@@ -677,13 +690,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  const sections = document.querySelectorAll(".section[id]");
   const navLinks = document.querySelectorAll(".sidebar__link");
 
   function updateActiveNav() {
+    const sections = [...document.querySelectorAll(".section[id]")].filter((section) => !section.hidden);
     const scrollY = window.scrollY;
     const windowH = window.innerHeight;
     const docH = document.documentElement.scrollHeight;
+
+    if (!sections.length) {
+      navLinks.forEach((link) => link.classList.remove("active"));
+      return;
+    }
 
     if (scrollY + windowH >= docH - 2) {
       navLinks.forEach((link) => link.classList.remove("active"));
