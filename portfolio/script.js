@@ -522,12 +522,14 @@ function renderList(containerId, items, renderItem) {
 
 function getLangFromUrl() {
   const path = window.location.pathname.toLowerCase();
+  const segments = path.split("/").filter(Boolean);
+  const langSegment = segments.find((segment) => segment === "en" || segment === "kr");
 
-  if (path === "/en" || path.startsWith("/en/")) {
+  if (langSegment === "en") {
     return "en";
   }
 
-  if (path === "/kr" || path.startsWith("/kr/")) {
+  if (langSegment === "kr") {
     return "ko";
   }
 
@@ -536,11 +538,19 @@ function getLangFromUrl() {
 }
 
 function syncLangUrl(lang) {
-  const currentPath = window.location.pathname.toLowerCase();
-  const inLangDir = currentPath.endsWith("/kr/") || currentPath.endsWith("/en/") || currentPath.endsWith("/kr") || currentPath.endsWith("/en");
-  const targetPath = lang === "en" ? "../en/" : "../kr/";
+  const currentUrl = new URL(window.location.href);
+  const segments = currentUrl.pathname.split("/").filter(Boolean);
+  const targetSegment = lang === "en" ? "en" : "kr";
+  const langIndex = segments.findIndex((segment) => segment === "en" || segment === "kr");
 
-  window.location.href = inLangDir ? targetPath : (lang === "en" ? "en/" : "kr/");
+  if (langIndex >= 0) {
+    segments[langIndex] = targetSegment;
+  } else {
+    segments.push(targetSegment);
+  }
+
+  currentUrl.pathname = `/${segments.join("/")}/`;
+  window.location.href = currentUrl.toString();
 }
 
 function renderAll(data) {
