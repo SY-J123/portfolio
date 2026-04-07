@@ -1,4 +1,4 @@
-﻿document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   if (!document.body.classList.contains("case-page")) return;
 
   const tocLinks = Array.from(document.querySelectorAll(".case-toc__link"));
