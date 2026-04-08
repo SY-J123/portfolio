@@ -57,7 +57,7 @@
     ],
     projects: [
       {
-        title: "AI 기반 문서 협업 프로세스 개선",
+        title: "AI 활용 협업 프로세스 개선",
         meta: "LULU.AI | 25년 12월 ~ 26년 3월",
         problem: [
           "텍스트 중심 문서 공유로 화면 흐름·기획 의도가 1회 전달되지 않음",
@@ -73,8 +73,8 @@
           "Claude Code로 반복 문서 정리 작업 자동화",
         ],
         impact: [
-          "프로토타입 제작 투입 인원 3명 → 1명 (67% 축소)",
-          "리드타임 1주 → 3일 (57% 단축)",
+          "프로토타입 제작 투입 인원 3명 → 1명",
+          "리드타임 1주 → 3일 단축",
         ],
         appendix: [
           "프로토타입 링크 기반 검토 흐름",
@@ -85,25 +85,26 @@
         cta: "자세히 보기",
       },
       {
-        title: "UX 가이드라인 제작",
+        title: "UI 기획 / UX 가이드라인 제작",
         meta: "LULU.AI | 26년 1월 ~ 2월",
         problem: [
-          "같은 UI도 사람마다 다르게 이해해 반복 확인이 필요했습니다.",
-          "빠르게 참고할 수 있는 판단 기준이 없어 논의 비용이 커졌습니다.",
+          "UI 기능정의 부재로 불필요한 컴포넌트 제작을 반복했다.",
+          "UI 사용 기준 부재로 서비스내 UX 일관성이 저하된다."
         ],
         goal: [
-          "기획과 디자인이 같은 기준으로 판단할 수 있게 만듭니다.",
-          "실무에서 바로 참고 가능한 가이드 구조를 만듭니다.",
+          "UI 기능 정의 표준화",
+          "직군 무관 컴포넌트 파악 구조 구축",
+          "일관된 UX 판단 기준 제공",
         ],
         approach: [
-          "UI 기능과 배리언트를 Notion 문서로 구조화했습니다.",
-          "Claude Code를 활용해 시각화와 설명 구조를 함께 정리했습니다.",
-          "의사결정 트리와 체크리스트를 추가했습니다.",
+          "공통 UI를 컴포넌트 단위로 정의했다.",
+          "Claude Code로 시각화하여 컴포넌트 라이브러리 문서를 제작했다.",
+          "기능별 의사결정 트리와 체크리스트를 설계했다.",
         ],
         impact: [
-          "공통 검토 기준 문서화",
-          "논의 비용 감소",
-          "의사결정 기준 정렬",
+          "UI 14종의 기능을 속성과 메서드 기준으로 구조화",
+          "시각화된 컴포넌트 라이브러리 문서 제작",
+          "의사결정 트리·체크리스트 세트 제작",
         ],
         appendix: [
           "UI 기능 14종 정리",
@@ -115,7 +116,7 @@
         cta: "자세히 보기",
       },
       {
-        title: "토너먼트 손실 구조 개선",
+        title: "데이터 분석을 통한 손실 개선",
         meta: "NSUSLAB Korea | 23년 12월 ~ 24년 1월",
         problem: [
           "전년도 운영에서 특정 포맷과 구간의 손실이 과도하게 발생했습니다.",
@@ -131,8 +132,7 @@
           "이벤트 노출 구조도 함께 조정했습니다.",
         ],
         impact: [
-          "오프라인 본선 200명 목표 유지",
-          "전년 대비 손실 폭 약 50% 감소",
+          "전년 대비 손실 폭 약 50% 감소"
         ],
         tools: ["Excel", "Data Analysis", "Operations Planning"],
         href: "../cases/ko/case-tournament-loss-reduction.html",
@@ -147,7 +147,7 @@
         ],
         goal: [
           "서울 실거래 데이터를 더 빠르게 탐색할 수 있게 만듭니다.",
-          "대시보드 탐색과 가설 검정을 한 흐름으로 연결합니다.",
+          "대시보드 탐색과 가설 검정을 한 흐름으로 연결합니다."
         ],
         approach: [
           "국토교통부 공개 API 데이터를 평당가 기준으로 재구성했습니다.",
@@ -306,25 +306,26 @@
         cta: "View details",
       },
       {
-        title: "UX Guideline Development",
+        title: "UI Planning / UX Guideline Development",
         meta: "LULU.AI | Jan 2026 - Feb 2026",
         problem: [
-          "The same UI could be interpreted differently depending on the person.",
-          "Without quick decision criteria, repeated discussion kept increasing collaboration cost.",
+          "Lack of UI feature definitions caused repeated creation of redundant components",
+          "Absence of UI usage standards degraded UX consistency across the service",
         ],
         goal: [
-          "Help planning and design evaluate UI with shared criteria.",
-          "Create a guide structure that is easy to reference during actual work.",
+          "Standardize UI feature definitions",
+          "Build a structure for cross-functional component comprehension",
+          "Provide consistent UX decision-making criteria",
         ],
         approach: [
-          "I structured UI features and variants in Notion.",
-          "I used Claude Code to support visualization and explanation structure.",
-          "I added decision trees and checklists for faster judgment.",
+          "Defined common UI as component units",
+          "Created visualized component library documentation with Claude Code",
+          "Designed per-feature decision trees and checklists",
         ],
         impact: [
-          "Documented shared review criteria",
-          "Reduced discussion overhead",
-          "Improved alignment in decision-making",
+          "Structured 14 UI features by attributes and methods",
+          "Produced visualized component library documentation",
+          "Delivered decision tree and checklist sets",
         ],
         appendix: [
           "Structured 14 UI feature types",
