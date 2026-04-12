@@ -1,4 +1,4 @@
-let activeProjectIndex = 0;
+﻿let activeProjectIndex = 0;
 let activeProjectData = null;
 let activeLangData = null;
 
@@ -19,10 +19,7 @@ function createModalShell() {
       </div>
       <div class="project-modal__content">
         <p class="project-modal__eyebrow" id="project-modal-count"></p>
-        <h3 class="project-modal__title" id="project-modal-title"></h3>
-        <p class="project-modal__meta" id="project-modal-meta"></p>
-        <div class="project-modal__tools" id="project-modal-tools"></div>
-        <div class="project-modal__sections" id="project-modal-sections"></div>
+        <div class="project-modal__deck" id="project-modal-sections"></div>
       </div>
     </div>
   `;
@@ -34,9 +31,6 @@ function getModalElements() {
   return {
     root: document.getElementById("project-modal"),
     count: document.getElementById("project-modal-count"),
-    title: document.getElementById("project-modal-title"),
-    meta: document.getElementById("project-modal-meta"),
-    tools: document.getElementById("project-modal-tools"),
     sections: document.getElementById("project-modal-sections"),
     prev: document.getElementById("project-modal-prev"),
     next: document.getElementById("project-modal-next"),
@@ -44,24 +38,97 @@ function getModalElements() {
   };
 }
 
-function renderAppendix(project, labels) {
-  const appendixItems = Array.isArray(project.appendix) ? project.appendix : [];
-  if (!appendixItems.length && !project.appendixLink) return "";
+function getItems(value) {
+  return Array.isArray(value) ? value : value ? [value] : [];
+}
 
-  const appendixList = appendixItems.length
-    ? `<ul class="project-modal__list">${appendixItems.map((item) => `<li>${item}</li>`).join("")}</ul>`
+function renderList(items) {
+  return `<ul class="project-modal__list">${items.map((item) => `<li>${item}</li>`).join("")}</ul>`;
+}
+
+function renderCoverSlide(project) {
+  const summary = project.summary ? `<p class="project-modal__summary">${project.summary}</p>` : "";
+  const tools = (project.tools || []).length
+    ? `
+      <div class="project-modal__tools">
+        ${(project.tools || []).map((tool) => `<span class="project-modal__tool">${tool}</span>`).join("")}
+      </div>
+    `
     : "";
 
+  return `
+    <section class="project-modal__slide project-modal__slide--cover" aria-labelledby="project-modal-title">
+      <div class="project-modal__cover-mark">Overview</div>
+      <div class="project-modal__cover-body">
+        <p class="project-modal__slide-index">Slide 01</p>
+        <h3 class="project-modal__title" id="project-modal-title">${project.title}</h3>
+        <p class="project-modal__meta">${project.meta}</p>
+        ${summary}
+      </div>
+      ${tools}
+    </section>
+  `;
+}
+
+function renderSectionSlide(label, items, index) {
+  const safeItems = getItems(items);
+  if (!safeItems.length) return "";
+
+  return `
+    <section class="project-modal__slide" aria-label="${label}">
+      <div class="project-modal__slide-header">
+        <p class="project-modal__slide-index">Slide ${String(index).padStart(2, "0")}</p>
+        <p class="project-modal__label">${label}</p>
+      </div>
+      <div class="project-modal__slide-body">
+        ${renderList(safeItems)}
+      </div>
+    </section>
+  `;
+}
+
+function renderEmbedSlide(project, index) {
+  if (!project.embed?.src) return "";
+
+  return `
+    <section class="project-modal__slide project-modal__slide--embed" aria-label="${project.embed.title || "Embedded slide"}">
+      <div class="project-modal__slide-header">
+        <p class="project-modal__slide-index">Slide ${String(index).padStart(2, "0")}</p>
+        <p class="project-modal__label">Embed</p>
+      </div>
+      <div class="project-modal__slide-body">
+        <div class="project-modal__embed-frame">
+          <iframe
+            src="${project.embed.src}"
+            title="${project.embed.title || "Embedded slide"}"
+            loading="lazy"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </section>
+  `;
+}
+function renderAppendixSlide(project, labels, index) {
+  const appendixItems = getItems(project.appendix);
+  if (!appendixItems.length && !project.appendixLink) return "";
+
+  const appendixList = appendixItems.length ? renderList(appendixItems) : "";
   const appendixLink = project.appendixLink
     ? `<a class="project-modal__appendix-link" href="${project.appendixLink.href}" target="_blank" rel="noopener">${project.appendixLink.label}</a>`
     : "";
 
   return `
-    <div class="project-modal__group project-modal__group--appendix">
-      <p class="project-modal__label">${labels["projects.appendix"]}</p>
-      ${appendixList}
-      ${appendixLink}
-    </div>
+    <section class="project-modal__slide project-modal__slide--appendix" aria-label="${labels["projects.appendix"]}">
+      <div class="project-modal__slide-header">
+        <p class="project-modal__slide-index">Slide ${String(index).padStart(2, "0")}</p>
+        <p class="project-modal__label">${labels["projects.appendix"]}</p>
+      </div>
+      <div class="project-modal__slide-body">
+        ${appendixList}
+        ${appendixLink}
+      </div>
+    </section>
   `;
 }
 
@@ -73,31 +140,43 @@ function renderModalContent(index) {
 
   const modal = getModalElements();
   const labels = activeLangData.i18n;
-  const sections = [
+  const slideMarkup = [];
+  const isEmbedOnly = Boolean(project.embed?.src);
+
+  modal.root?.classList.toggle("project-modal--embed-only", isEmbedOnly);
+  if (modal.count) modal.count.hidden = isEmbedOnly;
+
+  if (isEmbedOnly) {
+    slideMarkup.push(renderEmbedSlide(project, 1));
+    modal.count.textContent = `${index + 1} / ${activeProjectData.length}`;
+    modal.sections.innerHTML = slideMarkup.join("");
+    modal.prev?.setAttribute("aria-label", labels["projects.modalPrev"] || "Previous project");
+    modal.next?.setAttribute("aria-label", labels["projects.modalNext"] || "Next project");
+    modal.close?.setAttribute("aria-label", labels["projects.close"] || "Close");
+    return;
+  }
+
+  slideMarkup.push(renderCoverSlide(project));
+
+  const sectionEntries = [
     { label: labels["projects.problem"], value: project.problem },
     { label: labels["projects.goal"], value: project.goal },
     { label: labels["projects.approach"], value: project.approach },
     { label: labels["projects.impact"], value: project.impact },
-  ].filter((section) => section.value && (Array.isArray(section.value) ? section.value.length : true));
+  ].filter((section) => getItems(section.value).length);
+
+  sectionEntries.forEach((section, sectionIndex) => {
+    slideMarkup.push(renderSectionSlide(section.label, section.value, sectionIndex + 2));
+  });
+
+  const embedSlide = renderEmbedSlide(project, slideMarkup.length + 1);
+  if (embedSlide) slideMarkup.push(embedSlide);
+
+  const appendixSlide = renderAppendixSlide(project, labels, slideMarkup.length + 1);
+  if (appendixSlide) slideMarkup.push(appendixSlide);
 
   modal.count.textContent = `${index + 1} / ${activeProjectData.length}`;
-  modal.title.textContent = project.title;
-  modal.meta.textContent = project.meta;
-  modal.tools.innerHTML = (project.tools || []).map((tool) => `<span class="project-modal__tool">${tool}</span>`).join("");
-  modal.sections.innerHTML = `
-    <section class="project-modal__section">
-      ${sections.map((section) => {
-        const items = Array.isArray(section.value) ? section.value : [section.value];
-        return `
-          <div class="project-modal__group">
-            <p class="project-modal__label">${section.label}</p>
-            <ul class="project-modal__list">${items.map((item) => `<li>${item}</li>`).join("")}</ul>
-          </div>
-        `;
-      }).join("")}
-      ${renderAppendix(project, labels)}
-    </section>
-  `;
+  modal.sections.innerHTML = slideMarkup.join("");
 
   modal.prev?.setAttribute("aria-label", labels["projects.modalPrev"] || "Previous project");
   modal.next?.setAttribute("aria-label", labels["projects.modalNext"] || "Next project");
@@ -161,3 +240,7 @@ export function initProjectModal(data) {
 
   modal.root.dataset.bound = "true";
 }
+
+
+
+

@@ -248,12 +248,59 @@
     max-height: calc(100dvh - 92px);
   }
 
-  .project-modal__section {
-    padding: 16px;
+  .project-modal__slide {
+    min-height: auto;
+    padding: 22px 18px 20px 22px;
+    border-radius: 22px;
   }
 
-  .project-modal__group--appendix {
-    padding: 14px;
+  .project-modal__slide::before {
+    width: 8px;
+    border-radius: 22px 0 0 22px;
+  }
+
+  .project-modal__slide-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .project-modal__title {
+    font-size: 1.7rem;
+  }
+
+  .project-modal__summary,
+  .project-modal__list li {
+    font-size: 0.94rem;
+  }
+  .project-modal--embed-only .project-modal__dialog {
+    width: calc(100vw - 20px);
+    margin: 10px auto;
+    padding: 0;
+  }
+
+  .project-modal--embed-only .project-modal__nav {
+    position: fixed;
+    top: 50%;
+    left: 8px;
+    right: 8px;
+    margin: 0;
+    transform: translateY(-50%);
+    justify-content: space-between;
+    pointer-events: none;
+  }
+
+  .project-modal--embed-only .project-modal__close {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+  }
+
+  .project-modal--embed-only .project-modal__arrow {
+    pointer-events: auto;
+  }
+
+  .project-modal--embed-only .project-modal__embed-frame {
+    border-radius: 12px;
   }
 
   .page-footer {
@@ -302,6 +349,10 @@ body.case-page .case-toc__link.is-active span {
     padding: 0 0 18px;
   }
 }
+
+
+
+
 
 
 

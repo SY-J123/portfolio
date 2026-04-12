@@ -1,4 +1,4 @@
-import { renderList } from "./utils.js";
+﻿import { renderList } from "./utils.js";
 
 export function renderHero(data) {
   renderList("home-summary", data.summary, (item) => `<p>${item}</p>`);
