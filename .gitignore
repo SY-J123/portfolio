@@ -1,0 +1,6 @@
+# Local agent settings
+.claude/
+
+# Local tooling installers (not part of repo)
+pandoc-*.msi
+*.msi
