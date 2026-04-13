@@ -9,7 +9,7 @@ Product Manager / Service Planner
 jsyoung456@gmail.com  
 010-3224-9483  
 Seoul, Korea  
-Portfolio / Velog
+[Portfolio](https://portfolio-bn1.pages.dev/kr/) / [Velog](https://velog.io/@bryant_/posts)
 
 ## 한 줄 소개
 
