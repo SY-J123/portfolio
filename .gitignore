@@ -4,3 +4,12 @@
 # Local tooling installers (not part of repo)
 pandoc-*.msi
 *.msi
+
+# Python virtual environment
+.venv/
+__pycache__/
+*.pyc
+
+# Analysis case data files (download from Kaggle, not in repo)
+analyses/*/data/
+.ipynb_checkpoints/
