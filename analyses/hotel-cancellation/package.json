@@ -1,0 +1,21 @@
+{
+  "name": "hotel-cancellation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "preprocess": "node scripts/preprocess_reviews.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "app-store-scraper": "^0.18.0",
+    "google-play-scraper": "^10.1.2",
+    "hangul-romanization": "^1.0.1",
+    "kuromoji": "^0.1.2",
+    "transliteration": "^2.6.1"
+  }
+}
