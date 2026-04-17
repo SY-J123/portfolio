@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 기반 문서 협업 프로세스 개선 슬라이드 덱</title>
+  <style>
+    :root {
+      --bg: #e8ebef;
+      --canvas: #fbfaf6;
+      --canvas-strong: #f7f4ee;
+      --ink: #171717;
+      --muted: #5d6470;
+      --line: rgba(23, 23, 23, 0.1);
+      --soft-line: rgba(23, 23, 23, 0.06);
+      --navy: #18314f;
+      --navy-soft: rgba(24, 49, 79, 0.08);
+      --gold: #d1a24c;
+      --gold-soft: rgba(209, 162, 76, 0.12);
+      --green-soft: rgba(91, 139, 123, 0.12);
+      --red-soft: rgba(196, 93, 75, 0.12);
+      --planner: #f6efe3;
+      --maker: #edf3f8;
+      --shadow: 0 30px 80px rgba(15, 23, 42, 0.14);
+      --radius-xl: 36px;
+      --radius-lg: 28px;
+      --radius-md: 20px;
+      --radius-sm: 14px;
+      --page-width: 1360px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 28px;
+      background:
+        radial-gradient(circle at top left, rgba(24, 49, 79, 0.12), transparent 24%),
+        radial-gradient(circle at bottom right, rgba(209, 162, 76, 0.12), transparent 20%),
+        linear-gradient(180deg, #f4f5f7 0%, #e6e8ec 100%);
+      color: var(--ink);
+      font-family: "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    }
+
+    .deck {
+      width: var(--page-width);
+      margin: 0 auto;
+      display: grid;
+      gap: 28px;
+    }
+
+    .deck-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px 20px;
+    }
+
+    .deck-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .deck-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .deck-nav a {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid rgba(255, 255, 255, 0.84);
+      color: #273142;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      backdrop-filter: blur(8px);
+    }
+
+    .slide-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+    }
+
+    .slide {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      background: var(--canvas);
+      border: 1px solid rgba(255, 255, 255, 0.78);
+      box-shadow: var(--shadow);
+      padding: 40px 44px 36px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .slide--with-footer {
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .slide::before,
+    .slide::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .slide::before {
+      width: 260px;
+      height: 260px;
+      top: -110px;
+      right: -50px;
+      background: radial-gradient(circle, rgba(24, 49, 79, 0.1), transparent 72%);
+    }
+
+    .slide::after {
+      width: 220px;
+      height: 220px;
+      left: -36px;
+      bottom: -96px;
+      background: radial-gradient(circle, rgba(209, 162, 76, 0.14), transparent 70%);
+    }
+
+    .slide > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .slide-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 20px;
+      min-height: 108px;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .slide-head > div {
+      width: 100%;
+      display: block;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--navy);
+    }
+
+    .slide-title {
+      margin: 0;
+      font-size: clamp(32px, 3vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -0.045em;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(23, 23, 23, 0.28);
+    }
+
+    .slide-subtitle {
+      margin: 3px 0 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .slide-main {
+      min-height: 0;
+      display: grid;
+      gap: 20px;
+      align-content: start;
+    }
+
+    .cover {
+      background: #fcfbf8;
+      grid-template-rows: 1fr;
+      padding: 48px 56px;
+    }
+
+    .cover-layout {
+      display: grid;
+      grid-template-columns: 1.02fr 0.9fr;
+      gap: 36px;
+      height: 100%;
+    }
+
+    .cover-main {
+      padding: 18px 10px 18px 6px;
+      display: grid;
+      align-content: start;
+    }
+
+    .cover-kicker {
+      margin: 0 0 18px;
+      color: #c6b8a1;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .cover-title {
+      margin: 0;
+      font-size: clamp(44px, 4vw, 68px);
+      line-height: 1.05;
+      letter-spacing: -0.06em;
+      max-width: 620px;
+    }
+
+    .cover-accent {
+      width: 122px;
+      height: 5px;
+      margin: 74px 0 22px;
+      background: #171717;
+    }
+
+    .cover-copy {
+      margin: 0;
+      max-width: 500px;
+      color: #263141;
+      font-size: 15px;
+      line-height: 1.55;
+      word-break: keep-all;
+    }
+
+    .cover-meta {
+      border-left: 1px solid rgba(23, 23, 23, 0.14);
+      padding: 8px 0 8px 34px;
+      display: grid;
+      align-content: start;
+    }
+
+    .meta-table {
+      display: grid;
+      grid-template-columns: 144px 1fr;
+      row-gap: 0;
+    }
+
+    .meta-row {
+      display: contents;
+    }
+
+    .meta-key,
+    .meta-value-row {
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(23, 23, 23, 0.08);
+    }
+
+    .meta-key {
+      color: #6a6f79;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .meta-value-row {
+      color: #171717;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.5;
+      word-break: keep-all;
+    }
+
+    .meta-card,
+    .flow-card,
+    .insight-card,
+    .panel,
+    .metric-card,
+    .hypothesis-card,
+    .research-card,
+    .solution-card {
+      border: 1px solid var(--soft-line);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .meta-card {
+      padding: 20px 22px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .meta-label {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .meta-value {
+      color: #243041;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .flow-card {
+      padding: 18px 20px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .flow-label {
+      margin: 0;
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .flow-steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .flow-step {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(24, 49, 79, 0.08);
+      color: #223149;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .insight-card {
+      padding: 18px 20px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .insight-card h3 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .insight-card p {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.6;
+      color: #20242c;
+    }
+
+    .summary-strip {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 18px 22px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(24, 49, 79, 0.04));
+      border: 1px solid var(--soft-line);
+    }
+
+    .summary-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: var(--navy);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .summary-strip p {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.65;
+      color: #212631;
+    }
+
+    .two-panels {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .panel {
+      padding: 24px 24px 22px;
+      display: grid;
+      gap: 16px;
+      align-content: start;
+    }
+
+    .panel--planner {
+      background: linear-gradient(180deg, rgba(246, 239, 227, 0.94), rgba(252, 249, 243, 0.98));
+    }
+
+    .panel--maker {
+      background: linear-gradient(180deg, rgba(237, 243, 248, 0.94), rgba(249, 251, 253, 0.98));
+    }
+
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .panel-title {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(23, 23, 23, 0.08);
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .panel-intro {
+      margin: 0;
+      color: #313948;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .fact-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .fact {
+      display: grid;
+      grid-template-columns: 88px 1fr;
+      gap: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(23, 23, 23, 0.08);
+    }
+
+    .fact:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .fact dt {
+      margin: 0;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .fact dd {
+      margin: 0;
+      color: #2d3440;
+      font-size: 15px;
+      line-height: 1.68;
+    }
+
+    .voice {
+      padding: 16px 18px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(23, 23, 23, 0.06);
+      color: #1e2430;
+      font-size: 17px;
+      line-height: 1.6;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .bottom-strip {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 18px;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    .bottom-label {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .bottom-strip p {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.6;
+      color: #1f2430;
+    }
+
+    .problem-slide {
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .problem-matrix {
+      width: min(100%, 1180px);
+      justify-self: center;
+      border: 1px solid rgba(23, 23, 23, 0.14);
+      background: rgba(255, 255, 255, 0.9);
+      display: grid;
+      gap: 0;
+      overflow: hidden;
+    }
+
+    .problem-matrix__row {
+      display: grid;
+      grid-template-columns: 120px repeat(4, minmax(0, 1fr));
+    }
+
+    .problem-matrix__row + .problem-matrix__row {
+      border-top: 1px solid rgba(23, 23, 23, 0.12);
+    }
+
+    .problem-matrix__row .problem-matrix__cell:nth-child(4) {
+      border-left: 2px solid rgba(23, 23, 23, 0.22);
+    }
+
+    .problem-matrix__row--grouphead .problem-matrix__cell:nth-child(3) {
+      border-left: 2px solid rgba(255, 255, 255, 0.26);
+    }
+
+    .problem-matrix__cell {
+      min-width: 0;
+      padding: 12px 12px;
+      border-right: 1px solid rgba(23, 23, 23, 0.12);
+      color: #232a35;
+      font-size: 13px;
+      line-height: 1.56;
+      word-break: keep-all;
+      background: #fff;
+    }
+
+    .problem-matrix__cell:last-child {
+      border-right: 0;
+    }
+
+    .problem-matrix__row--grouphead .problem-matrix__cell {
+      background: #2d2d2d;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: -0.01em;
+      padding: 15px 10px;
+    }
+
+    .problem-matrix__group {
+      grid-column: span 2;
+    }
+
+    .problem-matrix__row--subhead .problem-matrix__cell {
+      background: #efefef;
+      color: #1f2430;
+      font-size: 12px;
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: -0.01em;
+      padding: 12px 10px;
+    }
+
+    .problem-matrix__label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f2f2f2;
+      color: #1f2430;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      text-align: center;
+    }
+
+    .problem-matrix__content {
+      display: grid;
+      gap: 8px;
+      align-content: start;
+      background: #fbfbfb;
+    }
+
+    .problem-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 32px;
+      padding: 0 10px;
+      background: #ececec;
+      color: #20242c;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      text-align: center;
+    }
+
+    .problem-matrix__content p {
+      margin: 0;
+    }
+
+    .problem-matrix__voice {
+      background: #f7f7f7;
+      color: #1d2737;
+    }
+
+    .problem-stack {
+      display: grid;
+      gap: 10px;
+    }
+
+    .problem-item {
+      display: grid;
+      gap: 8px;
+      padding: 10px 10px 12px;
+      border: 1px solid rgba(23, 23, 23, 0.08);
+      background: #ffffff;
+    }
+
+    .problem-item--voice {
+      background: #f8f8f8;
+    }
+
+    .voice-bubble {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .voice-body {
+      display: grid;
+      gap: 6px;
+      align-content: start;
+    }
+
+    .voice-role {
+      color: #1f2430;
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .voice-icon {
+      position: relative;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(24, 49, 79, 0.1);
+      flex-shrink: 0;
+    }
+
+    .voice-icon::before {
+      content: "";
+      position: absolute;
+      top: 7px;
+      left: 9px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #20314a;
+    }
+
+    .voice-icon::after {
+      content: "";
+      position: absolute;
+      left: 7px;
+      bottom: 5px;
+      width: 18px;
+      height: 9px;
+      border-radius: 12px 12px 8px 8px;
+      background: #20314a;
+    }
+
+    .voice-quote {
+      position: relative;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(24, 49, 79, 0.06);
+      font-weight: 600;
+      line-height: 1.58;
+    }
+
+    .voice-quote::before {
+      content: "";
+      position: absolute;
+      top: 11px;
+      left: -7px;
+      width: 12px;
+      height: 12px;
+      background: rgba(24, 49, 79, 0.06);
+      clip-path: polygon(100% 0, 0 50%, 100% 100%);
+    }
+
+    .hypothesis-grid {
+      width: min(100%, 1040px);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      align-content: start;
+      grid-auto-rows: 1fr;
+      justify-self: center;
+    }
+
+    .hypothesis-card {
+      padding: 24px;
+      display: grid;
+      gap: 16px;
+      background: #f1f1f1;
+      border-radius: 0;
+    }
+
+    .hypothesis-card h3,
+    .research-card h3,
+    .solution-card h3,
+    .metric-card h3 {
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+    }
+
+    .hypothesis-card p,
+    .research-card p,
+    .solution-card p,
+    .metric-card p {
+      margin: 0;
+      color: #313948;
+      font-size: 16px;
+      line-height: 1.68;
+    }
+
+    .evidence {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background: rgba(24, 49, 79, 0.05);
+      color: #243041;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .meta-label {
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.6;
+    }
+
+    .meta-section {
+      display: grid;
+      gap: 4px;
+    }
+
+    .goal-list {
+      margin: 0;
+      padding-left: 20px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .goal-list li {
+      color: #313948;
+      font-size: 16px;
+      line-height: 1.68;
+    }
+
+    .research-layout {
+      display: grid;
+      gap: 16px;
+      align-content: start;
+      min-height: 0;
+    }
+
+    .research-block {
+      border: 0;
+      background: transparent;
+      display: grid;
+      gap: 10px;
+      padding: 0;
+    }
+
+    .research-block__head {
+      display: grid;
+      gap: 4px;
+    }
+
+    .research-block__title {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.25;
+      letter-spacing: -0.03em;
+    }
+
+    .research-block__caption {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .research-flow {
+      display: grid;
+      justify-items: center;
+      gap: 8px;
+      padding: 2px 0;
+    }
+
+    .research-flow__arrow {
+      font-size: 28px;
+      line-height: 1;
+      color: #2f3744;
+      font-weight: 700;
+    }
+
+    .research-flow__text {
+      margin: 0;
+      color: #2f3744;
+      font-size: 14px;
+      line-height: 1.5;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .research-note {
+      margin: 0;
+      padding: 8px 10px;
+      background: rgba(24, 49, 79, 0.06);
+      color: #243041;
+      font-size: 13px;
+      line-height: 1.55;
+      font-weight: 700;
+    }
+
+    .research-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      background: rgba(255, 255, 255, 0.96);
+    }
+
+    .research-table th,
+    .research-table td {
+      border: 1px solid rgba(23, 23, 23, 0.12);
+      padding: 10px 12px;
+      vertical-align: top;
+      text-align: left;
+      font-size: 13px;
+      line-height: 1.55;
+      word-break: keep-all;
+    }
+
+    .research-table thead th {
+      background: #2b2b2b;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .research-table tbody th {
+      width: 120px;
+      background: rgba(23, 23, 23, 0.04);
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .research-card {
+      padding: 22px 22px 20px;
+      display: grid;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.78);
+    }
+
+    .research-card--navy {
+      background: linear-gradient(180deg, rgba(24, 49, 79, 0.98), rgba(31, 56, 88, 0.98));
+      color: #fff;
+    }
+
+    .research-card--navy p,
+    .research-card--navy h3,
+    .research-card--navy li {
+      color: #fff;
+    }
+
+    .bullet-list {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 10px;
+      color: #2f3744;
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .bullet-list strong {
+      color: var(--ink);
+    }
+
+    .research-card--navy .bullet-list strong {
+      color: #fff;
+    }
+
+    .solution-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      grid-auto-rows: 1fr;
+    }
+
+    .solution-card {
+      padding: 22px 20px;
+      display: grid;
+      gap: 14px;
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .solution-step {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: var(--navy-soft);
+      color: var(--navy);
+      font-size: 16px;
+      font-weight: 900;
+    }
+
+    .result-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-items: stretch;
+      min-height: 0;
+    }
+
+    .result-column {
+      display: grid;
+      gap: 18px;
+      grid-auto-rows: min-content;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .metric-card {
+      padding: 20px 18px;
+      display: grid;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .metric-card--soft-gold {
+      background: linear-gradient(180deg, rgba(209, 162, 76, 0.14), rgba(255, 255, 255, 0.88));
+    }
+
+    .metric-card--soft-green {
+      background: linear-gradient(180deg, rgba(91, 139, 123, 0.12), rgba(255, 255, 255, 0.88));
+    }
+
+    .metric-card--soft-red {
+      background: linear-gradient(180deg, rgba(196, 93, 75, 0.12), rgba(255, 255, 255, 0.88));
+    }
+
+    .metric-card--soft-navy {
+      background: linear-gradient(180deg, rgba(24, 49, 79, 0.1), rgba(255, 255, 255, 0.88));
+    }
+
+    .metric-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .metric-value {
+      font-size: 26px;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      font-weight: 800;
+    }
+
+    .foot-note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+      padding: 0 2px;
+    }
+
+    .role-lineup {
+      display: grid;
+      gap: 22px;
+      align-content: start;
+    }
+
+    .lineup-row {
+      display: grid;
+      gap: 12px;
+    }
+
+    .lineup-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lineup-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(23, 23, 23, 0.08);
+      color: #3b3b3b;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .lineup-row--to-be .lineup-tag {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .lineup-summary {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .lineup-summary strong {
+      color: var(--ink);
+      font-size: 20px;
+      letter-spacing: -0.03em;
+    }
+
+    .role-cards {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .role-card {
+      position: relative;
+      width: 228px;
+      padding: 20px 18px 18px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-areas:
+        "icon name"
+        "facts facts";
+      column-gap: 12px;
+      row-gap: 16px;
+      border: 1px solid rgba(23, 23, 23, 0.1);
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.92);
+      align-content: start;
+    }
+
+    .role-card > .person-stack {
+      grid-area: icon;
+    }
+
+    .role-card > .role-name {
+      grid-area: name;
+      align-self: center;
+    }
+
+    .role-card > .role-facts {
+      grid-area: facts;
+    }
+
+
+    .role-card__badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: var(--gold);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .person-stack {
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 32px;
+    }
+
+    .person-icon {
+      position: relative;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(24, 49, 79, 0.1);
+      flex-shrink: 0;
+    }
+
+    .person-icon::before {
+      content: "";
+      position: absolute;
+      top: 7px;
+      left: 9px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #20314a;
+    }
+
+    .person-icon::after {
+      content: "";
+      position: absolute;
+      left: 7px;
+      bottom: 5px;
+      width: 18px;
+      height: 9px;
+      border-radius: 12px 12px 8px 8px;
+      background: #20314a;
+    }
+
+
+    .role-name {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      font-weight: 800;
+    }
+
+    .role-facts {
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .role-fact {
+      display: grid;
+      gap: 4px;
+      padding-top: 11px;
+      border-top: 1px solid rgba(23, 23, 23, 0.08);
+    }
+
+    .role-fact:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .role-fact dt {
+      margin: 0;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .role-fact dd {
+      margin: 0;
+      color: #2d3440;
+      font-size: 14px;
+      line-height: 1.55;
+      word-break: keep-all;
+    }
+
+  </style>
+</head>
+<body>
+  <main class="deck">
+    <header class="deck-head">
+      <p>Editable HTML Slide Deck</p>
+      <nav class="deck-nav" aria-label="슬라이드 바로가기">
+        <a href="#cover">표지</a>
+        <a href="#problem">문제 정의</a>
+        <a href="#hypothesis">가설 수립</a>
+        <a href="#research">조사</a>
+      </nav>
+    </header>
+
+    <section class="slide-frame" id="cover">
+      <article class="slide cover" aria-label="표지 슬라이드">
+        <section class="cover-layout">
+          <div class="cover-main">
+            <h1 class="cover-title">AI 기반 업무 프로세스 개선</h1>
+            <div class="cover-accent" aria-hidden="true"></div>
+            <p class="cover-copy">
+              분산된 협업 도구와 프로세스 부재로 제작 효율이 저하되었습니다.<br>
+              AI 기반 통합 체계 수립으로 워크플로우를 재구성해 업무<br>
+              프로세스를 효율화했습니다.
+            </p>
+          </div>
+
+          <aside class="cover-meta" aria-label="프로젝트 개요">
+            <div class="meta-table">
+              <div class="meta-row">
+                <div class="meta-key">회사 / 팀</div>
+                <div class="meta-value-row">LULU.AI / 서비스기획팀</div>
+              </div>
+              <div class="meta-row">
+                <div class="meta-key">역할</div>
+                <div class="meta-value-row">서비스 기획자</div>
+              </div>
+              <div class="meta-row">
+                <div class="meta-key">기간</div>
+                <div class="meta-value-row">2025.12 – 2026.03</div>
+              </div>
+              <div class="meta-row">
+                <div class="meta-key">팀 구성</div>
+                <div class="meta-value-row">기획 1</div>
+              </div>
+              <div class="meta-row">
+                <div class="meta-key">기여도</div>
+                <div class="meta-value-row">기획 100% · 문서화 100%</div>
+              </div>
+              <div class="meta-row">
+                <div class="meta-key">사용 도구</div>
+                <div class="meta-value-row">Claude Code · GitHub · Figma · Notion</div>
+              </div>
+            </div>
+          </aside>
+        </section>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="problem">
+      <article class="slide" aria-label="문제 정의 슬라이드">
+        <header class="slide-head">
+          <div>
+            <h2 class="slide-title">문제 정의</h2>
+            <p class="slide-subtitle">
+            분산된 협업 도구와 산출물 과다로 인해 기획과 제작 모두에서 품질 저하와 작업 비효율이 발생하고 있었다.
+            </p>
+          </div>
+        </header>
+
+        <div class="slide-main problem-slide">
+          <section class="problem-matrix" aria-label="문제 정의 매트릭스">
+            <div class="problem-matrix__row problem-matrix__row--grouphead">
+              <div class="problem-matrix__cell">구분</div>
+              <div class="problem-matrix__cell problem-matrix__group">기획</div>
+              <div class="problem-matrix__cell problem-matrix__group">제작</div>
+            </div>
+
+            <div class="problem-matrix__row problem-matrix__row--subhead">
+              <div class="problem-matrix__cell">세부 이슈</div>
+              <div class="problem-matrix__cell">산출물 과다</div>
+              <div class="problem-matrix__cell">문서 정합성 저하</div>
+              <div class="problem-matrix__cell">작업 기준 불명확</div>
+              <div class="problem-matrix__cell">정합성 저하</div>
+            </div>
+
+            <div class="problem-matrix__row">
+              <div class="problem-matrix__cell problem-matrix__label">Situation</div>
+              <div class="problem-matrix__cell problem-matrix__content">
+                <p>제한된 시간 안에 여러 산출물을 병행 작성해야 해 각 문서의 기획 의도를 충분히 구체화하기 어려웠다.</p>
+              </div>
+              <div class="problem-matrix__cell problem-matrix__content">
+                <p>문서가 여러 도구에 분산되어 동일 내용을 반복 입력하고 함께 수정해야 했다.</p>
+              </div>
+              <div class="problem-matrix__cell problem-matrix__content">
+                <p>기획 산출물에 담긴 작업 기준이 충분히 구체적이지 않아 작업자가 구현 기준을 한 번에 파악하기 어려웠다.</p>
+              </div>
+              <div class="problem-matrix__cell problem-matrix__content">
+                <p>제작 기준 문서가 여러 버전으로 존재해 같은 기능도 서로 다른 설명이 병존했다.</p>
+              </div>
+            </div>
+
+            <div class="problem-matrix__row">
+              <div class="problem-matrix__cell problem-matrix__label">Pain Point</div>
+              <div class="problem-matrix__cell problem-matrix__content">
+                <p>산출물마다 기획 완성도가 고르지 못해 후속 작업자가 기준을 해석하거나 보완해야 하는 지점이 생겼다.</p>
+              </div>
+              <div class="problem-matrix__cell problem-matrix__content">
+                <p>작은 변경에도 여러 산출물을 함께 수정해야 해 내용 충돌이 쉽게 발생했다.</p>
+              </div>
+              <div class="problem-matrix__cell problem-matrix__content">
+                <p>작업 기준을 반복적으로 해석하고 확인해야 해 질문과 재확인이 늘었고, 작업 흐름이 자주 끊겼다.</p>
+              </div>
+              <div class="problem-matrix__cell problem-matrix__content">
+                <p>문서마다 내용이 조금씩 달라 어떤 내용을 기준으로 구현해야 하는지 혼선이 생겼다.</p>
+              </div>
+            </div>
+
+            <div class="problem-matrix__row">
+              <div class="problem-matrix__cell problem-matrix__label">Voice</div>
+              <div class="problem-matrix__cell problem-matrix__voice">
+                <div class="voice-bubble">
+                  <span class="voice-icon" aria-hidden="true"></span>
+                  <div class="voice-body">
+                    <div class="voice-role">기획자</div>
+                    <div class="voice-quote">“기획보다 문서 정리와 수정에 더 많은 시간을 쓰고 있어요.”</div>
+                  </div>
+                </div>
+              </div>
+              <div class="problem-matrix__cell problem-matrix__voice">
+                <div class="voice-bubble">
+                  <span class="voice-icon" aria-hidden="true"></span>
+                  <div class="voice-body">
+                    <div class="voice-role">기획자</div>
+                    <div class="voice-quote">“문서가 많아서 뭐가 최신 내용인지 헷갈려요.”</div>
+                  </div>
+                </div>
+              </div>
+              <div class="problem-matrix__cell problem-matrix__voice">
+                <div class="voice-bubble">
+                  <span class="voice-icon" aria-hidden="true"></span>
+                  <div class="voice-body">
+                    <div class="voice-role">디자이너</div>
+                    <div class="voice-quote">“이 내용은 어떻게 하면 되는 거지?”</div>
+                  </div>
+                </div>
+              </div>
+              <div class="problem-matrix__cell problem-matrix__voice">
+                <div class="voice-bubble">
+                  <span class="voice-icon" aria-hidden="true"></span>
+                  <div class="voice-body">
+                    <div class="voice-role">개발자</div>
+                    <div class="voice-quote">“이 문서에는 A라고 되어 있고 저 문서에는 B라고 되어 있네.”</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="problem-matrix__row">
+              <div class="problem-matrix__cell problem-matrix__label">Needs</div>
+              <div class="problem-matrix__cell problem-matrix__content">
+                <p>문서 관리 부담을 줄이고, 기획 본연의 판단과 설계에 더 많은 시간을 쓰고 싶다.</p>
+              </div>
+              <div class="problem-matrix__cell problem-matrix__content">
+                <p>변경이 생겨도 한 번에 정합성을 유지할 수 있는 구조가 필요하다.</p>
+              </div>
+              <div class="problem-matrix__cell problem-matrix__content">
+                <p>더 명확하게 정리된 기획 내용을 전달받고 싶다.</p>
+              </div>
+              <div class="problem-matrix__cell problem-matrix__content">
+                <p>제작 기준이 일관되게 유지되어 재확인 없이 구현하고 싶다.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+
+      </article>
+    </section>
+
+    <section class="slide-frame" id="hypothesis">
+      <article class="slide" aria-label="가설 수립 슬라이드">
+        <header class="slide-head">
+          <div>
+            <h2 class="slide-title">가설 수립</h2>
+            <p class="slide-subtitle">
+              [가설 슬라이드 부제 Placeholder]
+            </p>
+          </div>
+        </header>
+
+        <div class="slide-main">
+        <section class="hypothesis-grid">
+          <article class="hypothesis-card">
+            <h3>가설 1</h3>
+            <p>
+              산출물 수를 줄인다면 산출물 부담이 적어져 각 산출물의 완성도를 더 높일 수 있을 것이다.
+            </p>
+            <div class="meta-section">
+              <div class="meta-label">연관 이슈</div>
+              <ul class="goal-list">
+                <li>산출물 과다</li>
+                <li>작업 기준 불명확</li>
+              </ul>
+            </div>
+            <div class="meta-section">
+              <div class="meta-label">목표</div>
+              <ul class="goal-list">
+                <li>산출물 최소 2개 줄이기</li>
+                <li>정식 프로세스로 줄이기</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="hypothesis-card">
+            <h3>가설 2</h3>
+            <p>
+              산출물을 하나의 장소에 저장하고 AI로 유지보수를 자동화하면 유지보수 부담이 줄어들 것이다.
+            </p>
+            <div class="meta-section">
+              <div class="meta-label">연관 이슈</div>
+              <ul class="goal-list">
+                <li>문서 정합성 저하</li>
+                <li>정합성 저하</li>
+              </ul>
+            </div>
+            <div class="meta-section">
+              <div class="meta-label">목표</div>
+              <ul class="goal-list">
+                <li>모든 문서를 하나의 플랫폼에서 관리</li>
+              </ul>
+            </div>
+          </article>
+        </section>
+        </div>
+
+      </article>
+    </section>
+
+    <section class="slide-frame" id="research">
+      <article class="slide slide--with-footer" aria-label="조사 슬라이드">
+        <header class="slide-head">
+          <div>
+            <h2 class="slide-title">리서치</h2>
+            <p class="slide-subtitle">
+              대기업 프로세스가 가장 고도화되어 있다고 판단해 대기업 재직자 인터뷰로 담당자별 프로세스를 파악한 뒤, 우리 조직 구조와 비교했다.
+            </p>
+          </div>
+        </header>
+
+        <div class="slide-main">
+        <section class="research-layout">
+          <!--
+          <div class="research-column">
+            <article class="research-card">
+              <h3>문서 수가 늘어날수록 변경 지점이 함께 늘어났다</h3>
+              <ul class="bullet-list">
+                <li><strong>기획 단계</strong>에서 화면설계서, 기능 정의서, 정책서가 분리될수록 중복 입력이 많아졌다.</li>
+                <li><strong>제작 단계</strong>에서는 디자인과 개발이 여러 문서를 오가며 기준을 확인해야 했다.</li>
+                <li><strong>유지보수 단계</strong>에서는 작은 변경도 여러 문서를 동시에 수정해야 했다.</li>
+              </ul>
+            </article>
+
+            <article class="research-card">
+              <h3>실무자 보이스는 공통적으로 “적은 문서, 더 명확한 기준”을 원했다</h3>
+              <ul class="bullet-list">
+                <li><strong>기획자</strong>는 문서 정리보다 판단과 설계에 집중할 시간을 원했다.</li>
+                <li><strong>디자인 / 개발</strong>은 하나의 기준 문서 흐름 안에서 정보를 빠르게 찾고 싶어 했다.</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="research-column">
+            <article class="research-card research-card--navy">
+              <h3>AI 활용 관점의 시사점</h3>
+              <p>
+                문서가 흩어진 상태보다, 프로젝트 단위 폴더 안에 일관된 구조로 저장된 상태에서
+                AI가 변경 맥락과 문서 간 관계를 더 안정적으로 읽을 가능성이 높다고 판단했다.
+              </p>
+            </article>
+
+            <article class="research-card">
+              <h3>따라서 검증해야 할 것은 명확했다</h3>
+              <ul class="bullet-list">
+                <li>문서 수를 줄이면 실제로 품질과 가독성이 올라가는가</li>
+                <li>문서를 한 구조에 모으면 유지보수 비용이 내려가는가</li>
+                <li>AI가 통합된 문서 구조 안에서 정합성 검토를 보조할 수 있는가</li>
+              </ul>
+            </article>
+          </div>
+          -->
+
+          <section class="role-lineup">
+            <div class="lineup-row lineup-row--as-is">
+              <div class="role-cards">
+                <article class="role-card">
+                  <div class="person-stack"><span class="person-icon" aria-hidden="true"></span></div>
+                  <h4 class="role-name">사업 담당자</h4>
+                  <dl class="role-facts">
+                    <div class="role-fact">
+                      <dt>주요 역할</dt>
+                      <dd>사업 목표와 요구사항을 정의한다.</dd>
+                    </div>
+                    <div class="role-fact">
+                      <dt>주요 산출물</dt>
+                      <dd>사업 요구사항, 목표, 우선순위</dd>
+                    </div>
+                  </dl>
+                </article>
+                <article class="role-card">
+                  <div class="person-stack"><span class="person-icon" aria-hidden="true"></span></div>
+                  <h4 class="role-name">서비스 기획자</h4>
+                  <dl class="role-facts">
+                    <div class="role-fact">
+                      <dt>주요 역할</dt>
+                      <dd>서비스 정책과 기능 구조를 설계한다.</dd>
+                    </div>
+                    <div class="role-fact">
+                      <dt>주요 산출물</dt>
+                      <dd>정책 문서, 기능 정의서, IA, 서비스 흐름도</dd>
+                    </div>
+                  </dl>
+                </article>
+                <article class="role-card">
+                  <div class="person-stack"><span class="person-icon" aria-hidden="true"></span></div>
+                  <h4 class="role-name">UI/UX 기획자</h4>
+                  <dl class="role-facts">
+                    <div class="role-fact">
+                      <dt>주요 역할</dt>
+                      <dd>사용자 흐름과 화면 구조를 설계한다.</dd>
+                    </div>
+                    <div class="role-fact">
+                      <dt>주요 산출물</dt>
+                      <dd>UI 정책 문서, 화면설계서</dd>
+                    </div>
+                  </dl>
+                </article>
+                <article class="role-card">
+                  <div class="person-stack"><span class="person-icon" aria-hidden="true"></span></div>
+                  <h4 class="role-name">디자이너</h4>
+                  <dl class="role-facts">
+                    <div class="role-fact">
+                      <dt>주요 역할</dt>
+                      <dd>화면 시각화와 인터랙션을 설계한다.</dd>
+                    </div>
+                    <div class="role-fact">
+                      <dt>주요 산출물</dt>
+                      <dd>디자인 시안, 프로토타입</dd>
+                    </div>
+                  </dl>
+                </article>
+              </div>
+            </div>
+
+            <div class="lineup-row lineup-row--to-be">
+              <div class="role-cards">
+                <article class="role-card">
+                  <div class="person-stack"><span class="person-icon" aria-hidden="true"></span></div>
+                  <h4 class="role-name">사업 담당자</h4>
+                  <dl class="role-facts">
+                    <div class="role-fact">
+                      <dt>주요 역할</dt>
+                      <dd>사업 목표와 요구사항을 정의한다.</dd>
+                    </div>
+                    <div class="role-fact">
+                      <dt>주요 산출물</dt>
+                      <dd>사업 요구사항, 목표, 우선순위</dd>
+                    </div>
+                  </dl>
+                </article>
+                <article class="role-card role-card--merged">
+                  <div class="person-stack"><span class="person-icon" aria-hidden="true"></span></div>
+                  <h4 class="role-name">기획자</h4>
+                  <dl class="role-facts">
+                    <div class="role-fact">
+                      <dt>주요 역할</dt>
+                      <dd>정책, 기능 정의, 사용자 흐름, 화면 구조를 통합 설계한다.</dd>
+                    </div>
+                    <div class="role-fact">
+                      <dt>주요 산출물</dt>
+                      <dd>정책 문서, 기능 정의서, IA, 화면설계서, 서비스 흐름도</dd>
+                    </div>
+                  </dl>
+                </article>
+                <article class="role-card">
+                  <div class="person-stack"><span class="person-icon" aria-hidden="true"></span></div>
+                  <h4 class="role-name">디자이너</h4>
+                  <dl class="role-facts">
+                    <div class="role-fact">
+                      <dt>주요 역할</dt>
+                      <dd>화면 시각화와 최종 디자인을 설계한다.</dd>
+                    </div>
+                    <div class="role-fact">
+                      <dt>주요 산출물</dt>
+                      <dd>UI 정책 문서, 디자인 시안, 프로토타입</dd>
+                    </div>
+                  </dl>
+                </article>
+              </div>
+            </div>
+          </section>
+        </section>
+        </div>
+
+        <footer class="bottom-strip">
+          <div class="bottom-label">Insight</div>
+          <p>고도화된 프로세스와 최대한 유사하지만 우리 조직 상황에 맞게 정립할 필요가 있었다.</p>
+        </footer>
+      </article>
+    </section>
+
+  </main>
+</body>
+</html>
