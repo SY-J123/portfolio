@@ -163,10 +163,11 @@ body {
 
 .slide-subtitle {
   margin: 3px 0 0;
-  max-width: 760px;
+  max-width: 1100px;
   color: var(--muted);
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.6;
+  word-break: keep-all;
 }
 
 .slide-main {
@@ -192,7 +193,7 @@ body {
 .cover-main {
   padding: 18px 10px 18px 6px;
   display: grid;
-  align-content: start;
+  align-content: center;
 }
 
 .cover-kicker {
@@ -206,16 +207,17 @@ body {
 
 .cover-title {
   margin: 0;
-  font-size: clamp(44px, 4vw, 68px);
+  font-size: clamp(36px, 3vw, 48px);
   line-height: 1.05;
   letter-spacing: -0.06em;
-  max-width: 620px;
+  max-width: 680px;
+  white-space: nowrap;
 }
 
 .cover-accent {
   width: 122px;
   height: 5px;
-  margin: 74px 0 22px;
+  margin: 24px 0 22px;
   background: #171717;
 }
 
@@ -232,7 +234,7 @@ body {
   border-left: 1px solid rgba(23, 23, 23, 0.14);
   padding: 8px 0 8px 34px;
   display: grid;
-  align-content: start;
+  align-content: center;
 }
 
 .meta-table {
