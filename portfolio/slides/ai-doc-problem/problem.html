@@ -1,0 +1,116 @@
+<article class="slide" aria-label="문제 정의 슬라이드">
+  <header class="slide-head">
+    <div>
+      <h2 class="slide-title">문제 정의</h2>
+      <p class="slide-subtitle">
+        분산된 협업 도구와 산출물 과다로 인해 기획과 제작 모두에서 품질 저하와 작업 비효율이 발생하고 있었다.
+      </p>
+    </div>
+  </header>
+
+  <div class="slide-main problem-slide">
+    <section class="problem-matrix" aria-label="문제 정의 매트릭스">
+      <div class="problem-matrix__row problem-matrix__row--grouphead">
+        <div class="problem-matrix__cell">구분</div>
+        <div class="problem-matrix__cell problem-matrix__group">기획</div>
+        <div class="problem-matrix__cell problem-matrix__group">제작</div>
+      </div>
+
+      <div class="problem-matrix__row problem-matrix__row--subhead">
+        <div class="problem-matrix__cell">세부 이슈</div>
+        <div class="problem-matrix__cell">산출물 과다</div>
+        <div class="problem-matrix__cell">문서 정합성 저하</div>
+        <div class="problem-matrix__cell">작업 기준 불명확</div>
+        <div class="problem-matrix__cell">정합성 저하</div>
+      </div>
+
+      <div class="problem-matrix__row">
+        <div class="problem-matrix__cell problem-matrix__label">Situation</div>
+        <div class="problem-matrix__cell problem-matrix__content">
+          <p>제한된 시간 안에 여러 산출물을 병행 작성해야 해 각 문서의 기획 의도를 충분히 구체화하기 어려웠다.</p>
+        </div>
+        <div class="problem-matrix__cell problem-matrix__content">
+          <p>문서가 여러 도구에 분산되어 동일 내용을 반복 입력하고 함께 수정해야 했다.</p>
+        </div>
+        <div class="problem-matrix__cell problem-matrix__content">
+          <p>기획 산출물에 담긴 작업 기준이 충분히 구체적이지 않아 작업자가 구현 기준을 한 번에 파악하기 어려웠다.</p>
+        </div>
+        <div class="problem-matrix__cell problem-matrix__content">
+          <p>제작 기준 문서가 여러 버전으로 존재해 같은 기능도 서로 다른 설명이 병존했다.</p>
+        </div>
+      </div>
+
+      <div class="problem-matrix__row">
+        <div class="problem-matrix__cell problem-matrix__label">Pain Point</div>
+        <div class="problem-matrix__cell problem-matrix__content">
+          <p>산출물마다 기획 완성도가 고르지 못해 후속 작업자가 기준을 해석하거나 보완해야 하는 지점이 생겼다.</p>
+        </div>
+        <div class="problem-matrix__cell problem-matrix__content">
+          <p>작은 변경에도 여러 산출물을 함께 수정해야 해 내용 충돌이 쉽게 발생했다.</p>
+        </div>
+        <div class="problem-matrix__cell problem-matrix__content">
+          <p>작업 기준을 반복적으로 해석하고 확인해야 해 질문과 재확인이 늘었고, 작업 흐름이 자주 끊겼다.</p>
+        </div>
+        <div class="problem-matrix__cell problem-matrix__content">
+          <p>문서마다 내용이 조금씩 달라 어떤 내용을 기준으로 구현해야 하는지 혼선이 생겼다.</p>
+        </div>
+      </div>
+
+      <div class="problem-matrix__row">
+        <div class="problem-matrix__cell problem-matrix__label">Voice</div>
+        <div class="problem-matrix__cell problem-matrix__voice">
+          <div class="voice-bubble">
+            <span class="voice-icon" aria-hidden="true"></span>
+            <div class="voice-body">
+              <div class="voice-role">기획자</div>
+              <div class="voice-quote">“기획보다 문서 정리와 수정에 더 많은 시간을 쓰고 있어요.”</div>
+            </div>
+          </div>
+        </div>
+        <div class="problem-matrix__cell problem-matrix__voice">
+          <div class="voice-bubble">
+            <span class="voice-icon" aria-hidden="true"></span>
+            <div class="voice-body">
+              <div class="voice-role">기획자</div>
+              <div class="voice-quote">“문서가 많아서 뭐가 최신 내용인지 헷갈려요.”</div>
+            </div>
+          </div>
+        </div>
+        <div class="problem-matrix__cell problem-matrix__voice">
+          <div class="voice-bubble">
+            <span class="voice-icon" aria-hidden="true"></span>
+            <div class="voice-body">
+              <div class="voice-role">디자이너</div>
+              <div class="voice-quote">“이 내용은 어떻게 하면 되는 거지?”</div>
+            </div>
+          </div>
+        </div>
+        <div class="problem-matrix__cell problem-matrix__voice">
+          <div class="voice-bubble">
+            <span class="voice-icon" aria-hidden="true"></span>
+            <div class="voice-body">
+              <div class="voice-role">개발자</div>
+              <div class="voice-quote">“이 문서에는 A라고 되어 있고 저 문서에는 B라고 되어 있네.”</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="problem-matrix__row">
+        <div class="problem-matrix__cell problem-matrix__label">Needs</div>
+        <div class="problem-matrix__cell problem-matrix__content">
+          <p>문서 관리 부담을 줄이고, 기획 본연의 판단과 설계에 더 많은 시간을 쓰고 싶다.</p>
+        </div>
+        <div class="problem-matrix__cell problem-matrix__content">
+          <p>변경이 생겨도 한 번에 정합성을 유지할 수 있는 구조가 필요하다.</p>
+        </div>
+        <div class="problem-matrix__cell problem-matrix__content">
+          <p>더 명확하게 정리된 기획 내용을 전달받고 싶다.</p>
+        </div>
+        <div class="problem-matrix__cell problem-matrix__content">
+          <p>제작 기준이 일관되게 유지되어 재확인 없이 구현하고 싶다.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</article>
