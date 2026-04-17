@@ -813,6 +813,147 @@
       min-height: 0;
     }
 
+    .solution-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      align-items: stretch;
+    }
+
+    .solution-left {
+      display: grid;
+      gap: 18px;
+      align-content: start;
+      min-height: 0;
+      padding-right: 28px;
+      border-right: 1px solid rgba(23, 23, 23, 0.14);
+    }
+
+    .solution-outcomes {
+      padding-left: 28px;
+    }
+
+    .solution-left .research-table {
+      margin: 0 auto;
+    }
+
+    .solution-notes {
+      display: grid;
+      gap: 4px;
+      font-size: 12px;
+      line-height: 1.55;
+      color: #2d3440;
+    }
+
+    .solution-notes__item {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 4px;
+    }
+
+    .solution-notes__num {
+      color: var(--navy);
+      font-weight: 800;
+    }
+
+    .solution-outcomes {
+      display: grid;
+      gap: 18px;
+      grid-auto-rows: 1fr;
+    }
+
+    .outcome-card {
+      padding: 28px 30px;
+      border: 1px solid var(--soft-line);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.82);
+      display: grid;
+      gap: 12px;
+      align-content: center;
+    }
+
+    .outcome-card__label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .outcome-card__value {
+      margin: 0;
+      font-size: 32px;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .outcome-card__value em {
+      font-style: normal;
+      color: var(--navy);
+      font-size: 44px;
+      letter-spacing: -0.04em;
+      margin-right: 4px;
+    }
+
+    .outcome-card__desc {
+      margin: 0;
+      color: #2d3440;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .approach-card {
+      padding: 20px 22px;
+      border: 1px solid var(--soft-line);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.85);
+      display: grid;
+      grid-template-columns: 30px 1fr;
+      grid-template-areas:
+        "num title"
+        "desc desc";
+      column-gap: 12px;
+      row-gap: 8px;
+      align-content: start;
+    }
+
+    .approach-card__num {
+      grid-area: num;
+      align-self: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      background: var(--navy);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .approach-card__title {
+      grid-area: title;
+      align-self: center;
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .approach-card p {
+      grid-area: desc;
+      margin: 0;
+      color: #2d3440;
+      font-size: 13px;
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
     .research-block {
       border: 0;
       background: transparent;
@@ -874,7 +1015,7 @@
     }
 
     .research-table {
-      width: 100%;
+      width: 70%;
       border-collapse: collapse;
       table-layout: fixed;
       background: rgba(255, 255, 255, 0.96);
@@ -903,6 +1044,45 @@
       background: rgba(23, 23, 23, 0.04);
       font-weight: 800;
       color: var(--ink);
+    }
+
+    .research-table .cell-list {
+      margin: 0;
+      padding-left: 16px;
+      display: grid;
+      gap: 4px;
+    }
+
+    .research-table .cell-list li {
+      line-height: 1.55;
+    }
+
+    .research-table .cell-list li.cell-list__reduced {
+      color: #c4513a;
+      text-decoration: line-through;
+      font-weight: 700;
+    }
+
+    .research-table .cell-list li.cell-list__added {
+      color: #2f7a5a;
+      font-weight: 700;
+    }
+
+    .research-table .cell-list li.cell-list__merged {
+      color: #b8802a;
+      font-weight: 700;
+    }
+
+    .cell-note {
+      margin-left: 2px;
+      color: var(--navy);
+      font-size: 0.85em;
+      font-weight: 700;
+    }
+
+    .cell-list__reduced .cell-note {
+      color: #c4513a;
+      text-decoration: none;
     }
 
     .research-card {
@@ -1053,21 +1233,10 @@
     }
 
     .lineup-tag {
-      display: inline-flex;
-      align-items: center;
-      padding: 6px 14px;
-      border-radius: 999px;
-      background: rgba(23, 23, 23, 0.08);
-      color: #3b3b3b;
-      font-size: 12px;
+      color: var(--ink);
+      font-size: 16px;
       font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .lineup-row--to-be .lineup-tag {
-      background: var(--navy);
-      color: #fff;
+      letter-spacing: -0.01em;
     }
 
     .lineup-summary {
@@ -1228,6 +1397,7 @@
         <a href="#problem">문제 정의</a>
         <a href="#hypothesis">가설 수립</a>
         <a href="#research">조사</a>
+        <a href="#solution">해결방안</a>
       </nav>
     </header>
 
@@ -1402,7 +1572,7 @@
           <div>
             <h2 class="slide-title">가설 수립</h2>
             <p class="slide-subtitle">
-              [가설 슬라이드 부제 Placeholder]
+              산출물 과다와 내용 부정확이라는 문제에 대해, 산출물을 '적게·정확히·빠르게' 작성할 수 있도록 두 가지 방향의 가설을 세웠다.
             </p>
           </div>
         </header>
@@ -1412,7 +1582,7 @@
           <article class="hypothesis-card">
             <h3>가설 1</h3>
             <p>
-              산출물 수를 줄인다면 산출물 부담이 적어져 각 산출물의 완성도를 더 높일 수 있을 것이다.
+              산출물을 감소·효율화하고 시각 자료로 기준을 명확히 하면 각 산출물에 집중할 수 있어, 더 정확한 내용을 더 빠르게 작성할 수 있을 것이다.
             </p>
             <div class="meta-section">
               <div class="meta-label">연관 이슈</div>
@@ -1424,8 +1594,16 @@
             <div class="meta-section">
               <div class="meta-label">목표</div>
               <ul class="goal-list">
-                <li>산출물 최소 2개 줄이기</li>
-                <li>정식 프로세스로 줄이기</li>
+                <li>기획 내용 정확도 향상</li>
+                <li>기획 작성 시간 단축</li>
+              </ul>
+            </div>
+            <div class="meta-section">
+              <div class="meta-label">평가방안</div>
+              <ul class="goal-list">
+                <li>와이어프레임 제거 및 바이브코딩 프로토타입 전환</li>
+                <li>IA와 서비스 흐름도 병합</li>
+                <li>UI 기능 정의서 분할 작성</li>
               </ul>
             </div>
           </article>
@@ -1456,12 +1634,12 @@
     </section>
 
     <section class="slide-frame" id="research">
-      <article class="slide slide--with-footer" aria-label="조사 슬라이드">
+      <article class="slide" aria-label="조사 슬라이드">
         <header class="slide-head">
           <div>
-            <h2 class="slide-title">리서치</h2>
+            <h2 class="slide-title">리서치 - 가설 1</h2>
             <p class="slide-subtitle">
-              대기업 프로세스가 가장 고도화되어 있다고 판단해 대기업 재직자 인터뷰로 담당자별 프로세스를 파악한 뒤, 우리 조직 구조와 비교했다.
+              대기업의 정교한 프로세스를 인터뷰로 파악한 뒤 우리 조직과 비교한 결과, 산출물 종류는 비슷하지만 담당자 수가 적어 한 사람당 담당 범위가 넓어지고, 그만큼 각 산출물의 정확도를 충분히 확보하기 어렵다는 판단을 했다.
             </p>
           </div>
         </header>
@@ -1473,7 +1651,7 @@
             <article class="research-card">
               <h3>문서 수가 늘어날수록 변경 지점이 함께 늘어났다</h3>
               <ul class="bullet-list">
-                <li><strong>기획 단계</strong>에서 화면설계서, 기능 정의서, 정책서가 분리될수록 중복 입력이 많아졌다.</li>
+                <li><strong>기획 단계</strong>에서 와이어프레임, 서비스 기능 정의서, 정책서가 분리될수록 중복 입력이 많아졌다.</li>
                 <li><strong>제작 단계</strong>에서는 디자인과 개발이 여러 문서를 오가며 기준을 확인해야 했다.</li>
                 <li><strong>유지보수 단계</strong>에서는 작은 변경도 여러 문서를 동시에 수정해야 했다.</li>
               </ul>
@@ -1510,6 +1688,9 @@
 
           <section class="role-lineup">
             <div class="lineup-row lineup-row--as-is">
+              <div class="lineup-head">
+                <span class="lineup-tag">대기업 프로세스</span>
+              </div>
               <div class="role-cards">
                 <article class="role-card">
                   <div class="person-stack"><span class="person-icon" aria-hidden="true"></span></div>
@@ -1535,7 +1716,7 @@
                     </div>
                     <div class="role-fact">
                       <dt>주요 산출물</dt>
-                      <dd>정책 문서, 기능 정의서, IA, 서비스 흐름도</dd>
+                      <dd>서비스 정책, 서비스 기능 정의서, IA, 서비스 흐름도</dd>
                     </div>
                   </dl>
                 </article>
@@ -1549,7 +1730,7 @@
                     </div>
                     <div class="role-fact">
                       <dt>주요 산출물</dt>
-                      <dd>UI 정책 문서, 화면설계서</dd>
+                      <dd>UI 규격서, UI 기능 정의서, 와이어프레임</dd>
                     </div>
                   </dl>
                 </article>
@@ -1563,7 +1744,7 @@
                     </div>
                     <div class="role-fact">
                       <dt>주요 산출물</dt>
-                      <dd>디자인 시안, 프로토타입</dd>
+                      <dd>디자인 시안, 디자인 화면 가이드, 프로토타입</dd>
                     </div>
                   </dl>
                 </article>
@@ -1571,6 +1752,9 @@
             </div>
 
             <div class="lineup-row lineup-row--to-be">
+              <div class="lineup-head">
+                <span class="lineup-tag">LULU.AI 프로세스</span>
+              </div>
               <div class="role-cards">
                 <article class="role-card">
                   <div class="person-stack"><span class="person-icon" aria-hidden="true"></span></div>
@@ -1596,7 +1780,7 @@
                     </div>
                     <div class="role-fact">
                       <dt>주요 산출물</dt>
-                      <dd>정책 문서, 기능 정의서, IA, 화면설계서, 서비스 흐름도</dd>
+                      <dd>서비스 정책, 서비스 기능 정의서, IA, UI 기능 정의서, 와이어프레임, 서비스 흐름도</dd>
                     </div>
                   </dl>
                 </article>
@@ -1610,7 +1794,7 @@
                     </div>
                     <div class="role-fact">
                       <dt>주요 산출물</dt>
-                      <dd>UI 정책 문서, 디자인 시안, 프로토타입</dd>
+                      <dd>UI 규격서, 디자인 시안, 디자인 화면 가이드</dd>
                     </div>
                   </dl>
                 </article>
@@ -1620,10 +1804,93 @@
         </section>
         </div>
 
-        <footer class="bottom-strip">
-          <div class="bottom-label">Insight</div>
-          <p>고도화된 프로세스와 최대한 유사하지만 우리 조직 상황에 맞게 정립할 필요가 있었다.</p>
-        </footer>
+      </article>
+    </section>
+
+    <section class="slide-frame" id="solution">
+      <article class="slide" aria-label="해결방안 슬라이드">
+        <header class="slide-head">
+          <div>
+            <h2 class="slide-title">해결방안 - 가설 1</h2>
+            <p class="slide-subtitle">
+              리서치에서 식별한 항목을 기준으로 기존 산출물을 감소·효율화해, 기획 내용을 더 정확하게 더 빠르게 작성할 수 있도록 재구성했다.
+            </p>
+          </div>
+        </header>
+
+        <div class="slide-main">
+          <section class="solution-split">
+            <div class="solution-left">
+            <section class="research-layout">
+            <article class="research-block">
+              <table class="research-table" aria-label="업무 구성">
+                <thead>
+                  <tr>
+                    <th>담당자</th>
+                    <th>주요 산출물</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>사업 담당자</th>
+                    <td>
+                      <ul class="cell-list">
+                        <li>사업 요구사항</li>
+                        <li>목표</li>
+                        <li>우선순위</li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>기획자</th>
+                    <td>
+                      <ul class="cell-list">
+                        <li>서비스 정책</li>
+                        <li>서비스 기능 정의서</li>
+                        <li class="cell-list__added">프로토타입</li>
+                        <li class="cell-list__merged">서비스 흐름도</li>
+                        <li class="cell-list__merged">UI 기능 정의서</li>
+                        <li class="cell-list__reduced">와이어프레임</li>
+                        <li class="cell-list__reduced">IA</li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>디자이너</th>
+                    <td>
+                      <ul class="cell-list">
+                        <li>UI 규격서</li>
+                        <li>디자인 시안</li>
+                        <li>디자인 화면 가이드</li>
+                      </ul>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </article>
+            </section>
+
+            </div>
+
+            <aside class="solution-outcomes" aria-label="산출물별 처리 방식">
+              <article class="approach-card">
+                <span class="approach-card__num">1</span>
+                <h4 class="approach-card__title">와이어프레임 제거 + 프로토타입 전환</h4>
+                <p>바이브코딩으로 프로토타입을 직접 제작해 와이어프레임보다 시각적으로 더 풍부한 화면과 간단한 인터랙션을 함께 전달하면서, 작업 기준이 불명확했던 부분을 보완했다. 동시에 와이어프레임 작성을 제거해 작성 시간을 단축했다.</p>
+              </article>
+              <article class="approach-card">
+                <span class="approach-card__num">2</span>
+                <h4 class="approach-card__title">IA를 서비스 흐름도로 병합</h4>
+                <p>IA와 서비스 흐름도는 유사한 내용이 많아 하나의 구조 문서로 병합해 관리했다.</p>
+              </article>
+              <article class="approach-card">
+                <span class="approach-card__num">3</span>
+                <h4 class="approach-card__title">UI 기능 정의서 분할 작성</h4>
+                <p>기능 위주로 작성하고, 데이터 등 구체적인 내용은 제작 완료 후 AI로 자동 정리해 작성 시간을 줄였다.</p>
+              </article>
+            </aside>
+          </section>
+        </div>
       </article>
     </section>
 
