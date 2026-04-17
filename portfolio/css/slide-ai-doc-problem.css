@@ -732,6 +732,11 @@ body {
   justify-self: center;
 }
 
+.hypothesis-grid--three {
+  width: 100%;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .hypothesis-card {
   padding: 24px;
   display: grid;
@@ -1034,6 +1039,114 @@ body {
   background: rgba(23, 23, 23, 0.04);
   font-weight: 800;
   color: var(--ink);
+}
+
+.research-table--plain thead th {
+  background: transparent;
+  color: var(--ink);
+  border-bottom: 2px solid rgba(23, 23, 23, 0.2);
+  font-size: 15px;
+}
+
+.research-table--plain th,
+.research-table--plain td {
+  text-align: center;
+  vertical-align: middle;
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 14px 14px;
+}
+
+.research-table--plain th.highlight-col,
+.research-table--plain td.highlight-col {
+  background: rgba(47, 122, 90, 0.12);
+  border-left: 2px solid #2f7a5a;
+  border-right: 2px solid #2f7a5a;
+}
+
+.research-table--plain thead th.highlight-col {
+  border-top: 2px solid #2f7a5a;
+  border-bottom: 2px solid #2f7a5a;
+}
+
+.research-table--plain tbody tr:last-child td.highlight-col {
+  border-bottom: 2px solid #2f7a5a;
+}
+
+.research-table--plain td.cell-block {
+  color: #c4513a;
+  font-weight: 700;
+  background: rgba(196, 93, 75, 0.08);
+}
+
+.qa-list {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+
+.qa-item {
+  display: grid;
+  gap: 10px;
+  padding: 20px 24px;
+  border: 1px solid var(--soft-line);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.qa-row {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.qa-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 900;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.qa-label--q {
+  background: #c4513a;
+}
+
+.qa-label--a {
+  background: var(--navy);
+}
+
+.qa-text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #1f2430;
+}
+
+.qa-text--q {
+  font-weight: 700;
+}
+
+.qa-text--a {
+  color: #2d3440;
+}
+
+.verdict-ok {
+  color: #2f7a5a;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.verdict-no {
+  color: #c4513a;
+  font-size: 20px;
+  font-weight: 900;
 }
 
 .research-table .cell-list {
