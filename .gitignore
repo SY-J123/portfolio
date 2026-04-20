@@ -13,3 +13,6 @@ __pycache__/
 # Analysis case data files (download from Kaggle, not in repo)
 analyses/*/data/
 .ipynb_checkpoints/
+
+# Chrome headless artifacts
+.chrome-profile/
