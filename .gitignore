@@ -16,3 +16,8 @@ analyses/*/data/
 
 # Chrome headless artifacts
 .chrome-profile/
+
+# VOC Dashboard
+voc-dashboard/node_modules/
+voc-dashboard/.next/
+voc-dashboard/.env.local

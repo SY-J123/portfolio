@@ -1,0 +1,359 @@
+﻿/* ===========================
+   Responsive
+   =========================== */
+@media (max-width: 1024px) {
+  .section {
+    padding: 64px 48px;
+  }
+
+  .topbar {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+
+  .profile-hero {
+    grid-template-columns: 220px minmax(0, 1fr);
+    grid-template-areas:
+      "photo body"
+      "strengths strengths";
+    gap: 40px;
+  }
+
+  .profile-hero__img {
+    max-width: 220px;
+  }
+
+  .project-modal__dialog {
+    width: min(860px, calc(100% - 32px));
+  }
+
+  .project-modal__nav {
+    left: -48px;
+    right: -48px;
+  }
+}
+
+@media (max-width: 900px) {
+  .profile-hero {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "body"
+      "strengths";
+    gap: 28px;
+    align-items: stretch;
+  }
+
+  .profile-hero__body,
+  .profile-hero__photo {
+    display: block;
+    width: 100%;
+  }
+
+  .profile-hero__photo--desktop {
+    display: none !important;
+  }
+
+  .profile-hero__photo--mobile {
+    display: block !important;
+    margin: 8px 0 18px;
+  }
+
+  .profile-hero__img-wrap {
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .profile-hero__img {
+    max-width: min(220px, 44vw);
+    margin-left: 0;
+  }
+
+  .profile-hero__work-preview {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    scroll-snap-type: none;
+  }
+
+  .cover {
+    padding: 40px var(--section-pad-x-mobile);
+  }
+
+  .cover__scroll {
+    bottom: 24px;
+  }
+
+  .topbar {
+    display: none;
+  }
+
+  .mobile-header {
+    display: flex;
+  }
+
+  .mobile-nav {
+    position: fixed;
+    inset: 60px 0 auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px 20px 20px;
+    background: rgba(255, 255, 255, 0.96);
+    border-bottom: 1px solid var(--line);
+    transform: translateY(-110%);
+    transition: transform 0.25s ease;
+    z-index: 108;
+    backdrop-filter: blur(16px);
+  }
+
+  .mobile-nav.open {
+    transform: translateY(0);
+  }
+
+  .section {
+    padding: 80px var(--section-pad-x-mobile) 48px;
+  }
+
+  .section--home {
+    min-height: auto;
+    padding-top: 88px;
+    padding-bottom: 36px;
+  }
+
+  .cover__name {
+    font-size: clamp(2.6rem, 14vw, 4rem);
+  }
+
+  .profile-hero__body {
+    max-width: none;
+    width: 100%;
+  }
+
+  .profile-hero__work-preview {
+    margin-top: 0;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .profile-hero__work-badges {
+    gap: 8px;
+  }
+
+  .work-preview-badge {
+    font-size: 0.78rem;
+  }
+
+  .case-hero,
+  .case-article {
+    margin-left: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .case-layout,
+  .case-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .case-summary {
+    padding: 0;
+  }
+
+  .case-meta__item {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 10px 0;
+  }
+
+  .case-section {
+    padding: 0 0 18px;
+  }
+
+  .case-toc {
+    position: static;
+    order: -1;
+    margin-bottom: 20px;
+  }
+
+  .framework-board {
+    padding: 20px;
+  }
+
+  .framework-flow .mermaid .label,
+  .framework-flow .mermaid foreignObject div {
+    font-size: 15px !important;
+  }
+
+  .impact-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-fab {
+    right: 20px;
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    min-width: 120px;
+    min-height: 48px;
+    padding: 13px 18px;
+    font-size: 0.82rem;
+  }
+
+  .skill-story {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 16px 0;
+  }
+
+  .learning-card {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 20px 0;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card {
+    min-height: auto;
+  }
+
+  .project-modal__dialog {
+    width: calc(100% - 20px);
+    max-height: calc(100dvh - 20px);
+    margin: 10px auto;
+    padding: 56px 18px 18px;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .project-modal__nav {
+    position: sticky;
+    top: 0;
+    margin: -38px 0 10px;
+    transform: none;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .project-modal__arrow {
+    width: 42px;
+    height: 42px;
+    font-size: 1.4rem;
+  }
+
+  .project-modal__content {
+    max-height: calc(100dvh - 92px);
+  }
+
+  .project-modal__slide {
+    min-height: auto;
+    padding: 22px 18px 20px 22px;
+    border-radius: 22px;
+  }
+
+  .project-modal__slide::before {
+    width: 8px;
+    border-radius: 22px 0 0 22px;
+  }
+
+  .project-modal__slide-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .project-modal__title {
+    font-size: 1.7rem;
+  }
+
+  .project-modal__summary,
+  .project-modal__list li {
+    font-size: 0.94rem;
+  }
+  .project-modal--embed-only .project-modal__dialog {
+    width: calc(100vw - 20px);
+    margin: 10px auto;
+    padding: 0;
+  }
+
+  .project-modal--embed-only .project-modal__nav {
+    position: fixed;
+    top: 50%;
+    left: 8px;
+    right: 8px;
+    margin: 0;
+    transform: translateY(-50%);
+    justify-content: space-between;
+    pointer-events: none;
+  }
+
+  .project-modal--embed-only .project-modal__close {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+  }
+
+  .project-modal--embed-only .project-modal__arrow {
+    pointer-events: auto;
+  }
+
+  .project-modal--embed-only .project-modal__embed-frame {
+    border-radius: 12px;
+  }
+
+  .page-footer {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 var(--section-pad-x-mobile) 32px;
+  }
+}
+
+
+
+
+
+
+
+/* Case page overrides */
+body.case-page {
+  min-height: 100vh;
+  scroll-snap-type: none;
+}
+
+body.case-page .case-content {
+  display: block;
+}
+
+body.case-page .case-section {
+  min-height: auto;
+  display: block;
+  scroll-margin-top: 32px;
+  padding: 0 0 18px;
+  margin-bottom: 32px;
+  border-bottom: 0;
+}
+
+body.case-page .case-toc__link.is-active {
+  color: var(--accent-dark);
+  font-weight: 800;
+}
+
+body.case-page .case-toc__link.is-active span {
+  color: var(--accent);
+}
+
+@media (max-width: 1024px) {
+  body.case-page .case-section {
+    padding: 0 0 18px;
+  }
+}
+
+
+
+
+
+
+
+

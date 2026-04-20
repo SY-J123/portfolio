@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 기반 문서 협업 프로세스 개선 슬라이드 덱 v2</title>
+  <link rel="stylesheet" href="css/slide-ai-doc-problem.css">
+</head>
+<body>
+  <main class="deck">
+    <header class="deck-head">
+      <p>Editable HTML Slide Deck · v2</p>
+      <nav class="deck-nav" aria-label="슬라이드 바로가기">
+        <a href="#cover">표지</a>
+        <a href="#problem">문제 정의</a>
+        <a href="#hypothesis">가설 수립</a>
+        <a href="#research">리서치</a>
+        <a href="#risk">리스크 검토</a>
+        <a href="#solution">해결방안</a>
+        <a href="#outcomes">성과</a>
+        <a href="#eod">EOD</a>
+      </nav>
+    </header>
+
+    <section class="slide-frame" id="cover" data-slide="cover"></section>
+    <section class="slide-frame" id="problem" data-slide="problem"></section>
+    <section class="slide-frame" id="hypothesis" data-slide="hypothesis"></section>
+    <section class="slide-frame" id="research" data-slide="research"></section>
+    <section class="slide-frame" id="risk" data-slide="risk"></section>
+    <section class="slide-frame" id="solution" data-slide="solution"></section>
+    <section class="slide-frame" id="outcomes" data-slide="outcomes"></section>
+    <section class="slide-frame" id="eod" data-slide="eod"></section>
+  </main>
+
+  <script>
+    (async () => {
+      const base = 'slides/ai-doc-problem-v2';
+      const slots = document.querySelectorAll('[data-slide]');
+      await Promise.all(
+        Array.from(slots).map(async (el) => {
+          const name = el.dataset.slide;
+          try {
+            const res = await fetch(`${base}/${name}.html`);
+            if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+            el.innerHTML = await res.text();
+          } catch (err) {
+            el.innerHTML = `<div style="padding:24px;color:#c4513a;font-family:monospace">Failed to load ${name}.html — ${err.message}</div>`;
+          }
+        })
+      );
+    })();
+  </script>
+</body>
+</html>

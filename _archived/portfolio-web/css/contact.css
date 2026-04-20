@@ -1,0 +1,66 @@
+/* ===========================
+   Contact
+   =========================== */
+.contact-desc {
+  max-width: 760px;
+  margin: 0 auto 32px;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.contact-cards {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 20px 28px;
+  width: var(--contact-card-width, auto);
+  min-width: 180px;
+  min-height: 92px;
+  transition: border-color 0.2s;
+}
+
+.contact-card:hover {
+  border-color: var(--accent);
+}
+
+.page-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 0 var(--section-pad-x) 40px;
+}
+
+.page-footer__copy {
+  font-size: 0.8rem;
+  color: var(--text);
+}
+
+.contact-card__label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.contact-card__value {
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.contact-note {
+  font-size: 0.82rem;
+  color: var(--text);
+}
