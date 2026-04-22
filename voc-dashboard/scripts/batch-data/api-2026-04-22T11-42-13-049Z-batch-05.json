@@ -1,0 +1,263 @@
+[
+  {
+    "external_id": "84d2b069-614f-452d-a613-bf74298d9d2b",
+    "classification": {
+      "quality_attributes": [
+        "응답 속도 체감",
+        "처리 정확성"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 70
+    }
+  },
+  {
+    "external_id": "9a3edf4c-52a9-4611-a679-d8a7ba9f22e7",
+    "classification": {
+      "quality_attributes": [
+        "크래시 빈도"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "반복/누적",
+      "severity_multiplier": 1.5,
+      "score_reality": 50
+    }
+  },
+  {
+    "external_id": "fcd79ab1-9821-4e68-954a-e9ecc5e72084",
+    "classification": {
+      "quality_attributes": [
+        "차별화 인식",
+        "응답 속도 체감"
+      ],
+      "sentiment": "긍정",
+      "sentiment_score": 10,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 90
+    }
+  },
+  {
+    "external_id": "4e00683b-1797-496e-8d95-c4cf2aa80956",
+    "classification": {
+      "quality_attributes": [
+        "처리 정확성"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 70
+    }
+  },
+  {
+    "external_id": "74b2bf14-8105-417b-a138-7658ea91e7e3",
+    "classification": {
+      "quality_attributes": [
+        "알림 적절성"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "반복/누적",
+      "severity_multiplier": 1.5,
+      "score_reality": 50
+    }
+  },
+  {
+    "external_id": "9485b1b8-2954-4799-b36c-e85efe02b5b7",
+    "classification": {
+      "quality_attributes": [
+        "앱 안정성",
+        "배터리 영향"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "이탈/강한 부정",
+      "severity_multiplier": 2,
+      "score_reality": 40
+    }
+  },
+  {
+    "external_id": "8d8dde4b-dff8-45a4-b779-f76803e8a2c8",
+    "classification": null
+  },
+  {
+    "external_id": "034d7024-8ac7-4a98-a2f1-73f4582e08a3",
+    "classification": {
+      "quality_attributes": [
+        "응답 속도 체감",
+        "처리 정확성"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 60
+    }
+  },
+  {
+    "external_id": "5965fd6d-94ec-41f7-82e2-8349cdf229a3",
+    "classification": {
+      "quality_attributes": [
+        "UI 일관성"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "반복/누적",
+      "severity_multiplier": 1.5,
+      "score_reality": 65
+    }
+  },
+  {
+    "external_id": "1b3bfd4f-b883-4860-8e85-9dee7a86f5c9",
+    "classification": {
+      "quality_attributes": [
+        "로딩 속도"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 60
+    }
+  },
+  {
+    "external_id": "ad908e36-d337-4496-b17f-a2474d43a011",
+    "classification": {
+      "quality_attributes": [
+        "오류 메시지 품질",
+        "고객지원 접근성"
+      ],
+      "sentiment": "중립",
+      "sentiment_score": 0,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 80
+    }
+  },
+  {
+    "external_id": "a3ff6b31-d34f-43df-8b57-0dfde32d8c1b",
+    "classification": {
+      "quality_attributes": [
+        "정책 투명성",
+        "공지·안내 명확성"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "반복/누적",
+      "severity_multiplier": 1.5,
+      "score_reality": 65
+    }
+  },
+  {
+    "external_id": "c60fba6d-6cca-43e0-9043-bbba11bb2757",
+    "classification": {
+      "quality_attributes": [
+        "정책 투명성",
+        "검색 효율성"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "반복/누적",
+      "severity_multiplier": 1.5,
+      "score_reality": 65
+    }
+  },
+  {
+    "external_id": "c6907bda-3b1a-4bda-bc51-20fe93a60496",
+    "classification": {
+      "quality_attributes": [
+        "크래시 빈도",
+        "앱 안정성"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "반복+이탈",
+      "severity_multiplier": 2.5,
+      "score_reality": 30
+    }
+  },
+  {
+    "external_id": "87eb13d3-4760-40ca-83a9-4aa50981a18d",
+    "classification": {
+      "quality_attributes": [
+        "공지·안내 명확성"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 60
+    }
+  },
+  {
+    "external_id": "91ab1dde-df10-46aa-90f7-23a651152b17",
+    "classification": {
+      "quality_attributes": [
+        "로딩 속도"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 70
+    }
+  },
+  {
+    "external_id": "00368624-990b-4b2e-b9a0-0ad4513ccf95",
+    "classification": {
+      "quality_attributes": [
+        "로딩 속도",
+        "오류 메시지 품질"
+      ],
+      "sentiment": "중립",
+      "sentiment_score": 0,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 80
+    }
+  },
+  {
+    "external_id": "f2f12fda-2850-4451-b7d8-5b3772be19a7",
+    "classification": {
+      "quality_attributes": [
+        "보안·개인정보"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "이탈/강한 부정",
+      "severity_multiplier": 2,
+      "score_reality": 40
+    }
+  },
+  {
+    "external_id": "b5333ece-229f-47d0-8db0-021083803b59",
+    "classification": {
+      "quality_attributes": [
+        "크래시 빈도",
+        "호환성"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 60
+    }
+  },
+  {
+    "external_id": "c8d3c475-ee2c-42e6-9360-6956aa2ead2a",
+    "classification": {
+      "quality_attributes": [
+        "응답 속도 체감"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "반복/누적",
+      "severity_multiplier": 1.5,
+      "score_reality": 50
+    }
+  }
+]

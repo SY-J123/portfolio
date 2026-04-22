@@ -1,0 +1,266 @@
+[
+  {
+    "external_id": "6e59eb0a-6ee4-41c0-b331-384a8c9a44ce",
+    "classification": {
+      "quality_attributes": [
+        "알림 적절성"
+      ],
+      "sentiment": "중립",
+      "sentiment_score": 0,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 80
+    }
+  },
+  {
+    "external_id": "3aeeef95-4d13-48d4-80b3-e9e4d9749da8",
+    "classification": {
+      "quality_attributes": [
+        "시각적 피로도"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 60
+    }
+  },
+  {
+    "external_id": "e533d95b-21c4-41a8-b8fc-863e4e385e52",
+    "classification": {
+      "quality_attributes": [
+        "정보구조 적합성"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "이탈/강한 부정",
+      "severity_multiplier": 2,
+      "score_reality": 40
+    }
+  },
+  {
+    "external_id": "d90d32d2-1cbf-4866-ab66-91fe3d3f6979",
+    "classification": {
+      "quality_attributes": [
+        "핵심가치전달력"
+      ],
+      "sentiment": "매우 긍정",
+      "sentiment_score": 20,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 100
+    }
+  },
+  {
+    "external_id": "e7341ab8-a47d-47e8-8972-7f931403fb57",
+    "classification": {
+      "quality_attributes": [
+        "로그인·인증"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 60
+    }
+  },
+  {
+    "external_id": "d5cead83-3a9d-4a1c-9173-4595eb09a3ce",
+    "classification": {
+      "quality_attributes": [
+        "로그인·인증",
+        "응답 속도 체감"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "반복+이탈",
+      "severity_multiplier": 2.5,
+      "score_reality": 30
+    }
+  },
+  {
+    "external_id": "2f53ec6a-7d2a-42b1-a85a-9145b08a6cde",
+    "classification": {
+      "quality_attributes": [
+        "처리 정확성",
+        "고객지원 접근성"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 70
+    }
+  },
+  {
+    "external_id": "23b1f384-4a3d-4562-ac6d-72bc91d7d25f",
+    "classification": {
+      "quality_attributes": [
+        "로그인·인증",
+        "호환성"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 60
+    }
+  },
+  {
+    "external_id": "51f89509-729a-4704-aab7-53cbbacc4685",
+    "classification": {
+      "quality_attributes": [
+        "응답 속도 체감",
+        "시각적 피로도"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 60
+    }
+  },
+  {
+    "external_id": "170c6e99-bcfe-44ff-97d8-d9004a9d41e4",
+    "classification": {
+      "quality_attributes": [
+        "UI 일관성",
+        "호환성"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "반복/누적",
+      "severity_multiplier": 1.5,
+      "score_reality": 65
+    }
+  },
+  {
+    "external_id": "6d4d82f1-3fb5-4df5-b841-42836bb41b05",
+    "classification": {
+      "quality_attributes": [
+        "로그인·인증"
+      ],
+      "sentiment": "중립",
+      "sentiment_score": 0,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 80
+    }
+  },
+  {
+    "external_id": "672f3b59-790f-4b96-b04b-3e199472135e",
+    "classification": {
+      "quality_attributes": [
+        "응답 속도 체감"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "반복/누적",
+      "severity_multiplier": 1.5,
+      "score_reality": 65
+    }
+  },
+  {
+    "external_id": "ff6280e0-afca-4308-a36c-4045c8cc6854",
+    "classification": {
+      "quality_attributes": [
+        "프로모션 체감"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "이탈/강한 부정",
+      "severity_multiplier": 2,
+      "score_reality": 40
+    }
+  },
+  {
+    "external_id": "8ee8a144-e9a5-44aa-826d-625c04f83833",
+    "classification": {
+      "quality_attributes": [
+        "정보구조 적합성",
+        "고객지원 접근성"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "반복/누적",
+      "severity_multiplier": 1.5,
+      "score_reality": 50
+    }
+  },
+  {
+    "external_id": "89abc99c-d3a0-4aac-a4e5-bc4f21808952",
+    "classification": {
+      "quality_attributes": [
+        "처리 정확성"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 60
+    }
+  },
+  {
+    "external_id": "597852da-d781-4029-8581-f7e72b46bbfc",
+    "classification": {
+      "quality_attributes": [
+        "처리 정확성"
+      ],
+      "sentiment": "중립",
+      "sentiment_score": 0,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 80
+    }
+  },
+  {
+    "external_id": "6c15412e-8c82-4c8d-b345-24ab48ecb9da",
+    "classification": {
+      "quality_attributes": [],
+      "sentiment": "긍정",
+      "sentiment_score": 10,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 90
+    }
+  },
+  {
+    "external_id": "db4de8f5-cb78-4ad3-b760-039578f6e7da",
+    "classification": {
+      "quality_attributes": [
+        "프로모션 체감"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 60
+    }
+  },
+  {
+    "external_id": "6d88808a-ca37-46ab-8f9f-867e5fe4589a",
+    "classification": {
+      "quality_attributes": [
+        "응답 속도 체감"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "반복/누적",
+      "severity_multiplier": 1.5,
+      "score_reality": 65
+    }
+  },
+  {
+    "external_id": "3c01c593-f4a6-4dfa-aedf-c99e32b10e03",
+    "classification": {
+      "quality_attributes": [
+        "UI 일관성"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 60
+    }
+  }
+]

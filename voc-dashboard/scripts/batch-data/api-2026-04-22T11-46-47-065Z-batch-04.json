@@ -1,0 +1,245 @@
+[
+  {
+    "external_id": "e99154c4-bc9e-4a61-be90-582d0dbf1901",
+    "classification": {
+      "quality_attributes": [
+        "응답 속도 체감"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 70
+    }
+  },
+  {
+    "external_id": "5c43de89-f94f-44cd-8e1a-2a6a5da3c7f3",
+    "classification": {
+      "quality_attributes": [
+        "알림 적절성"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "반복+이탈",
+      "severity_multiplier": 2.5,
+      "score_reality": 30
+    }
+  },
+  {
+    "external_id": "aa4e49e6-ebc4-4be6-b7c7-02abb4fce6d9",
+    "classification": {
+      "quality_attributes": [
+        "앱 안정성",
+        "호환성"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "반복/누적",
+      "severity_multiplier": 1.5,
+      "score_reality": 65
+    }
+  },
+  {
+    "external_id": "fbb37488-1a20-4cb3-99d2-1f55f19faaa6",
+    "classification": {
+      "quality_attributes": [
+        "알림 적절성"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "반복/누적",
+      "severity_multiplier": 1.5,
+      "score_reality": 50
+    }
+  },
+  {
+    "external_id": "10307a00-0d92-4d01-9e6c-241fb83cccb6",
+    "classification": {
+      "quality_attributes": [
+        "UI 일관성",
+        "응답 속도 체감"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "반복/누적",
+      "severity_multiplier": 1.5,
+      "score_reality": 65
+    }
+  },
+  {
+    "external_id": "257b89de-b797-45ff-875d-44b7fb4ba29f",
+    "classification": {
+      "quality_attributes": [],
+      "sentiment": "긍정",
+      "sentiment_score": 10,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 90
+    }
+  },
+  {
+    "external_id": "338ff9f6-3e56-47ff-a811-e0a58b4f2375",
+    "classification": null
+  },
+  {
+    "external_id": "eb87db77-c81d-4294-8960-d0ef1b3e3693",
+    "classification": {
+      "quality_attributes": [
+        "알림 적절성"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "이탈/강한 부정",
+      "severity_multiplier": 2,
+      "score_reality": 40
+    }
+  },
+  {
+    "external_id": "e8a3b872-5bd8-4afe-a9cf-20991b796e5a",
+    "classification": {
+      "quality_attributes": [
+        "호환성"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "반복/누적",
+      "severity_multiplier": 1.5,
+      "score_reality": 65
+    }
+  },
+  {
+    "external_id": "e2f3d7cb-602b-4420-abda-2deb6dca8b8d",
+    "classification": {
+      "quality_attributes": [
+        "정책 투명성"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 60
+    }
+  },
+  {
+    "external_id": "b69795a6-b170-44f7-b024-f4336899b168",
+    "classification": {
+      "quality_attributes": [],
+      "sentiment": "긍정",
+      "sentiment_score": 10,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 90
+    }
+  },
+  {
+    "external_id": "ef10d8ba-1647-4cfb-bbad-70e5684cc23c",
+    "classification": {
+      "quality_attributes": [
+        "정보구조 적합성"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 70
+    }
+  },
+  {
+    "external_id": "ac5790df-a044-46ca-98ca-5378421b8c49",
+    "classification": {
+      "quality_attributes": [
+        "알림 적절성"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "반복/누적",
+      "severity_multiplier": 1.5,
+      "score_reality": 65
+    }
+  },
+  {
+    "external_id": "1ffcdb1b-2c14-4109-b631-3319a8602be4",
+    "classification": {
+      "quality_attributes": [
+        "공지·안내 명확성"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "반복/누적",
+      "severity_multiplier": 1.5,
+      "score_reality": 65
+    }
+  },
+  {
+    "external_id": "77734a09-4992-463e-98ce-c01d382514f8",
+    "classification": {
+      "quality_attributes": [
+        "고객지원 접근성",
+        "앱 안정성"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "반복+이탈",
+      "severity_multiplier": 2.5,
+      "score_reality": 30
+    }
+  },
+  {
+    "external_id": "9b22200a-c586-4665-9c2d-a20ba71ac5b2",
+    "classification": {
+      "quality_attributes": [
+        "처리 정확성"
+      ],
+      "sentiment": "긍정",
+      "sentiment_score": 10,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 90
+    }
+  },
+  {
+    "external_id": "a59b1d9e-29ff-4c2d-a086-4927c8fbb60e",
+    "classification": null
+  },
+  {
+    "external_id": "589fa77b-71f7-4de1-bed1-bd8f54f9e60a",
+    "classification": {
+      "quality_attributes": [
+        "알림 적절성",
+        "시각적 피로도"
+      ],
+      "sentiment": "중립",
+      "sentiment_score": 0,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 80
+    }
+  },
+  {
+    "external_id": "faf031b8-713e-4553-9775-9c4ecdecf537",
+    "classification": {
+      "quality_attributes": [
+        "응답 속도 체감",
+        "정보구조 적합성"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 60
+    }
+  },
+  {
+    "external_id": "363722fb-16fd-4b9d-910a-6f557618ba96",
+    "classification": {
+      "quality_attributes": [
+        "로그인·인증"
+      ],
+      "sentiment": "긍정",
+      "sentiment_score": 10,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 90
+    }
+  }
+]

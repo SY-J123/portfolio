@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { getReviewCount, getDateRange } from "@/lib/queries";
+import classifiedSample from "@/data/google-play.classified.json";
 
 interface HeaderProps {
   tabs: readonly string[];
@@ -18,15 +17,12 @@ function fmt(iso: string | null): string {
   return `${y}.${m}.${day}`;
 }
 
+const DATA = classifiedSample as Array<{ posted_at?: string | null }>;
+const count = DATA.length;
+const dates = DATA.map((r) => r.posted_at).filter((d): d is string => !!d).sort();
+const range = { from: dates[0] ?? null, to: dates[dates.length - 1] ?? null };
+
 export default function Header({ tabs, activeTab, onTabChange }: HeaderProps) {
-  const [count, setCount] = useState(0);
-  const [range, setRange] = useState<{ from: string | null; to: string | null }>({ from: null, to: null });
-
-  useEffect(() => {
-    getReviewCount().then(setCount);
-    getDateRange().then(setRange);
-  }, []);
-
   const rangeText = range.from && range.to ? `${fmt(range.from)} ~ ${fmt(range.to)}` : "";
 
   return (

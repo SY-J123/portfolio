@@ -95,14 +95,15 @@ const SEVERITY_MULTIPLIERS: Record<Severity, number> = {
 const SYSTEM_PROMPT = [
   "한국어 앱 리뷰 분류기다.",
   "입력 리뷰들을 지정 규칙대로 분류하고 JSON 배열만 반환한다.",
-  "속성은 다음 29개만 사용: " + ATTRIBUTES.join(", "),
+  "속성은 다음 29개 중에서만 선택하고 문자열 그대로 반환한다: " + ATTRIBUTES.map((a) => `"${a}"`).join(", ") + ".",
   "리뷰별 quality_attributes는 최대 3개, 없으면 []. 광고/스팸/무관 내용이면 classification:null.",
   "reply는 무시하고 text만 본다.",
   "sentiment는 매우 긍정/긍정/중립/부정/매우 부정 중 하나.",
   "별점 기본값: 5~4 긍정, 3 중립, 2~1 부정. 텍스트가 충돌하면 텍스트 우선.",
   "매우 긍정 트리거: 최고, 혁신, 없으면 안 됨, 대체 불가 등.",
   "매우 부정 트리거: 삭제, 사기, 최악, 해지, 다신 안 씀, 못 믿음, 금전 피해 등.",
-  "severity는 일반/반복/이탈 신호로 판정한다. 반복 트리거: 또, 계속, 자꾸, 매번, 항상, 여러 번. 이탈 트리거: 삭제, 탈퇴, 해지, 안 씀, 불매, 신고, 사기, 최악, 다신 안.",
+  'severity 허용값은 정확히 4가지 문자열: "일반", "반복/누적", "이탈/강한 부정", "반복+이탈". 축약하지 말고 이 문자열 중 하나를 그대로 반환한다.',
+  "반복 신호(또, 계속, 자꾸, 매번, 항상, 여러 번)만 있으면 반복/누적. 이탈 신호(삭제, 탈퇴, 해지, 안 씀, 불매, 신고, 사기, 최악, 다신 안)만 있으면 이탈/강한 부정. 둘 다 있으면 반복+이탈. 어느 쪽도 없으면 일반.",
   "긍정 리뷰는 severity를 항상 일반으로 둔다.",
   "sentiment_score는 매우 긍정 20, 긍정 10, 중립 0, 부정 -10, 매우 부정 -20.",
   "severity_multiplier는 일반 1.0, 반복/누적 1.5, 이탈/강한 부정 2.0, 반복+이탈 2.5.",
@@ -280,12 +281,15 @@ function validateEntry(value: unknown): BatchEntry {
     : [];
 
   const uniqueAttrs = [...new Set(attrs)];
-  if (!uniqueAttrs.every((attr): attr is string => typeof attr === "string" && ATTRIBUTES.includes(attr as (typeof ATTRIBUTES)[number]))) {
-    throw new Error(`허용되지 않은 quality_attributes: ${JSON.stringify(value.classification.quality_attributes)}`);
+  const filteredAttrs = uniqueAttrs.filter(
+    (attr): attr is string =>
+      typeof attr === "string" && ATTRIBUTES.includes(attr as (typeof ATTRIBUTES)[number])
+  );
+  const dropped = uniqueAttrs.filter((a) => !filteredAttrs.includes(a as string));
+  if (dropped.length > 0) {
+    console.warn(`허용 밖 속성 드롭 (${value.external_id}): ${JSON.stringify(dropped)}`);
   }
-  if (uniqueAttrs.length > 3) {
-    throw new Error(`quality_attributes가 3개를 초과했습니다: ${JSON.stringify(uniqueAttrs)}`);
-  }
+  const finalAttrs = filteredAttrs.slice(0, 3);
 
   const sentiment = value.classification.sentiment;
   if (!SENTIMENT_VALUES.includes(sentiment as Sentiment)) {
@@ -308,7 +312,7 @@ function validateEntry(value: unknown): BatchEntry {
   return {
     external_id: value.external_id,
     classification: {
-      quality_attributes: uniqueAttrs,
+      quality_attributes: finalAttrs,
       sentiment: normalizedSentiment,
       sentiment_score: sentimentScore,
       severity: normalizedSentiment === "매우 긍정" || normalizedSentiment === "긍정" ? "일반" : normalizedSeverity,

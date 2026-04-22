@@ -1,0 +1,223 @@
+[
+  {
+    "external_id": "85246fb7-0cd9-40f8-b5e0-266657637268",
+    "classification": null
+  },
+  {
+    "external_id": "d52b2e7b-c050-4e87-b077-758afc3eddda",
+    "classification": {
+      "quality_attributes": [
+        "프로모션 체감"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 70
+    }
+  },
+  {
+    "external_id": "35ec7a0b-03a8-4158-909a-d106f3aed616",
+    "classification": {
+      "quality_attributes": [
+        "앱 안정성"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 70
+    }
+  },
+  {
+    "external_id": "42dcc6e6-31b1-4e3c-a32d-7f230665da36",
+    "classification": null
+  },
+  {
+    "external_id": "c7c0821a-b88d-4a59-a65c-c7c5b834223b",
+    "classification": {
+      "quality_attributes": [
+        "UI 일관성"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 70
+    }
+  },
+  {
+    "external_id": "8d8dde4b-dff8-45a4-b779-f76803e8a2c8",
+    "classification": {
+      "quality_attributes": [
+        "정보구조 적합성"
+      ],
+      "sentiment": "긍정",
+      "sentiment_score": 10,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 90
+    }
+  },
+  {
+    "external_id": "5a828337-5748-4911-a06c-f0f0546613bd",
+    "classification": {
+      "quality_attributes": [
+        "보안·개인정보"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 70
+    }
+  },
+  {
+    "external_id": "1b5b5d73-e4e6-4aa4-a19d-895766b32e1a",
+    "classification": null
+  },
+  {
+    "external_id": "67fd1fc2-a95a-45e4-ba96-84ada1b18110",
+    "classification": {
+      "quality_attributes": [],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 60
+    }
+  },
+  {
+    "external_id": "62358eba-1b8d-4a47-ab01-6311663b61ca",
+    "classification": {
+      "quality_attributes": [
+        "알림 적절성"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 70
+    }
+  },
+  {
+    "external_id": "a8b44a66-909d-4bef-8b56-9e325120d9dd",
+    "classification": {
+      "quality_attributes": [
+        "처리 정확성"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 70
+    }
+  },
+  {
+    "external_id": "f87f9172-be45-430e-b915-324b74c8fa82",
+    "classification": null
+  },
+  {
+    "external_id": "fa613027-78cd-4b14-91b9-614ba3ae6bca",
+    "classification": {
+      "quality_attributes": [],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "이탈/강한 부정",
+      "severity_multiplier": 2,
+      "score_reality": 40
+    }
+  },
+  {
+    "external_id": "bdc13312-8ee7-4d93-ac68-7ebe99a221ad",
+    "classification": {
+      "quality_attributes": [
+        "고객지원 접근성"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 70
+    }
+  },
+  {
+    "external_id": "d914af5d-6bd8-497e-91ad-e3b5169065cb",
+    "classification": {
+      "quality_attributes": [
+        "알림 적절성"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 70
+    }
+  },
+  {
+    "external_id": "cacfe895-7865-4222-99ed-e7f62bb87462",
+    "classification": {
+      "quality_attributes": [
+        "UI 일관성",
+        "접근성"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "반복/누적",
+      "severity_multiplier": 1.5,
+      "score_reality": 65
+    }
+  },
+  {
+    "external_id": "25b99e22-2d86-4ff8-8de4-2d33d7620f19",
+    "classification": {
+      "quality_attributes": [
+        "호환성"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "반복/누적",
+      "severity_multiplier": 1.5,
+      "score_reality": 65
+    }
+  },
+  {
+    "external_id": "1b432e9c-f28a-4498-b3ee-b357bc7e8a5e",
+    "classification": {
+      "quality_attributes": [
+        "시각적 피로도"
+      ],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "이탈/강한 부정",
+      "severity_multiplier": 2,
+      "score_reality": 40
+    }
+  },
+  {
+    "external_id": "79eccab6-4bcf-4521-bec6-ace3fcf933bc",
+    "classification": {
+      "quality_attributes": [
+        "앱 안정성"
+      ],
+      "sentiment": "중립",
+      "sentiment_score": 0,
+      "severity": "일반",
+      "severity_multiplier": 1,
+      "score_reality": 80
+    }
+  },
+  {
+    "external_id": "1baebd64-7373-4442-91f2-ebe5fefdefe0",
+    "classification": {
+      "quality_attributes": [
+        "알림 적절성"
+      ],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "반복+이탈",
+      "severity_multiplier": 2.5,
+      "score_reality": 55
+    }
+  }
+]
