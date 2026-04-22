@@ -1,0 +1,272 @@
+[
+  {
+    "source": "google_play",
+    "external_id": "0685af90-c992-4468-9e34-0832db77a861",
+    "author": "RN Sanratang",
+    "score": 1,
+    "text": "토스 쇼핑이 생기고 나서 이상하게 알림이 계속 옴 알림을 껐는데도 테무 같은 5천원 할인쿠폰 같은 시간 알림이 계속 날아옴 끄려고 고객센터에 전화 거니 부서가 다르니 다른곳에 연결해줌 연결해준 곳에 5분 동안 기다렸는데도 전화 안받음 이게 뭐하자는 건지..",
+    "posted_at": "2026-04-21T07:00:55.940Z",
+    "app_version": "5.255.1",
+    "thumbs_up": 0,
+    "classification": {
+      "quality_attributes": ["알림 적절성", "고객지원 접근성", "응답 속도 체감"],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "반복/누적",
+      "severity_multiplier": 1.5,
+      "score_reality": 65
+    }
+  },
+  {
+    "source": "google_play",
+    "external_id": "aae074bb-ffdd-4df9-91bd-1e060403a363",
+    "author": "이영헌",
+    "score": 1,
+    "text": "일주일미션에서 잘 되던 태그복사#이것도 텍스트 복사도 안되게 변경 ㅋ 타자연습 시키나 검색유도 심해 맞지도 않어 광고 이해하려고 해도 어지간히 관리자 누군진 몰라도 연구하나봐 ㅋ 이해가 안되시나? 태그복사 막아놨잖아요! 이제 이해가 되시나요? 이래도 모르겠음 어쩔수 없공 ㅋㅋ 😂",
+    "posted_at": "2026-04-21T06:30:33.819Z",
+    "app_version": "5.254.2",
+    "thumbs_up": 12,
+    "classification": {
+      "quality_attributes": ["공지·안내 명확성", "알림 적절성"],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "일반",
+      "severity_multiplier": 1.0,
+      "score_reality": 70
+    }
+  },
+  {
+    "source": "google_play",
+    "external_id": "5b673073-3d0a-4ae9-ac6e-e66b2bb74a6f",
+    "author": "구라구라",
+    "score": 4,
+    "text": "특정광고나올때 화면이 검게나오네요",
+    "posted_at": "2026-04-21T03:56:43.660Z",
+    "app_version": "5.254.2",
+    "thumbs_up": 0,
+    "classification": {
+      "quality_attributes": ["앱 안정성"],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "일반",
+      "severity_multiplier": 1.0,
+      "score_reality": 70
+    }
+  },
+  {
+    "source": "google_play",
+    "external_id": "8054dffa-b264-4b8c-ba9c-f9ec34a9da96",
+    "author": "박규빈",
+    "score": 1,
+    "text": "정말 잘쓰고 있는데 요즘 오류가 자주나서 쨔증나네요.",
+    "posted_at": "2026-04-21T03:32:10.547Z",
+    "app_version": "5.254.2",
+    "thumbs_up": 0,
+    "classification": {
+      "quality_attributes": ["앱 안정성"],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "반복/누적",
+      "severity_multiplier": 1.5,
+      "score_reality": 65
+    }
+  },
+  {
+    "source": "google_play",
+    "external_id": "1ce974e2-b1a3-4c5d-a9c5-6300cddcb5fe",
+    "author": "조지나디야",
+    "score": 3,
+    "text": "토스앱 평생 수수료 무료는 5점드리고요. 요새 너무 튕기고 속도도 느려요. 오늘의미션 풀려고 들어갔다 나오면 비밀번호 찍으라고 나오고 계속 무한반복중이에요.",
+    "posted_at": "2026-04-21T00:58:11.801Z",
+    "app_version": "5.254.2",
+    "thumbs_up": 1,
+    "classification": {
+      "quality_attributes": ["크래시 빈도", "로딩 속도", "로그인·인증"],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "반복/누적",
+      "severity_multiplier": 1.5,
+      "score_reality": 65
+    }
+  },
+  {
+    "source": "google_play",
+    "external_id": "bd9c5fae-35ed-48e3-ad0b-f770e7c8f1f3",
+    "author": "-자동차 광팬-",
+    "score": 1,
+    "text": "마케팅 캐시백 알림 포함해 입출금 알림 빼고 전부 철회하고 꺼놨는데 왜 멋대로 보내는건지?",
+    "posted_at": "2026-04-21T00:30:23.123Z",
+    "app_version": "5.254.2",
+    "thumbs_up": 1,
+    "classification": {
+      "quality_attributes": ["알림 적절성"],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "일반",
+      "severity_multiplier": 1.0,
+      "score_reality": 70
+    }
+  },
+  {
+    "source": "google_play",
+    "external_id": "fbb92974-6902-409b-8387-35dd448bf2f9",
+    "author": "지오",
+    "score": 5,
+    "text": "홈화면 설정에 토스페이좀 추가해주세요",
+    "posted_at": "2026-04-20T22:58:35.944Z",
+    "app_version": "5.254.2",
+    "thumbs_up": 0,
+    "classification": {
+      "quality_attributes": ["정보구조 적합성"],
+      "sentiment": "중립",
+      "sentiment_score": 0,
+      "severity": "일반",
+      "severity_multiplier": 1.0,
+      "score_reality": 80
+    }
+  },
+  {
+    "source": "google_play",
+    "external_id": "f4ebd0bd-1071-4f03-b9c8-e8d7cc7c22f1",
+    "author": "이경민",
+    "score": 1,
+    "text": "홈 화면 하단에 쇼핑 100원딜 알림 팝업 계속 뜨는거 매우 거슬림. 알림 쇼핑 마케팅 동의 꺼놔도 계속 뜹니다",
+    "posted_at": "2026-04-20T21:31:00.230Z",
+    "app_version": "5.255.1",
+    "thumbs_up": 231,
+    "classification": {
+      "quality_attributes": ["알림 적절성"],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "반복/누적",
+      "severity_multiplier": 1.5,
+      "score_reality": 65
+    }
+  },
+  {
+    "source": "google_play",
+    "external_id": "93f7b6ce-8d26-4140-9942-d13ce249a857",
+    "author": "신비",
+    "score": 1,
+    "text": "증명서 떼려다가 취소하고싶었는데 알림에 이어서 발급이 떠서 지우고싶은데 안되요.취소하기도 만들어주시면 좋겠어요.버그만 잡지말고,불편사항도 확인해서 수정해주시면 감사하겠습니다.",
+    "posted_at": "2026-04-20T18:46:58.715Z",
+    "app_version": null,
+    "thumbs_up": 3,
+    "classification": {
+      "quality_attributes": ["정보구조 적합성", "이용 내역 접근성"],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "일반",
+      "severity_multiplier": 1.0,
+      "score_reality": 70
+    }
+  },
+  {
+    "source": "google_play",
+    "external_id": "1bc9d9c8-e668-476b-95cf-fa7eaf24207d",
+    "author": "min fisher",
+    "score": 1,
+    "text": "광고만 나오고 메인화면 안나옴 쓰레기",
+    "posted_at": "2026-04-20T14:33:48.767Z",
+    "app_version": "5.254.2",
+    "thumbs_up": 1,
+    "classification": {
+      "quality_attributes": ["앱 안정성", "알림 적절성"],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "이탈/강한 부정",
+      "severity_multiplier": 2.0,
+      "score_reality": 40
+    }
+  },
+  {
+    "source": "google_play",
+    "external_id": "7b3b6ae5-9088-4a6b-bb03-41aab40a0716",
+    "author": "뀨뀨뀨",
+    "score": 1,
+    "text": "사업자 계좌 개설하라고 추천떠서 해봤는데 전자세금께산서 발행이 막혀서 진행이 안됩니다. 금융인증서 진행이 안되면 세금계산서 발행이 안되고 그럼 개인사업자 계좌개설 의미가 없는거 같은데 참... 알만하신분들이",
+    "posted_at": "2026-04-20T14:20:42.979Z",
+    "app_version": "5.254.2",
+    "thumbs_up": 0,
+    "classification": {
+      "quality_attributes": ["처리 정확성", "로그인·인증"],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "일반",
+      "severity_multiplier": 1.0,
+      "score_reality": 70
+    }
+  },
+  {
+    "source": "google_play",
+    "external_id": "16c26a03-793c-49f1-a23c-b199017da457",
+    "author": "박제인",
+    "score": 1,
+    "text": "개명해서 본인인증하는데 얼굴인증은 왜 시키나요? 페이스페이하라고 광고 뜨는것도 싫은데 인증 안되잖아요",
+    "posted_at": "2026-04-20T13:57:39.831Z",
+    "app_version": "5.254.2",
+    "thumbs_up": 1,
+    "classification": {
+      "quality_attributes": ["로그인·인증", "알림 적절성"],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "일반",
+      "severity_multiplier": 1.0,
+      "score_reality": 70
+    }
+  },
+  {
+    "source": "google_play",
+    "external_id": "2a56b294-106c-49a8-9459-34c1e0e09e51",
+    "author": "jh Y",
+    "score": 3,
+    "text": "주말에 글자 깨져 보일때 많아요 오늘은 토스앱 들어가기도 힘들고 들어가져도 흰화면만 보이네요 요즘 버벅 거릴때가 많아요",
+    "posted_at": "2026-04-20T13:42:10.455Z",
+    "app_version": "5.255.1",
+    "thumbs_up": 0,
+    "classification": {
+      "quality_attributes": ["앱 안정성", "로딩 속도"],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "반복/누적",
+      "severity_multiplier": 1.5,
+      "score_reality": 65
+    }
+  },
+  {
+    "source": "google_play",
+    "external_id": "4ef3e8ac-6bc8-4555-9a71-d8a7b51c1a82",
+    "author": "김봉순",
+    "score": 1,
+    "text": "설치를하라고보내지말았스면합니다.할줄모르니까요.이젠그만. 계속설치를하라고뜨게하지말아주세요.제발부탁입니다.",
+    "posted_at": "2026-04-20T12:48:29.195Z",
+    "app_version": null,
+    "thumbs_up": 0,
+    "classification": {
+      "quality_attributes": ["알림 적절성", "접근성"],
+      "sentiment": "부정",
+      "sentiment_score": -10,
+      "severity": "반복/누적",
+      "severity_multiplier": 1.5,
+      "score_reality": 65
+    }
+  },
+  {
+    "source": "google_play",
+    "external_id": "ba4188c6-1408-44a9-9e3a-afb431756524",
+    "author": "D",
+    "score": 1,
+    "text": "그동안 토스혜택 많아서 많이 썼고 주변인한테 영업해서 그 사람도 카드 만듬. 근데 이번 대응은 너무 황당하네요. 토스에서 다른 앱 할인or적립 링크로 들어가서 결제하면 다 실패되는데 당연히 토스 앱 문제지 토스 문제가 아니니 각각의 앱한테 문의하라고요? 그 어플에서 일반결제하면 잘만 되는데요. 4일 기다리게 해놓고 주는 답변이 고작 저겁니까... 뭐 결제할때 이제 다른 수단 쓰면 되죠 전 손해 보는게 없습니다",
+    "posted_at": "2026-04-20T10:46:28.500Z",
+    "app_version": "5.254.2",
+    "thumbs_up": 0,
+    "classification": {
+      "quality_attributes": ["처리 정확성", "응답 속도 체감", "고객지원 접근성"],
+      "sentiment": "매우 부정",
+      "sentiment_score": -20,
+      "severity": "이탈/강한 부정",
+      "severity_multiplier": 2.0,
+      "score_reality": 40
+    }
+  }
+]
