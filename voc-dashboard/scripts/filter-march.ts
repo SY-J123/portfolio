@@ -1,15 +1,20 @@
 /**
- * 전처리된 Google Play 리뷰에서 2026-03-01 이후만 필터링
+ * 전처리된 리뷰에서 2026-03-01 이후만 필터링
  *
- * 실행: npx tsx scripts/filter-march.ts
- * 입력:  data/google-play.preprocessed.json
- * 출력:  data/google-play.march-plus.json
+ * 실행: npx tsx scripts/filter-march.ts [input] [output]
+ * 기본: data/google-play.preprocessed.json → data/google-play.march-plus.json
  */
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const IN_PATH = path.resolve(process.cwd(), "data/google-play.preprocessed.json");
-const OUT_PATH = path.resolve(process.cwd(), "data/google-play.march-plus.json");
+const IN_PATH = path.resolve(
+  process.cwd(),
+  process.argv[2] || "data/google-play.preprocessed.json"
+);
+const OUT_PATH = path.resolve(
+  process.cwd(),
+  process.argv[3] || "data/google-play.march-plus.json"
+);
 const CUTOFF = "2026-03-01T00:00:00.000Z";
 
 async function main() {

@@ -7,434 +7,506 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import TabGuide from "@/components/TabGuide";
+
+const TOC = [
+  { id: "background", label: "1. 배경" },
+  { id: "data", label: "2. 데이터" },
+  { id: "method", label: "3. 방법" },
+  { id: "dashboard", label: "4. 대시보드 구성" },
+  { id: "limitations", label: "5. 한계 및 전제" },
+  { id: "appendix", label: "부록" },
+];
 
 export default function TabIntro() {
   return (
-    <article className="max-w-5xl mx-auto py-10 space-y-12">
-      {/* 제목 */}
-      <header>
-        <p className="text-xs font-medium tracking-widest uppercase text-muted-foreground mb-2">Project Overview</p>
-        <h1 className="text-3xl font-bold tracking-tight leading-tight">
-          VOC 자동수집·분석 대시보드
-        </h1>
-        <p className="mt-3 text-foreground leading-relaxed max-w-2xl">
-          (placeholder)
-        </p>
-      </header>
-
-      <Separator />
-
-      {/* 1. 개요 */}
-      <section>
-        <h2 className="text-lg font-semibold mb-4">1. 개요</h2>
-
-        <div className="max-w-3xl space-y-6">
-          <div>
-            <h3 className="text-base font-semibold mb-2">목적</h3>
-            <p className="text-base text-foreground leading-relaxed">
-              앱마켓 및 커뮤니티 등 여러 채널에 분산된 VOC를 통합 수집·정량화하고,
-              이를 근거로 차기 개선 과제의 우선순위를 도출한다.
+    <div className="max-w-[1200px] mx-auto py-10 px-6">
+      <div className="flex gap-16">
+        <article className="flex-1 min-w-0 space-y-12">
+          {/* 제목 */}
+          <header>
+            <p className="text-xs font-medium tracking-widest uppercase text-muted-foreground mb-2">
+              Project Overview
             </p>
-          </div>
+            <h1 className="text-3xl font-bold tracking-tight leading-tight">
+              VOC 자동수집·분석 대시보드
+            </h1>
+          </header>
 
-          <div>
-            <h3 className="text-base font-semibold mb-2">분석 대상</h3>
-            <p className="text-base text-foreground leading-relaxed">
-              토스
-            </p>
-          </div>
+          <Separator />
 
-          <div>
-            <h3 className="text-base font-semibold mb-2">수집 플랫폼</h3>
-            <p className="text-base text-foreground leading-relaxed">
-              Google Play · App Store · 뽐뿌 · 네이버 카페
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-base font-semibold mb-2">사용 도구</h3>
-            <p className="text-base text-foreground leading-relaxed">
-              Claude Code · Codex · Python
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <Separator />
-
-      {/* 2. 분석 방법 */}
-      <section>
-        <h2 className="text-lg font-semibold mb-4">2. 분석 방법</h2>
-
-        <div className="space-y-6">
-          {/* 2.1 수집 */}
-          <div>
-            <h3 className="text-base font-semibold mb-3">
-              <span className="text-muted-foreground mr-2">2.1</span>
-              수집
-            </h3>
-
+          {/* 1. 배경 */}
+          <section id="background" className="scroll-mt-24">
+            <h2 className="text-lg font-semibold mb-4">1. 배경</h2>
             <p className="text-base text-foreground leading-relaxed max-w-3xl mb-4">
-              토스가 언급되는 공개 채널 중 접근 가능한 곳(앱마켓 2곳·커뮤니티 2곳)에서 수집했다.
-              수집 스크립트를 일회성으로 실행해 결과를 JSON 파일로 저장하며, 이후 단계의 모든 분석은 해당 스냅샷을 입력으로 삼는다.
-              채널별 포맷 차이는 있지만 이후 단계에서는 통합된 하나의 VOC 풀로 다루며,
-              의미 분류·점수화는 LLM에 위임한다.
+              앱 리뷰는 PM·CS·디자이너가 참조하는 1차 피드백 자료다. 하루
+              수백~수천 건을 사람이 다 읽기는 어렵고, 전통 토픽모델링은
+              한국어·문맥·비용에서 한계가 있다. 생성형 AI(LLM)로 이 과정을
+              자동화하고, 결과를 대시보드에 모아 부서 간 공통 근거로 쓴다.
             </p>
 
-            <div className="rounded-lg border border-border overflow-hidden">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>플랫폼</TableHead>
-                    <TableHead>유형</TableHead>
-                    <TableHead>수집 방식</TableHead>
-                    <TableHead>난이도</TableHead>
-                    <TableHead>데모그래픽</TableHead>
-                    <TableHead>특성</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {[
-                    {
-                      name: "Google Play",
-                      type: "앱마켓",
-                      method: "오픈소스 라이브러리",
-                      difficulty: "낮음",
-                      demo: "Android 사용자 전반",
-                      note: "리뷰 · 별점",
-                    },
-                    {
-                      name: "App Store",
-                      type: "앱마켓",
-                      method: "오픈소스 라이브러리",
-                      difficulty: "낮음",
-                      demo: "iOS 사용자 전반",
-                      note: "리뷰 · 별점",
-                    },
-                    {
-                      name: "뽐뿌",
-                      type: "커뮤니티",
-                      method: "HTML 스크래핑",
-                      difficulty: "중간",
-                      demo: "30–40대, 성별 혼합",
-                      note: "재테크 · 금융 관심층",
-                    },
-                    {
-                      name: "네이버 카페",
-                      type: "커뮤니티",
-                      method: "검색 API (스니펫)",
-                      difficulty: "중간 (본문 제한)",
-                      demo: "30–50대, 여성 비중 높음",
-                      note: "육아 · 재테크 카페 중심",
-                    },
-                  ].map((row) => (
-                    <TableRow key={row.name}>
-                      <TableCell className="font-medium">{row.name}</TableCell>
-                      <TableCell>{row.type}</TableCell>
-                      <TableCell>{row.method}</TableCell>
-                      <TableCell>{row.difficulty}</TableCell>
-                      <TableCell className="whitespace-normal">{row.demo}</TableCell>
-                      <TableCell className="whitespace-normal">{row.note}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
-          </div>
-
-          {/* 2.2 전처리 */}
-          <div className="max-w-3xl">
-            <h3 className="text-base font-semibold mb-3">
-              <span className="text-muted-foreground mr-2">2.2</span>
-              전처리
+            <h3 className="text-sm font-semibold mb-2 text-muted-foreground">
+              참고 자료
             </h3>
-
-            <p className="text-base text-foreground leading-relaxed mb-3">
-              LLM 분류가 의미 판단에만 집중할 수 있도록, 그 앞단에서 입력의
-              균일성·품질·중복을 정리한다. 세 가지를 수행한다.
-            </p>
-
-            <ul className="list-disc pl-5 space-y-2 text-base text-foreground leading-relaxed">
+            <ul className="max-w-3xl list-disc pl-5 space-y-1 text-base text-foreground leading-relaxed mb-4">
               <li>
-                <strong className="font-semibold">통일된 스키마</strong> —
-                앱마켓 리뷰와 커뮤니티 글은 필드 구성(별점 유무, 본문 길이, 작성자 메타)이 다르다.
-                이후 단계가 단일 포맷만 다루도록 공통 스키마로 정규화한다.
+                최세나 외(2025){" "}
+                <em>
+                  &ldquo;사용자 경험 문제 발견을 위한 생성형 AI 기반 앱 리뷰
+                  데이터 분석 도구 개발 및 유용성 검증&rdquo;
+                </em>{" "}
+                — 접근 방법
               </li>
-              <li>
-                <strong className="font-semibold">노이즈 제거</strong> —
-                의미 추출이 불가능한 리뷰는 분류 단계 이전에 걸러낸다.
-                N자 미만, 이모지·특수문자만으로 구성된 글, 한국어 비율이 낮은 글이 해당한다.
-              </li>
-              <li>
-                <strong className="font-semibold">중복 제거</strong> —
-                같은 리뷰가 여러 번 저장되는 건 걸러낸다. 반면 서로 다른 사람이 비슷한 불만을 남긴 경우
-                (예: &ldquo;앱 느려요&rdquo; vs &ldquo;속도 진짜 느림&rdquo;)는 그대로 둔다 —
-                같은 문제를 여러 명이 겪었다는 신호이기 때문이다.
-              </li>
-            </ul>
-          </div>
-
-          {/* 2.3 의미 기반 분류 */}
-          <div className="max-w-3xl">
-            <h3 className="text-base font-semibold mb-3">
-              <span className="text-muted-foreground mr-2">2.3</span>
-              의미 기반 분류
-            </h3>
-
-            <p className="text-base text-foreground leading-relaxed mb-3">
-              전처리가 끝난 각 VOC에 대해 LLM이 세 가지를 판정한다.
-            </p>
-
-            <ul className="list-disc pl-5 space-y-2 text-base text-foreground leading-relaxed mb-4">
-              <li>
-                <strong className="font-semibold">품질 속성</strong> —
-                <strong className="font-semibold">전략 · UX · 운영 · 기술</strong> 4개 카테고리 아래
-                29개 하위 속성을 정의해두고, 리뷰가 어떤 속성에 해당하는지 판정한다.
-                한 리뷰가 여러 속성에 걸치는 경우가 많아
-                (예: &ldquo;토스 느리고 자꾸 튕김&rdquo; → 로딩 속도 + 크래시 빈도),
-                해당되는 속성을 모두 뽑는다.
-              </li>
-              <li>
-                <strong className="font-semibold">감정 극성</strong> —
-                매우 긍정부터 매우 부정까지 5단계.
-              </li>
-              <li>
-                <strong className="font-semibold">심각도</strong> —
-                일반부터 반복+이탈까지 4단계.
-              </li>
+              <li>Maalej et al.(2016) — 4분류 체계</li>
             </ul>
 
-            <p className="text-base text-foreground leading-relaxed mb-3">
-              세 판정값은 2.4의 점수화 공식에 투입된다.
-            </p>
-
-            <p className="text-xs text-muted-foreground leading-relaxed">
-              ※ 29개 품질 속성의 전체 목록과 각 속성의 예시 VOC는 아래 <strong className="font-semibold">부록. 분석 기준</strong> 섹션에서 확인할 수 있다.
-            </p>
-          </div>
-
-          {/* 2.4 점수화 · 저장 */}
-          <div>
-            <h3 className="text-base font-semibold mb-3">
-              <span className="text-muted-foreground mr-2">2.4</span>
-              점수화 · 저장
+            <h3 className="text-sm font-semibold mb-2 text-muted-foreground">
+              확장 지점
             </h3>
-
-            <p className="text-base text-foreground leading-relaxed mb-4">
-              2.3에서 얻은 세 판정값(품질 속성·감정 극성·심각도)을 아래 공식에 대입해 속성별 점수를 계산한다.
-              기본 중립값 80점에서 감정 점수만큼 가감하고, 심각도 배수로 가중한 값이 최종 점수다.
-            </p>
-
-            <section className="border rounded-lg p-5 mb-6">
-              <code className="block text-center py-3 bg-slate-50 rounded font-mono text-base">
-                score_reality = 80 + (sentiment_score × severity_multiplier)
-              </code>
-              <p className="text-xs text-slate-500 text-center mt-2">
-                최종 점수는 0~100 범위로 clip · 80점이 기본 중립값
-              </p>
-            </section>
-
-            <h4 className="text-base font-semibold mb-2">감정 점수 판정</h4>
-            <div className="border rounded-lg overflow-hidden mb-6">
-              <table className="w-full text-base">
-                <thead>
-                  <tr className="bg-slate-50 text-left text-xs text-slate-600 uppercase tracking-wider">
-                    <th className="px-4 py-2 w-28">단계</th>
-                    <th className="px-4 py-2 w-20 text-right">점수</th>
-                    <th className="px-4 py-2 w-[320px]">판정 기준</th>
-                    <th className="px-4 py-2">예시 VOC</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { l: "매우 긍정", s: "+20", c: "text-emerald-600", crit: "강한 긍정·대체 불가·감탄 표현", ex: "토스 없으면 못 삽니다. 진짜 혁신이에요" },
-                    { l: "긍정", s: "+10", c: "text-emerald-600", crit: "단순 만족 (좋다·편하다·만족)", ex: "송금 빠르고 편해서 만족합니다" },
-                    { l: "중립", s: "0", c: "text-slate-500", crit: "평가 없이 사용 사실만 언급", ex: "그냥저냥 씁니다" },
-                    { l: "부정", s: "−10", c: "text-red-500", crit: "단순 불만 (불편·아쉬움)", ex: "가끔 느려서 불편함" },
-                    { l: "매우 부정", s: "−20", c: "text-red-600", crit: "신뢰 훼손·금전 피해·이탈 의지", ex: "이 앱 때문에 돈 날릴 뻔. 다신 안 씀" },
-                  ].map((r) => (
-                    <tr key={r.l} className="border-t border-slate-100">
-                      <td className="px-4 py-2">{r.l}</td>
-                      <td className={`px-4 py-2 text-right font-bold tabular-nums ${r.c}`}>{r.s}</td>
-                      <td className="px-4 py-2">{r.crit}</td>
-                      <td className="px-4 py-2 italic">&ldquo;{r.ex}&rdquo;</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <h4 className="text-base font-semibold mb-2">심각도 배수 판정</h4>
-            <div className="border rounded-lg overflow-hidden mb-6">
-              <table className="w-full text-base">
-                <thead>
-                  <tr className="bg-slate-50 text-left text-xs text-slate-600 uppercase tracking-wider">
-                    <th className="px-4 py-2 w-28">단계</th>
-                    <th className="px-4 py-2 w-20 text-right">배수</th>
-                    <th className="px-4 py-2 w-[320px]">판정 기준</th>
-                    <th className="px-4 py-2">예시 VOC</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    { l: "일반", s: "×1.0", c: "text-slate-500", crit: "1회성 불만, 중립적 어조", ex: "글자가 좀 작아요" },
-                    { l: "반복/누적", s: "×1.5", c: "text-amber-600", crit: "반복·누적 단서 (또·매번·N번째·계속)", ex: "또 버그나요... 이번 주만 벌써 세 번째" },
-                    { l: "이탈/강한 부정", s: "×2.0", c: "text-red-500", crit: "이탈 명시 또는 신뢰 훼손 (넘어갔다·신고·사기)", ex: "결국 카뱅으로 넘어갔습니다" },
-                    { l: "반복+이탈", s: "×2.5", c: "text-red-600", crit: "반복 단서 + 이탈 단서 동시", ex: "매번 튕겨서 결국 지웠어요. 앞으로 안 씁니다" },
-                  ].map((r) => (
-                    <tr key={r.l} className="border-t border-slate-100">
-                      <td className="px-4 py-2">{r.l}</td>
-                      <td className={`px-4 py-2 text-right font-bold tabular-nums ${r.c}`}>{r.s}</td>
-                      <td className="px-4 py-2">{r.crit}</td>
-                      <td className="px-4 py-2 italic">&ldquo;{r.ex}&rdquo;</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <h4 className="text-base font-semibold mb-2">상태 판정</h4>
-            <div className="border rounded-lg overflow-hidden mb-4">
-              <table className="w-full text-base">
-                <tbody>
-                  {[
-                    { range: "75 ~ 100", label: "양호", cls: "bg-emerald-50 text-emerald-700" },
-                    { range: "60 ~ 74", label: "보통", cls: "bg-amber-50 text-amber-700" },
-                    { range: "45 ~ 59", label: "주의", cls: "bg-orange-50 text-orange-700" },
-                    { range: "0 ~ 44", label: "위험", cls: "bg-red-50 text-red-700" },
-                  ].map((r, i) => (
-                    <tr key={r.label} className={i === 0 ? "" : "border-t border-slate-100"}>
-                      <td className="px-4 py-2 tabular-nums w-32">{r.range}점</td>
-                      <td className="px-4 py-2">
-                        <span className={`px-2 py-0.5 rounded text-xs font-semibold ${r.cls}`}>{r.label}</span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <p className="text-base text-foreground leading-relaxed">
-              계산된 속성별 점수는 리뷰 원문·판정값과 함께 JSON 파일에 저장되어 대시보드에서 시각화의 입력으로 쓰인다.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <Separator />
-
-      {/* 3. 대시보드 구성 */}
-      <section>
-        <h2 className="text-lg font-semibold mb-4">3. 대시보드 구성</h2>
-
-        <p className="text-base text-foreground leading-relaxed max-w-3xl mb-6">
-          분석된 VOC 데이터를 의사결정에 활용 가능한 형태로 시각화한다.
-          상단 기간 필터(최근 1주·4주·12주·전체)가 교차 축으로 작동하여,
-          아래 네 개 뷰 모두 동일한 범위의 데이터를 공유한다.
-        </p>
-
-        <div className="max-w-3xl space-y-6">
-          {[
-            {
-              no: "3.1",
-              title: "요약",
-              purpose: "이번 기간의 VOC 볼륨과 평균 만족도를 확인해 전체 흐름의 건강 상태를 파악한다.",
-              desc: "총 VOC 수, 평균 만족도 점수(0–100, baseline 80), 부정 VOC 건수를 카드 형태로 집계한다.",
-            },
-            {
-              no: "3.2",
-              title: "카테고리별 점수",
-              purpose: "4개 도메인(전략 · UX · 운영 · 기술) 중 개선 압력이 가장 큰 영역을 식별하고, 그 원인 속성을 빠르게 파악한다.",
-              desc: "카테고리별 평균 만족도, 신호 건수, 부정 비중, 등급을 카드로 제시한다. 각 카드 하단에 해당 카테고리에서 가장 많이 나타난 부정 속성을 한 줄로 요약한다.",
-            },
-            {
-              no: "3.3",
-              title: "채널별 감정 분포 · 주간 추이",
-              purpose: "채널 간 온도 차이를 비교해 단일 채널 편향을 검증하고, 시간 흐름에 따른 만족도 변화를 추적한다.",
-              desc: "한 행을 좌우로 분할한다. 좌측은 수집 채널 4곳(미수집 채널 포함)의 감정 극성 5단계 분포, 우측은 카테고리별 점수의 주간 추이 선 차트이다. 추이는 4주 이동평균으로 표본 부족 주의 편차를 완화한다.",
-            },
-            {
-              no: "3.4",
-              title: "카테고리 상세",
-              purpose: "카테고리 점수 변동의 원인을 속성·원문 수준까지 드릴다운해 차기 개선 과제 우선순위 판단 근거를 제공한다.",
-              desc: "상단 칩 필터로 단일 카테고리를 선택하면, 해당 카테고리 하위의 속성별 부정·전체 건수 테이블, LLM이 생성한 공통 불만 패턴 요약, 매칭 리뷰 원문 리스트가 함께 나타난다.",
-            },
-          ].map((view) => (
-            <div key={view.no}>
-              <h3 className="text-base font-semibold mb-2">
-                <span className="text-muted-foreground mr-2">{view.no}</span>
-                {view.title}
-              </h3>
-              <p className="text-sm text-foreground leading-relaxed mb-1.5">
-                <span className="font-semibold">목적</span>
-                <span className="mx-1 text-muted-foreground">—</span>
-                {view.purpose}
-              </p>
-              <p className="text-sm text-foreground leading-relaxed">
-                <span className="font-semibold">구성</span>
-                <span className="mx-1 text-muted-foreground">—</span>
-                {view.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <Separator />
-
-      {/* 4. 한계 및 전제 */}
-      <section>
-        <h2 className="text-lg font-semibold mb-4">4. 한계 및 전제</h2>
-
-        <ul className="max-w-3xl list-disc pl-5 space-y-2 text-base text-foreground leading-relaxed">
-          <li>
-            <strong className="font-semibold">표본 대표성 부족</strong> —
-            본 프로젝트에서 수집한 VOC는 토스 사용자 모집단을 대표하지 못한다.
-            이는 외부에서 접근 가능한 공개 채널만을 활용한 결과이며,
-            아래와 같은 <strong className="font-semibold">기술적·약관상·예산상의 제약</strong>으로 인해 불가피하게 선택된 구성이다.
-            <ul className="list-[circle] pl-5 mt-1 space-y-1">
+            <ul className="max-w-3xl list-disc pl-5 space-y-2 text-base text-foreground leading-relaxed">
               <li>
-                <strong className="font-semibold">SNS 채널 제외</strong> — X(구 트위터)는 API 유료화 정책(Basic 플랜 월 $100 이상)으로 무료 범위에서 검색이 불가능하며,
-                Threads 및 Instagram은 공식 API의 승인 절차 및 제약으로 인해 외부 키워드 기반 수집이 실질적으로 차단되어 있다.
+                <strong className="font-semibold">제품 전반으로 범위 확장</strong>{" "}
+                — 선행 국내 연구의 UX 한정 스코프를 버그·요청·UX로 넓혔다.
               </li>
               <li>
-                <strong className="font-semibold">여성 사용자 중심 커뮤니티 제외</strong> — 여성시대, 소울드레서 등 Daum 카페는 멤버십 기반으로 외부 공개가 제한되어 있고,
-                네이트판은 자동화 접근 차단이 강력하며, 더쿠는 Cloudflare 우회 및 유지 비용이 과다하여 본 프로젝트 범위에서 제외하였다.
-              </li>
-              <li>
-                <strong className="font-semibold">내부 채널 부재</strong> — 토스 고객센터 로그, 앱 내 피드백, 이탈 및 에러 로그 등
-                가장 직접적인 VOC 시그널은 외부에서 접근할 수 없으므로 본 분석에 포함되지 않는다.
+                <strong className="font-semibold">표본 추출로 비용 효율화</strong>{" "}
+                — 외부 소스 포함 시 수천~수만 건 규모가 되므로, 전수 LLM 호출
+                대신 표본에서 주제를 추정한다.
               </li>
             </ul>
-            결과적으로 현재 구성은 <strong className="font-semibold">20–50대, 남성 비중이 높으며 테크·재테크 관심층</strong>에 편중되어 있으며,
-            20–30대 여성, 50–60대 사용자, 비발화층은 구조적으로 과소표집된다.
-          </li>
-          <li>
-            <strong className="font-semibold">자기선택 편향</strong> —
-            VOC는 본질적으로 자발 발화자 중심의 표집이며, 침묵하는 다수(참여 불평등 법칙상 하위 약 90%)는 관측되지 않는다.
-            본 프로젝트는 이를 보정하기 위해 <strong className="font-semibold">의견을 남기지 않은 사용자를 기본 만족 상태로 간주(만족도 80점 baseline)</strong>하고,
-            발화된 VOC가 해당 점수를 가감하는 구조로 설계하였다.
-          </li>
-          <li>
-            <strong className="font-semibold">LLM 분류 오차</strong> —
-            의미 기반 분류 및 점수화는 완전히 결정적이지 않으며, 프롬프트 또는 모델 변경 시 결과의 일관성이 저하될 수 있다.
-          </li>
-          <li>
-            <strong className="font-semibold">운영 파이프라인 미구현</strong> —
-            본 프로젝트는 단일 시점의 분석 프로토타입이며, 지속적인 자동 수집·분류·갱신을 위한 운영 파이프라인은 구축하지 않는다.
-            결과 데이터는 특정 시점의 스냅샷이므로, 시계열 추적이나 릴리스 이벤트 전후 비교 분석은 본 범위에 포함되지 않는다.
-          </li>
-        </ul>
-      </section>
+          </section>
 
-      <Separator />
+          {/* 2. 데이터 */}
+          <section id="data" className="scroll-mt-24">
+            <h2 className="text-lg font-semibold mb-4">2. 데이터</h2>
+            <ul className="max-w-3xl list-disc pl-5 space-y-2 text-base text-foreground leading-relaxed">
+              <li>
+                <strong className="font-semibold">대상 앱</strong> — 토스 (Viva
+                Republica). 사용자 규모·리뷰 밀도가 높고 업데이트가 빈번해 VOC
+                변동이 활발한 사례로 선정.
+              </li>
+              <li>
+                <strong className="font-semibold">수집처</strong> — Google Play
+                Store, Apple App Store
+              </li>
+              <li>
+                <strong className="font-semibold">기간</strong> — 2026년 3월
+                (한 달)
+              </li>
+              <li>
+                <strong className="font-semibold">규모</strong> — Google Play
+                461건 · App Store 183건 ·{" "}
+                <strong className="font-semibold">합계 644건</strong>
+              </li>
+            </ul>
+          </section>
 
-      {/* 부록 */}
-      <section>
-        <h2 className="text-lg font-semibold mb-4">부록. 분석 기준</h2>
-        <TabGuide />
-      </section>
-    </article>
+          {/* 3. 방법 */}
+          <section id="method" className="scroll-mt-24">
+            <h2 className="text-lg font-semibold mb-4">3. 방법</h2>
+
+            <div className="max-w-3xl space-y-6">
+              {/* 3.1 수집 */}
+              <div>
+                <h3 className="text-base font-semibold mb-2">
+                  <span className="text-muted-foreground mr-2">3.1</span>
+                  수집
+                </h3>
+                <ul className="max-w-3xl list-disc pl-5 space-y-2 text-base text-foreground leading-relaxed mb-4">
+                  <li>
+                    <strong className="font-semibold">도구</strong> —{" "}
+                    <code className="px-1 py-0.5 rounded bg-slate-100 text-sm font-mono">
+                      google-play-scraper
+                    </code>
+                    ,{" "}
+                    <code className="px-1 py-0.5 rounded bg-slate-100 text-sm font-mono">
+                      app-store-scraper
+                    </code>{" "}
+                    (오픈소스)
+                  </li>
+                  <li>
+                    <strong className="font-semibold">저장</strong> — API 응답을
+                    JSON 스냅샷으로 저장,{" "}
+                    <code className="px-1 py-0.5 rounded bg-slate-100 text-sm font-mono">
+                      external_id
+                    </code>{" "}
+                    기준 중복 병합
+                  </li>
+                  <li>
+                    <strong className="font-semibold">범위</strong> — 내용
+                    필터링(길이·노이즈)은 3.2 전처리로 넘긴다
+                  </li>
+                </ul>
+
+                <h4 className="text-sm font-semibold mb-2 text-muted-foreground">
+                  수집 필드
+                </h4>
+                <div className="rounded-lg border border-border overflow-hidden mb-4">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="w-32">필드</TableHead>
+                        <TableHead>설명</TableHead>
+                        <TableHead className="w-24 text-center">
+                          Google Play
+                        </TableHead>
+                        <TableHead className="w-24 text-center">
+                          App Store
+                        </TableHead>
+                        <TableHead className="w-20 text-center">
+                          분석 활용
+                        </TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {[
+                        { f: "source", d: "스토어 구분", gp: true, as: true, use: true },
+                        { f: "external_id", d: "스토어 고유 리뷰 ID", gp: true, as: true, use: true },
+                        { f: "author", d: "작성자 이름", gp: true, as: true, use: true },
+                        { f: "score", d: "별점 (1–5)", gp: true, as: true, use: false },
+                        { f: "title", d: "리뷰 제목", gp: false, as: true, use: false },
+                        { f: "text", d: "리뷰 본문", gp: true, as: true, use: true },
+                        { f: "posted_at", d: "작성 시각 (ISO 8601)", gp: true, as: true, use: true },
+                        { f: "app_version", d: "앱 버전", gp: true, as: true, use: false },
+                        { f: "thumbs_up", d: "도움됨 수", gp: true, as: false, use: false },
+                        { f: "reply", d: "개발사 답변 본문", gp: true, as: false, use: false },
+                        { f: "reply_date", d: "답변 작성 시각", gp: true, as: false, use: false },
+                      ].map((row) => (
+                        <TableRow key={row.f}>
+                          <TableCell className="font-mono text-sm">
+                            {row.f}
+                          </TableCell>
+                          <TableCell>{row.d}</TableCell>
+                          <TableCell className="text-center text-muted-foreground">
+                            {row.gp ? "●" : "—"}
+                          </TableCell>
+                          <TableCell className="text-center text-muted-foreground">
+                            {row.as ? "●" : "—"}
+                          </TableCell>
+                          <TableCell className="text-center">
+                            {row.use ? (
+                              <span className="text-emerald-600 font-semibold">
+                                ✓
+                              </span>
+                            ) : (
+                              <span className="text-muted-foreground">—</span>
+                            )}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  ● 스토어 API에서 수집됨 · ✓ 본 분석에서 활용 · — 미해당
+                </p>
+              </div>
+
+              {/* 3.2 전처리 */}
+              <div>
+                <h3 className="text-base font-semibold mb-2">
+                  <span className="text-muted-foreground mr-2">3.2</span>
+                  전처리
+                </h3>
+                <p className="text-base text-foreground leading-relaxed mb-4">
+                  LLM 입력 품질을 위해 두 단계 필터링을 거친다. 다른 사용자가
+                  비슷한 불만을 남긴 경우는 그대로 둔다 — 같은 문제를 여러 명이
+                  겪었다는 빈도 신호가 중요하다.
+                </p>
+
+                <h4 className="text-sm font-semibold mb-2 text-muted-foreground">
+                  필터링 기준
+                </h4>
+                <div className="rounded-lg border border-border overflow-hidden">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="w-32">기준</TableHead>
+                        <TableHead>판정 규칙</TableHead>
+                        <TableHead>예시 (제외 대상)</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow>
+                        <TableCell className="font-medium">노이즈</TableCell>
+                        <TableCell>
+                          한글·영문·숫자 실질 문자 수가 10자 이하인 리뷰
+                        </TableCell>
+                        <TableCell className="italic text-muted-foreground">
+                          &ldquo;ㅋㅋㅋ&rdquo;, &ldquo;굳&rdquo;,
+                          &ldquo;머냐&rdquo;, &ldquo;조아요&rdquo;
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="font-medium">중복</TableCell>
+                        <TableCell>
+                          (스토어, 작성자, 본문)이 완전히 동일 — 첫 1건만 유지
+                        </TableCell>
+                        <TableCell className="italic text-muted-foreground">
+                          동일 사용자의 반복 등록
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </div>
+              </div>
+
+              {/* 3.3 분류 */}
+              <div>
+                <h3 className="text-base font-semibold mb-2">
+                  <span className="text-muted-foreground mr-2">3.3</span>
+                  분류
+                </h3>
+                <p className="text-base text-foreground leading-relaxed mb-4">
+                  Maalej et al.(2016)의 4분류를{" "}
+                  <strong className="font-semibold">다중 라벨</strong>로
+                  채택했다. 실제 리뷰는 버그·요청이 섞이는 경우가 흔해 단일
+                  라벨은 정보 손실이 크다. 단 평가(rating)는 집계 통계에만
+                  사용하고 주제 추출·드릴다운에서는 제외한다.
+                </p>
+
+                <h4 className="text-sm font-semibold mb-2 text-muted-foreground">
+                  분류 체계
+                </h4>
+                <div className="rounded-lg border border-border overflow-hidden mb-4">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="w-32">유형</TableHead>
+                        <TableHead>정의</TableHead>
+                        <TableHead>예시</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      <TableRow>
+                        <TableCell className="font-medium">
+                          버그 리포트
+                        </TableCell>
+                        <TableCell>앱의 오류·비정상 동작 신고</TableCell>
+                        <TableCell className="italic text-muted-foreground">
+                          &ldquo;로그인하면 계속 튕겨요&rdquo;
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="font-medium">기능 요청</TableCell>
+                        <TableCell>새 기능·개선 제안</TableCell>
+                        <TableCell className="italic text-muted-foreground">
+                          &ldquo;내역에 필터 기능 추가해주세요&rdquo;
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="font-medium">
+                          사용자 경험
+                        </TableCell>
+                        <TableCell>사용 중 경험·감정·불편·만족 서술</TableCell>
+                        <TableCell className="italic text-muted-foreground">
+                          &ldquo;송금 흐름이 헷갈립니다&rdquo;
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell className="font-medium">평가</TableCell>
+                        <TableCell>단순 칭찬·비난</TableCell>
+                        <TableCell className="italic text-muted-foreground">
+                          &ldquo;최고의 앱입니다&rdquo;
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </div>
+
+                <h4 className="text-sm font-semibold mb-2 text-muted-foreground">
+                  처리 방식
+                </h4>
+                <ul className="max-w-3xl list-disc pl-5 space-y-2 text-base text-foreground leading-relaxed">
+                  <li>
+                    <strong className="font-semibold">모델</strong> — Claude
+                    Haiku 4.5 (
+                    <code className="px-1 py-0.5 rounded bg-slate-100 text-sm font-mono">
+                      claude-haiku-4-5
+                    </code>
+                    )
+                  </li>
+                  <li>
+                    <strong className="font-semibold">배치</strong> — 20건
+                    단위로 단일 API 호출
+                  </li>
+                  <li>
+                    <strong className="font-semibold">다중 라벨</strong> — 최대
+                    2~3개, 해당 없으면 빈 배열(
+                    <code className="px-1 py-0.5 rounded bg-slate-100 text-sm font-mono">
+                      []
+                    </code>
+                    )
+                  </li>
+                  <li>
+                    <strong className="font-semibold">가이드</strong> — 4분류
+                    정의·판별 규칙·경계 사례를{" "}
+                    <code className="px-1 py-0.5 rounded bg-slate-100 text-sm font-mono">
+                      classification.md
+                    </code>
+                    에 단일 소스로 관리. 규칙 수정만으로 재분류 일관성 유지.
+                  </li>
+                </ul>
+              </div>
+
+              {/* 3.4 주제 추출 */}
+              <div>
+                <h3 className="text-base font-semibold mb-2">
+                  <span className="text-muted-foreground mr-2">3.4</span>
+                  주제 추출
+                </h3>
+                <p className="text-base text-foreground leading-relaxed mb-4">
+                  4분류는 리뷰의 성격만 구분한다. "버그 리포트 200건 중 어떤
+                  버그가 가장 많은가"는 별도 분석이 필요하다. 범주 전수를 LLM에
+                  넣으면 규모에 비례해 비용이 커지므로, 범주별 표본을 뽑아
+                  주제를 추정한다. 대상은 3개 범주(버그·요청·UX)이며 평가는
+                  제외한다.
+                </p>
+
+                <h4 className="text-sm font-semibold mb-2 text-muted-foreground">
+                  처리 방식
+                </h4>
+                <ul className="max-w-3xl list-disc pl-5 space-y-2 text-base text-foreground leading-relaxed">
+                  <li>
+                    <strong className="font-semibold">샘플링</strong> — 범주당
+                    100건 무작위 추출 (100건 미만이면 전수)
+                  </li>
+                  <li>
+                    <strong className="font-semibold">추출</strong> — Claude
+                    API로 상위 주제 5개 + 주제별 대표 리뷰 3건 반환
+                  </li>
+                  <li>
+                    <strong className="font-semibold">유사 주제 병합</strong> —
+                    "로그인 오류" vs "로그인 안됨" 같은 케이스는 2차 LLM
+                    호출로 통합
+                  </li>
+                  <li>
+                    <strong className="font-semibold">출력</strong> —{" "}
+                    <code className="px-1 py-0.5 rounded bg-slate-100 text-sm font-mono">
+                      {`[{ theme, count, examples[] }]`}
+                    </code>{" "}
+                    형태로 대시보드 드릴다운 입력
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          {/* 4. 대시보드 구성 */}
+          <section id="dashboard" className="scroll-mt-24">
+            <h2 className="text-lg font-semibold mb-4">4. 대시보드 구성</h2>
+
+            <p className="text-base text-foreground leading-relaxed max-w-3xl mb-6">
+              네 개 뷰로 분류·주제 추출 결과를 시각화한다. 상단 스토어 필터가
+              모든 뷰에 공통 적용된다.
+            </p>
+
+            <div className="max-w-3xl space-y-5">
+              {[
+                {
+                  no: "4.1",
+                  title: "요약",
+                  desc: "총 리뷰 수·기간·스토어별 비율·제외 건수를 카드로 집계. 일별 수집 추이 차트.",
+                },
+                {
+                  no: "4.2",
+                  title: "분류 분포",
+                  desc: "4범주별 건수·비율 바 차트. Google Play vs App Store 비교 스택 바. 다중 라벨 구조라 합계는 리뷰 수와 일치하지 않음.",
+                },
+                {
+                  no: "4.3",
+                  title: "범주별 주제",
+                  desc: "범주 탭(버그·요청·UX)에서 상위 5개 주제 + 대표 리뷰 3건. 평가(rating)는 드릴다운 제외.",
+                },
+                {
+                  no: "4.4",
+                  title: "리뷰 탐색",
+                  desc: "분류·스토어·주제 필터로 원문 브라우징. 각 리뷰에 라벨·주제 태그 병기.",
+                },
+              ].map((view) => (
+                <div key={view.no}>
+                  <h3 className="text-base font-semibold mb-1">
+                    <span className="text-muted-foreground mr-2">
+                      {view.no}
+                    </span>
+                    {view.title}
+                  </h3>
+                  <p className="text-base text-foreground leading-relaxed">
+                    {view.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* 5. 한계 및 전제 */}
+          <section id="limitations" className="scroll-mt-24">
+            <h2 className="text-lg font-semibold mb-4">5. 한계 및 전제</h2>
+            <ul className="max-w-3xl list-disc pl-5 space-y-3 text-base text-foreground leading-relaxed">
+              <li>
+                <strong className="font-semibold">표본 대표성</strong> — 공개 앱
+                스토어 리뷰에 한정. SNS·커뮤니티·내부 CS 로그 등은
+                접근·라이선스·비용 제약으로 미포함.
+              </li>
+              <li>
+                <strong className="font-semibold">LLM 판정 오차</strong> — 확률적
+                모델이므로 완전히 결정적이지 않다.{" "}
+                <code className="px-1 py-0.5 rounded bg-slate-100 text-sm font-mono">
+                  classification.md
+                </code>
+                로 규칙을 단일 소스화했으나 모델 자체의 편향은 남는다.
+              </li>
+              <li>
+                <strong className="font-semibold">품질 검증 범위</strong> —
+                분류·주제 추출의 정확도를 수동 라벨링이나 정량 지표
+                (precision·recall·F1)로 검증하지 않는다. LLM 판정에 전적으로
+                의존하며, 품질 확인은 샘플 육안 검토에 그친다. 선행연구
+                (Maalej et al., 2016)는 4,400건 peer 라벨링 + binary classifier
+                기반 교차검증으로 88–92% 정확도를 산출했지만, 본 프로젝트는{" "}
+                <strong className="font-semibold">다중 라벨 구조</strong>를
+                채택하여 해당 수치가 직접 대응되지 않으며, 평가 절차 자체도
+                생략했다.
+              </li>
+              <li>
+                <strong className="font-semibold">분석 주기</strong> — 실행은
+                비용 제약으로 3월 한 달 스냅샷. 파이프라인은 지속 운영 전제로
+                설계되어, 스케줄만 붙이면 정기 운영 가능.
+              </li>
+              <li>
+                <strong className="font-semibold">표본 추출의 한계</strong> —
+                범주당 100건 표본 기반 추정이므로 희귀 주제(5% 미만)는 누락될
+                수 있다.
+              </li>
+            </ul>
+          </section>
+
+          {/* 부록 */}
+          <section id="appendix" className="scroll-mt-24">
+            <h2 className="text-lg font-semibold mb-4">부록</h2>
+            <p className="text-sm text-muted-foreground">(추후 추가)</p>
+          </section>
+        </article>
+
+        {/* 목차 */}
+        <aside className="hidden xl:block w-44 shrink-0">
+          <nav className="sticky top-8">
+            <p className="text-xs font-medium tracking-widest uppercase text-muted-foreground mb-3">
+              목차
+            </p>
+            <ul className="space-y-2 text-sm">
+              {TOC.map((item) => (
+                <li key={item.id}>
+                  <a
+                    href={`#${item.id}`}
+                    className="block text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </aside>
+      </div>
+    </div>
   );
 }

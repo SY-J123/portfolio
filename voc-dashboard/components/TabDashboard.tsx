@@ -1,64 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import {
-  ATTRIBUTES,
-  CATEGORIES,
-  SENTIMENT_ORDER,
-  SENTIMENT_COLORS,
-  CAT_COLORS,
-  CAT_HEX,
-  findAttribute,
-  type Category,
-  type Sentiment,
-} from "@/lib/attributes";
-import classifiedSample from "@/data/google-play.classified.json";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  CartesianGrid,
-  Legend,
-} from "recharts";
+import sampleData from "@/data/classified.maalej.json";
+import themesData from "@/data/category-themes.json";
+import weeklyThemesData from "@/data/weekly-themes.json";
 
-const SOURCE_LABELS: Record<string, string> = {
-  google_play: "Google Play",
-  app_store: "App Store",
-  ppomppu: "뽐뿌",
-  naver_cafe: "네이버 카페",
-};
-
-const PLANNED_SOURCES = ["google_play", "app_store", "ppomppu", "naver_cafe"] as const;
-
-type DateRange = "1w" | "4w" | "12w" | "all";
-
-const DATE_RANGE_LABEL: Record<DateRange, string> = {
-  "1w": "최근 1주",
-  "4w": "최근 4주",
-  "12w": "최근 12주",
-  all: "전체",
-};
-
-const DATE_RANGE_DAYS: Record<DateRange, number | null> = {
-  "1w": 7,
-  "4w": 28,
-  "12w": 84,
-  all: null,
-};
-
-interface Classification {
-  quality_attributes: string[];
-  sentiment: Sentiment;
-  sentiment_score: number;
-  severity: string;
-  severity_multiplier: number;
-  score_reality: number;
-}
+type ReviewType = "bug_report" | "feature_request" | "user_experience" | "rating";
 
 interface ClassifiedReview {
   source: string;
@@ -68,612 +17,539 @@ interface ClassifiedReview {
   text: string;
   posted_at: string;
   app_version: string | null;
-  thumbs_up: number;
-  classification: Classification;
+  classification: { types: string[] };
 }
 
-const DATA = classifiedSample as ClassifiedReview[];
+const LABELS: Record<ReviewType, { kr: string; emoji: string; color: string; bar: string }> = {
+  bug_report: {
+    kr: "버그 리포트",
+    emoji: "🐛",
+    color: "bg-red-100 text-red-700 border-red-200",
+    bar: "bg-red-400",
+  },
+  feature_request: {
+    kr: "기능 요청",
+    emoji: "✨",
+    color: "bg-violet-100 text-violet-700 border-violet-200",
+    bar: "bg-violet-400",
+  },
+  user_experience: {
+    kr: "사용자 경험",
+    emoji: "👤",
+    color: "bg-blue-100 text-blue-700 border-blue-200",
+    bar: "bg-blue-400",
+  },
+  rating: {
+    kr: "평가",
+    emoji: "⭐",
+    color: "bg-amber-100 text-amber-700 border-amber-200",
+    bar: "bg-amber-400",
+  },
+};
 
-function gradeOf(score: number) {
-  if (score >= 75) return { label: "양호", cls: "bg-emerald-50 text-emerald-700 border-emerald-200" };
-  if (score >= 60) return { label: "보통", cls: "bg-amber-50 text-amber-700 border-amber-200" };
-  if (score >= 45) return { label: "주의", cls: "bg-orange-50 text-orange-700 border-orange-200" };
-  return { label: "위험", cls: "bg-red-50 text-red-700 border-red-200" };
-}
+const LABEL_ORDER: ReviewType[] = [
+  "bug_report",
+  "feature_request",
+  "user_experience",
+  "rating",
+];
 
-function scoreColor(score: number) {
-  if (score >= 75) return "#22c55e";
-  if (score >= 60) return "#eab308";
-  if (score >= 45) return "#f97316";
-  return "#ef4444";
-}
-
-/** 해당 날짜가 속한 주의 일요일(UTC) 을 YYYY-MM-DD 로 반환 */
-function weekStart(iso: string): string {
-  const d = new Date(iso);
-  const day = d.getUTCDay(); // 일=0..토=6
-  d.setUTCDate(d.getUTCDate() - day);
-  d.setUTCHours(0, 0, 0, 0);
-  return d.toISOString().slice(0, 10);
-}
-
-const ROLLING_WINDOW = 4;
+type FilterValue = "all" | ReviewType;
 
 export default function TabDashboard() {
-  const [selectedCat, setSelectedCat] = useState<Category | null>(null);
-  const [dateRange, setDateRange] = useState<DateRange>("4w");
+  const reviews = sampleData as ClassifiedReview[];
+  const [filter, setFilter] = useState<FilterValue>("all");
+  const themesRef = useRef<HTMLElement>(null);
+  const [themesHeight, setThemesHeight] = useState<number | null>(null);
 
-  // 데이터 최신 posted_at 을 기준으로 필터 윈도우 산정 (프로토타입 스냅샷 특성상 today 대신 max 사용)
-  const maxPostedAt = useMemo<string>(() => {
-    if (DATA.length === 0) return new Date().toISOString();
-    return DATA.reduce(
-      (max, r) => (r.posted_at > max ? r.posted_at : max),
-      DATA[0].posted_at
-    );
+  useEffect(() => {
+    const el = themesRef.current;
+    if (!el) return;
+    const update = () => setThemesHeight(el.offsetHeight);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    window.addEventListener("resize", update);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", update);
+    };
   }, []);
 
-  const filteredData = useMemo(() => {
-    const days = DATE_RANGE_DAYS[dateRange];
-    if (days === null) return DATA;
-    const anchor = new Date(maxPostedAt).getTime();
-    const threshold = anchor - days * 24 * 60 * 60 * 1000;
-    return DATA.filter((r) => new Date(r.posted_at).getTime() >= threshold);
-  }, [dateRange, maxPostedAt]);
-
-  const summary = useMemo(() => {
-    const total = filteredData.length;
-    const avgScore = total
-      ? filteredData.reduce((s, r) => s + r.classification.score_reality, 0) / total
-      : 0;
-    const negative = filteredData.filter(
-      (r) => r.classification.sentiment === "부정" || r.classification.sentiment === "매우 부정"
-    ).length;
-    return { total, avgScore, negative };
-  }, [filteredData]);
-
-  // 채널 × 감정 분포 — 리뷰 단위. 미수집 채널도 placeholder로 표시
-  const sourceDist = useMemo(() => {
-    const dist = new Map<string, Record<Sentiment, number>>();
-    for (const src of PLANNED_SOURCES) {
-      dist.set(src, { "매우 긍정": 0, 긍정: 0, 중립: 0, 부정: 0, "매우 부정": 0 });
-    }
-    for (const r of filteredData) {
-      if (!dist.has(r.source)) {
-        dist.set(r.source, { "매우 긍정": 0, 긍정: 0, 중립: 0, 부정: 0, "매우 부정": 0 });
-      }
-      dist.get(r.source)![r.classification.sentiment]++;
-    }
-    return Array.from(dist.entries()).map(([source, d]) => ({
-      source,
-      dist: d,
-      total: SENTIMENT_ORDER.reduce((s, sent) => s + d[sent], 0),
-    }));
-  }, [filteredData]);
-  const maxSourceTotal = Math.max(...sourceDist.map((s) => s.total), 1);
-
-  // 카테고리별 점수 (attribute-match 단위 집계)
-  const catScores = useMemo(() => {
-    type Stat = { cat: Category; sum: number; count: number; negative: number };
-    const init: Record<Category, Stat> = {
-      전략: { cat: "전략", sum: 0, count: 0, negative: 0 },
-      UX: { cat: "UX", sum: 0, count: 0, negative: 0 },
-      운영: { cat: "운영", sum: 0, count: 0, negative: 0 },
-      기술: { cat: "기술", sum: 0, count: 0, negative: 0 },
+  const stats = useMemo(() => {
+    const counts: Record<ReviewType, number> = {
+      bug_report: 0,
+      feature_request: 0,
+      user_experience: 0,
+      rating: 0,
     };
-    const attrNeg: Record<Category, Map<string, number>> = {
-      전략: new Map(), UX: new Map(), 운영: new Map(), 기술: new Map(),
-    };
-    for (const r of filteredData) {
-      const cats = new Set<Category>();
-      for (const a of r.classification.quality_attributes) {
-        const attr = findAttribute(a);
-        if (attr) cats.add(attr.category);
-      }
-      const isNeg = r.classification.sentiment === "부정" || r.classification.sentiment === "매우 부정";
-      for (const c of cats) {
-        init[c].sum += r.classification.score_reality;
-        init[c].count++;
-        if (isNeg) init[c].negative++;
-      }
-      if (isNeg) {
-        for (const a of r.classification.quality_attributes) {
-          const attr = findAttribute(a);
-          if (!attr) continue;
-          attrNeg[attr.category].set(a, (attrNeg[attr.category].get(a) ?? 0) + 1);
-        }
+    let multiLabel = 0;
+    let empty = 0;
+    for (const r of reviews) {
+      if (r.classification.types.length === 0) empty++;
+      if (r.classification.types.length > 1) multiLabel++;
+      for (const t of r.classification.types) {
+        if (t in counts) counts[t as ReviewType]++;
       }
     }
-    return CATEGORIES.map((c) => {
-      const s = init[c];
-      let topAttr: { name: string; neg: number } | null = null;
-      for (const [name, neg] of attrNeg[c]) {
-        if (!topAttr || neg > topAttr.neg) topAttr = { name, neg };
-      }
-      return {
-        cat: c,
-        avgScore: s.count ? s.sum / s.count : 0,
-        count: s.count,
-        negative: s.negative,
-        topAttr,
-      };
-    });
-  }, [filteredData]);
+    const max = Math.max(...Object.values(counts));
+    return { counts, max, multiLabel, empty, total: reviews.length };
+  }, [reviews]);
 
-  // 주간 카테고리 점수 추이 — rolling 4주 평균
-  const weeklyTrend = useMemo(() => {
-    type Entry = { week: string; cat: Category; score: number };
-    const entries: Entry[] = [];
-    for (const r of filteredData) {
-      const w = weekStart(r.posted_at);
-      const cats = new Set<Category>();
-      for (const a of r.classification.quality_attributes) {
-        const attr = findAttribute(a);
-        if (attr) cats.add(attr.category);
-      }
-      for (const c of cats) {
-        entries.push({ week: w, cat: c, score: r.classification.score_reality });
-      }
+  const [themeFilter, setThemeFilter] = useState<{
+    category: ReviewType | null;
+    theme: string;
+    reviewIds: Set<string>;
+  } | null>(null);
+
+  const filtered = useMemo(() => {
+    if (themeFilter) {
+      return reviews.filter((r) => themeFilter.reviewIds.has(r.external_id));
     }
-    const weeks = Array.from(new Set(entries.map((e) => e.week))).sort();
-    return weeks.map((w, i) => {
-      const windowStart = Math.max(0, i - ROLLING_WINDOW + 1);
-      const windowSet = new Set(weeks.slice(windowStart, i + 1));
-      const relevant = entries.filter((e) => windowSet.has(e.week));
-      const row: Record<string, number | string> = { week: w.slice(5) };
-      for (const c of CATEGORIES) {
-        const forCat = relevant.filter((e) => e.cat === c);
-        if (forCat.length === 0) continue;
-        row[c] =
-          Math.round(
-            (forCat.reduce((s, e) => s + e.score, 0) / forCat.length) * 10
-          ) / 10;
-      }
-      return row;
-    });
-  }, [filteredData]);
-
-  // 선택된 카테고리 상세 — 속성별 집계 + 매칭 원문
-  const detail = useMemo(() => {
-    if (!selectedCat) return null;
-    const attrsInCat = ATTRIBUTES.filter((a) => a.category === selectedCat);
-
-    type AttrStat = { name: string; total: number; negative: number };
-    const attrMap = new Map<string, AttrStat>();
-    for (const a of attrsInCat) attrMap.set(a.name, { name: a.name, total: 0, negative: 0 });
-
-    const reviews: ClassifiedReview[] = [];
-    for (const r of filteredData) {
-      const hit = r.classification.quality_attributes.some((a) => {
-        const attr = findAttribute(a);
-        return attr?.category === selectedCat;
-      });
-      if (!hit) continue;
-      reviews.push(r);
-      const isNeg = r.classification.sentiment === "부정" || r.classification.sentiment === "매우 부정";
-      for (const a of r.classification.quality_attributes) {
-        const s = attrMap.get(a);
-        if (!s) continue;
-        s.total++;
-        if (isNeg) s.negative++;
-      }
-    }
-    const attrStats = Array.from(attrMap.values())
-      .sort((a, b) => b.negative - a.negative || b.total - a.total);
-    const maxAttrTotal = Math.max(...attrStats.map((s) => s.total), 1);
-    reviews.sort((a, b) => a.classification.score_reality - b.classification.score_reality);
-    return { cat: selectedCat, attrStats, maxAttrTotal, reviews };
-  }, [selectedCat, filteredData]);
-
-  const grade = gradeOf(summary.avgScore);
-  const negPct = summary.total ? Math.round((summary.negative / summary.total) * 100) : 0;
+    if (filter === "all") return reviews;
+    return reviews.filter((r) => r.classification.types.includes(filter));
+  }, [reviews, filter, themeFilter]);
 
   return (
-    <div className="max-w-5xl mx-auto py-10 space-y-10">
+    <div className="max-w-[1200px] mx-auto py-10 px-6 space-y-10">
+      {/* 헤더 */}
       <header>
         <p className="text-xs font-medium tracking-widest uppercase text-muted-foreground mb-2">
-          Dashboard · Google Play · {DATA.length}건 분류 완료
+          Dashboard
         </p>
-        <h1 className="text-2xl font-bold tracking-tight">VOC 분석 대시보드</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          2026년 3월 이후 토스 Google Play 리뷰를 수기 LLM 분류한 결과.
+        <h1 className="text-3xl font-bold tracking-tight leading-tight">
+          토스 VOC 분류·주제 분석
+        </h1>
+        <p className="mt-3 text-sm text-muted-foreground">
+          Google Play · Apple App Store · 2026년 3월 · 전체 {stats.total}건 ·{" "}
+          <code className="px-1 py-0.5 rounded bg-slate-100 text-xs font-mono">
+            claude-haiku-4-5
+          </code>
         </p>
       </header>
 
       <Separator />
 
-      {/* 기간 필터 */}
-      <div className="flex items-center gap-2 text-sm">
-        <span className="text-xs font-semibold text-muted-foreground mr-1">기간</span>
-        {(Object.keys(DATE_RANGE_LABEL) as DateRange[]).map((r) => {
-          const active = dateRange === r;
-          return (
-            <button
-              key={r}
-              onClick={() => setDateRange(r)}
-              className={`px-3 py-1 rounded-md transition ${
-                active
-                  ? "font-semibold bg-foreground text-background"
-                  : "text-muted-foreground hover:bg-muted"
-              }`}
-            >
-              {DATE_RANGE_LABEL[r]}
-            </button>
-          );
-        })}
-        <span className="ml-2 text-xs text-muted-foreground">
-          기준일: {maxPostedAt.slice(0, 10)}
-        </span>
-      </div>
-
-      {/* 3.1 요약 카드 */}
+      {/* 요약 */}
       <section>
-        <h2 className="text-sm font-semibold text-muted-foreground mb-3">3.1 요약</h2>
-        <div className="grid grid-cols-3 gap-4">
-          <div className="border rounded-lg p-5">
-            <p className="text-xs text-muted-foreground mb-2">총 VOC</p>
-            <p className="text-3xl font-bold tabular-nums">{summary.total}</p>
-            <p className="text-xs text-muted-foreground mt-2">전처리 후 보존 건수</p>
-          </div>
-          <div className="border rounded-lg p-5">
-            <p className="text-xs text-muted-foreground mb-2">평균 만족도</p>
-            <div className="flex items-baseline gap-2">
-              <p className="text-3xl font-bold tabular-nums" style={{ color: scoreColor(summary.avgScore) }}>
-                {summary.avgScore.toFixed(1)}
-              </p>
-              <span className="text-sm text-muted-foreground">/100</span>
-              <Badge variant="outline" className={`text-[10px] ${grade.cls}`}>{grade.label}</Badge>
-            </div>
-            <p className="text-xs text-muted-foreground mt-2">baseline 80에서 감정·심각도로 가감</p>
-          </div>
-          <div className="border rounded-lg p-5">
-            <p className="text-xs text-muted-foreground mb-2">부정 VOC</p>
-            <div className="flex items-baseline gap-2">
-              <p className="text-3xl font-bold tabular-nums text-red-600">{summary.negative}</p>
-              <span className="text-sm text-muted-foreground">건 ({negPct}%)</span>
-            </div>
-            <p className="text-xs text-muted-foreground mt-2">부정 + 매우 부정 합계</p>
-          </div>
+        <h2 className="text-lg font-semibold mb-4">요약</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <StatCard label="총 리뷰" value={stats.total} />
+          <StatCard
+            label="다중 라벨"
+            value={stats.multiLabel}
+            sublabel={`${((stats.multiLabel / stats.total) * 100).toFixed(0)}%`}
+          />
+          <StatCard
+            label="빈 배열"
+            value={stats.empty}
+            sublabel="해당 유형 없음"
+          />
+          <StatCard
+            label="총 라벨 수"
+            value={Object.values(stats.counts).reduce((a, b) => a + b, 0)}
+            sublabel="다중 라벨 반영"
+          />
         </div>
       </section>
 
-      {/* 3.2 카테고리별 점수 */}
+      {/* 분류 분포 */}
       <section>
-        <h2 className="text-sm font-semibold text-muted-foreground mb-3">
-          3.2 카테고리별 점수
-        </h2>
-        <div className="grid grid-cols-4 gap-4">
-          {catScores.map((s) => {
-            const g = gradeOf(s.avgScore);
-            const np = s.count ? Math.round((s.negative / s.count) * 100) : 0;
-            const topLine = s.topAttr
-              ? `${s.topAttr.name} 중심 불만 (${s.topAttr.neg}건)`
-              : s.count
-                ? "부정 신호 없음"
-                : "매칭 없음";
+        <h2 className="text-lg font-semibold mb-4">분류 분포</h2>
+        <div className="space-y-3 max-w-2xl">
+          {LABEL_ORDER.map((t) => {
+            const count = stats.counts[t];
+            const pct = stats.total > 0 ? (count / stats.total) * 100 : 0;
+            const barWidth = stats.max > 0 ? (count / stats.max) * 100 : 0;
             return (
-              <div key={s.cat} className="border rounded-lg p-4">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="flex items-center gap-1.5">
-                    <span className={`w-2 h-2 rounded-full ${CAT_COLORS[s.cat]}`} />
-                    <span className="text-sm font-semibold">{s.cat}</span>
-                  </span>
-                  <Badge variant="outline" className={`text-[10px] ${g.cls}`}>
-                    {g.label}
-                  </Badge>
+              <div key={t} className="flex items-center gap-3">
+                <div className="w-28 text-sm font-medium">
+                  <span className="mr-1">{LABELS[t].emoji}</span>
+                  {LABELS[t].kr}
                 </div>
-                <p
-                  className="text-3xl font-bold tabular-nums"
-                  style={{ color: scoreColor(s.avgScore) }}
-                >
-                  {s.count ? s.avgScore.toFixed(1) : "—"}
-                </p>
-                <div className="flex justify-between text-xs text-muted-foreground mt-2">
-                  <span>{s.count}건</span>
-                  <span>부정 {np}%</span>
-                </div>
-                <div className="w-full h-1.5 rounded-full bg-muted mt-1.5 overflow-hidden">
+                <div className="flex-1 h-7 bg-slate-100 rounded overflow-hidden">
                   <div
-                    className="h-full rounded-full bg-red-400"
-                    style={{ width: `${np}%` }}
+                    className={`h-full ${LABELS[t].bar} transition-all`}
+                    style={{ width: `${barWidth}%` }}
                   />
                 </div>
-                <p className="text-xs text-foreground mt-3 line-clamp-2 min-h-[2.5rem]">
-                  {topLine}
-                </p>
-              </div>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* 3.3 채널별 감정 분포 + 주간 추이 */}
-      <section>
-        <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-4 items-stretch">
-          {/* 좌: 채널별 감정 분포 */}
-          <div className="flex flex-col">
-            <h2 className="text-sm font-semibold text-muted-foreground mb-3">
-              3.3 채널별 감정 분포
-            </h2>
-            <div className="border rounded-lg p-5 space-y-4 flex-1">
-              {sourceDist.map(({ source, dist, total }) => {
-                const isEmpty = total === 0;
-                const widthPct = isEmpty ? 100 : (total / maxSourceTotal) * 100;
-                const pos = isEmpty ? 0 : dist["매우 긍정"] + dist["긍정"];
-                const neu = isEmpty ? 0 : dist["중립"];
-                const neg = isEmpty ? 0 : dist["부정"] + dist["매우 부정"];
-                const pct = (n: number) => (total ? Math.round((n / total) * 100) : 0);
-                return (
-                  <div key={source} className={isEmpty ? "opacity-50" : ""}>
-                    <div className="flex items-center justify-between text-sm mb-1.5">
-                      <span className="font-medium">
-                        {SOURCE_LABELS[source] || source}
-                        {isEmpty && (
-                          <span className="ml-2 text-[10px] font-normal uppercase tracking-wider text-muted-foreground">
-                            수집 예정
-                          </span>
-                        )}
-                      </span>
-                      <span className="text-xs text-muted-foreground tabular-nums">
-                        {isEmpty ? "—" : `${total}건`}
-                      </span>
-                    </div>
-                    <div
-                      className={`flex h-6 rounded overflow-hidden ${
-                        isEmpty ? "bg-slate-50 border border-dashed border-slate-200" : "bg-slate-100"
-                      }`}
-                      style={{ width: `${Math.max(widthPct, 5)}%` }}
-                    >
-                      {!isEmpty &&
-                        SENTIMENT_ORDER.map((sent) => {
-                          const n = dist[sent];
-                          if (n === 0) return null;
-                          const w = (n / total) * 100;
-                          return (
-                            <div
-                              key={sent}
-                              className={SENTIMENT_COLORS[sent]}
-                              style={{ width: `${w}%` }}
-                              title={`${sent}: ${n}건 (${pct(n)}%)`}
-                            />
-                          );
-                        })}
-                    </div>
-                    {!isEmpty && (
-                      <div className="flex gap-3 mt-1.5 text-[11px] text-muted-foreground tabular-nums">
-                        <span>
-                          긍정 <strong className="text-emerald-600 font-semibold">{pct(pos)}%</strong>
-                          <span className="ml-0.5">({pos})</span>
-                        </span>
-                        <span>
-                          중립 <strong className="text-slate-500 font-semibold">{pct(neu)}%</strong>
-                          <span className="ml-0.5">({neu})</span>
-                        </span>
-                        <span>
-                          부정 <strong className="text-red-600 font-semibold">{pct(neg)}%</strong>
-                          <span className="ml-0.5">({neg})</span>
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-              <div className="flex gap-3 pt-2 border-t text-[11px] text-muted-foreground">
-                {SENTIMENT_ORDER.map((sent) => (
-                  <div key={sent} className="flex items-center gap-1.5">
-                    <span className={`w-2.5 h-2.5 rounded-sm ${SENTIMENT_COLORS[sent]}`} />
-                    <span>{sent}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* 우: 주간 추이 */}
-          <div className="flex flex-col">
-            <div className="flex items-baseline justify-between mb-3">
-              <h2 className="text-sm font-semibold text-muted-foreground">
-                카테고리별 점수 주간 추이
-              </h2>
-              <span className="text-[10px] text-muted-foreground">
-                4주 이동평균 · MM-DD
-              </span>
-            </div>
-            <div className="border rounded-lg p-4 flex-1 min-h-0">
-              {weeklyTrend.length === 0 ? (
-                <div className="h-full flex items-center justify-center text-sm text-muted-foreground">
-                  데이터 없음
+                <div className="w-28 text-sm text-right tabular-nums">
+                  <span className="font-semibold">{count}</span>
+                  <span className="text-muted-foreground ml-1">
+                    ({pct.toFixed(0)}%)
+                  </span>
                 </div>
-              ) : (
-                <ResponsiveContainer width="100%" height="100%">
-                  <LineChart
-                    data={weeklyTrend}
-                    margin={{ top: 8, right: 8, left: -12, bottom: 0 }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-                    <XAxis dataKey="week" tick={{ fontSize: 11 }} />
-                    <YAxis domain={[40, 100]} tick={{ fontSize: 11 }} />
-                    <Tooltip
-                      contentStyle={{ fontSize: 12, borderRadius: 6 }}
-                      cursor={{ stroke: "#cbd5e1" }}
-                    />
-                    <Legend
-                      wrapperStyle={{ fontSize: 11, paddingTop: 8 }}
-                      iconSize={10}
-                    />
-                    {CATEGORIES.map((cat) => (
-                      <Line
-                        key={cat}
-                        type="monotone"
-                        dataKey={cat}
-                        stroke={CAT_HEX[cat]}
-                        strokeWidth={2}
-                        dot={{ r: 3 }}
-                        connectNulls
-                      />
-                    ))}
-                  </LineChart>
-                </ResponsiveContainer>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3.4 카테고리 상세 */}
-      <section>
-        <h2 className="text-sm font-semibold text-muted-foreground mb-3">
-          3.4 카테고리 상세 — 속성 분포 및 원문
-        </h2>
-
-        {/* 칩 필터 (단일 선택) */}
-        <div className="flex items-center gap-2 mb-3" role="radiogroup" aria-label="카테고리 선택">
-          {CATEGORIES.map((c) => {
-            const active = selectedCat === c;
-            return (
-              <button
-                key={c}
-                role="radio"
-                aria-checked={active}
-                onClick={() => setSelectedCat(active ? null : c)}
-                className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm border transition ${
-                  active
-                    ? "bg-foreground text-background border-foreground"
-                    : "bg-background text-foreground border-slate-200 hover:bg-slate-50"
-                }`}
-              >
-                <span className={`w-1.5 h-1.5 rounded-full ${CAT_COLORS[c]}`} />
-                {c}
-              </button>
+              </div>
             );
           })}
-          {selectedCat && (
-            <button
-              onClick={() => setSelectedCat(null)}
-              className="text-xs text-muted-foreground hover:text-foreground ml-1"
-            >
-              선택 해제
-            </button>
-          )}
         </div>
+        <p className="text-xs text-muted-foreground mt-3">
+          ※ 다중 라벨 구조이므로 합계가 총 리뷰 수와 일치하지 않음
+        </p>
+      </section>
 
-        {!detail ? (
-          <div className="border rounded-lg p-10 text-center text-sm text-muted-foreground">
-            위 칩에서 카테고리를 선택하세요.
-          </div>
-        ) : (
-          <div className="border rounded-lg p-5 space-y-5">
-            <div className="flex items-baseline gap-3">
-              <span className={`w-2 h-2 rounded-full ${CAT_COLORS[detail.cat]}`} />
-              <h3 className="text-lg font-bold">{detail.cat}</h3>
-              <span className="text-xs text-muted-foreground ml-auto">
-                매칭 {detail.reviews.length}건
-              </span>
-            </div>
-
-            <div>
-              <div className="flex items-baseline justify-between mb-2">
-                <p className="text-xs font-semibold text-muted-foreground">속성별 분포</p>
-                <p className="text-[10px] text-muted-foreground">
-                  <span className="inline-block w-2 h-2 rounded-sm bg-slate-300 mr-1 align-middle" />전체
-                  <span className="inline-block w-2 h-2 rounded-sm bg-red-500 ml-3 mr-1 align-middle" />부정
+      {/* 주별 상위 주제 */}
+      <section>
+        <div className="flex items-baseline justify-between mb-4">
+          <h2 className="text-lg font-semibold">주별 상위 주제</h2>
+          <span className="text-xs text-muted-foreground">
+            주별 LLM 호출로 top 5 주제 추출 · rating 제외
+          </span>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          {(
+            weeklyThemesData as Array<{
+              week: string;
+              start: string;
+              end: string;
+              review_count: number;
+              themes: Array<{
+                theme: string;
+                count: number;
+                review_ids: string[];
+              }>;
+            }>
+          ).map((w) => (
+            <div
+              key={w.week}
+              className="border border-border rounded-lg p-3 bg-slate-50/30"
+            >
+              <div className="mb-2">
+                <p className="text-sm font-semibold">{w.week}</p>
+                <p className="text-xs text-muted-foreground">
+                  {w.review_count}건
                 </p>
               </div>
-              <div className="border rounded p-3 space-y-1">
-                {detail.attrStats.map((s) => {
-                  const empty = s.total === 0;
-                  const totalPct = (s.total / detail.maxAttrTotal) * 100;
-                  const negPct = (s.negative / detail.maxAttrTotal) * 100;
+              <ol className="space-y-1">
+                {w.themes.map((t, i) => {
+                  const isActive =
+                    themeFilter?.theme === t.theme &&
+                    themeFilter?.category === null;
                   return (
-                    <div
-                      key={s.name}
-                      className="grid grid-cols-[180px_1fr_56px_32px] items-center gap-3 py-1"
-                    >
-                      <span className={`text-sm truncate ${empty ? "text-muted-foreground" : "font-medium"}`}>
-                        {s.name}
-                      </span>
-                      <div className="relative h-5 bg-slate-100 rounded-sm overflow-hidden">
-                        {!empty && (
-                          <>
-                            <div
-                              className="absolute inset-y-0 left-0 bg-slate-300"
-                              style={{ width: `${totalPct}%` }}
-                            />
-                            <div
-                              className="absolute inset-y-0 left-0 bg-red-500"
-                              style={{ width: `${negPct}%` }}
-                            />
-                          </>
-                        )}
-                      </div>
-                      <span className="text-sm tabular-nums text-right text-muted-foreground">
-                        {empty ? "—" : `${s.total}건`}
-                      </span>
-                      <span
-                        className={`text-sm tabular-nums text-right ${
-                          empty
-                            ? "text-muted-foreground"
-                            : s.negative > 0
-                            ? "font-bold text-red-600"
-                            : "text-muted-foreground"
+                    <li key={i}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (isActive) {
+                            setThemeFilter(null);
+                          } else {
+                            setThemeFilter({
+                              category: null,
+                              theme: `${w.week} · ${t.theme}`,
+                              reviewIds: new Set(t.review_ids),
+                            });
+                          }
+                        }}
+                        className={`w-full text-left text-sm py-1 px-2 rounded transition-colors ${
+                          isActive
+                            ? "bg-foreground text-background"
+                            : "hover:bg-slate-100"
                         }`}
                       >
-                        {empty ? "—" : s.negative}
-                      </span>
-                    </div>
+                        <span className="tabular-nums text-xs text-muted-foreground mr-1.5">
+                          {i + 1}.
+                        </span>
+                        <span className="font-medium">{t.theme}</span>
+                        <span className="text-xs text-muted-foreground ml-1 tabular-nums">
+                          ({t.count})
+                        </span>
+                      </button>
+                    </li>
                   );
                 })}
-              </div>
+              </ol>
             </div>
+          ))}
+        </div>
+      </section>
 
-            <div>
-              <p className="text-xs font-semibold text-muted-foreground mb-2">LLM 요약</p>
-              <div className="bg-slate-50 border rounded p-3 text-sm text-muted-foreground italic">
-                (프로토타입 단계 — 본격 분류 이후 LLM이 해당 카테고리의 공통 불만 패턴을 2–3줄로 요약해
-                이 자리에 표시한다.)
-              </div>
-            </div>
-
-            <div>
-              <p className="text-xs font-semibold text-muted-foreground mb-2">
-                매칭 원문 ({detail.reviews.length}건, 만족도 낮은 순)
-              </p>
-              <div className="space-y-3">
-                {detail.reviews.map((r) => (
-                  <div key={r.external_id} className="border rounded p-3 text-sm">
-                    <div className="flex items-center gap-2 mb-1 text-xs text-muted-foreground">
-                      <span
-                        className="font-bold tabular-nums"
-                        style={{ color: scoreColor(r.classification.score_reality) }}
-                      >
-                        {r.classification.score_reality}
-                      </span>
-                      <span>· {r.classification.sentiment}</span>
-                      <span>· {r.classification.severity}</span>
-                      <span className="ml-auto">별점 {r.score ?? "-"}</span>
-                    </div>
-                    <p className="leading-relaxed">{r.text}</p>
-                    <div className="flex gap-1 mt-2 flex-wrap">
-                      {r.classification.quality_attributes.map((a) => {
-                        const attr = findAttribute(a);
-                        const inCat = attr?.category === detail.cat;
+      {/* 범주별 주제 + 리뷰 탐색 (2열) */}
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
+      <section ref={themesRef} className="lg:col-span-2">
+        <div className="flex items-baseline justify-between mb-4">
+          <h2 className="text-lg font-semibold">범주별 주제</h2>
+          <span className="text-xs text-muted-foreground">
+            LLM이 범주 내 리뷰에서 공통 주제를 추출 · 평가(rating) 제외
+          </span>
+        </div>
+        <div className="space-y-6">
+          {(["bug_report", "feature_request", "user_experience"] as const).map(
+            (cat) => {
+              const themes =
+                (
+                  themesData as Record<
+                    string,
+                    Array<{
+                      theme: string;
+                      count: number;
+                      review_ids?: string[];
+                      examples: string[];
+                    }>
+                  >
+                )[cat] ?? [];
+              const catCount = stats.counts[cat];
+              const l = LABELS[cat];
+              return (
+                <div key={cat}>
+                  <div className="flex items-center gap-2 mb-3">
+                    <Badge
+                      variant="outline"
+                      className={`${l.color} font-medium`}
+                    >
+                      {l.emoji} {l.kr}
+                    </Badge>
+                    <span className="text-sm text-muted-foreground">
+                      총 {catCount}건 · 주제 {themes.length}개
+                    </span>
+                  </div>
+                  {themes.length === 0 ? (
+                    <p className="text-sm text-muted-foreground pl-2">
+                      추출된 주제 없음
+                    </p>
+                  ) : (
+                    <ul className="space-y-2">
+                      {themes.map((t, i) => {
+                        const isActive =
+                          themeFilter?.category === cat &&
+                          themeFilter?.theme === t.theme;
+                        const reviewIds = t.review_ids ?? [];
                         return (
-                          <Badge
-                            key={a}
-                            variant={inCat ? "default" : "secondary"}
-                            className="text-[10px] px-1.5 py-0"
+                        <li
+                          key={i}
+                          className={`border rounded-lg overflow-hidden transition-colors ${
+                            isActive
+                              ? "border-foreground ring-1 ring-foreground"
+                              : "border-border"
+                          }`}
+                        >
+                          <button
+                            type="button"
+                            onClick={() => {
+                              if (isActive) {
+                                setThemeFilter(null);
+                              } else {
+                                setThemeFilter({
+                                  category: cat,
+                                  theme: t.theme,
+                                  reviewIds: new Set(reviewIds),
+                                });
+                              }
+                            }}
+                            className={`w-full flex items-center justify-between gap-4 px-4 py-3 text-left transition-colors ${
+                              isActive
+                                ? "bg-slate-100"
+                                : "hover:bg-slate-50"
+                            }`}
                           >
-                            {a}
-                          </Badge>
+                            <div className="flex items-center gap-3">
+                              <span className="text-sm text-muted-foreground tabular-nums w-6">
+                                #{i + 1}
+                              </span>
+                              <span className="font-medium">{t.theme}</span>
+                            </div>
+                            <div className="flex items-center gap-3 text-sm">
+                              <span className="tabular-nums">
+                                <span className="font-semibold">{t.count}</span>
+                                <span className="text-muted-foreground ml-1">
+                                  건
+                                </span>
+                              </span>
+                              <span
+                                className={`text-xs ${
+                                  isActive
+                                    ? "text-foreground"
+                                    : "text-muted-foreground"
+                                }`}
+                              >
+                                {isActive ? "선택됨" : "필터"}
+                              </span>
+                            </div>
+                          </button>
+                          <details className="group border-t border-border">
+                            <summary className="px-4 py-2 cursor-pointer list-none text-xs text-muted-foreground hover:bg-slate-50 flex items-center justify-between">
+                              <span>대표 리뷰 {t.examples.length}건 보기</span>
+                              <span className="group-open:rotate-90 transition-transform">
+                                ▶
+                              </span>
+                            </summary>
+                            <div className="px-4 py-3 bg-slate-50 border-t border-border">
+                              <ul className="space-y-2">
+                                {t.examples.map((ex, j) => (
+                                  <li
+                                    key={j}
+                                    className="text-sm leading-relaxed pl-3 border-l-2 border-slate-300"
+                                  >
+                                    {ex}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </details>
+                        </li>
                         );
                       })}
-                    </div>
-                  </div>
-                ))}
-              </div>
+                    </ul>
+                  )}
+                </div>
+              );
+            }
+          )}
+        </div>
+      </section>
+
+      {/* 리뷰 탐색 */}
+      <section
+        className="lg:col-span-3 lg:flex lg:flex-col lg:min-h-0"
+        style={themesHeight ? { maxHeight: themesHeight } : undefined}
+      >
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-semibold">리뷰 탐색</h2>
+          <span className="text-sm text-muted-foreground">
+            {filtered.length}건
+          </span>
+        </div>
+
+        {/* 필터 */}
+        {themeFilter ? (
+          <div className="flex items-center justify-between gap-3 mb-4 px-3 py-2 rounded-lg border border-foreground bg-slate-100">
+            <div className="flex items-center gap-2 text-sm">
+              {themeFilter.category && (
+                <Badge
+                  variant="outline"
+                  className={`${LABELS[themeFilter.category].color} font-medium`}
+                >
+                  {LABELS[themeFilter.category].emoji}{" "}
+                  {LABELS[themeFilter.category].kr}
+                </Badge>
+              )}
+              <span className="text-muted-foreground">주제:</span>
+              <span className="font-semibold">{themeFilter.theme}</span>
+              <span className="text-muted-foreground tabular-nums">
+                ({themeFilter.reviewIds.size}건)
+              </span>
             </div>
+            <button
+              type="button"
+              onClick={() => setThemeFilter(null)}
+              className="text-sm text-muted-foreground hover:text-foreground px-2 py-0.5 rounded hover:bg-slate-200"
+            >
+              × 해제
+            </button>
+          </div>
+        ) : (
+          <div className="flex flex-wrap gap-2 mb-4">
+            <FilterChip
+              active={filter === "all"}
+              onClick={() => setFilter("all")}
+            >
+              전체 ({stats.total})
+            </FilterChip>
+            {LABEL_ORDER.map((t) => (
+              <FilterChip
+                key={t}
+                active={filter === t}
+                onClick={() => setFilter(t)}
+              >
+                {LABELS[t].emoji} {LABELS[t].kr} ({stats.counts[t]})
+              </FilterChip>
+            ))}
           </div>
         )}
+
+        {/* 리뷰 리스트 (2열 레이아웃 시 좌측 컬럼 높이에 맞춰 스크롤) */}
+        <ul className="space-y-3 lg:flex-1 lg:min-h-0 lg:overflow-y-auto lg:pr-2 lg:border lg:border-border lg:rounded-lg lg:p-3 lg:bg-slate-50/30">
+          {filtered.map((r, i) => (
+            <li
+              key={r.external_id}
+              className="border border-border rounded-lg p-4 hover:bg-slate-50 transition-colors"
+            >
+              <div className="flex items-center justify-between gap-4 mb-2">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="text-xs text-muted-foreground tabular-nums">
+                    #{i + 1}
+                  </span>
+                  {r.classification.types.length > 0 ? (
+                    r.classification.types.map((t) => {
+                      const l = LABELS[t as ReviewType];
+                      if (!l) return null;
+                      return (
+                        <Badge
+                          key={t}
+                          variant="outline"
+                          className={`${l.color} font-medium`}
+                        >
+                          {l.emoji} {l.kr}
+                        </Badge>
+                      );
+                    })
+                  ) : (
+                    <Badge variant="outline" className="text-muted-foreground">
+                      (빈 배열)
+                    </Badge>
+                  )}
+                </div>
+                <div className="flex items-center gap-2 text-xs text-muted-foreground shrink-0">
+                  <span className="text-amber-500">
+                    {"★".repeat(r.score ?? 0)}
+                    <span className="text-slate-300">
+                      {"☆".repeat(5 - (r.score ?? 0))}
+                    </span>
+                  </span>
+                  <span>·</span>
+                  <span className="tabular-nums">{r.posted_at.slice(0, 10)}</span>
+                </div>
+              </div>
+              <p className="text-sm leading-relaxed text-foreground whitespace-pre-wrap">
+                {r.text}
+              </p>
+            </li>
+          ))}
+        </ul>
       </section>
+      </div>
     </div>
+  );
+}
+
+function StatCard({
+  label,
+  value,
+  sublabel,
+}: {
+  label: string;
+  value: number;
+  sublabel?: string;
+}) {
+  return (
+    <div className="border border-border rounded-lg p-4">
+      <p className="text-xs text-muted-foreground mb-1">{label}</p>
+      <p className="text-2xl font-bold tabular-nums">{value}</p>
+      {sublabel && (
+        <p className="text-xs text-muted-foreground mt-1">{sublabel}</p>
+      )}
+    </div>
+  );
+}
+
+function FilterChip({
+  active,
+  onClick,
+  children,
+}: {
+  active: boolean;
+  onClick: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-colors ${
+        active
+          ? "bg-foreground text-background border-foreground"
+          : "bg-background text-foreground border-border hover:bg-slate-100"
+      }`}
+    >
+      {children}
+    </button>
   );
 }

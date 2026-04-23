@@ -1,36 +1,22 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# VOC Dashboard
 
-## Getting Started
+## 1. 한 줄 소개
 
-First, run the development server:
+생성형 AI로 앱 리뷰를 자동 분류해, 기업이 사용자 피드백을 의사결정에 활용할 수 있도록 시각화한 VOC 대시보드.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 2. 배경
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+모바일 앱 리뷰는 사용자의 불만·요청·경험이 담긴 풍부한 피드백 자원이지만, 일일 수백~수천 건 규모의 리뷰를 실무자가 수작업으로 분류·분석하는 것은 현실적으로 어렵다. 전통적 토픽모델링 방식도 전처리 부담과 문맥 해석의 한계로 실무 적용이 제한적이었다. 본 프로젝트는 생성형 AI(LLM)를 활용해 이 과정을 자동화하고, 결과를 대시보드로 제공하여 여러 부서가 공통의 근거 위에서 사용자 피드백에 대응할 수 있도록 한다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 3. 데이터
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **대상 앱**: 토스 (Viva Republica) — 금융 결제·송금 앱
+- **수집처**: Google Play Store, Apple App Store
+- **분석 기간**: 2026년 3월 (한 달)
+- **규모**:
+  - Google Play: 461건
+  - Apple App Store: 183건
+  - **합계 644건**
+- **전처리 기준**:
+  - 실질 문자(한글·영문·숫자) 10자 이하 리뷰 제외
+  - `(스토어, 작성자, 본문)` 완전 동일 중복 제거
