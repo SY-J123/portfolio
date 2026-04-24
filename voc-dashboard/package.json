@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node -e \"const fs=require('fs');const md=fs.readFileSync('scripts/classification.md','utf8');fs.writeFileSync('data/classification-content.ts','export const classificationMd = '+JSON.stringify(md)+';\\n');\"",
     "build": "next build",
     "start": "next start",
     "classify:api": "node --experimental-strip-types scripts/classify-with-api.ts"
@@ -17,11 +18,14 @@
     "dotenv": "^17.4.2",
     "google-play-scraper": "^10.1.2",
     "lucide-react": "^1.8.0",
+    "mermaid": "^11.14.0",
     "next": "^15.5.15",
     "puppeteer": "^24.41.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-markdown": "^10.1.0",
     "recharts": "^3.8.1",
+    "remark-gfm": "^4.0.1",
     "shadcn": "^4.3.0",
     "tailwind-merge": "^3.5.0",
     "tsx": "^4.21.0",

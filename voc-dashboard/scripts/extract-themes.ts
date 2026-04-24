@@ -4,12 +4,12 @@
  * 실행:
  *   npx tsx scripts/extract-themes.ts
  *
- * 입력: data/sample.maalej.json (분류 완료 리뷰)
- * 출력: data/sample.themes.json
+ * 입력: data/classified.maalej.json (분류 완료 리뷰)
+ * 출력: data/category-themes.json
  *
  * 처리:
  * - 3개 범주(bug_report, feature_request, user_experience)만 대상
- * - 각 범주의 전체 리뷰를 LLM에 전달해 상위 5개 주제 + 대표 리뷰 추출
+ * - 각 범주의 전체 리뷰를 LLM에 전달해 상위 15개 주제 + 대표 리뷰 추출
  * - rating은 정보 가치 낮아 제외
  */
 import fs from "node:fs/promises";
@@ -72,21 +72,22 @@ async function extractThemesForCategory(
 
   const systemPrompt = [
     `당신은 토스 앱의 ${CATEGORY_KR[category]} 리뷰에서 공통 주제를 뽑는 분석가다.`,
-    "입력으로 주어진 리뷰 배열을 읽고, 반복적으로 언급되는 주제를 상위 5개까지 도출한다.",
+    "입력으로 주어진 리뷰 배열을 읽고, 반복적으로 언급되는 주제를 상위 15개까지 도출한다.",
     "각 주제마다 해당되는 리뷰의 index 목록과 대표 리뷰 원문 2~3건을 반환한다.",
     "",
     "주제 작성 규칙:",
     "- 주제 이름은 10자 내외의 명사구 (예: '광고·알림 과다', '로그인 오류').",
     "- 하나의 리뷰가 여러 주제에 걸칠 수 있음 (중복 포함 허용).",
     "- 최소 2건 이상 언급된 주제만 포함. 단발성 주제는 제외.",
-    "- 주제 수가 적으면 5개보다 적게 반환해도 됨.",
+    "- 주제 수가 적으면 15개보다 적게 반환해도 됨.",
+    "- 주제는 서로 구분되는 구체적 이슈여야 함. 과도하게 일반적인 주제(예: '불만', '개선 요청')는 피할 것.",
     "",
     "응답 형식 (JSON 배열만, 마크다운·설명 없이):",
     `[{ "theme": "...", "review_indices": [1, 3, 5], "examples": ["원문1", "원문2"] }, ...]`,
   ].join("\n");
 
   const userPrompt = [
-    `다음은 ${CATEGORY_KR[category]}로 분류된 리뷰 ${reviews.length}건이다. 공통 주제를 뽑아라.`,
+    `다음은 ${CATEGORY_KR[category]}로 분류된 리뷰 ${reviews.length}건이다. 공통 주제를 상위 15개까지 뽑아라.`,
     "",
     "입력:",
     JSON.stringify(indexed, null, 2),
@@ -101,7 +102,7 @@ async function extractThemesForCategory(
     },
     body: JSON.stringify({
       model: MODEL,
-      max_tokens: 2500,
+      max_tokens: 6000,
       temperature: 0,
       system: systemPrompt,
       messages: [{ role: "user", content: userPrompt }],

@@ -3,7 +3,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "언더그라운드 — VOC 대시보드",
+  title: "VOC 대시보드",
   description: "VOC 자동수집·분석 대시보드",
 };
 

@@ -19,6 +19,7 @@ export async function crawlGooglePlay(count = 200): Promise<RawReview[]> {
     appId: APP_ID,
     lang: "ko",
     country: "kr",
+    // @ts-expect-error — google-play-scraper v10 ESM types expose sort differently; runtime value is correct
     sort: gplay.sort.NEWEST,
     num: count,
   });

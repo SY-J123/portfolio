@@ -1,13 +1,22 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
-import { Badge } from "@/components/ui/badge";
+import { useMemo } from "react";
+import {
+  CartesianGrid,
+  Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 import { Separator } from "@/components/ui/separator";
 import sampleData from "@/data/classified.maalej.json";
-import themesData from "@/data/category-themes.json";
 import weeklyThemesData from "@/data/weekly-themes.json";
 
 type ReviewType = "bug_report" | "feature_request" | "user_experience" | "rating";
+
+type Sentiment = "positive" | "negative" | "neutral";
 
 interface ClassifiedReview {
   source: string;
@@ -17,7 +26,7 @@ interface ClassifiedReview {
   text: string;
   posted_at: string;
   app_version: string | null;
-  classification: { types: string[] };
+  classification: { types: string[]; sentiment?: Sentiment };
 }
 
 const LABELS: Record<ReviewType, { kr: string; emoji: string; color: string; bar: string }> = {
@@ -40,41 +49,91 @@ const LABELS: Record<ReviewType, { kr: string; emoji: string; color: string; bar
     bar: "bg-blue-400",
   },
   rating: {
-    kr: "평가",
-    emoji: "⭐",
+    kr: "단순 소감",
+    emoji: "💬",
     color: "bg-amber-100 text-amber-700 border-amber-200",
     bar: "bg-amber-400",
   },
 };
 
-const LABEL_ORDER: ReviewType[] = [
+type ThemeCategory = "bug_report" | "feature_request" | "user_experience";
+const THEME_CATEGORIES: ThemeCategory[] = [
   "bug_report",
   "feature_request",
   "user_experience",
-  "rating",
 ];
 
-type FilterValue = "all" | ReviewType;
+interface WeeklyTheme {
+  theme: string;
+  count: number;
+  review_ids: string[];
+}
+
+interface CategoryBucket {
+  review_count: number;
+  themes: WeeklyTheme[];
+}
+
+interface WeeklyThemeData {
+  week: string;
+  start: string;
+  end: string;
+  review_count: number;
+  by_category: Record<ThemeCategory, CategoryBucket>;
+}
+
 
 export default function TabDashboard() {
   const reviews = sampleData as ClassifiedReview[];
-  const [filter, setFilter] = useState<FilterValue>("all");
-  const themesRef = useRef<HTMLElement>(null);
-  const [themesHeight, setThemesHeight] = useState<number | null>(null);
 
-  useEffect(() => {
-    const el = themesRef.current;
-    if (!el) return;
-    const update = () => setThemesHeight(el.offsetHeight);
-    update();
-    const ro = new ResizeObserver(update);
-    ro.observe(el);
-    window.addEventListener("resize", update);
-    return () => {
-      ro.disconnect();
-      window.removeEventListener("resize", update);
-    };
-  }, []);
+  const WEEKS = useMemo(
+    () => [
+      { label: "이번 주", sub: "4/5–11", start: "2026-04-05T00:00:00.000Z", end: "2026-04-12T00:00:00.000Z" },
+      { label: "1주 전", sub: "3/29–4/4", start: "2026-03-29T00:00:00.000Z", end: "2026-04-05T00:00:00.000Z" },
+      { label: "2주 전", sub: "3/22–28", start: "2026-03-22T00:00:00.000Z", end: "2026-03-29T00:00:00.000Z" },
+      { label: "3주 전", sub: "3/15–21", start: "2026-03-15T00:00:00.000Z", end: "2026-03-22T00:00:00.000Z" },
+      { label: "4주 전", sub: "3/8–14", start: "2026-03-08T00:00:00.000Z", end: "2026-03-15T00:00:00.000Z" },
+      { label: "5주 전", sub: "3/1–7", start: "2026-03-01T00:00:00.000Z", end: "2026-03-08T00:00:00.000Z" },
+    ],
+    []
+  );
+
+  const sentByCategoryWeek = useMemo(() => {
+    const rows: Array<{ key: "all" | ReviewType; label: string }> = [
+      { key: "all", label: "전체" },
+      { key: "bug_report", label: "버그" },
+      { key: "feature_request", label: "요청" },
+      { key: "user_experience", label: "UX" },
+      { key: "rating", label: "소감" },
+    ];
+    return rows.map(({ key, label }) => ({
+      key,
+      label,
+      weeks: WEEKS.map((w) => {
+        const inWeek = reviews.filter(
+          (r) => r.posted_at >= w.start && r.posted_at < w.end
+        );
+        const subset =
+          key === "all"
+            ? inWeek
+            : inWeek.filter((r) => r.classification.types.includes(key));
+        const sent = { positive: 0, negative: 0, neutral: 0 };
+        for (const r of subset) {
+          const s = r.classification.sentiment;
+          if (s && s in sent) sent[s]++;
+        }
+        const sentTotal = sent.positive + sent.negative + sent.neutral;
+        return {
+          weekLabel: w.label,
+          weekSub: w.sub,
+          count: subset.length,
+          negPct: sentTotal > 0 ? (sent.negative / sentTotal) * 100 : 0,
+          neuPct: sentTotal > 0 ? (sent.neutral / sentTotal) * 100 : 0,
+          posPct: sentTotal > 0 ? (sent.positive / sentTotal) * 100 : 0,
+        };
+      }),
+    }));
+  }, [reviews, WEEKS]);
 
   const stats = useMemo(() => {
     const counts: Record<ReviewType, number> = {
@@ -83,45 +142,172 @@ export default function TabDashboard() {
       user_experience: 0,
       rating: 0,
     };
-    let multiLabel = 0;
-    let empty = 0;
+    const sentCounts = { positive: 0, negative: 0, neutral: 0 };
+    let scoreSum = 0;
+    let scoreCount = 0;
+    const LAST_WEEK_START = "2026-04-05T00:00:00.000Z";
+    const LAST_WEEK_END = "2026-04-12T00:00:00.000Z";
+    const PREV_WEEK_START = "2026-03-29T00:00:00.000Z";
+    const PREV_WEEK_END = "2026-04-05T00:00:00.000Z";
+    let lastWeekSum = 0,
+      lastWeekCount = 0,
+      prevWeekSum = 0,
+      prevWeekCount = 0;
     for (const r of reviews) {
-      if (r.classification.types.length === 0) empty++;
-      if (r.classification.types.length > 1) multiLabel++;
       for (const t of r.classification.types) {
         if (t in counts) counts[t as ReviewType]++;
       }
+      const s = r.classification.sentiment;
+      if (s && s in sentCounts) sentCounts[s]++;
+      if (typeof r.score === "number") {
+        scoreSum += r.score;
+        scoreCount++;
+        if (r.posted_at >= LAST_WEEK_START && r.posted_at < LAST_WEEK_END) {
+          lastWeekSum += r.score;
+          lastWeekCount++;
+        } else if (
+          r.posted_at >= PREV_WEEK_START &&
+          r.posted_at < PREV_WEEK_END
+        ) {
+          prevWeekSum += r.score;
+          prevWeekCount++;
+        }
+      }
     }
     const max = Math.max(...Object.values(counts));
-    return { counts, max, multiLabel, empty, total: reviews.length };
+    const avgScore = scoreCount > 0 ? scoreSum / scoreCount : 0;
+    const lastWeekAvg = lastWeekCount > 0 ? lastWeekSum / lastWeekCount : null;
+    const prevWeekAvg = prevWeekCount > 0 ? prevWeekSum / prevWeekCount : null;
+    const weekDelta =
+      lastWeekAvg !== null && prevWeekAvg !== null
+        ? lastWeekAvg - prevWeekAvg
+        : null;
+    return {
+      counts,
+      max,
+      total: reviews.length,
+      sentCounts,
+      avgScore,
+      lastWeekAvg,
+      lastWeekCount,
+      weekDelta,
+    };
   }, [reviews]);
 
-  const [themeFilter, setThemeFilter] = useState<{
-    category: ReviewType | null;
-    theme: string;
-    reviewIds: Set<string>;
-  } | null>(null);
+  const weekReport = useMemo(() => {
+    const weekly = weeklyThemesData as WeeklyThemeData[];
+    const latest = [...weekly].sort((a, b) => b.start.localeCompare(a.start))[0];
+    const allRow = sentByCategoryWeek.find((r) => r.key === "all");
+    const latestSent = allRow?.weeks[0];
 
-  const filtered = useMemo(() => {
-    if (themeFilter) {
-      return reviews.filter((r) => themeFilter.reviewIds.has(r.external_id));
+    const flat: Array<WeeklyTheme & { category: ThemeCategory }> = [];
+    if (latest) {
+      for (const cat of THEME_CATEGORIES) {
+        const bucket = latest.by_category?.[cat];
+        if (bucket) {
+          for (const t of bucket.themes) {
+            flat.push({ ...t, category: cat });
+          }
+        }
+      }
     }
-    if (filter === "all") return reviews;
-    return reviews.filter((r) => r.classification.types.includes(filter));
-  }, [reviews, filter, themeFilter]);
+    const sorted = flat.sort((a, b) => b.count - a.count);
+    const topTheme = sorted[0] ?? null;
+    const topIssues = sorted.slice(0, 3);
+    return { latest, latestSent, topTheme, topIssues };
+  }, [sentByCategoryWeek]);
+
+  const categoryReports = useMemo(() => {
+    const weekly = weeklyThemesData as WeeklyThemeData[];
+    const sortedWeekly = [...weekly].sort((a, b) =>
+      b.start.localeCompare(a.start)
+    );
+    const latestWeekly = sortedWeekly[0] ?? null;
+    const prior3Weekly = sortedWeekly.slice(1, 4);
+
+    const priorByCategory: Record<ThemeCategory, Set<string>> = {
+      bug_report: new Set(),
+      feature_request: new Set(),
+      user_experience: new Set(),
+    };
+    for (const w of prior3Weekly) {
+      for (const cat of THEME_CATEGORIES) {
+        const bucket = w.by_category?.[cat];
+        if (bucket) {
+          for (const t of bucket.themes) priorByCategory[cat].add(t.theme);
+        }
+      }
+    }
+
+    const thisWeek = WEEKS[0];
+    const prevWeek = WEEKS[1] ?? null;
+    const catCount = (week: typeof WEEKS[number], cat: ReviewType) =>
+      reviews.filter(
+        (r) =>
+          r.posted_at >= week.start &&
+          r.posted_at < week.end &&
+          r.classification.types.includes(cat)
+      ).length;
+
+    return THEME_CATEGORIES.map((cat) => {
+      const thisWeekCount = catCount(thisWeek, cat);
+      const prevWeekCount = prevWeek ? catCount(prevWeek, cat) : null;
+      const delta =
+        prevWeekCount !== null ? thisWeekCount - prevWeekCount : null;
+      const bucket = latestWeekly?.by_category?.[cat];
+      const themes = bucket
+        ? [...bucket.themes]
+            .map((t) => ({
+              theme: t.theme,
+              count: t.count,
+              isNew: !priorByCategory[cat].has(t.theme),
+            }))
+            .sort((a, b) => b.count - a.count)
+        : [];
+      return {
+        cat,
+        thisWeekCount,
+        delta,
+        top: themes.slice(0, 5),
+        newThemes: themes.filter((t) => t.isNew).slice(0, 2),
+      };
+    });
+  }, [reviews, WEEKS]);
+
+  const negCountByWeek = useMemo(() => {
+    const last4 = WEEKS.slice(0, 4).reverse();
+    return last4.map((w) => {
+      const inWeek = reviews.filter(
+        (r) => r.posted_at >= w.start && r.posted_at < w.end
+      );
+      const countNeg = (cat: ReviewType) =>
+        inWeek.filter(
+          (r) =>
+            r.classification.types.includes(cat) &&
+            r.classification.sentiment === "negative"
+        ).length;
+      return {
+        label: w.label,
+        sub: w.sub,
+        bug_report: countNeg("bug_report"),
+        feature_request: countNeg("feature_request"),
+        user_experience: countNeg("user_experience"),
+      };
+    });
+  }, [reviews, WEEKS]);
 
   return (
-    <div className="max-w-[1200px] mx-auto py-10 px-6 space-y-10">
-      {/* 헤더 */}
+    <div className="max-w-[1440px] mx-auto py-10 px-6 space-y-10">
       <header>
         <p className="text-xs font-medium tracking-widest uppercase text-muted-foreground mb-2">
-          Dashboard
+          Weekly Summary
         </p>
         <h1 className="text-3xl font-bold tracking-tight leading-tight">
-          토스 VOC 분류·주제 분석
+          이번 주 요약
         </h1>
         <p className="mt-3 text-sm text-muted-foreground">
-          Google Play · Apple App Store · 2026년 3월 · 전체 {stats.total}건 ·{" "}
+          Google Play · Apple App Store · 2026년 3월 1일 ~ 4월 11일 · 전체{" "}
+          {stats.total}건 ·{" "}
           <code className="px-1 py-0.5 rounded bg-slate-100 text-xs font-mono">
             claude-haiku-4-5
           </code>
@@ -130,426 +316,577 @@ export default function TabDashboard() {
 
       <Separator />
 
-      {/* 요약 */}
       <section>
         <h2 className="text-lg font-semibold mb-4">요약</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          <StatCard label="총 리뷰" value={stats.total} />
-          <StatCard
-            label="다중 라벨"
-            value={stats.multiLabel}
-            sublabel={`${((stats.multiLabel / stats.total) * 100).toFixed(0)}%`}
+        <SummaryTopStrip
+          periodSub={weekReport.latest?.week ?? null}
+          count={weekReport.latestSent?.count ?? 0}
+          negPct={weekReport.latestSent?.negPct ?? null}
+          posPct={weekReport.latestSent?.posPct ?? null}
+        />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 items-stretch">
+          <RatingCard
+            avg={stats.lastWeekAvg ?? stats.avgScore}
+            overallAvg={stats.avgScore}
+            delta={stats.weekDelta}
           />
-          <StatCard
-            label="빈 배열"
-            value={stats.empty}
-            sublabel="해당 유형 없음"
+          <PatternCard
+            topTheme={weekReport.topTheme}
+            weekLabel={weekReport.latest?.week ?? null}
+            avgScore={stats.lastWeekAvg}
+            delta={stats.weekDelta}
+            negPct={weekReport.latestSent?.negPct ?? null}
           />
-          <StatCard
-            label="총 라벨 수"
-            value={Object.values(stats.counts).reduce((a, b) => a + b, 0)}
-            sublabel="다중 라벨 반영"
-          />
+          <TopIssuesCard issues={weekReport.topIssues} />
         </div>
       </section>
 
-      {/* 분류 분포 */}
       <section>
-        <h2 className="text-lg font-semibold mb-4">분류 분포</h2>
-        <div className="space-y-3 max-w-2xl">
-          {LABEL_ORDER.map((t) => {
-            const count = stats.counts[t];
-            const pct = stats.total > 0 ? (count / stats.total) * 100 : 0;
-            const barWidth = stats.max > 0 ? (count / stats.max) * 100 : 0;
-            return (
-              <div key={t} className="flex items-center gap-3">
-                <div className="w-28 text-sm font-medium">
-                  <span className="mr-1">{LABELS[t].emoji}</span>
-                  {LABELS[t].kr}
-                </div>
-                <div className="flex-1 h-7 bg-slate-100 rounded overflow-hidden">
-                  <div
-                    className={`h-full ${LABELS[t].bar} transition-all`}
-                    style={{ width: `${barWidth}%` }}
-                  />
-                </div>
-                <div className="w-28 text-sm text-right tabular-nums">
-                  <span className="font-semibold">{count}</span>
-                  <span className="text-muted-foreground ml-1">
-                    ({pct.toFixed(0)}%)
-                  </span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        <p className="text-xs text-muted-foreground mt-3">
-          ※ 다중 라벨 구조이므로 합계가 총 리뷰 수와 일치하지 않음
-        </p>
+        <h2 className="text-lg font-semibold mb-4">범주별 요약</h2>
+        <CategoryReportCard reports={categoryReports} />
       </section>
 
-      {/* 주별 상위 주제 */}
       <section>
-        <div className="flex items-baseline justify-between mb-4">
-          <h2 className="text-lg font-semibold">주별 상위 주제</h2>
-          <span className="text-xs text-muted-foreground">
-            주별 LLM 호출로 top 5 주제 추출 · rating 제외
-          </span>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-          {(
-            weeklyThemesData as Array<{
-              week: string;
-              start: string;
-              end: string;
-              review_count: number;
-              themes: Array<{
-                theme: string;
-                count: number;
-                review_ids: string[];
-              }>;
-            }>
-          ).map((w) => (
-            <div
-              key={w.week}
-              className="border border-border rounded-lg p-3 bg-slate-50/30"
-            >
-              <div className="mb-2">
-                <p className="text-sm font-semibold">{w.week}</p>
-                <p className="text-xs text-muted-foreground">
-                  {w.review_count}건
-                </p>
-              </div>
-              <ol className="space-y-1">
-                {w.themes.map((t, i) => {
-                  const isActive =
-                    themeFilter?.theme === t.theme &&
-                    themeFilter?.category === null;
-                  return (
-                    <li key={i}>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          if (isActive) {
-                            setThemeFilter(null);
-                          } else {
-                            setThemeFilter({
-                              category: null,
-                              theme: `${w.week} · ${t.theme}`,
-                              reviewIds: new Set(t.review_ids),
-                            });
-                          }
-                        }}
-                        className={`w-full text-left text-sm py-1 px-2 rounded transition-colors ${
-                          isActive
-                            ? "bg-foreground text-background"
-                            : "hover:bg-slate-100"
-                        }`}
-                      >
-                        <span className="tabular-nums text-xs text-muted-foreground mr-1.5">
-                          {i + 1}.
-                        </span>
-                        <span className="font-medium">{t.theme}</span>
-                        <span className="text-xs text-muted-foreground ml-1 tabular-nums">
-                          ({t.count})
-                        </span>
-                      </button>
-                    </li>
-                  );
-                })}
-              </ol>
-            </div>
-          ))}
+        <h2 className="text-lg font-semibold mb-4">감정 분포 추이</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+          <NegCountTrendLine data={negCountByWeek} />
+          <SentimentTrendArea data={sentByCategoryWeek} />
         </div>
       </section>
-
-      {/* 범주별 주제 + 리뷰 탐색 (2열) */}
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
-      <section ref={themesRef} className="lg:col-span-2">
-        <div className="flex items-baseline justify-between mb-4">
-          <h2 className="text-lg font-semibold">범주별 주제</h2>
-          <span className="text-xs text-muted-foreground">
-            LLM이 범주 내 리뷰에서 공통 주제를 추출 · 평가(rating) 제외
-          </span>
-        </div>
-        <div className="space-y-6">
-          {(["bug_report", "feature_request", "user_experience"] as const).map(
-            (cat) => {
-              const themes =
-                (
-                  themesData as Record<
-                    string,
-                    Array<{
-                      theme: string;
-                      count: number;
-                      review_ids?: string[];
-                      examples: string[];
-                    }>
-                  >
-                )[cat] ?? [];
-              const catCount = stats.counts[cat];
-              const l = LABELS[cat];
-              return (
-                <div key={cat}>
-                  <div className="flex items-center gap-2 mb-3">
-                    <Badge
-                      variant="outline"
-                      className={`${l.color} font-medium`}
-                    >
-                      {l.emoji} {l.kr}
-                    </Badge>
-                    <span className="text-sm text-muted-foreground">
-                      총 {catCount}건 · 주제 {themes.length}개
-                    </span>
-                  </div>
-                  {themes.length === 0 ? (
-                    <p className="text-sm text-muted-foreground pl-2">
-                      추출된 주제 없음
-                    </p>
-                  ) : (
-                    <ul className="space-y-2">
-                      {themes.map((t, i) => {
-                        const isActive =
-                          themeFilter?.category === cat &&
-                          themeFilter?.theme === t.theme;
-                        const reviewIds = t.review_ids ?? [];
-                        return (
-                        <li
-                          key={i}
-                          className={`border rounded-lg overflow-hidden transition-colors ${
-                            isActive
-                              ? "border-foreground ring-1 ring-foreground"
-                              : "border-border"
-                          }`}
-                        >
-                          <button
-                            type="button"
-                            onClick={() => {
-                              if (isActive) {
-                                setThemeFilter(null);
-                              } else {
-                                setThemeFilter({
-                                  category: cat,
-                                  theme: t.theme,
-                                  reviewIds: new Set(reviewIds),
-                                });
-                              }
-                            }}
-                            className={`w-full flex items-center justify-between gap-4 px-4 py-3 text-left transition-colors ${
-                              isActive
-                                ? "bg-slate-100"
-                                : "hover:bg-slate-50"
-                            }`}
-                          >
-                            <div className="flex items-center gap-3">
-                              <span className="text-sm text-muted-foreground tabular-nums w-6">
-                                #{i + 1}
-                              </span>
-                              <span className="font-medium">{t.theme}</span>
-                            </div>
-                            <div className="flex items-center gap-3 text-sm">
-                              <span className="tabular-nums">
-                                <span className="font-semibold">{t.count}</span>
-                                <span className="text-muted-foreground ml-1">
-                                  건
-                                </span>
-                              </span>
-                              <span
-                                className={`text-xs ${
-                                  isActive
-                                    ? "text-foreground"
-                                    : "text-muted-foreground"
-                                }`}
-                              >
-                                {isActive ? "선택됨" : "필터"}
-                              </span>
-                            </div>
-                          </button>
-                          <details className="group border-t border-border">
-                            <summary className="px-4 py-2 cursor-pointer list-none text-xs text-muted-foreground hover:bg-slate-50 flex items-center justify-between">
-                              <span>대표 리뷰 {t.examples.length}건 보기</span>
-                              <span className="group-open:rotate-90 transition-transform">
-                                ▶
-                              </span>
-                            </summary>
-                            <div className="px-4 py-3 bg-slate-50 border-t border-border">
-                              <ul className="space-y-2">
-                                {t.examples.map((ex, j) => (
-                                  <li
-                                    key={j}
-                                    className="text-sm leading-relaxed pl-3 border-l-2 border-slate-300"
-                                  >
-                                    {ex}
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          </details>
-                        </li>
-                        );
-                      })}
-                    </ul>
-                  )}
-                </div>
-              );
-            }
-          )}
-        </div>
-      </section>
-
-      {/* 리뷰 탐색 */}
-      <section
-        className="lg:col-span-3 lg:flex lg:flex-col lg:min-h-0"
-        style={themesHeight ? { maxHeight: themesHeight } : undefined}
-      >
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold">리뷰 탐색</h2>
-          <span className="text-sm text-muted-foreground">
-            {filtered.length}건
-          </span>
-        </div>
-
-        {/* 필터 */}
-        {themeFilter ? (
-          <div className="flex items-center justify-between gap-3 mb-4 px-3 py-2 rounded-lg border border-foreground bg-slate-100">
-            <div className="flex items-center gap-2 text-sm">
-              {themeFilter.category && (
-                <Badge
-                  variant="outline"
-                  className={`${LABELS[themeFilter.category].color} font-medium`}
-                >
-                  {LABELS[themeFilter.category].emoji}{" "}
-                  {LABELS[themeFilter.category].kr}
-                </Badge>
-              )}
-              <span className="text-muted-foreground">주제:</span>
-              <span className="font-semibold">{themeFilter.theme}</span>
-              <span className="text-muted-foreground tabular-nums">
-                ({themeFilter.reviewIds.size}건)
-              </span>
-            </div>
-            <button
-              type="button"
-              onClick={() => setThemeFilter(null)}
-              className="text-sm text-muted-foreground hover:text-foreground px-2 py-0.5 rounded hover:bg-slate-200"
-            >
-              × 해제
-            </button>
-          </div>
-        ) : (
-          <div className="flex flex-wrap gap-2 mb-4">
-            <FilterChip
-              active={filter === "all"}
-              onClick={() => setFilter("all")}
-            >
-              전체 ({stats.total})
-            </FilterChip>
-            {LABEL_ORDER.map((t) => (
-              <FilterChip
-                key={t}
-                active={filter === t}
-                onClick={() => setFilter(t)}
-              >
-                {LABELS[t].emoji} {LABELS[t].kr} ({stats.counts[t]})
-              </FilterChip>
-            ))}
-          </div>
-        )}
-
-        {/* 리뷰 리스트 (2열 레이아웃 시 좌측 컬럼 높이에 맞춰 스크롤) */}
-        <ul className="space-y-3 lg:flex-1 lg:min-h-0 lg:overflow-y-auto lg:pr-2 lg:border lg:border-border lg:rounded-lg lg:p-3 lg:bg-slate-50/30">
-          {filtered.map((r, i) => (
-            <li
-              key={r.external_id}
-              className="border border-border rounded-lg p-4 hover:bg-slate-50 transition-colors"
-            >
-              <div className="flex items-center justify-between gap-4 mb-2">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-xs text-muted-foreground tabular-nums">
-                    #{i + 1}
-                  </span>
-                  {r.classification.types.length > 0 ? (
-                    r.classification.types.map((t) => {
-                      const l = LABELS[t as ReviewType];
-                      if (!l) return null;
-                      return (
-                        <Badge
-                          key={t}
-                          variant="outline"
-                          className={`${l.color} font-medium`}
-                        >
-                          {l.emoji} {l.kr}
-                        </Badge>
-                      );
-                    })
-                  ) : (
-                    <Badge variant="outline" className="text-muted-foreground">
-                      (빈 배열)
-                    </Badge>
-                  )}
-                </div>
-                <div className="flex items-center gap-2 text-xs text-muted-foreground shrink-0">
-                  <span className="text-amber-500">
-                    {"★".repeat(r.score ?? 0)}
-                    <span className="text-slate-300">
-                      {"☆".repeat(5 - (r.score ?? 0))}
-                    </span>
-                  </span>
-                  <span>·</span>
-                  <span className="tabular-nums">{r.posted_at.slice(0, 10)}</span>
-                </div>
-              </div>
-              <p className="text-sm leading-relaxed text-foreground whitespace-pre-wrap">
-                {r.text}
-              </p>
-            </li>
-          ))}
-        </ul>
-      </section>
-      </div>
     </div>
   );
 }
 
-function StatCard({
-  label,
-  value,
-  sublabel,
+function stripWeekPrefix(week: string): string {
+  const m = week.match(/\(([^)]+)\)/);
+  return m ? m[1] : week;
+}
+
+function SummaryTopStrip({
+  periodSub,
+  count,
+  negPct,
+  posPct,
 }: {
-  label: string;
-  value: number;
-  sublabel?: string;
+  periodSub: string | null;
+  count: number;
+  negPct: number | null;
+  posPct: number | null;
 }) {
+  const sub = periodSub ? stripWeekPrefix(periodSub) : "—";
   return (
-    <div className="border border-border rounded-lg p-4">
-      <p className="text-xs text-muted-foreground mb-1">{label}</p>
-      <p className="text-2xl font-bold tabular-nums">{value}</p>
-      {sublabel && (
-        <p className="text-xs text-muted-foreground mt-1">{sublabel}</p>
+    <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-xs text-muted-foreground border-b border-border pb-3 mb-4">
+      <span>
+        이번 주{" "}
+        <span className="text-emerald-600 font-medium tabular-nums">{sub}</span>
+      </span>
+      <span className="text-slate-300">|</span>
+      <span>
+        수집 VOC{" "}
+        <span className="text-foreground font-medium tabular-nums">
+          {count}건
+        </span>
+      </span>
+      {negPct !== null && (
+        <>
+          <span className="text-slate-300">|</span>
+          <span>
+            부정 반응{" "}
+            <span className="text-red-600 font-medium tabular-nums">
+              {negPct.toFixed(0)}%
+            </span>
+          </span>
+        </>
+      )}
+      {posPct !== null && (
+        <>
+          <span className="text-slate-300">|</span>
+          <span>
+            긍정 반응{" "}
+            <span className="text-emerald-600 font-medium tabular-nums">
+              {posPct.toFixed(0)}%
+            </span>
+          </span>
+        </>
       )}
     </div>
   );
 }
 
-function FilterChip({
-  active,
-  onClick,
-  children,
+function PatternCard({
+  topTheme,
+  weekLabel,
+  avgScore,
+  delta,
+  negPct,
 }: {
-  active: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
+  topTheme: WeeklyTheme | null;
+  weekLabel: string | null;
+  avgScore: number | null;
+  delta: number | null;
+  negPct: number | null;
+}) {
+  const label = weekLabel ? stripWeekPrefix(weekLabel) : "최근 주";
+  const deltaText =
+    delta === null
+      ? ""
+      : delta > 0
+      ? `전주 대비 별점 ${delta.toFixed(2)}점 상승`
+      : delta < 0
+      ? `전주 대비 별점 ${Math.abs(delta).toFixed(2)}점 하락`
+      : "전주와 동일한 수준";
+  return (
+    <div className="border border-border rounded-lg p-5 h-full flex flex-col">
+      <p className="text-xs text-muted-foreground mb-3">이번 주 리포트</p>
+      {topTheme ? (
+        <h3 className="text-lg font-bold leading-snug mb-3">
+          {topTheme.theme}
+        </h3>
+      ) : (
+        <h3 className="text-lg font-bold leading-snug mb-3 text-muted-foreground">
+          대표 주제 없음
+        </h3>
+      )}
+      <p className="text-sm leading-relaxed text-muted-foreground">
+        {topTheme
+          ? `${label} 기간 "${topTheme.theme}" ${topTheme.count}건이 집중되었으며`
+          : `${label} 기간 대표 이슈가 추출되지 않았으며`}
+        {negPct !== null ? `, 부정 비중은 ${negPct.toFixed(0)}%` : ""}
+        {avgScore !== null
+          ? `, 평균 별점은 ${avgScore.toFixed(2)}점으로 ${deltaText}`
+          : ""}
+        .
+      </p>
+    </div>
+  );
+}
+
+function TopIssuesCard({
+  issues,
+}: {
+  issues: Array<{
+    theme: string;
+    count: number;
+    category: ThemeCategory | null;
+  }>;
 }) {
   return (
-    <button
-      onClick={onClick}
-      className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-colors ${
-        active
-          ? "bg-foreground text-background border-foreground"
-          : "bg-background text-foreground border-border hover:bg-slate-100"
-      }`}
-    >
-      {children}
-    </button>
+    <div className="border border-border rounded-lg p-5 h-full flex flex-col">
+      <p className="text-xs text-muted-foreground mb-3">주요 이슈</p>
+      {issues.length === 0 ? (
+        <p className="text-sm text-muted-foreground">추출된 이슈 없음</p>
+      ) : (
+        <ul className="space-y-2.5">
+          {issues.map((it, i) => {
+            const l = it.category ? LABELS[it.category] : null;
+            return (
+              <li key={i} className="flex items-center gap-2.5">
+                {l ? (
+                  <span
+                    className={`text-[10px] leading-none px-1.5 py-1 rounded border shrink-0 font-medium ${l.color}`}
+                  >
+                    {l.kr}
+                  </span>
+                ) : (
+                  <span className="text-[10px] leading-none px-1.5 py-1 rounded border shrink-0 text-muted-foreground bg-slate-50 border-slate-200">
+                    미분류
+                  </span>
+                )}
+                <span className="flex-1 min-w-0 text-sm font-medium truncate">
+                  {it.theme}
+                </span>
+                <span className="text-sm tabular-nums shrink-0">
+                  <span className="font-semibold">{it.count}</span>
+                  <span className="text-muted-foreground ml-0.5">건</span>
+                </span>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+interface CategoryReport {
+  cat: ThemeCategory;
+  thisWeekCount: number;
+  delta: number | null;
+  top: Array<{ theme: string; count: number; isNew: boolean }>;
+  newThemes: Array<{ theme: string; count: number; isNew: boolean }>;
+}
+
+function buildCategoryNarrative(r: CategoryReport): string {
+  if (r.thisWeekCount === 0) {
+    return "이번 주 해당 범주에서 집중된 주제가 없었다.";
+  }
+
+  if (r.newThemes.length > 0 && r.top.length > r.newThemes.length) {
+    const n = r.newThemes[0];
+    const persisting = r.top.find((t) => !t.isNew);
+    if (persisting) {
+      return `"${persisting.theme}"(${persisting.count}건)이 최근 3주에 이어 지속되는 가운데, 이번 주 "${n.theme}"(${n.count}건)이 신규 주제로 부상했다.`;
+    }
+  }
+
+  if (r.newThemes.length > 0) {
+    const n = r.newThemes[0];
+    return `이번 주 "${n.theme}"(${n.count}건)이 최근 3주간 없던 신규 주제로 새로 부상했다.`;
+  }
+
+  if (r.top.length >= 2) {
+    const t1 = r.top[0];
+    const t2 = r.top[1];
+    return `"${t1.theme}"(${t1.count}건), "${t2.theme}"(${t2.count}건) 등 기존 이슈가 이번 주에도 주요 주제로 이어졌다.`;
+  }
+
+  if (r.top.length === 1) {
+    return `"${r.top[0].theme}"(${r.top[0].count}건)이 단일 주요 이슈로 관찰됐다.`;
+  }
+
+  return "이번 주 해당 범주에서 집중된 주제가 없었다.";
+}
+
+function CategoryReportCard({ reports }: { reports: CategoryReport[] }) {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {reports.map((r) => (
+        <CategoryReportColumn key={r.cat} report={r} />
+      ))}
+    </div>
+  );
+}
+
+function CategoryReportColumn({ report }: { report: CategoryReport }) {
+  const l = LABELS[report.cat];
+  const { delta } = report;
+  const deltaSign = delta === null ? "" : delta > 0 ? "▲" : delta < 0 ? "▼" : "–";
+  const deltaColor =
+    delta === null
+      ? "text-muted-foreground"
+      : delta > 0
+      ? "text-red-600"
+      : delta < 0
+      ? "text-emerald-600"
+      : "text-muted-foreground";
+  const narrative = buildCategoryNarrative(report);
+  return (
+    <div className="border border-border rounded-lg p-4 h-full flex flex-col">
+      <div className="flex items-baseline justify-between mb-2">
+        <p className="text-sm font-semibold">
+          <span className="mr-1">{l.emoji}</span>
+          {l.kr}
+        </p>
+        <span className="text-sm tabular-nums">
+          <span className="font-bold">{report.thisWeekCount}</span>
+          <span className="text-xs text-muted-foreground ml-1">건</span>
+          {delta !== null && (
+            <span className={`ml-2 text-xs ${deltaColor}`}>
+              {deltaSign} {Math.abs(delta)}
+            </span>
+          )}
+        </span>
+      </div>
+      <p className="text-sm leading-relaxed text-foreground mb-3 flex-1">
+        {narrative}
+      </p>
+      {report.top.length > 0 && (
+        <ol className="space-y-1 pt-3 border-t border-border">
+          {report.top.map((t, i) => (
+            <li
+              key={t.theme}
+              className="flex items-center gap-2 text-xs"
+            >
+              <span className="text-muted-foreground tabular-nums w-4 shrink-0">
+                {i + 1}
+              </span>
+              <span className="flex-1 min-w-0 truncate">
+                {t.theme}
+                {t.isNew && (
+                  <span className="ml-1.5 text-[9px] leading-none px-1 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
+                    신규
+                  </span>
+                )}
+              </span>
+              <span className="tabular-nums shrink-0">
+                <span className="font-semibold">{t.count}</span>
+                <span className="text-muted-foreground ml-0.5">건</span>
+              </span>
+            </li>
+          ))}
+        </ol>
+      )}
+    </div>
+  );
+}
+
+interface CategoryWeekSent {
+  weekLabel: string;
+  weekSub: string;
+  count: number;
+  negPct: number;
+  neuPct: number;
+  posPct: number;
+}
+
+interface CategoryRow {
+  key: string;
+  label: string;
+  weeks: CategoryWeekSent[];
+}
+
+const TIER_CLASSES = [
+  "bg-red-50 text-red-700",
+  "bg-red-100 text-red-800",
+  "bg-red-200 text-red-900",
+  "bg-red-300 text-red-900",
+  "bg-red-400 text-white",
+  "bg-red-500 text-white",
+];
+
+interface NegCountPoint {
+  label: string;
+  sub: string;
+  bug_report: number;
+  feature_request: number;
+  user_experience: number;
+}
+
+function NegCountTrendLine({ data }: { data: NegCountPoint[] }) {
+  return (
+    <div className="border border-border rounded-lg p-4 h-full flex flex-col">
+      <div className="flex items-baseline justify-between mb-3">
+        <p className="text-sm font-semibold">범주별 부정 리뷰 추이</p>
+        <div className="flex gap-3 text-xs text-muted-foreground">
+          <span className="flex items-center gap-1">
+            <span className="inline-block w-2 h-2 rounded-sm bg-red-400" />
+            버그
+          </span>
+          <span className="flex items-center gap-1">
+            <span className="inline-block w-2 h-2 rounded-sm bg-violet-400" />
+            요청
+          </span>
+          <span className="flex items-center gap-1">
+            <span className="inline-block w-2 h-2 rounded-sm bg-blue-400" />
+            UX
+          </span>
+        </div>
+      </div>
+      <div className="flex-1 min-h-[200px]">
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart
+            data={data}
+            margin={{ top: 8, right: 8, left: -16, bottom: 0 }}
+          >
+            <CartesianGrid
+              strokeDasharray="3 3"
+              stroke="#e5e7eb"
+              vertical={false}
+            />
+            <XAxis
+              dataKey="label"
+              tick={{ fontSize: 11, fill: "#64748b" }}
+              interval={0}
+              tickLine={false}
+              axisLine={{ stroke: "#e5e7eb" }}
+            />
+            <YAxis
+              tick={{ fontSize: 10, fill: "#64748b" }}
+              tickLine={false}
+              axisLine={false}
+              width={32}
+              allowDecimals={false}
+            />
+            <Tooltip
+              contentStyle={{
+                fontSize: 12,
+                borderRadius: 6,
+                border: "1px solid #e5e7eb",
+              }}
+              labelFormatter={(l, p) => {
+                const pt = p?.[0]?.payload as NegCountPoint | undefined;
+                return pt ? `${pt.label} (${pt.sub})` : l;
+              }}
+              formatter={(v, name) => {
+                const labelMap: Record<string, string> = {
+                  bug_report: "버그",
+                  feature_request: "요청",
+                  user_experience: "UX",
+                };
+                const key = typeof name === "string" ? name : String(name);
+                return [v, labelMap[key] ?? key];
+              }}
+            />
+            <Line
+              type="monotone"
+              dataKey="bug_report"
+              stroke="#f87171"
+              strokeWidth={2}
+              dot={{ r: 3, fill: "#f87171" }}
+              activeDot={{ r: 5 }}
+            />
+            <Line
+              type="monotone"
+              dataKey="feature_request"
+              stroke="#a78bfa"
+              strokeWidth={2}
+              dot={{ r: 3, fill: "#a78bfa" }}
+              activeDot={{ r: 5 }}
+            />
+            <Line
+              type="monotone"
+              dataKey="user_experience"
+              stroke="#60a5fa"
+              strokeWidth={2}
+              dot={{ r: 3, fill: "#60a5fa" }}
+              activeDot={{ r: 5 }}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
+  );
+}
+
+function SentimentTrendArea({ data }: { data: CategoryRow[] }) {
+  const xWeeks = data[0]?.weeks ?? [];
+
+  const sortedPcts = useMemo(() => {
+    return data
+      .flatMap((cat) =>
+        cat.weeks.filter((w) => w.count > 0).map((w) => w.negPct)
+      )
+      .sort((a, b) => a - b);
+  }, [data]);
+
+  const pctRange = sortedPcts.length
+    ? {
+        min: sortedPcts[0],
+        max: sortedPcts[sortedPcts.length - 1],
+      }
+    : null;
+
+  function tierClass(pct: number): string {
+    if (sortedPcts.length === 0) return TIER_CLASSES[0];
+    let lo = 0;
+    let hi = sortedPcts.length;
+    while (lo < hi) {
+      const mid = (lo + hi) >> 1;
+      if (sortedPcts[mid] < pct) lo = mid + 1;
+      else hi = mid;
+    }
+    const tier = Math.min(
+      TIER_CLASSES.length - 1,
+      Math.floor((lo / sortedPcts.length) * TIER_CLASSES.length)
+    );
+    return TIER_CLASSES[tier];
+  }
+  return (
+    <div className="border border-border rounded-lg p-4">
+      <div className="flex items-baseline justify-between mb-3">
+        <p className="text-sm font-semibold">부정 비중 추이 (범주 × 주)</p>
+        <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+          <span className="tabular-nums">
+            {pctRange ? `${pctRange.min.toFixed(0)}%` : "낮음"}
+          </span>
+          <div className="flex">
+            {TIER_CLASSES.map((c, i) => (
+              <div key={i} className={`w-3 h-3 ${c.split(" ")[0]}`} />
+            ))}
+          </div>
+          <span className="tabular-nums">
+            {pctRange ? `${pctRange.max.toFixed(0)}%` : "높음"}
+          </span>
+        </div>
+      </div>
+      <div className="space-y-0.5">
+        {data.map((cat) => (
+          <div key={cat.key} className="flex items-center gap-2">
+            <p
+              className={`w-12 text-xs shrink-0 truncate ${
+                cat.key === "all"
+                  ? "font-semibold text-foreground"
+                  : "text-muted-foreground"
+              }`}
+            >
+              {cat.label}
+            </p>
+            <div className="flex-1 grid grid-cols-6 gap-0.5">
+              {cat.weeks.map((w) => {
+                const empty = w.count === 0;
+                const cellClass = empty
+                  ? "bg-slate-100 text-muted-foreground"
+                  : tierClass(w.negPct);
+                const tooltip = empty
+                  ? `${cat.label} · ${w.weekLabel} (${w.weekSub}) · 0건`
+                  : `${cat.label} · ${w.weekLabel} (${w.weekSub}) · ${w.count}건\n부정 ${w.negPct.toFixed(0)}% · 중립 ${w.neuPct.toFixed(0)}% · 긍정 ${w.posPct.toFixed(0)}%`;
+                return (
+                  <div
+                    key={w.weekLabel}
+                    className={`h-8 rounded-sm flex items-center justify-center text-[11px] font-medium tabular-nums ${cellClass}`}
+                    title={tooltip}
+                  >
+                    {empty ? "—" : `${w.negPct.toFixed(0)}`}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="flex items-center gap-2 mt-2">
+        <div className="w-12 shrink-0" />
+        <div className="flex-1 grid grid-cols-6 gap-0.5">
+          {xWeeks.map((w) => (
+            <p
+              key={w.weekLabel}
+              className="text-[10px] text-center text-muted-foreground tabular-nums"
+            >
+              {w.weekLabel}
+            </p>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function RatingCard({
+  avg,
+  overallAvg,
+  delta,
+}: {
+  avg: number;
+  overallAvg: number;
+  delta: number | null;
+}) {
+  const deltaSign = delta === null ? "" : delta > 0 ? "▲" : delta < 0 ? "▼" : "–";
+  const deltaColor =
+    delta === null
+      ? "text-muted-foreground"
+      : delta > 0
+      ? "text-emerald-600"
+      : delta < 0
+      ? "text-red-600"
+      : "text-muted-foreground";
+  return (
+    <div className="border border-border rounded-lg p-5 h-full flex flex-col">
+      <p className="text-xs text-muted-foreground mb-3">평균 별점</p>
+      <p className="text-4xl font-bold tabular-nums leading-none">
+        {avg.toFixed(2)}
+        <span className="text-lg font-normal text-muted-foreground ml-1">
+          / 5
+        </span>
+      </p>
+      <p className="text-xs text-muted-foreground mt-auto pt-4">
+        전체 평균{" "}
+        <span className="tabular-nums">{overallAvg.toFixed(2)}</span> 기준
+        {delta !== null && (
+          <span className={`ml-2 tabular-nums font-medium ${deltaColor}`}>
+            {deltaSign} {Math.abs(delta).toFixed(2)}
+          </span>
+        )}
+      </p>
+    </div>
   );
 }
