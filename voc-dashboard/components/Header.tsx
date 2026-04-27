@@ -27,7 +27,7 @@ export default function Header({ tabs, activeTab, onTabChange }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-50 border-b bg-white/80 backdrop-blur-md">
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between h-12">
+      <div className="max-w-[1400px] mx-auto px-6 flex items-center justify-between h-12">
         <div className="flex items-center gap-8">
           <span className="text-sm font-semibold tracking-tight text-foreground">토스 VOC 대시보드</span>
           <nav className="flex gap-1">

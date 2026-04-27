@@ -111,7 +111,7 @@ export default function TabDashboard() {
   }, [reviews, filter, themeFilter]);
 
   return (
-    <div className="max-w-[1200px] mx-auto py-10 px-6 space-y-10">
+    <div className="max-w-[1400px] mx-auto py-10 px-6 space-y-10">
       {/* 헤더 */}
       <header>
         <p className="text-xs font-medium tracking-widest uppercase text-muted-foreground mb-2">
