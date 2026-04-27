@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "classify:api": "node --experimental-strip-types scripts/classify-with-api.ts"
+    "start": "next start"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.0",
