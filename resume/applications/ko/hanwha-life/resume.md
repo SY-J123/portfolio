@@ -35,14 +35,14 @@ Product Manager | 2024.04 - Present
 - 바이브코딩을 활용한 프로토타입 제작으로 소통 효율 향상
 
 ### NSUSLAB Korea
-Operations | 2023.08 - 2024.04
+Operations | 2023.07 - 2024.04
 
 - GGPoker 토너먼트 운영 모니터링 및 서비스 지표 분석
 - 해외 지사 및 파트너와 이벤트 스케줄, 포맷, 운영 요청 사항 조율
 - 운영 데이터 분석을 통한 손실 구간 발견 및 개선안 수립·실행
 
 ### Me2on
-Operations | 2023.08 - 2024.08
+Operations | 2022.08 - 2023.06
 
 - Fullhouse Casino 운영 지원 및 이슈 대응
 - 해외 지사 커뮤니케이션과 운영 진행 상황 공유

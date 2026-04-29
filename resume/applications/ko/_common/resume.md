@@ -22,14 +22,14 @@ Product Manager | 2024.04 - Present
 - Claude Code 바이브 코딩을 활용한 프로토타입 제작으로 소통 비용 절감
 
 ### NSUSLAB Korea
-Operations | 2023.08 - 2024.04
+Operations | 2023.07 - 2024.04
 
 - GGPoker 토너먼트 스케줄 운영, 참여 현황 모니터링 및 주요 운영 지표 점검
 - 해외 지사 및 파트너와 이벤트 스케줄, 포맷, 상금 구조, 운영 요청 사항 조율
 - 참가비 구간, 시간대, 참여율 데이터를 기반으로 손실 구간 발견 및 운영안 개선
 
 ### Me2on
-Operations | 2023.08 - 2024.08
+Operations | 2022.08 - 2023.06
 
 - Fullhouse Casino 운영 지원 및 이슈 대응
 - 해외 지사 커뮤니케이션과 운영 진행 상황 공유
